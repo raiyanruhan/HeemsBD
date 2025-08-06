@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Scroll Effect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .text-scroll-container {
+            mask-image: linear-gradient(
+                to right,
+                transparent,
+                black 20%,
+                black 80%,
+                transparent
+            );
+            -webkit-mask-image: linear-gradient(
+                to right,
+                transparent,
+                black 20%,
+                black 80%,
+                transparent
+            );
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-4xl w-full">
+        <h1 class="text-3xl font-bold mb-8 text-center">Text Scroll Effect</h1>
+        
+        <div class="mb-12">
+            <h2 class="text-xl font-semibold mb-4">Default Speed</h2>
+            <div class="text-scroll-container overflow-hidden">
+                <div id="text-scroll-1" class="whitespace-nowrap"></div>
+            </div>
+        </div>
+        
+        <div class="mb-12">
+            <h2 class="text-xl font-semibold mb-4">Faster Speed</h2>
+            <div class="text-scroll-container overflow-hidden">
+                <div id="text-scroll-2" class="whitespace-nowrap"></div>
+            </div>
+        </div>
+        
+        <div>
+            <h2 class="text-xl font-semibold mb-4">Reverse Direction</h2>
+            <div class="text-scroll-container overflow-hidden">
+                <div id="text-scroll-3" class="whitespace-nowrap"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class TextScroll {
+            constructor(element, text, options = {}) {
+                this.element = element;
+                this.text = text;
+                this.options = {
+                    velocity: 1,
+                    direction: 1,
+                    repetitions: 3,
+                    ...options
+                };
+                
+                this.position = 0;
+                this.lastTime = null;
+                this.animationId = null;
+                this.textWidth = 0;
+                
+                this.init();
+            }
+            
+            init() {
+                // Create the repeated text
+                let content = '';
+                for (let i = 0; i < this.options.repetitions; i++) {
+                    content += this.text + ' ';
+                }
+                this.element.innerHTML = content;
+                
+                // Measure the width of a single text instance
+                const tempSpan = document.createElement('span');
+                tempSpan.textContent = this.text;
+                tempSpan.style.visibility = 'hidden';
+                tempSpan.style.position = 'absolute';
+                tempSpan.style.whiteSpace = 'nowrap';
+                document.body.appendChild(tempSpan);
+                this.textWidth = tempSpan.offsetWidth;
+                document.body.removeChild(tempSpan);
+                
+                this.startAnimation();
+            }
+            
+            startAnimation() {
+                this.lastTime = performance.now();
+                this.animate();
+            }
+            
+            animate() {
+                const now = performance.now();
+                const deltaTime = now - this.lastTime;
+                this.lastTime = now;
+                
+                // Calculate movement based on velocity and direction
+                this.position += this.options.velocity * this.options.direction * deltaTime * 0.05;
+                
+                // Wrap around when text moves completely out of view
+                if (Math.abs(this.position) >= this.textWidth) {
+                    this.position = this.position % this.textWidth;
+                }
+                
+                this.element.style.transform = `translateX(${-this.position}px)`;
+                
+                this.animationId = requestAnimationFrame(() => this.animate());
+            }
+            
+            destroy() {
+                if (this.animationId) {
+                    cancelAnimationFrame(this.animationId);
+                }
+            }
+        }
+        
+        // Initialize text scroll effects
+        document.addEventListener('DOMContentLoaded', () => {
+            const text = "This is a scrolling text effect created with Tailwind CSS and vanilla JavaScript. ";
+            
+            // Default speed
+            new TextScroll(
+                document.getElementById('text-scroll-1'),
+                text,
+                { velocity: 1 }
+            );
+            
+            // Faster speed
+            new TextScroll(
+                document.getElementById('text-scroll-2'),
+                text,
+                { velocity: 2 }
+            );
+            
+            // Reverse direction
+            new TextScroll(
+                document.getElementById('text-scroll-3'),
+                text,
+                { velocity: 1, direction: -1 }
+            );
+        });
+    </script>
+</body>
+</html>

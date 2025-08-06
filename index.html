@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeemsBD | Clothing Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .bangla-font {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+        
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        .timeline-item:hover .timeline-dot {
+            transform: scale(1.2);
+            background-color: #4a6b3a;
+        }
+        
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+        
+        .scroll-hint {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+        
+        .horizontal-scroll {
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+        }
+        
+        .horizontal-scroll-item {
+            scroll-snap-align: start;
+            flex: 0 0 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .horizontal-scroll-item {
+                flex: 0 0 50%;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .horizontal-scroll-item {
+                flex: 0 0 33.333%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#f8f8f8] text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white bg-opacity-90 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-2xl font-bold" style="font-family: 'Playfair Display', serif; color: #4a6b3a;">
+                HeemsBD
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#story" class="hover:text-[#4a6b3a] transition">Our Story</a>
+                <a href="#products" class="hover:text-[#4a6b3a] transition">Products</a>
+                <a href="#media" class="hover:text-[#4a6b3a] transition">Media</a>
+                <a href="#contact" class="hover:text-[#4a6b3a] transition">Contact</a>
+            </div>
+            <button class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Video background - replace with your actual video -->
+        <video autoplay muted loop class="hero-video">
+            <source src="https://example.com/placeholder-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <!-- Fallback image -->
+        <div class="hero-video bg-[url('assets/image.jpg')] bg-cover bg-center"></div>
+        
+        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+        
+        <div class="container mx-auto px-6 z-10 text-center">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white" style="font-family: 'Playfair Display', serif;">
+                HeemsBD
+            </h1>
+            <p class="text-xl md:text-2xl text-white max-w-2xl mx-auto mb-10">
+                A journey of passion, craftsmanship, and cultural heritage
+            </p>
+            <a href="#story" class="scroll-hint inline-block">
+                <svg class="w-10 h-10 text-white animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Brand Journey -->
+    <section id="story" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" style="font-family: 'Playfair Display', serif; color: #4a6b3a;">
+                From Village to Visionary
+            </h2>
+            
+            <!-- Horizontal Scroll Timeline for Desktop -->
+            <div class="hidden md:flex overflow-x-auto horizontal-scroll pb-10 -mx-6 px-6" style="scrollbar-width: none;">
+                <div class="flex">
+                    <!-- Timeline Item 1 -->
+                    <div class="horizontal-scroll-item px-6">
+                        <div class="max-w-md mx-auto">
+                            <div class="relative pl-16 pb-10">
+                                <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-[#d4e6b5] border-4 border-[#4a6b3a] timeline-dot transition-all duration-300"></div>
+                                <div class="text-sm text-gray-500">1995</div>
+                                <h3 class="text-xl font-bold mb-2">Humble Beginnings</h3>
+                                <p class="text-gray-600">Started with a small tailoring shop in Galachipa, crafting traditional garments for local community.</p>
+                                <div class="mt-4">
+                                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Early days" class="rounded-lg shadow-md">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline Item 2 -->
+                    <div class="horizontal-scroll-item px-6">
+                        <div class="max-w-md mx-auto">
+                            <div class="relative pl-16 pb-10">
+                                <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-[#d4e6b5] border-4 border-[#4a6b3a] timeline-dot transition-all duration-300"></div>
+                                <div class="text-sm text-gray-500">2005</div>
+                                <h3 class="text-xl font-bold mb-2">First Recognition</h3>
+                                <p class="text-gray-600">Won regional craftsmanship award for innovative fusion of traditional and contemporary designs.</p>
+                                <div class="mt-4">
+                                    <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Award" class="rounded-lg shadow-md">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline Item 3 -->
+                    <div class="horizontal-scroll-item px-6">
+                        <div class="max-w-md mx-auto">
+                            <div class="relative pl-16 pb-10">
+                                <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-[#d4e6b5] border-4 border-[#4a6b3a] timeline-dot transition-all duration-300"></div>
+                                <div class="text-sm text-gray-500">2012</div>
+                                <h3 class="text-xl font-bold mb-2">Dhaka Expansion</h3>
+                                <p class="text-gray-600">Opened first boutique in Dhaka, introducing the brand to urban fashion enthusiasts.</p>
+                                <div class="mt-4">
+                                    <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dhaka store" class="rounded-lg shadow-md">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline Item 4 -->
+                    <div class="horizontal-scroll-item px-6">
+                        <div class="max-w-md mx-auto">
+                            <div class="relative pl-16 pb-10">
+                                <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-[#d4e6b5] border-4 border-[#4a6b3a] timeline-dot transition-all duration-300"></div>
+                                <div class="text-sm text-gray-500">2018</div>
+                                <h3 class="text-xl font-bold mb-2">International Debut</h3>
+                                <p class="text-gray-600">Showcased collection at London Fashion Week, receiving critical acclaim for sustainable practices.</p>
+                                <div class="mt-4">
+                                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Fashion show" class="rounded-lg shadow-md">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Timeline Item 5 -->
+                    <div class="horizontal-scroll-item px-6">
+                        <div class="max-w-md mx-auto">
+                            <div class="relative pl-16">
+                                <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-[#d4e6b5] border-4 border-[#4a6b3a] timeline-dot transition-all duration-300"></div>
+                                <div class="text-sm text-gray-500">2023</div>
+                                <h3 class="text-xl font-bold mb-2">Global Recognition</h3>
+                                <p class="text-gray-600">Featured in Vogue as one of the most influential sustainable fashion brands from South Asia.</p>
+                                <div class="mt-4">
+                                    <img src="https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Vogue feature" class="rounded-lg shadow-md">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Vertical Timeline for Mobile -->
+            <div class="md:hidden">
+                <!-- Timeline Item 1 -->
+                <div class="relative pl-16 pb-10">
+                    <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-[#d4e6b5] border-4 border-[#4a6b3a] timeline-dot transition-all duration-300"></div>
+                    <div class="text-sm text-gray-500">1995</div>
+                    <h3 class="text-xl font-bold mb-2">Humble Beginnings</h3>
+                    <p class="text-gray-600">Started with a small tailoring shop in Galachipa, crafting traditional garments for local community.</p>
+                    <div class="mt-4">
+                        <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Early days" class="rounded-lg shadow-md w-full">
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 2 -->
+                <div class="relative pl-16 pb-10">
+                    <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-[#d4e6b5] border-4 border-[#4a6b3a] timeline-dot transition-all duration-300"></div>
+                    <div class="text-sm text-gray-500">2005</div>
+                    <h3 class="text-xl font-bold mb-2">First Recognition</h3>
+                    <p class="text-gray-600">Won regional craftsmanship award for innovative fusion of traditional and contemporary designs.</p>
+                    <div class="mt-4">
+                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Award" class="rounded-lg shadow-md w-full">
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 3 -->
+                <div class="relative pl-16 pb-10">
+                    <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-[#d4e6b5] border-4 border-[#4a6b3a] timeline-dot transition-all duration-300"></div>
+                    <div class="text-sm text-gray-500">2012</div>
+                    <h3 class="text-xl font-bold mb-2">Dhaka Expansion</h3>
+                    <p class="text-gray-600">Opened first boutique in Dhaka, introducing the brand to urban fashion enthusiasts.</p>
+                    <div class="mt-4">
+                        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dhaka store" class="rounded-lg shadow-md w-full">
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 4 -->
+                <div class="relative pl-16 pb-10">
+                    <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-[#d4e6b5] border-4 border-[#4a6b3a] timeline-dot transition-all duration-300"></div>
+                    <div class="text-sm text-gray-500">2018</div>
+                    <h3 class="text-xl font-bold mb-2">International Debut</h3>
+                    <p class="text-gray-600">Showcased collection at London Fashion Week, receiving critical acclaim for sustainable practices.</p>
+                    <div class="mt-4">
+                        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Fashion show" class="rounded-lg shadow-md w-full">
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 5 -->
+                <div class="relative pl-16">
+                    <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-[#d4e6b5] border-4 border-[#4a6b3a] timeline-dot transition-all duration-300"></div>
+                    <div class="text-sm text-gray-500">2023</div>
+                    <h3 class="text-xl font-bold mb-2">Global Recognition</h3>
+                    <p class="text-gray-600">Featured in Vogue as one of the most influential sustainable fashion brands from South Asia.</p>
+                    <div class="mt-4">
+                        <img src="https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Vogue feature" class="rounded-lg shadow-md w-full">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pull Quote -->
+            <div class="max-w-4xl mx-auto mt-20 p-8 bg-[#d4e6b5] rounded-lg text-center">
+                <p class="text-2xl italic mb-4 bangla-font">"আমার স্বপ্ন ছিল আমাদের গ্রামের শিল্পকে বিশ্বের দরবারে পৌঁছে দেওয়া। আজ যখন দেখি আমাদের পরিশ্রমের ফল বিশ্বজুড়ে মানুষ উপভোগ করছে, তখন মনে হয় সব কষ্ট সার্থক হয়েছে।"</p>
+                <p class="font-bold" style="color: #4a6b3a;">— HeemsBD</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section id="products" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" style="font-family: 'Playfair Display', serif; color: #4a6b3a;">
+                Our Signature Collection
+            </h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Product 1 -->
+                <div class="product-card relative overflow-hidden rounded-lg shadow-md group">
+                    <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Traditional Jamdani Saree" class="w-full h-80 object-cover">
+                    <div class="product-overlay absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-end p-6 opacity-0 transition-opacity duration-300">
+                        <h3 class="text-xl font-bold text-white mb-2">Traditional Jamdani Saree</h3>
+                        <p class="text-gray-200 mb-4">Handwoven with 100% organic cotton, featuring intricate traditional motifs.</p>
+                        <button class="bg-[#4a6b3a] text-white px-4 py-2 rounded hover:bg-[#3a5a2a] transition self-start">View Details</button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card relative overflow-hidden rounded-lg shadow-md group">
+                    <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Modern Fusion Kurta" class="w-full h-80 object-cover">
+                    <div class="product-overlay absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-end p-6 opacity-0 transition-opacity duration-300">
+                        <h3 class="text-xl font-bold text-white mb-2">Modern Fusion Kurta</h3>
+                        <p class="text-gray-200 mb-4">Contemporary design with traditional hand-embroidery, available in multiple colors.</p>
+                        <button class="bg-[#4a6b3a] text-white px-4 py-2 rounded hover:bg-[#3a5a2a] transition self-start">View Details</button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card relative overflow-hidden rounded-lg shadow-md group">
+                    <img src="https://images.unsplash.com/photo-1554412933-514a83d2f3c8?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Sustainable Linen Collection" class="w-full h-80 object-cover">
+                    <div class="product-overlay absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-end p-6 opacity-0 transition-opacity duration-300">
+                        <h3 class="text-xl font-bold text-white mb-2">Sustainable Linen Collection</h3>
+                        <p class="text-gray-200 mb-4">Eco-friendly fabrics with minimalist designs for the conscious consumer.</p>
+                        <button class="bg-[#4a6b3a] text-white px-4 py-2 rounded hover:bg-[#3a5a2a] transition self-start">View Details</button>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card relative overflow-hidden rounded-lg shadow-md group">
+                    <img src="https://images.unsplash.com/photo-1558769132-cb1aeaedc011?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Bridal Special Edition" class="w-full h-80 object-cover">
+                    <div class="product-overlay absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-end p-6 opacity-0 transition-opacity duration-300">
+                        <h3 class="text-xl font-bold text-white mb-2">Bridal Special Edition</h3>
+                        <p class="text-gray-200 mb-4">Luxurious fabrics with gold thread work, perfect for wedding occasions.</p>
+                        <button class="bg-[#4a6b3a] text-white px-4 py-2 rounded hover:bg-[#3a5a2a] transition self-start">View Details</button>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card relative overflow-hidden rounded-lg shadow-md group">
+                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Casual Cotton Wear" class="w-full h-80 object-cover">
+                    <div class="product-overlay absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-end p-6 opacity-0 transition-opacity duration-300">
+                        <h3 class="text-xl font-bold text-white mb-2">Casual Cotton Wear</h3>
+                        <p class="text-gray-200 mb-4">Comfortable everyday wear with traditional patterns for modern lifestyles.</p>
+                        <button class="bg-[#4a6b3a] text-white px-4 py-2 rounded hover:bg-[#3a5a2a] transition self-start">View Details</button>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card relative overflow-hidden rounded-lg shadow-md group">
+                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Kids Traditional Line" class="w-full h-80 object-cover">
+                    <div class="product-overlay absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-end p-6 opacity-0 transition-opacity duration-300">
+                        <h3 class="text-xl font-bold text-white mb-2">Kids Traditional Line</h3>
+                        <p class="text-gray-200 mb-4">Adorable miniature versions of our classic designs for the next generation.</p>
+                        <button class="bg-[#4a6b3a] text-white px-4 py-2 rounded hover:bg-[#3a5a2a] transition self-start">View Details</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="bg-[#4a6b3a] text-white px-8 py-3 rounded-lg hover:bg-[#3a5a2a] transition font-bold">
+                    View Full Collection
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Multimedia Section -->
+    <section id="media" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" style="font-family: 'Playfair Display', serif; color: #4a6b3a;">
+                Behind the Scenes
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <div class="relative rounded-lg overflow-hidden shadow-xl">
+                    <!-- Video thumbnail with play button -->
+                    <div class="relative pt-[56.25%] bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Video thumbnail" class="absolute top-0 left-0 w-full h-full object-cover">
+                        <button class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white bg-opacity-80 rounded-full p-4 hover:bg-opacity-100 transition">
+                            <svg class="w-12 h-12 text-[#4a6b3a]" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M6.3 2.841A1.5 1.5 0 004 4.11v11.78a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">The Making of Our Latest Collection</h3>
+                        <p class="text-gray-600">A 5-minute documentary showing the 200-hour process of creating one of our signature pieces, from raw material to finished product.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-[#f5f9f1] p-8 rounded-lg shadow-md">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-[#4a6b3a] p-3 rounded-full mr-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold">A Message From HeemsBD</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">Listen to HeemsBD share his vision and the story behind the brand in his own words.</p>
+                    <div class="bg-white p-4 rounded-lg flex items-center">
+                        <button class="bg-[#4a6b3a] text-white rounded-full p-3 mr-4 hover:bg-[#3a5a2a] transition">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                        <div class="flex-1">
+                            <div class="text-sm font-medium">HeemsBD</div>
+                            <div class="text-xs text-gray-500">2:45 min</div>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-center bangla-font text-sm text-gray-600">
+                        "স্বাগতম আপনাদের সবাইকে আমাদের ছোট্ট গল্পে"
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section id="contact" class="py-20 bg-[#4a6b3a] text-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6" style="font-family: 'Playfair Display', serif;">
+                    Join Our Journey
+                </h2>
+                <p class="text-xl mb-10 max-w-2xl mx-auto">
+                    Be part of our story. Whether you're interested in our products, want to collaborate, or just share your thoughts, we'd love to hear from you.
+                </p>
+                
+                <form class="max-w-md mx-auto">
+                    <div class="mb-4">
+                        <input type="text" placeholder="Your Name" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 placeholder-white placeholder-opacity-70">
+                    </div>
+                    <div class="mb-4">
+                        <input type="email" placeholder="Your Email" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 placeholder-white placeholder-opacity-70">
+                    </div>
+                    <div class="mb-6">
+                        <textarea placeholder="Your Message" rows="4" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 placeholder-white placeholder-opacity-70"></textarea>
+                    </div>
+                    <button type="submit" class="bg-white text-[#4a6b3a] px-8 py-3 rounded-lg hover:bg-opacity-90 transition font-bold">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#3a5a2a] text-white py-10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="text-2xl font-bold mb-2" style="font-family: 'Playfair Display', serif;">HeemsBD</div>
+                    <p class="text-sm text-white text-opacity-80">HeemsBD</p>
+                </div>
+                
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="#" class="hover:text-[#d4e6b5] transition">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="hover:text-[#d4e6b5] transition">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.467.182.353.3.882.344 1.857.047 1.023.058 1.351.058 3.807v.468c0 2.456-.011 2.784-.058 3.807-.045.975-.207 1.504-.344 1.857-.182.467-.401.8-.748 1.15-.35.35-.683.566-1.15.748-.353.137-.882.3-1.857.344-1.054.048-1.37.058-3.808.058h-.468c-2.456 0-2.784-.011-3.807-.058-.975-.045-1.504-.207-1.857-.344-.467-.182-.8-.401-1.15-.748-.35-.35-.566-.683-.748-1.15-.137-.353-.3-.882-.344-1.857-.048-1.054-.058-1.37-.058-3.808v-.468c0-2.456.011-2.784.058-3.807.045-.975.207-1.504.344-1.857.182-.467.4-.8.748-1.15.35-.35.683-.566 1.15-.748.353-.137.882-.3 1.857-.344 1.023-.047 1.351-.058 3.807-.058h.468c2.456 0 2.784.011 3.807.058.975.045 1.504.207 1.857.344.466.182.8.399 1.15.748.35.35.566.683.748 1.15.137.353.3.882.344 1.857.048 1.023.058 1.351.058 3.807v.468c0 2.456-.011 2.784-.058 3.807-.045.975-.207 1.504-.344 1.857-.182.466-.401.8-.748 1.15-.35.35-.683.566-1.15.748-.353.137-.882.3-1.857.344-1.054.048-1.37.058-3.808.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="hover:text-[#d4e6b5] transition">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="hover:text-[#d4e6b5] transition">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="text-sm text-white text-opacity-80">
+                    <p>© 2023 HeemsBD. All rights reserved.</p>
+                    <p class="mt-1">HeemsBD</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal (hidden by default) -->
+    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center hidden">
+        <div class="relative max-w-4xl w-full mx-4">
+            <button id="close-lightbox" class="absolute -top-12 right-0 text-white hover:text-gray-300">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <img id="lightbox-image" src="" alt="" class="w-full max-h-screen object-contain">
+            <div class="text-white mt-4 text-center">
+                <h3 id="lightbox-title" class="text-xl font-bold"></h3>
+                <p id="lightbox-desc" class="text-gray-300"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple lightbox functionality
+        document.querySelectorAll('.product-card button').forEach(button => {
+            button.addEventListener('click', function() {
+                const card = this.closest('.product-card');
+                const imgSrc = card.querySelector('img').src;
+                const title = card.querySelector('h3').textContent;
+                const desc = card.querySelector('p').textContent;
+                
+                document.getElementById('lightbox-image').src = imgSrc;
+                document.getElementById('lightbox-title').textContent = title;
+                document.getElementById('lightbox-desc').textContent = desc;
+                document.getElementById('lightbox').classList.remove('hidden');
+            });
+        });
+        
+        document.getElementById('close-lightbox').addEventListener('click', function() {
+            document.getElementById('lightbox').classList.add('hidden');
+        });
+        
+        // Mobile menu toggle would go here
+    </script>
+</body>
+</html>

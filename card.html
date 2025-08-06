@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swiper Carousel</title>
+  <!-- Include Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .swiper {
+      width: 100%;
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 300px;
+      height: 300px;
+    }
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+    .swiper-button-next,
+    .swiper-button-prev {
+      color: white;
+      background: rgba(0,0,0,0.5);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .swiper-pagination-bullet {
+      background: white;
+      opacity: 0.5;
+    }
+    .swiper-pagination-bullet-active {
+      background: #EEBDE0;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+<section class="w-full">
+  <style>
+    .swiper {
+      width: 100%;
+      padding-bottom: 50px;
+    }
+  </style>
+
+  <div class="mx-auto w-full max-w-4xl rounded-[20px] border border-black/5 p-2 shadow-sm md:rounded-t-[44px] bg-white">
+    <div class="relative mx-auto flex w-full flex-col rounded-[20px] border border-black/5 bg-white p-2 shadow-sm md:items-start md:gap-8 md:rounded-b-[20px] md:rounded-t-[40px] md:p-2">
+
+      <!-- Swiper Container -->
+      <div class="flex w-full items-center justify-center gap-4 p-4">
+        <div class="w-full">
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              <!-- Slides will be added via JS -->
+            </div>
+            <!-- Pagination & Navigation -->
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- Initialize Swiper -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const images = [
+      { src: 'https://images.unsplash.com/photo-1754275047961-e2ed3624fda7?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', alt: 'Image 1' },
+      { src: 'https://images.unsplash.com/photo-1754273844587-f6071584597b?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', alt: 'Image 2' },
+      { src: 'https://images.unsplash.com/photo-1549924231-f129b911e442?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', alt: 'Image 3' },
+      { src: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', alt: 'Image 4' },
+      { src: 'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', alt: 'Image 5' },
+    ];
+
+    const swiperWrapper = document.querySelector('.mySwiper .swiper-wrapper');
+
+    images.forEach((image) => {
+      const slide = document.createElement('div');
+      slide.className = 'swiper-slide';
+      slide.innerHTML = `
+        <img src="${image.src}" alt="${image.alt}" />
+      `;
+      swiperWrapper.appendChild(slide);
+    });
+
+    // Initialize Swiper
+    const swiper = new Swiper('.mySwiper', {
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      loop: true,
+      slidesPerView: 'auto',
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 100,
+        modifier: 2.5,
+        slideShadows: false,
+      },
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
+      }
+    });
+  });
+</script>
+</body>
+</html>

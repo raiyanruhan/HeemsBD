@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uniform Smooth Width Compression Shuffle</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Prepare smooth transition for width and opacity */
+    #shuffleText {
+      display: inline-block;
+      transition: width 0.7s ease, opacity 0.7s ease;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    body{
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="text-center max-w-xl px-4">
+    <div class="flex items-center justify-center space-x-2 text-2xl font-bold text-neutral-800">
+      <span>Heems</span>
+      <span
+        id="shuffleText"
+        class="inline-block"
+      >
+      Is better
+      </span>
+    </div>
+  </div>
+
+  <script>
+    const texts = [
+      "Is better",
+      "Is different",
+      "Is Us",
+      "Is Passion",
+    ];
+
+    const textSpan = document.getElementById('shuffleText');
+    let currentIndex = 0;
+
+    function animateText() {
+      // Set current width explicitly
+      const currentWidth = textSpan.scrollWidth;
+      textSpan.style.width = currentWidth + 'px';
+
+      // Animate width to zero and fade out
+      setTimeout(() => {
+        textSpan.style.width = '0px';
+        textSpan.classList.add('opacity-0');
+      }, 10); // slight delay to trigger transition
+
+      // After transition completes
+      setTimeout(() => {
+        // Update text
+        currentIndex = (currentIndex + 1) % texts.length;
+        textSpan.textContent = texts[currentIndex];
+
+        // Measure new width
+        const newWidth = textSpan.scrollWidth;
+        textSpan.style.width = newWidth + 'px';
+
+        // Fade in
+        textSpan.classList.remove('opacity-0');
+
+        // Reset width to auto after transition
+        setTimeout(() => {
+          textSpan.style.width = '';
+        }, 700);
+      }, 700);
+    }
+
+    // Initialize width
+    window.onload = () => {
+      const initialWidth = textSpan.scrollWidth;
+      textSpan.style.width = initialWidth + 'px';
+    };
+
+    // Run the animation cycle every 3 seconds
+    setInterval(animateText, 3000);
+  </script>
+</body>
+</html>
