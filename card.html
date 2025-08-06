@@ -8,24 +8,30 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    /* Custom styles for Swiper */
     .swiper {
       width: 100%;
-      padding-top: 50px;
-      padding-bottom: 50px;
+      padding-top: 50px; /* Keep some padding for the coverflow effect */
+      padding-bottom: 50px; /* Keep some padding for the coverflow effect */
     }
     .swiper-slide {
       background-position: center;
       background-size: cover;
-      width: 300px;
-      height: 300px;
+      /* Make cards more compact */
+      width: 250px; /* Reduced width for a more compact card */
+      height: 250px; /* Reduced height for a more compact card */
+      border-radius: 18px; /* Apply border-radius directly to the slide */
+      display: flex; /* For centering content */
+      align-items: center; /* For centering content */
+      justify-content: center; /* For centering content */
+      font-size: 1.5rem; /* Example font size for text */
+      font-weight: bold;
+      color: #fff;
+      background-color: #888; /* Placeholder background color for the card */
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Add a subtle shadow for depth */
+      transition: transform 0.8s ease-out; /* Smooth transition for transform changes */
     }
-    .swiper-slide img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 18px;
-    }
+    /* No img tag needed as per request, so these styles are no longer directly applied to an img */
     .swiper-button-next,
     .swiper-button-prev {
       color: white;
@@ -36,6 +42,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: background 0.3s ease; /* Smooth transition for button hover */
+    }
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+        background: rgba(0,0,0,0.7); /* Darker background on hover */
     }
     .swiper-button-next::after,
     .swiper-button-prev::after {
@@ -45,23 +56,17 @@
     .swiper-pagination-bullet {
       background: white;
       opacity: 0.5;
+      transition: background 0.3s ease, opacity 0.3s ease; /* Smooth transition for pagination bullets */
     }
     .swiper-pagination-bullet-active {
-      background: #EEBDE0;
+      background: #EEBDE0; /* Active bullet color */
       opacity: 1;
     }
   </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4 font-sans">
 
 <section class="w-full">
-  <style>
-    .swiper {
-      width: 100%;
-      padding-bottom: 50px;
-    }
-  </style>
-
   <div class="mx-auto w-full max-w-4xl rounded-[20px] border border-black/5 p-2 shadow-sm md:rounded-t-[44px] bg-white">
     <div class="relative mx-auto flex w-full flex-col rounded-[20px] border border-black/5 bg-white p-2 shadow-sm md:items-start md:gap-8 md:rounded-b-[20px] md:rounded-t-[40px] md:p-2">
 
@@ -88,60 +93,75 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const images = [
-      { src: 'https://images.unsplash.com/photo-1754275047961-e2ed3624fda7?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', alt: 'Image 1' },
-      { src: 'https://images.unsplash.com/photo-1754273844587-f6071584597b?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', alt: 'Image 2' },
-      { src: 'https://images.unsplash.com/photo-1549924231-f129b911e442?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', alt: 'Image 3' },
-      { src: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', alt: 'Image 4' },
-      { src: 'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', alt: 'Image 5' },
+    // Data for the slides - using simple text and colors instead of images
+    const slidesData = [
+      { text: 'Card 1', color: '#6B7280' }, /* Gray */
+      { text: 'Card 2', color: '#D1D5DB' }, /* Light Gray */
+      { text: 'Card 3', color: '#9CA3AF' }, /* Medium Gray */
+      { text: 'Card 4', color: '#4B5563' }, /* Dark Gray */
+      { text: 'Card 5', color: '#1F2937' }, /* Very Dark Gray */
     ];
 
     const swiperWrapper = document.querySelector('.mySwiper .swiper-wrapper');
 
-    images.forEach((image) => {
+    // Dynamically create slides based on slidesData
+    slidesData.forEach((slideItem) => {
       const slide = document.createElement('div');
       slide.className = 'swiper-slide';
-      slide.innerHTML = `
-        <img src="${image.src}" alt="${image.alt}" />
-      `;
+      // Set background color and text content for the card
+      slide.style.backgroundColor = slideItem.color;
+      slide.textContent = slideItem.text;
       swiperWrapper.appendChild(slide);
     });
 
-    // Initialize Swiper
+    // Initialize Swiper with improved smoothness and compact settings
     const swiper = new Swiper('.mySwiper', {
-      effect: 'coverflow',
-      grabCursor: true,
-      centeredSlides: true,
-      loop: true,
-      slidesPerView: 'auto',
+      effect: 'coverflow', // 3D coverflow effect
+      grabCursor: true, // Show grab cursor on hover
+      centeredSlides: true, // Center the active slide
+      loop: true, // Enable infinite loop
+      slidesPerView: 'auto', // Allows slides to be of auto width based on CSS
+      
+      // Adjust coverflow effect for smoother transitions and a compact look
       coverflowEffect: {
-        rotate: 0,
-        stretch: 0,
-        depth: 100,
-        modifier: 2.5,
-        slideShadows: false,
+        rotate: 15, // Reduced rotation angle for a less aggressive 3D effect
+        stretch: 0, // No stretching of slides
+        depth: 100, // Depth of the 3D effect
+        modifier: 2, // Modifier for the effect, fine-tuned for smoothness
+        slideShadows: false, // Disable shadows for a cleaner look
       },
+      
+      // Autoplay settings
       autoplay: {
-        delay: 2500,
-        disableOnInteraction: false,
+        delay: 2500, // Delay between transitions in milliseconds (2.5 seconds)
+        disableOnInteraction: false, // Autoplay will not be disabled after user interaction
       },
+      
+      // Transition speed for smoother animation
+      speed: 800, // Transition speed in milliseconds (0.8 seconds)
+
+      // Pagination settings (dots at the bottom)
       pagination: {
         el: '.swiper-pagination',
-        clickable: true,
+        clickable: true, // Make pagination dots clickable
       },
+      
+      // Navigation arrows settings
       navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: '.swiper-button-next', // Selector for the next button
+        prevEl: '.swiper-button-prev', // Selector for the previous button
       },
+      
+      // Responsive breakpoints for different screen sizes
       breakpoints: {
         640: {
-          slidesPerView: 2,
+          slidesPerView: 2, // Show 2 slides on screens >= 640px wide
         },
         768: {
-          slidesPerView: 3,
+          slidesPerView: 3, // Show 3 slides on screens >= 768px wide
         },
         1024: {
-          slidesPerView: 3,
+          slidesPerView: 3, // Show 3 slides on screens >= 1024px wide
         },
       }
     });

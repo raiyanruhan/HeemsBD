@@ -1,512 +1,683 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HeemsBD | Clothing Store</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&display=swap');
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-        }
-        
-        .bangla-font {
-            font-family: 'Hind Siliguri', sans-serif;
-        }
-        
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-        
-        .timeline-item:hover .timeline-dot {
-            transform: scale(1.2);
-            background-color: #4a6b3a;
-        }
-        
-        .product-card:hover .product-overlay {
-            opacity: 1;
-        }
-        
-        .scroll-hint {
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-20px);}
-            60% {transform: translateY(-10px);}
-        }
-        
-        .horizontal-scroll {
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-        }
-        
-        .horizontal-scroll-item {
-            scroll-snap-align: start;
-            flex: 0 0 100%;
-        }
-        
-        @media (min-width: 768px) {
-            .horizontal-scroll-item {
-                flex: 0 0 50%;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HEEMS | Experimental Fashion from Bangladesh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Archivo:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brownsugar: "#AF6B41",
+            bistre: "#4C3329",
+            mauveine: "#9A219E",
+            imperialred: "#FB3A48",
+            aquamarine: "#28EEB6",
+            yellowish: "#FBDA58",
+            orange: "#FAA049",
+            red2: "#C01A27",
+            pinkish: "#B51490",
+            purpletext: "#a178b7",
+            darkbg: "#1a0f1a",
+            fabric: "#f5f0e8",
+          },
+          fontFamily: {
+            'bungee': ['Bungee Spice', 'cursive'],
+            'archivo': ['Archivo', 'sans-serif'],
+            'space': ['Space Grotesk', 'sans-serif'],
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'float-reverse': 'float 6s ease-in-out infinite reverse',
+            'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'text-gradient': 'text-gradient 8s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            },
+            'text-gradient': {
+              '0%': { 'background-position': '0% 50%' },
+              '50%': { 'background-position': '100% 50%' },
+              '100%': { 'background-position': '0% 50%' },
             }
+          }
         }
-        
-        @media (min-width: 1024px) {
-            .horizontal-scroll-item {
-                flex: 0 0 33.333%;
-            }
-        }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Archivo', sans-serif;
+      background-color: #f5f0e8;
+      color: #1a0f1a;
+      overflow-x: hidden;
+    }
+    .text-stroke {
+      -webkit-text-stroke: 1px currentColor;
+      color: transparent;
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #FB3A48, #9A219E, #28EEB6);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .fabric-texture {
+      background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23af6b41' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    }
+    .swiper-slide {
+      height: auto !important;
+    }
+    .product-card {
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 60px), calc(100% - 60px) 100%, 0 100%);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .product-card:hover {
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 80px), calc(100% - 80px) 100%, 0 100%);
+      transform: translateY(-8px);
+    }
+    .noise-bg {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    }
+    .text-shuffle {
+      display: inline-block;
+      position: relative;
+    }
+    .text-shuffle span {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .text-shuffle span.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .menu-item {
+      position: relative;
+    }
+    .menu-item:after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: currentColor;
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .menu-item:hover:after {
+      width: 100%;
+    }
+    .border-animate {
+      position: relative;
+    }
+    .border-animate:before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2px solid transparent;
+      background: linear-gradient(90deg, #FB3A48, #9A219E, #28EEB6) border-box;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      border-radius: inherit;
+      animation: text-gradient 8s linear infinite;
+      background-size: 300% 300%;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    
+    /* Hero Swiper Styles */
+    .hero-swiper {
+      width: 100%;
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+    .hero-swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 100%;
+      height: 100%;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+    .hero-swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-swiper-button-next,
+    .hero-swiper-button-prev {
+      color: white;
+      background: rgba(0,0,0,0.5);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease;
+    }
+    .hero-swiper-button-next:hover,
+    .hero-swiper-button-prev:hover {
+      background: rgba(0,0,0,0.7);
+    }
+    .hero-swiper-button-next::after,
+    .hero-swiper-button-prev::after {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .hero-swiper-pagination-bullet {
+      background: white;
+      opacity: 0.5;
+      transition: background 0.3s ease, opacity 0.3s ease;
+    }
+    .hero-swiper-pagination-bullet-active {
+      background: #EEBDE0;
+      opacity: 1;
+    }
+  </style>
 </head>
-<body class="bg-[#f8f8f8] text-gray-800">
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-white bg-opacity-90 z-50 shadow-sm">
-        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <div class="text-2xl font-bold" style="font-family: 'Playfair Display', serif; color: #4a6b3a;">
-                HeemsBD
-            </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="#story" class="hover:text-[#4a6b3a] transition">Our Story</a>
-                <a href="#products" class="hover:text-[#4a6b3a] transition">Products</a>
-                <a href="#media" class="hover:text-[#4a6b3a] transition">Media</a>
-                <a href="#contact" class="hover:text-[#4a6b3a] transition">Contact</a>
-            </div>
-            <button class="md:hidden focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
-        </div>
-    </nav>
+<body class="fabric-texture antialiased">
+  <!-- Animated Background Elements -->
+  <div class="fixed inset-0 overflow-hidden -z-10">
+    <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-mauveine/10 blur-3xl animate-pulse-slow"></div>
+    <div class="absolute top-3/4 right-1/4 w-96 h-96 rounded-full bg-aquamarine/10 blur-3xl animate-pulse-slow animation-delay-2000"></div>
+    <div class="absolute bottom-1/4 left-1/3 w-80 h-80 rounded-full bg-imperialred/10 blur-3xl animate-pulse-slow animation-delay-4000"></div>
+  </div>
 
-    <!-- Hero Section -->
-    <section class="relative h-screen flex items-center justify-center overflow-hidden">
-        <!-- Video background - replace with your actual video -->
-        <video autoplay muted loop class="hero-video">
-            <source src="https://example.com/placeholder-video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <!-- Fallback image -->
-        <div class="hero-video bg-[url('assets/image.jpg')] bg-cover bg-center"></div>
-        
-        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-        
-        <div class="container mx-auto px-6 z-10 text-center">
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white" style="font-family: 'Playfair Display', serif;">
-                HeemsBD
-            </h1>
-            <p class="text-xl md:text-2xl text-white max-w-2xl mx-auto mb-10">
-                A journey of passion, craftsmanship, and cultural heritage
-            </p>
-            <a href="#story" class="scroll-hint inline-block">
-                <svg class="w-10 h-10 text-white animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                </svg>
-            </a>
-        </div>
-    </section>
-
-    <!-- Brand Journey -->
-    <section id="story" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" style="font-family: 'Playfair Display', serif; color: #4a6b3a;">
-                From Village to Visionary
-            </h2>
-            
-            <!-- Horizontal Scroll Timeline for Desktop -->
-            <div class="hidden md:flex overflow-x-auto horizontal-scroll pb-10 -mx-6 px-6" style="scrollbar-width: none;">
-                <div class="flex">
-                    <!-- Timeline Item 1 -->
-                    <div class="horizontal-scroll-item px-6">
-                        <div class="max-w-md mx-auto">
-                            <div class="relative pl-16 pb-10">
-                                <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-[#d4e6b5] border-4 border-[#4a6b3a] timeline-dot transition-all duration-300"></div>
-                                <div class="text-sm text-gray-500">1995</div>
-                                <h3 class="text-xl font-bold mb-2">Humble Beginnings</h3>
-                                <p class="text-gray-600">Started with a small tailoring shop in Galachipa, crafting traditional garments for local community.</p>
-                                <div class="mt-4">
-                                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Early days" class="rounded-lg shadow-md">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Timeline Item 2 -->
-                    <div class="horizontal-scroll-item px-6">
-                        <div class="max-w-md mx-auto">
-                            <div class="relative pl-16 pb-10">
-                                <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-[#d4e6b5] border-4 border-[#4a6b3a] timeline-dot transition-all duration-300"></div>
-                                <div class="text-sm text-gray-500">2005</div>
-                                <h3 class="text-xl font-bold mb-2">First Recognition</h3>
-                                <p class="text-gray-600">Won regional craftsmanship award for innovative fusion of traditional and contemporary designs.</p>
-                                <div class="mt-4">
-                                    <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Award" class="rounded-lg shadow-md">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Timeline Item 3 -->
-                    <div class="horizontal-scroll-item px-6">
-                        <div class="max-w-md mx-auto">
-                            <div class="relative pl-16 pb-10">
-                                <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-[#d4e6b5] border-4 border-[#4a6b3a] timeline-dot transition-all duration-300"></div>
-                                <div class="text-sm text-gray-500">2012</div>
-                                <h3 class="text-xl font-bold mb-2">Dhaka Expansion</h3>
-                                <p class="text-gray-600">Opened first boutique in Dhaka, introducing the brand to urban fashion enthusiasts.</p>
-                                <div class="mt-4">
-                                    <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dhaka store" class="rounded-lg shadow-md">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Timeline Item 4 -->
-                    <div class="horizontal-scroll-item px-6">
-                        <div class="max-w-md mx-auto">
-                            <div class="relative pl-16 pb-10">
-                                <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-[#d4e6b5] border-4 border-[#4a6b3a] timeline-dot transition-all duration-300"></div>
-                                <div class="text-sm text-gray-500">2018</div>
-                                <h3 class="text-xl font-bold mb-2">International Debut</h3>
-                                <p class="text-gray-600">Showcased collection at London Fashion Week, receiving critical acclaim for sustainable practices.</p>
-                                <div class="mt-4">
-                                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Fashion show" class="rounded-lg shadow-md">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Timeline Item 5 -->
-                    <div class="horizontal-scroll-item px-6">
-                        <div class="max-w-md mx-auto">
-                            <div class="relative pl-16">
-                                <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-[#d4e6b5] border-4 border-[#4a6b3a] timeline-dot transition-all duration-300"></div>
-                                <div class="text-sm text-gray-500">2023</div>
-                                <h3 class="text-xl font-bold mb-2">Global Recognition</h3>
-                                <p class="text-gray-600">Featured in Vogue as one of the most influential sustainable fashion brands from South Asia.</p>
-                                <div class="mt-4">
-                                    <img src="https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Vogue feature" class="rounded-lg shadow-md">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Vertical Timeline for Mobile -->
-            <div class="md:hidden">
-                <!-- Timeline Item 1 -->
-                <div class="relative pl-16 pb-10">
-                    <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-[#d4e6b5] border-4 border-[#4a6b3a] timeline-dot transition-all duration-300"></div>
-                    <div class="text-sm text-gray-500">1995</div>
-                    <h3 class="text-xl font-bold mb-2">Humble Beginnings</h3>
-                    <p class="text-gray-600">Started with a small tailoring shop in Galachipa, crafting traditional garments for local community.</p>
-                    <div class="mt-4">
-                        <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Early days" class="rounded-lg shadow-md w-full">
-                    </div>
-                </div>
-                
-                <!-- Timeline Item 2 -->
-                <div class="relative pl-16 pb-10">
-                    <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-[#d4e6b5] border-4 border-[#4a6b3a] timeline-dot transition-all duration-300"></div>
-                    <div class="text-sm text-gray-500">2005</div>
-                    <h3 class="text-xl font-bold mb-2">First Recognition</h3>
-                    <p class="text-gray-600">Won regional craftsmanship award for innovative fusion of traditional and contemporary designs.</p>
-                    <div class="mt-4">
-                        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Award" class="rounded-lg shadow-md w-full">
-                    </div>
-                </div>
-                
-                <!-- Timeline Item 3 -->
-                <div class="relative pl-16 pb-10">
-                    <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-[#d4e6b5] border-4 border-[#4a6b3a] timeline-dot transition-all duration-300"></div>
-                    <div class="text-sm text-gray-500">2012</div>
-                    <h3 class="text-xl font-bold mb-2">Dhaka Expansion</h3>
-                    <p class="text-gray-600">Opened first boutique in Dhaka, introducing the brand to urban fashion enthusiasts.</p>
-                    <div class="mt-4">
-                        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dhaka store" class="rounded-lg shadow-md w-full">
-                    </div>
-                </div>
-                
-                <!-- Timeline Item 4 -->
-                <div class="relative pl-16 pb-10">
-                    <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-[#d4e6b5] border-4 border-[#4a6b3a] timeline-dot transition-all duration-300"></div>
-                    <div class="text-sm text-gray-500">2018</div>
-                    <h3 class="text-xl font-bold mb-2">International Debut</h3>
-                    <p class="text-gray-600">Showcased collection at London Fashion Week, receiving critical acclaim for sustainable practices.</p>
-                    <div class="mt-4">
-                        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Fashion show" class="rounded-lg shadow-md w-full">
-                    </div>
-                </div>
-                
-                <!-- Timeline Item 5 -->
-                <div class="relative pl-16">
-                    <div class="absolute left-0 top-0 w-8 h-8 rounded-full bg-[#d4e6b5] border-4 border-[#4a6b3a] timeline-dot transition-all duration-300"></div>
-                    <div class="text-sm text-gray-500">2023</div>
-                    <h3 class="text-xl font-bold mb-2">Global Recognition</h3>
-                    <p class="text-gray-600">Featured in Vogue as one of the most influential sustainable fashion brands from South Asia.</p>
-                    <div class="mt-4">
-                        <img src="https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Vogue feature" class="rounded-lg shadow-md w-full">
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Pull Quote -->
-            <div class="max-w-4xl mx-auto mt-20 p-8 bg-[#d4e6b5] rounded-lg text-center">
-                <p class="text-2xl italic mb-4 bangla-font">"আমার স্বপ্ন ছিল আমাদের গ্রামের শিল্পকে বিশ্বের দরবারে পৌঁছে দেওয়া। আজ যখন দেখি আমাদের পরিশ্রমের ফল বিশ্বজুড়ে মানুষ উপভোগ করছে, তখন মনে হয় সব কষ্ট সার্থক হয়েছে।"</p>
-                <p class="font-bold" style="color: #4a6b3a;">— HeemsBD</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Product Showcase -->
-    <section id="products" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" style="font-family: 'Playfair Display', serif; color: #4a6b3a;">
-                Our Signature Collection
-            </h2>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Product 1 -->
-                <div class="product-card relative overflow-hidden rounded-lg shadow-md group">
-                    <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Traditional Jamdani Saree" class="w-full h-80 object-cover">
-                    <div class="product-overlay absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-end p-6 opacity-0 transition-opacity duration-300">
-                        <h3 class="text-xl font-bold text-white mb-2">Traditional Jamdani Saree</h3>
-                        <p class="text-gray-200 mb-4">Handwoven with 100% organic cotton, featuring intricate traditional motifs.</p>
-                        <button class="bg-[#4a6b3a] text-white px-4 py-2 rounded hover:bg-[#3a5a2a] transition self-start">View Details</button>
-                    </div>
-                </div>
-                
-                <!-- Product 2 -->
-                <div class="product-card relative overflow-hidden rounded-lg shadow-md group">
-                    <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Modern Fusion Kurta" class="w-full h-80 object-cover">
-                    <div class="product-overlay absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-end p-6 opacity-0 transition-opacity duration-300">
-                        <h3 class="text-xl font-bold text-white mb-2">Modern Fusion Kurta</h3>
-                        <p class="text-gray-200 mb-4">Contemporary design with traditional hand-embroidery, available in multiple colors.</p>
-                        <button class="bg-[#4a6b3a] text-white px-4 py-2 rounded hover:bg-[#3a5a2a] transition self-start">View Details</button>
-                    </div>
-                </div>
-                
-                <!-- Product 3 -->
-                <div class="product-card relative overflow-hidden rounded-lg shadow-md group">
-                    <img src="https://images.unsplash.com/photo-1554412933-514a83d2f3c8?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Sustainable Linen Collection" class="w-full h-80 object-cover">
-                    <div class="product-overlay absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-end p-6 opacity-0 transition-opacity duration-300">
-                        <h3 class="text-xl font-bold text-white mb-2">Sustainable Linen Collection</h3>
-                        <p class="text-gray-200 mb-4">Eco-friendly fabrics with minimalist designs for the conscious consumer.</p>
-                        <button class="bg-[#4a6b3a] text-white px-4 py-2 rounded hover:bg-[#3a5a2a] transition self-start">View Details</button>
-                    </div>
-                </div>
-                
-                <!-- Product 4 -->
-                <div class="product-card relative overflow-hidden rounded-lg shadow-md group">
-                    <img src="https://images.unsplash.com/photo-1558769132-cb1aeaedc011?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Bridal Special Edition" class="w-full h-80 object-cover">
-                    <div class="product-overlay absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-end p-6 opacity-0 transition-opacity duration-300">
-                        <h3 class="text-xl font-bold text-white mb-2">Bridal Special Edition</h3>
-                        <p class="text-gray-200 mb-4">Luxurious fabrics with gold thread work, perfect for wedding occasions.</p>
-                        <button class="bg-[#4a6b3a] text-white px-4 py-2 rounded hover:bg-[#3a5a2a] transition self-start">View Details</button>
-                    </div>
-                </div>
-                
-                <!-- Product 5 -->
-                <div class="product-card relative overflow-hidden rounded-lg shadow-md group">
-                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Casual Cotton Wear" class="w-full h-80 object-cover">
-                    <div class="product-overlay absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-end p-6 opacity-0 transition-opacity duration-300">
-                        <h3 class="text-xl font-bold text-white mb-2">Casual Cotton Wear</h3>
-                        <p class="text-gray-200 mb-4">Comfortable everyday wear with traditional patterns for modern lifestyles.</p>
-                        <button class="bg-[#4a6b3a] text-white px-4 py-2 rounded hover:bg-[#3a5a2a] transition self-start">View Details</button>
-                    </div>
-                </div>
-                
-                <!-- Product 6 -->
-                <div class="product-card relative overflow-hidden rounded-lg shadow-md group">
-                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Kids Traditional Line" class="w-full h-80 object-cover">
-                    <div class="product-overlay absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-end p-6 opacity-0 transition-opacity duration-300">
-                        <h3 class="text-xl font-bold text-white mb-2">Kids Traditional Line</h3>
-                        <p class="text-gray-200 mb-4">Adorable miniature versions of our classic designs for the next generation.</p>
-                        <button class="bg-[#4a6b3a] text-white px-4 py-2 rounded hover:bg-[#3a5a2a] transition self-start">View Details</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <button class="bg-[#4a6b3a] text-white px-8 py-3 rounded-lg hover:bg-[#3a5a2a] transition font-bold">
-                    View Full Collection
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Multimedia Section -->
-    <section id="media" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16" style="font-family: 'Playfair Display', serif; color: #4a6b3a;">
-                Behind the Scenes
-            </h2>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-                <div class="relative rounded-lg overflow-hidden shadow-xl">
-                    <!-- Video thumbnail with play button -->
-                    <div class="relative pt-[56.25%] bg-gray-200">
-                        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Video thumbnail" class="absolute top-0 left-0 w-full h-full object-cover">
-                        <button class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white bg-opacity-80 rounded-full p-4 hover:bg-opacity-100 transition">
-                            <svg class="w-12 h-12 text-[#4a6b3a]" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M6.3 2.841A1.5 1.5 0 004 4.11v11.78a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">The Making of Our Latest Collection</h3>
-                        <p class="text-gray-600">A 5-minute documentary showing the 200-hour process of creating one of our signature pieces, from raw material to finished product.</p>
-                    </div>
-                </div>
-                
-                <div class="bg-[#f5f9f1] p-8 rounded-lg shadow-md">
-                    <div class="flex items-center mb-6">
-                        <div class="bg-[#4a6b3a] p-3 rounded-full mr-4">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd"></path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold">A Message From HeemsBD</h3>
-                    </div>
-                    <p class="text-gray-600 mb-6">Listen to HeemsBD share his vision and the story behind the brand in his own words.</p>
-                    <div class="bg-white p-4 rounded-lg flex items-center">
-                        <button class="bg-[#4a6b3a] text-white rounded-full p-3 mr-4 hover:bg-[#3a5a2a] transition">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
-                            </svg>
-                        </button>
-                        <div class="flex-1">
-                            <div class="text-sm font-medium">HeemsBD</div>
-                            <div class="text-xs text-gray-500">2:45 min</div>
-                        </div>
-                    </div>
-                    <div class="mt-4 text-center bangla-font text-sm text-gray-600">
-                        "স্বাগতম আপনাদের সবাইকে আমাদের ছোট্ট গল্পে"
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section id="contact" class="py-20 bg-[#4a6b3a] text-white">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6" style="font-family: 'Playfair Display', serif;">
-                    Join Our Journey
-                </h2>
-                <p class="text-xl mb-10 max-w-2xl mx-auto">
-                    Be part of our story. Whether you're interested in our products, want to collaborate, or just share your thoughts, we'd love to hear from you.
-                </p>
-                
-                <form class="max-w-md mx-auto">
-                    <div class="mb-4">
-                        <input type="text" placeholder="Your Name" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 placeholder-white placeholder-opacity-70">
-                    </div>
-                    <div class="mb-4">
-                        <input type="email" placeholder="Your Email" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 placeholder-white placeholder-opacity-70">
-                    </div>
-                    <div class="mb-6">
-                        <textarea placeholder="Your Message" rows="4" class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-white border-opacity-30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 placeholder-white placeholder-opacity-70"></textarea>
-                    </div>
-                    <button type="submit" class="bg-white text-[#4a6b3a] px-8 py-3 rounded-lg hover:bg-opacity-90 transition font-bold">
-                        Send Message
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-[#3a5a2a] text-white py-10">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="text-2xl font-bold mb-2" style="font-family: 'Playfair Display', serif;">HeemsBD</div>
-                    <p class="text-sm text-white text-opacity-80">HeemsBD</p>
-                </div>
-                
-                <div class="flex space-x-6 mb-6 md:mb-0">
-                    <a href="#" class="hover:text-[#d4e6b5] transition">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path>
-                        </svg>
-                    </a>
-                    <a href="#" class="hover:text-[#d4e6b5] transition">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.467.182.353.3.882.344 1.857.047 1.023.058 1.351.058 3.807v.468c0 2.456-.011 2.784-.058 3.807-.045.975-.207 1.504-.344 1.857-.182.467-.401.8-.748 1.15-.35.35-.683.566-1.15.748-.353.137-.882.3-1.857.344-1.054.048-1.37.058-3.808.058h-.468c-2.456 0-2.784-.011-3.807-.058-.975-.045-1.504-.207-1.857-.344-.467-.182-.8-.401-1.15-.748-.35-.35-.566-.683-.748-1.15-.137-.353-.3-.882-.344-1.857-.048-1.054-.058-1.37-.058-3.808v-.468c0-2.456.011-2.784.058-3.807.045-.975.207-1.504.344-1.857.182-.467.4-.8.748-1.15.35-.35.683-.566 1.15-.748.353-.137.882-.3 1.857-.344 1.023-.047 1.351-.058 3.807-.058h.468c2.456 0 2.784.011 3.807.058.975.045 1.504.207 1.857.344.466.182.8.399 1.15.748.35.35.566.683.748 1.15.137.353.3.882.344 1.857.048 1.023.058 1.351.058 3.807v.468c0 2.456-.011 2.784-.058 3.807-.045.975-.207 1.504-.344 1.857-.182.466-.401.8-.748 1.15-.35.35-.683.566-1.15.748-.353.137-.882.3-1.857.344-1.054.048-1.37.058-3.808.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"></path>
-                        </svg>
-                    </a>
-                    <a href="#" class="hover:text-[#d4e6b5] transition">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
-                        </svg>
-                    </a>
-                    <a href="#" class="hover:text-[#d4e6b5] transition">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
-                        </svg>
-                    </a>
-                </div>
-                
-                <div class="text-sm text-white text-opacity-80">
-                    <p>© 2023 HeemsBD. All rights reserved.</p>
-                    <p class="mt-1">HeemsBD</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Lightbox Modal (hidden by default) -->
-    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center hidden">
-        <div class="relative max-w-4xl w-full mx-4">
-            <button id="close-lightbox" class="absolute -top-12 right-0 text-white hover:text-gray-300">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-            <img id="lightbox-image" src="" alt="" class="w-full max-h-screen object-contain">
-            <div class="text-white mt-4 text-center">
-                <h3 id="lightbox-title" class="text-xl font-bold"></h3>
-                <p id="lightbox-desc" class="text-gray-300"></p>
-            </div>
-        </div>
+  <!-- Navigation -->
+  <header id="main-header" class="fixed top-0 left-0 w-full z-40 backdrop-blur-md bg-fabric/80 border-b border-fabric/20 shadow-md transition-all duration-300 ease-in-out py-2">
+    <div class="container mx-auto px-6 flex justify-between items-center h-16">
+      <!-- Logo and Text -->
+      <a href="#" class="flex items-center space-x-2">
+        <img src="assets/logo.jpg" alt="Logo" class="h-14 w-auto object-contain" />
+        <span class="block h-16 gradient-text text-xl md:text-2xl lg:text-3xl font-bungee flex items-center justify-center">HEEMS</span>      
+      </a>
+      
+      <!-- Navigation Menu -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="index.html" class="menu-item font-space uppercase text-sm tracking-wider">Home</a>
+        <a href="#collections" class="menu-item font-space uppercase text-sm tracking-wider">Our Products</a>
+        <a href="#story" class="menu-item font-space uppercase text-sm tracking-wider">Our Story</a>
+        <a href="#contact" class="menu-item font-space uppercase text-sm tracking-wider">Contact Us</a>
+      </nav>
+      
+      <!-- Hamburger Button -->
+      <button class="md:hidden text-bistre" aria-label="Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
     </div>
+  </header>
 
-    <script>
-        // Simple lightbox functionality
-        document.querySelectorAll('.product-card button').forEach(button => {
-            button.addEventListener('click', function() {
-                const card = this.closest('.product-card');
-                const imgSrc = card.querySelector('img').src;
-                const title = card.querySelector('h3').textContent;
-                const desc = card.querySelector('p').textContent;
-                
-                document.getElementById('lightbox-image').src = imgSrc;
-                document.getElementById('lightbox-title').textContent = title;
-                document.getElementById('lightbox-desc').textContent = desc;
-                document.getElementById('lightbox').classList.remove('hidden');
-            });
+  <!-- Hero Section -->
+  <section class="min-h-screen flex items-center justify-center pt-20">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col lg:flex-row items-center gap-12">
+        <div class="lg:w-1/2 relative">
+          <div class="relative z-10">
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bungee mb-6">
+              <span class="block gradient-text">FASHION</span>
+              <span class="block">FROM</span>
+              <span class="block">BD</span>
+            </h1>
+            <p class="text-lg md:text-xl font-space text-bistre/80 max-w-lg mb-8">Heems Clothing changes South Asian fashion with bold designs that mix traditional craftsmanship and modern style.</p>
+            <div class="flex flex-wrap gap-4">
+              <a href="#collections" class="px-8 py-4 bg-bistre text-fabric font-space uppercase tracking-wider text-sm border-2 border-bistre hover:bg-transparent hover:text-bistre transition-all duration-300">
+                View Collections
+              </a>
+              <a href="#story" class="px-8 py-4 border-2 border-bistre text-bistre font-space uppercase tracking-wider text-sm hover:bg-bistre hover:text-fabric transition-all duration-300">
+                Our Journey
+              </a>
+            </div>
+          </div>
+          <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-mauveine/10 rounded-full blur-xl animate-pulse-slow"></div>
+        </div>
+        
+        <div class="lg:w-1/2 relative">
+          <div class="relative border-animate rounded-2xl overflow-hidden aspect-square max-w-lg mx-auto">
+            <!-- Hero Swiper -->
+            <div class="swiper hero-swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide hero-swiper-slide">
+                  <img src="assets/more/dress1.jpg" alt="Heems Clothing">
+                </div>
+                <div class="swiper-slide hero-swiper-slide">
+                  <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Heems Collection">
+                </div>
+                <div class="swiper-slide hero-swiper-slide">
+                  <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Heems Design">
+                </div>
+              </div>
+              <div class="swiper-pagination hero-swiper-pagination"></div>
+              <div class="swiper-button-next hero-swiper-button-next"></div>
+              <div class="swiper-button-prev hero-swiper-button-prev"></div>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-bistre/70 via-transparent to-transparent flex items-end p-8 pointer-events-none">
+              <div class="text-fabric">
+                <span class="font-space uppercase tracking-widest text-xs mb-2 block">Featured Collection</span>
+                <h3 class="text-2xl font-bold">BOYFRIEND DREAMS</h3>
+              </div>
+            </div>
+          </div>
+          <div class="absolute -top-12 -right-12 w-48 h-48 bg-aquamarine/10 rounded-full blur-xl animate-pulse-slow animation-delay-2000"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="py-6 bg-bistre text-fabric overflow-hidden">
+    <div class="flex whitespace-nowrap">
+      <div class="animate-marquee flex items-center space-x-8 pr-8">
+        <span class="text-2xl font-bungee">HANDCRAFTED IN GALACHIPA</span>
+        <span class="text-2xl font-bungee">•</span>
+        <span class="text-2xl font-bungee">EXPERIMENTAL DESIGNS</span>
+        <span class="text-2xl font-bungee">•</span>
+        <span class="text-2xl font-bungee">LIMITED EDITIONS</span>
+        <span class="text-2xl font-bungee">•</span>
+        <span class="text-2xl font-bungee">ETHICAL PRODUCTION</span>
+      </div>
+      <div class="animate-marquee flex items-center space-x-8 pr-8">
+        <span class="text-2xl font-bungee">HANDCRAFTED IN GALACHIPA</span>
+        <span class="text-2xl font-bungee">•</span>
+        <span class="text-2xl font-bungee">EXPERIMENTAL DESIGNS</span>
+        <span class="text-2xl font-bungee">•</span>
+        <span class="text-2xl font-bungee">LIMITED EDITIONS</span>
+        <span class="text-2xl font-bungee">•</span>
+        <span class="text-2xl font-bungee">ETHICAL PRODUCTION</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Story Section -->
+  <section id="story" class="py-24 bg-fabric relative overflow-hidden">
+    <div class="absolute inset-0 noise-bg"></div>
+    <div class="container mx-auto px-6 relative">
+      <div class="flex flex-col lg:flex-row items-center gap-16">
+        <div class="lg:w-1/2">
+          <div class="relative">
+            <div class="border-animate rounded-2xl overflow-hidden">
+              <img src="assets/Yasir Himel.jpg" 
+                   alt="Founder of Heems" 
+                   class="w-full h-auto object-cover">
+            </div>
+            <div class="absolute -bottom-6 -right-6 bg-imperialred text-fabric px-6 py-3 font-space uppercase tracking-widest text-sm">
+              Himel, Founder
+            </div>
+          </div>
+        </div>
+        
+        <div class="lg:w-1/2">
+          <h2 class="text-4xl md:text-5xl font-bungee mb-8">
+            <span class="block gradient-text">Our STORY</span>
+          </h2>
+          
+          <div class="space-y-6 text-bistre/90">
+            <p>The old lighthouse keeper, Silas, squinted at the churning grey sea. Another storm raged, a relentless force clawing at the cliffs and threatening to swallow the tiny island whole.</p>
+            <p>Inside the cramped, salt-covered tower, the rhythmic clang of the bell was the only sound that had any pattern. Tonight, the bell's mournful song would not just warn ships of the dangerous rocks; it would be a desperate plea, a cry for help echoing through the stormy night.</p>
+            <p> He knew, with a certainty that ran deep in his bones, that a vessel was out there, lost and struggling, and tonight, he was their only hope.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Collections Section -->
+  <section id="collections" class="py-24 bg-darkbg text-fabric">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bungee mb-4">
+          <span class="block">OUR</span>
+          <span class="block gradient-text">COLLECTIONS</span>
+        </h2>
+        <p class="font-space uppercase tracking-widest text-sm text-aquamarine">Limited Edition Series</p>
+      </div>
+      
+      <!-- Swiper -->
+      <div class="swiper collections-swiper">
+        <div class="swiper-wrapper pb-12">
+          <!-- Slide 1 -->
+          <div class="swiper-slide px-2">
+            <div class="product-card bg-bistre/30 backdrop-blur-sm border border-fabric/10 p-6 h-full flex flex-col">
+              <div class="aspect-square mb-6 overflow-hidden flex-grow">
+                <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" 
+                     alt="Monsoon Dreams Collection" 
+                     class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold mb-2">MONSOON DREAMS</h3>
+                <p class="text-fabric/70 mb-4">Water-resistant fabrics celebrating Bangladesh's rainy season</p>
+                <div class="flex justify-between items-center">
+                  <span class="font-space uppercase tracking-widest text-xs text-aquamarine">Spring 2024</span>
+                  <button class="font-space uppercase tracking-widest text-xs border-b border-aquamarine pb-1 hover:text-aquamarine transition">
+                    Explore
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Slide 2 -->
+          <div class="swiper-slide px-2">
+            <div class="product-card bg-bistre/30 backdrop-blur-sm border border-fabric/10 p-6 h-full flex flex-col">
+              <div class="aspect-square mb-6 overflow-hidden flex-grow">
+                <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" 
+                     alt="Urban Jamdani Collection" 
+                     class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold mb-2">URBAN JAMDANI</h3>
+                <p class="text-fabric/70 mb-4">Contemporary takes on traditional weaving techniques</p>
+                <div class="flex justify-between items-center">
+                  <span class="font-space uppercase tracking-widest text-xs text-aquamarine">Fall 2023</span>
+                  <button class="font-space uppercase tracking-widest text-xs border-b border-aquamarine pb-1 hover:text-aquamarine transition">
+                    Explore
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Slide 3 -->
+          <div class="swiper-slide px-2">
+            <div class="product-card bg-bistre/30 backdrop-blur-sm border border-fabric/10 p-6 h-full flex flex-col">
+              <div class="aspect-square mb-6 overflow-hidden flex-grow">
+                <img src="https://images.unsplash.com/photo-1554412933-514a83d2f3c8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1472&q=80" 
+                     alt="Bengal Renaissance Collection" 
+                     class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold mb-2">BENGAL RENAISSANCE</h3>
+                <p class="text-fabric/70 mb-4">Celebrating the artistic heritage of Bengal</p>
+                <div class="flex justify-between items-center">
+                  <span class="font-space uppercase tracking-widest text-xs text-aquamarine">Limited Edition</span>
+                  <button class="font-space uppercase tracking-widest text-xs border-b border-aquamarine pb-1 hover:text-aquamarine transition">
+                    Explore
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Slide 4 -->
+          <div class="swiper-slide px-2">
+            <div class="product-card bg-bistre/30 backdrop-blur-sm border border-fabric/10 p-6 h-full flex flex-col">
+              <div class="aspect-square mb-6 overflow-hidden flex-grow">
+                <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" 
+                     alt="Delta Blues Collection" 
+                     class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold mb-2">DELTA BLUES</h3>
+                <p class="text-fabric/70 mb-4">Indigo dye collection inspired by river life</p>
+                <div class="flex justify-between items-center">
+                  <span class="font-space uppercase tracking-widest text-xs text-aquamarine">Summer 2024</span>
+                  <button class="font-space uppercase tracking-widest text-xs border-b border-aquamarine pb-1 hover:text-aquamarine transition">
+                    Explore
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination !bottom-0"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section id="products" class="py-24 bg-fabric">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bungee mb-4 text-bistre">
+          <span class="block">COMING</span>
+          <span class="block gradient-text">SOON</span>
+        </h2>
+        <p class="font-space uppercase tracking-widest text-sm text-mauveine">Future Releases</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Product 1 -->
+        <div class="group relative overflow-hidden border-animate rounded-xl">
+          <div class="aspect-square overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" 
+                 alt="Silk Road Collection" 
+                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-bistre/80 via-transparent to-transparent p-6 flex flex-col justify-end">
+            <div class="transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+              <span class="font-space uppercase tracking-widest text-xs text-aquamarine mb-2 block">Coming Soon</span>
+              <h3 class="text-2xl font-bold text-fabric mb-2">SILK ROAD</h3>
+              <p class="text-fabric/80 mb-4">Premium silk line with modern cuts</p>
+            </div>
+            <button class="font-space uppercase tracking-widest text-xs text-fabric border-b border-aquamarine pb-1 w-max opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+              Get Notified
+            </button>
+          </div>
+        </div>
+        
+        <!-- Product 2 -->
+        <div class="group relative overflow-hidden border-animate rounded-xl">
+          <div class="aspect-square overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" 
+                 alt="Delta Collection" 
+                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-bistre/80 via-transparent to-transparent p-6 flex flex-col justify-end">
+            <div class="transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+              <span class="font-space uppercase tracking-widest text-xs text-aquamarine mb-2 block">Coming Soon</span>
+              <h3 class="text-2xl font-bold text-fabric mb-2">DELTA</h3>
+              <p class="text-fabric/80 mb-4">Fluid silhouettes inspired by river deltas</p>
+            </div>
+            <button class="font-space uppercase tracking-widest text-xs text-fabric border-b border-aquamarine pb-1 w-max opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+              Get Notified
+            </button>
+          </div>
+        </div>
+        
+        <!-- Product 3 -->
+        <div class="group relative overflow-hidden border-animate rounded-xl">
+          <div class="aspect-square overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" 
+                 alt="Urban Jamdani 2.0" 
+                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-bistre/80 via-transparent to-transparent p-6 flex flex-col justify-end">
+            <div class="transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+              <span class="font-space uppercase tracking-widest text-xs text-aquamarine mb-2 block">Coming Soon</span>
+              <h3 class="text-2xl font-bold text-fabric mb-2">URBAN JAMDANI 2.0</h3>
+              <p class="text-fabric/80 mb-4">Next generation of traditional fusion</p>
+            </div>
+            <button class="font-space uppercase tracking-widest text-xs text-fabric border-b border-aquamarine pb-1 w-max opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+              Get Notified
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-24 bg-darkbg text-fabric relative overflow-hidden">
+    <div class="absolute inset-0 noise-bg"></div>
+    <div class="container mx-auto px-6 relative">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bungee mb-4">
+            <span class="block">GET IN</span>
+            <span class="block gradient-text">TOUCH</span>
+          </h2>
+          <p class="font-space uppercase tracking-widest text-sm text-aquamarine">For inquiries & collaborations</p>
+        </div>
+        
+        <form class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="name" class="font-space uppercase tracking-widest text-xs block mb-2">Name</label>
+              <input type="text" id="name" class="w-full bg-bistre/30 border border-fabric/10 px-6 py-4 font-space focus:outline-none focus:ring-2 focus:ring-aquamarine transition" placeholder="Your name">
+            </div>
+            <div>
+              <label for="email" class="font-space uppercase tracking-widest text-xs block mb-2">Email</label>
+              <input type="email" id="email" class="w-full bg-bistre/30 border border-fabric/10 px-6 py-4 font-space focus:outline-none focus:ring-2 focus:ring-aquamarine transition" placeholder="Your email">
+            </div>
+          </div>
+          <div>
+            <label for="subject" class="font-space uppercase tracking-widest text-xs block mb-2">Subject</label>
+            <input type="text" id="subject" class="w-full bg-bistre/30 border border-fabric/10 px-6 py-4 font-space focus:outline-none focus:ring-2 focus:ring-aquamarine transition" placeholder="Subject">
+          </div>
+          <div>
+            <label for="message" class="font-space uppercase tracking-widest text-xs block mb-2">Message</label>
+            <textarea id="message" rows="5" class="w-full bg-bistre/30 border border-fabric/10 px-6 py-4 font-space focus:outline-none focus:ring-2 focus:ring-aquamarine transition" placeholder="Your message"></textarea>
+          </div>
+          <div class="pt-4">
+            <button type="submit" class="w-full bg-gradient-to-r from-imperialred to-mauveine text-fabric font-space uppercase tracking-widest px-8 py-4 border-2 border-transparent hover:bg-transparent hover:border-imperialred hover:text-imperialred transition-all duration-300">
+              Send Message
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-bistre text-fabric/70 py-12">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-6 md:mb-0">
+          <a href="#" class="text-3xl font-bungee block mb-4">HEEMS</a>
+          <p class="text-sm max-w-xs">Experimental fashion house from Galachipa, Bangladesh. Redefining South Asian aesthetics.</p>
+        </div>
+        
+        <div class="flex flex-col items-center md:items-end">
+          <div class="flex space-x-6 mb-6">
+            <a href="#" class="hover:text-aquamarine transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+              </svg>
+            </a>
+            <a href="#" class="hover:text-aquamarine transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="#" class="hover:text-aquamarine transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+              </svg>
+            </a>
+          </div>
+          <p class="text-sm">contact@heemsclothing.com</p>
+        </div>
+      </div>
+      
+      <div class="border-t border-fabric/20 mt-12 pt-8 text-center text-sm">
+        <p>&copy; 2024 Heems Clothing. All rights reserved. Crafted with passion in Galachipa, Bangladesh.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    // Initialize Swipers
+    document.addEventListener('DOMContentLoaded', function() {
+      // Collections Swiper
+      const collectionsSwiper = new Swiper('.collections-swiper', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        pagination: {
+          el: '.collections-swiper .swiper-pagination',
+          clickable: true,
+        },
+        breakpoints: {
+          640: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          }
+        }
+      });
+
+      // Hero Swiper
+      const heroSwiper = new Swiper('.hero-swiper', {
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        loop: true,
+        slidesPerView: 'auto',
+        coverflowEffect: {
+          rotate: 15,
+          stretch: 0,
+          depth: 100,
+          modifier: 2,
+          slideShadows: false,
+        },
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+        speed: 800,
+        pagination: {
+          el: '.hero-swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.hero-swiper-button-next',
+          prevEl: '.hero-swiper-button-prev',
+        }
+      });
+
+      // Text shuffle effect
+      const words = ["DESIGNS", "CULTURE", "ART", "PASSION", "HEEMS"];
+      const shuffleElement = document.querySelector('.text-shuffle');
+      
+      if (shuffleElement) {
+        words.forEach(word => {
+          const span = document.createElement('span');
+          span.textContent = word;
+          shuffleElement.appendChild(span);
         });
         
-        document.getElementById('close-lightbox').addEventListener('click', function() {
-            document.getElementById('lightbox').classList.add('hidden');
-        });
+        const spans = shuffleElement.querySelectorAll('span');
+        let currentIndex = 0;
         
-        // Mobile menu toggle would go here
-    </script>
+        // Show first word
+        spans[currentIndex].classList.add('active');
+        
+        // Rotate words
+        setInterval(() => {
+          spans[currentIndex].classList.remove('active');
+          currentIndex = (currentIndex + 1) % spans.length;
+          spans[currentIndex].classList.add('active');
+        }, 2000);
+      }
+
+      // Mobile menu toggle would go here
+    });
+  </script>
 </body>
 </html>
