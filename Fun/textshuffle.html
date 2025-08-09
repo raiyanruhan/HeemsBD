@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smooth Bangla Shuffle</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- ✅ Add Hind Siliguri from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    #shuffleText {
+      display: inline-block;
+      transition: width 0.6s ease, opacity 0.6s ease;
+      overflow: hidden;
+      white-space: nowrap;
+      word-break: keep-all; /* ✅ Prevent Bangla text break */
+    }
+
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="text-center max-w-xl px-4">
+    <div class="flex items-center justify-center space-x-2 text-2xl font-bold text-neutral-800">
+      <span>নতুন উদ্যোক্তাদের জন্য</span>
+      <span id="shuffleText" class="inline-block">নির্ভরযোগ্য</span>
+    </div>
+  </div>
+
+  <script>
+    const texts = ["সময়োপযোগী", "হালাল", "শতভাগ বিশ্বস্ত মার্কেটিং এজেন্সি!"];
+    const textSpan = document.getElementById("shuffleText");
+    let currentIndex = 0;
+
+    function animateText() {
+      const currentWidth = textSpan.scrollWidth;
+      textSpan.style.width = currentWidth + "px";
+
+      // Step 1: Fade out
+      textSpan.classList.add("opacity-0");
+
+      // Step 2: Shrink width
+      setTimeout(() => {
+        textSpan.style.width = "0px";
+      }, 600);
+
+      // Step 3: Change text
+      setTimeout(() => {
+        currentIndex = (currentIndex + 1) % texts.length;
+        textSpan.textContent = texts[currentIndex];
+
+        textSpan.style.width = "auto";
+        const newWidth = textSpan.scrollWidth;
+        textSpan.style.width = "0px";
+        void textSpan.offsetWidth; // force reflow
+
+        // Step 4: Expand + fade in
+        textSpan.style.width = newWidth + "px";
+        textSpan.classList.remove("opacity-0");
+
+        // Step 5: Reset width
+        setTimeout(() => {
+          textSpan.style.width = "";
+        }, 600);
+      }, 1200);
+    }
+
+    window.onload = () => {
+      const initialWidth = textSpan.scrollWidth;
+      textSpan.style.width = initialWidth + "px";
+    };
+
+    setInterval(animateText, 3200);
+  </script>
+</body>
+</html>

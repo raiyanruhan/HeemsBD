@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Underline to Arrow on Right</title>
+<style>
+  /* Basic styling for the body */
+  body {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Bungee', cursive;
+  }
+
+  /* Container for the animated link */
+  .animated-link {
+    position: relative;
+    display: inline-flex; /* Flex to align text and arrow horizontally */
+    align-items: center;
+    cursor: pointer;
+  }
+
+  /* Style for the text */
+  .animated-link span {
+    font-size: 2rem; /* Adjust as needed */
+    color: #333; /* Text color */
+    position: relative;
+  }
+
+  /* Underline bar */
+  .underline {
+    position: absolute;
+    bottom: -4px; /* Slightly below the text baseline */
+    left: 0;
+    height: 4px; /* Thickness */
+    background-color: #333; /* Same as text color */
+    width: 0;
+    transform-origin: left;
+    transition: width 1s ease;
+  }
+
+  /* Arrow shape to the right of the text */
+  .arrow {
+    margin-left: 10px; /* Space between text and arrow */
+    width: 0; 
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 20px solid #333; /* Arrow pointing right */
+    opacity: 0;
+    transform: translateX(0) scale(0);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+</style>
+</head>
+<body>
+
+<div class="animated-link" id="link">
+  <span>
+    Our STORY
+    <div class="underline"></div>
+  </span>
+  <div class="arrow"></div>
+</div>
+
+<script>
+  const link = document.getElementById('link');
+  const underline = link.querySelector('.underline');
+  const arrow = link.querySelector('.arrow');
+
+  link.addEventListener('mouseenter', () => {
+    // Animate underline to full width
+    underline.style.width = '100%';
+
+    // After underline finishes, show arrow
+    setTimeout(() => {
+      arrow.style.opacity = '1';
+      arrow.style.transform = 'translateX(0) scale(1)';
+    }, 1000); // matches the underline transition duration
+  });
+
+  link.addEventListener('mouseleave', () => {
+    // Reset underline
+    underline.style.width = '0';
+
+    // Hide arrow
+    arrow.style.opacity = '0';
+    arrow.style.transform = 'translateX(0) scale(0)';
+  });
+</script>
+
+</body>
+</html>
