@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,6 +10,7 @@
         href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Archivo:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -80,31 +80,26 @@
             font-weight: normal;
             font-style: normal;
         }
-
         @font-face {
             font-family: 'HindSiliguri';
             src: url('assets/fonts/HindSiliguri-Regular.woff2') format('woff2');
             font-weight: normal;
             font-style: normal;
         }
-
         html {
             font-size: 14px;
             scroll-behavior: smooth;
         }
-
         body {
             font-family: "Archivo", sans-serif;
             background-color: #f5f0e8;
             color: #1a0f1a;
             overflow-x: hidden;
         }
-
         .text-stroke {
             -webkit-text-stroke: 1px currentColor;
             color: transparent;
         }
-
         .gradient-text {
             background: linear-gradient(90deg, #fb3a48, #DC2F02, #28eeb6);
             background-size: 300% 300%;
@@ -112,18 +107,14 @@
             background-clip: text;
             color: transparent;
         }
-
         .fabric-texture {
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23af6b41' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23af6b41' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
         }
-
         .swiper-slide {
             height: auto !important;
         }
-
         .product-card {
             position: relative;
-            /* ensure pseudo-element is positioned relative to this */
             clip-path: polygon(0 0,
                     100% 0,
                     100% calc(100% - 20px),
@@ -132,10 +123,7 @@
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             height: 350px;
             background-color: #fff;
-            /* or your background */
         }
-
-        /* Pseudo-element for border lines */
         .product-card::after {
             content: "";
             position: absolute;
@@ -144,26 +132,17 @@
             width: 100%;
             height: 100%;
             clip-path: inherit;
-            /* use the same shape */
             pointer-events: none;
-            /* allow clicks to pass through */
-            /* Draw the border lines */
             border-left: 2px solid #9D0208;
-            /* vertical line on the left */
             border-bottom: 2px solid #9D0208;
-            /* horizontal line at bottom */
-            /* To simulate the shape, you may need to adjust borders or add additional pseudo-elements for the diagonal cut */
         }
-
         .noise-bg {
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
         }
-
         .text-shuffle {
             display: inline-block;
             position: relative;
         }
-
         .text-shuffle span {
             position: absolute;
             left: 0;
@@ -172,16 +151,13 @@
             transform: translateY(10px);
             transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
         .text-shuffle span.active {
             opacity: 1;
             transform: translateY(0);
         }
-
         .menu-item {
             position: relative;
         }
-
         .menu-item:after {
             content: "";
             position: absolute;
@@ -192,15 +168,12 @@
             background: currentColor;
             transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
         .menu-item:hover:after {
             width: 100%;
         }
-
         .border-animate {
             position: relative;
         }
-
         .border-animate:before {
             content: "";
             position: absolute;
@@ -212,228 +185,127 @@
             animation: text-gradient 8s linear infinite;
             background-size: 300% 300%;
         }
-
-        /* Hero Swiper Styles */
-        .hero-swiper {
-            width: 100%;
-            padding-top: 50px;
-            padding-bottom: 50px;
+        .collection-card {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
-
-        .hero-swiper-slide {
-            background-position: center;
-            background-size: cover;
-            width: 100%;
-            height: 100%;
-            border-radius: 18px;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .collection-card:hover {
+            transform: translateY(-10px) scale(1.02);
         }
-
-        .hero-swiper-slide img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+        .collection-card:hover .collection-image {
+            transform: scale(1.05);
         }
-
-        .hero-swiper-button-next,
-        .hero-swiper-button-prev {
-            color: white;
-            background: rgba(0, 0, 0, 0.5);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s ease;
+        .collection-image {
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-origin: center;
         }
-
-        .hero-swiper-button-next:hover,
-        .hero-swiper-button-prev:hover {
-            background: rgba(0, 0, 0, 0.7);
-        }
-
-        .hero-swiper-button-next::after,
-        .hero-swiper-button-prev::after {
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .hero-swiper-pagination-bullet {
-            background: white;
-            opacity: 0.5;
-            transition: background 0.3s ease, opacity 0.3s ease;
-        }
-
-        .hero-swiper-pagination-bullet-active {
-            background: #eebde0;
-            opacity: 1;
-        }
-
-        .container {
-            max-width: 1000px;
-        }
-
-        /* Timeline Styles */
-        .timeline {
-            position: relative;
-            padding: 2rem 0;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            width: 100%;
+        .collection-overlay {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s ease;
+            transition: opacity 0.4s ease;
         }
-
-        .timeline-item.visible {
+        .collection-card:hover .collection-overlay {
             opacity: 1;
+        }
+        .collection-title {
+            transform: translateY(20px);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .collection-card:hover .collection-title {
             transform: translateY(0);
         }
-
-        .timeline-item:nth-child(odd) {
-            padding-right: calc(50% + 2rem);
-            text-align: right;
-        }
-
-        .timeline-item:nth-child(even) {
-            padding-left: calc(50% + 2rem);
-            text-align: left;
-        }
-
-        .timeline-content {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content::after {
-            content: '';
-            position: absolute;
-            top: 20px;
-            right: -15px;
-            width: 0;
-            height: 0;
-            border-top: 15px solid transparent;
-            border-bottom: 15px solid transparent;
-            border-left: 15px solid rgba(255, 255, 255, 0.9);
-        }
-
-        .timeline-item:nth-child(even) .timeline-content::after {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: -15px;
-            width: 0;
-            height: 0;
-            border-top: 15px solid transparent;
-            border-bottom: 15px solid transparent;
-            border-right: 15px solid rgba(255, 255, 255, 0.9);
-        }
-
-        .timeline-dot {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
-            background-color: #DC2F02;
-            border-radius: 50%;
-            border: 4px solid #f5f0e8;
-            z-index: 1;
-        }
-
-        .timeline-date {
-            font-family: 'CodepotroAbuSayed', sans-serif;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #DC2F02;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-title {
-            font-family: 'CodepotroAbuSayed', sans-serif;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #4C3329;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-teaser {
-            font-family: 'HindSiliguri', sans-serif;
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #4C3329;
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        .timeline-description {
-            font-family: 'HindSiliguri', sans-serif;
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #4C3329;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.8s ease, margin-top 0.5s ease;
-        }
-
-        .timeline-item.expanded .timeline-description {
-            max-height: 500px;
-            margin-top: 1rem;
-        }
-
-        .read-more-btn {
-            display: inline-block;
-            font-family: 'HindSiliguri';
-            color: #DC2F02;
-            cursor: pointer;
+        .filter-btn {
             transition: all 0.3s ease;
+            transform-origin: center;
         }
-
-        .read-more-btn:hover {
-            color: #4C3329;
-            text-decoration: underline;
+        .filter-btn.active {
+            background-color: #4C3329;
+            color: #f5f0e8;
         }
-
+        .filter-btn:hover:not(.active) {
+            transform: scale(1.05);
+            animation: tilt-shake 0.5s ease-in-out;
+        }
+        .product-modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(20px);
+        }
+        .product-modal.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .modal-overlay {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+        .size-option {
+            transition: all 0.2s ease;
+        }
+        .size-option:hover {
+            transform: scale(1.1);
+        }
+        .size-option.selected {
+            background-color: #4C3329;
+            color: #f5f0e8;
+        }
+        .color-option {
+            transition: all 0.2s ease;
+        }
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+        .color-option.selected {
+            outline: 2px solid #4C3329;
+            outline-offset: 2px;
+        }
+        .quantity-selector button {
+            transition: all 0.2s ease;
+        }
+        .quantity-selector button:hover {
+            background-color: #4C3329;
+            color: #f5f0e8;
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes tilt-shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
         @media (max-width: 768px) {
-            .timeline::before {
-                left: 30px;
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .timeline-item {
-                padding-left: 60px !important;
-                padding-right: 0 !important;
-                text-align: left !important;
+            .collection-card {
+                height: auto;
             }
 
-            .timeline-dot {
-                left: 30px;
+            .filter-container {
+                flex-wrap: wrap;
+                gap: 0.5rem;
             }
 
-            .timeline-item:nth-child(odd) .timeline-content::after,
-            .timeline-item:nth-child(even) .timeline-content::after {
-                display: none;
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
             }
         }
     </style>
 </head>
-
 <body class="fabric-texture antialiased">
     <!-- Animated Background Elements -->
     <div class="fixed inset-0 overflow-hidden -z-10">
@@ -445,32 +317,110 @@
             class="absolute bottom-1/4 left-1/3 w-80 h-80 rounded-full bg-imperialred/10 blur-3xl animate-pulse-slow animation-delay-4000">
         </div>
     </div>
+
     <!-- Navigation -->
     <header id="main-header"
         class="fixed top-0 left-0 w-full z-40 backdrop-blur-md bg-fabric/80 border-b border-fabric/20 shadow-md transition-all duration-300 ease-in-out py-2">
         <div class="container mx-auto px-6 flex justify-between items-center h-16">
             <!-- Logo and Text -->
-            <a href="#" class="flex items-center space-x-2">
+            <a href="index.html" class="flex items-center space-x-2">
                 <img src="assets/logo.png" alt="Logo" class="h-14 w-auto object-contain" />
                 <span
                     class="block h-16 gradient-text text-xl md:text-2xl lg:text-3xl font-bungee flex items-center justify-center">HEEMS</span>
             </a>
-            <!-- Navigation Menu -->
+
+            <!-- Desktop Navigation Menu -->
             <nav class="hidden md:flex items-center space-x-8">
-                <a href="index.html" class="menu-item font-space uppercase text-sm tracking-wider">Home</a>
+                <a href="index.html" class="menu-item font-space uppercase text-sm tracking-wider text-bistre font-bold">Home</a>
                 <a href="collections.html" class="menu-item font-space uppercase text-sm tracking-wider">Our Products</a>
                 <a href="story.html" class="menu-item font-space uppercase text-sm tracking-wider">Our Story</a>
                 <a href="contact.html" class="menu-item font-space uppercase text-sm tracking-wider">Contact Us</a>
             </nav>
-            <!-- Hamburger Button -->
-            <button class="md:hidden text-bistre" aria-label="Menu">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
+
+            <!-- Shopping Cart -->
+            <div class="hidden md:flex items-center space-x-4">
+                <button class="relative" id="cart-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span class="absolute -top-2 -right-2 bg-mauveine text-white text-xs rounded-full h-5 w-5 flex items-center justify-center" id="cart-count"><i class="fa-solid fa-compass"></i></span>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-bistre" id="mobile-menu-button" aria-label="Menu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
         </div>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed inset-y-0 right-0 w-64 bg-fabric z-50 shadow-xl p-6 md:hidden" id="mobile-menu">
+        <div class="flex justify-end mb-8">
+            <button id="mobile-menu-close" class="text-bistre">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <nav class="flex flex-col space-y-6">
+            <a href="index.html" class="text-bistre text-lg font-space uppercase tracking-wider">Home</a>
+            <a href="collections.html" class="text-bistre text-lg font-space uppercase tracking-wider">Our Products</a>
+            <a href="story.html" class="text-bistre text-lg font-space uppercase tracking-wider">Our Story</a>
+            <a href="contact.html" class="text-bistre text-lg font-space uppercase tracking-wider">Contact Us</a>
+            <div class="pt-4 border-t border-bistre/20">
+                <button class="flex items-center space-x-2 text-bistre" id="mobile-cart-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span>Cart</span>
+                    <span class="bg-mauveine text-white text-xs rounded-full h-5 w-5 flex items-center justify-center" id="mobile-cart-count"><i class="fa-solid fa-compass"></i></span>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="fixed inset-y-0 right-0 w-full sm:w-96 bg-white z-50 shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out" id="cart-sidebar">
+        <div class="h-full flex flex-col">
+            <div class="p-6 border-b border-bistre/20 flex justify-between items-center">
+                <h3 class="text-xl font-bold text-bistre">Your Cart</h3>
+                <button class="text-bistre hover:text-mauveine transition" id="close-cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="flex-1 overflow-y-auto p-6" id="cart-items">
+                <!-- Cart items will be added here dynamically -->
+                <div class="text-center py-12 text-bistre/70">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-bistre/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <p>Your cart is empty</p>
+                </div>
+            </div>
+
+            <div class="p-6 border-t border-bistre/20">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-bistre">Subtotal</span>
+                    <span class="font-bold text-bistre" id="cart-subtotal">$0.00</span>
+                </div>
+                <p class="text-sm text-bistre/70 mb-6">Shipping and taxes calculated at checkout</p>
+                <button class="w-full px-6 py-3 bg-bistre text-white font-space uppercase tracking-wider text-sm hover:bg-bistre/90 transition">
+                    Checkout
+                </button>
+                <div class="text-center mt-4">
+                    <a href="collections.html" class="text-sm text-bistre/70 hover:text-mauveine transition">Continue Shopping</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center pt-20">
         <div class="container mx-auto px-6">
             <div class="flex flex-col lg:flex-row items-center gap-12">
@@ -530,6 +480,7 @@
             </div>
         </div>
     </section>
+
     <!-- Marquee -->
     <div class="py-6 bg-bistre text-fabric overflow-hidden">
         <div class="flex whitespace-nowrap">
@@ -553,6 +504,7 @@
             </div>
         </div>
     </div>
+
     <!-- Story Section -->
     <section id="story" class="py-24 bg-fabric relative overflow-hidden">
         <div class="absolute inset-0 noise-bg"></div>
@@ -566,7 +518,6 @@
                     আমাদের যাত্রা
                 </p>
             </div>
-
             <!-- Timeline -->
             <div class="timeline">
                 <!-- Timeline Item 1 -->
@@ -587,7 +538,6 @@
                         <span class="read-more-btn" onclick="toggleReadMore(this)">আরও পড়ুন</span>
                     </div>
                 </div>
-
                 <!-- Timeline Item 2 -->
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
@@ -613,6 +563,7 @@
                 </div>
             </div>
     </section>
+
     <!-- Collections Section -->
     <section id="collections" class="py-24 bg-darkbg text-fabric">
         <div class="container mx-auto px-6">
@@ -732,6 +683,7 @@
             </div>
         </div>
     </section>
+
     <!-- Products Section -->
     <section id="products" class="py-24 bg-fabric">
         <div class="container mx-auto px-6">
@@ -821,6 +773,7 @@
             </div>
         </div>
     </section>
+
     <!-- Footer -->
     <footer id="contact" class="bg-bistre text-fabric/70 py-12">
         <div class="container mx-auto px-6">
@@ -835,22 +788,19 @@
                 <div class="flex flex-col items-center md:items-end">
                     <div class="flex space-x-6 mb-6">
                         <a href="#" class="hover:text-aquamarine transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor"
-                                viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
                             </svg>
                         </a>
                         <a href="#" class="hover:text-aquamarine transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor"
-                                viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                             </svg>
                         </a>
                         <a href="#" class="hover:text-aquamarine transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor"
-                                viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
                             </svg>
@@ -867,9 +817,154 @@
             </div>
         </div>
     </footer>
+
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
+
+            mobileMenuClose.addEventListener('click', function() {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+
+            // Initialize product swiper in modal
+            const productSwiper = new Swiper('.product-swiper', {
+                slidesPerView: 1,
+                spaceBetween: 10,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+
+            // Collection filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const collectionCards = document.querySelectorAll('.collection-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active state
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Filter collections
+                    const filterValue = this.getAttribute('data-filter');
+
+                    collectionCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category').includes(filterValue)) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                            }, 10);
+                        } else {
+                            card.style.opacity = '0';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+
+            // Product modal functionality
+            const viewProductButtons = document.querySelectorAll('.view-product');
+            const productModal = document.getElementById('product-modal');
+            const modalOverlay = document.getElementById('modal-overlay');
+            const closeModalButton = document.getElementById('close-modal');
+
+            viewProductButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-product');
+                    // In a real implementation, you would fetch product details based on the ID
+                    // For this demo, we'll just show the modal with placeholder content
+                    productModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            function closeModal() {
+                productModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            modalOverlay.addEventListener('click', closeModal);
+            closeModalButton.addEventListener('click', closeModal);
+
+            // Size selector in modal
+            const sizeOptions = document.querySelectorAll('.size-option');
+            sizeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    sizeOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+
+            // Color selector in modal
+            const colorOptions = document.querySelectorAll('.color-option');
+            colorOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    colorOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+
+            // Quantity selector in modal
+            const decreaseQty = document.getElementById('decrease-qty');
+            const increaseQty = document.getElementById('increase-qty');
+            const quantityDisplay = document.getElementById('quantity');
+
+            decreaseQty.addEventListener('click', function() {
+                let currentQty = parseInt(quantityDisplay.textContent);
+                if (currentQty > 1) {
+                    quantityDisplay.textContent = currentQty - 1;
+                }
+            });
+
+            increaseQty.addEventListener('click', function() {
+                let currentQty = parseInt(quantityDisplay.textContent);
+                quantityDisplay.textContent = currentQty + 1;
+            });
+
+            // Animate collection cards on scroll
+            const animateOnScroll = () => {
+                const collectionCards = document.querySelectorAll('.collection-card');
+
+                collectionCards.forEach(card => {
+                    const cardPosition = card.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+
+                    if (cardPosition < screenPosition) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+
+            // Set initial state for animation
+            document.querySelectorAll('.collection-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Run once on load
+        });
+
         // Initialize Swipers
         document.addEventListener("DOMContentLoaded", function () {
             // Collections Swiper
@@ -937,10 +1032,8 @@
                     spans[currentIndex].classList.add("active");
                 }, 2000);
             }
-
             // Scroll animation for timeline items
             const timelineItems = document.querySelectorAll('.timeline-item');
-
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -953,17 +1046,14 @@
                 threshold: 0.1,
                 rootMargin: '0px 0px -100px 0px'
             });
-
             timelineItems.forEach(item => {
                 observer.observe(item);
             });
         });
-
         // Toggle আরও পড়ুন functionality
         function toggleReadMore(button) {
             const timelineItem = button.closest('.timeline-item');
             timelineItem.classList.toggle('expanded');
-
             // Change button text based on state
             if (timelineItem.classList.contains('expanded')) {
                 button.textContent = 'Read Less';
@@ -972,6 +1062,6 @@
             }
         }
     </script>
+    <script src="js/cart.js"></script>
 </body>
-
 </html>

@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HEEMS | Experimental Fashion from Bangladesh</title>
+    <title>HEEMS | Our Collections</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
         href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Archivo:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -37,8 +36,6 @@
                         bungee: ["Bungee Spice", "cursive"],
                         archivo: ["Archivo", "sans-serif"],
                         space: ["Space Grotesk", "sans-serif"],
-                        abusayed: ["CodepotroAbuSayed", "serif"],
-                        hind: ["HindSiliguri", "sans-serif"],
                     },
                     animation: {
                         float: "float 6s ease-in-out infinite",
@@ -48,9 +45,7 @@
                         marquee: "marquee 20s linear infinite",
                         "fade-in": "fadeIn 1.5s ease-out forwards",
                         "slide-up": "slideUp 1.2s ease-out forwards",
-                        "shuffle-up": "shuffleUp 0.6s ease-out forwards",
-                        "glow-border": "glowBorder 3s ease infinite alternate",
-                        "text-shuffle": "textShuffle 0.6s ease-out forwards",
+                        "tilt-shake": "tilt-shake 0.5s ease-in-out",
                     },
                     keyframes: {
                         float: {
@@ -74,26 +69,11 @@
                             "0%": { opacity: 0, transform: "translateY(40px)" },
                             "100%": { opacity: 1, transform: "translateY(0)" },
                         },
-                        shuffleUp: {
-                            "0%": { opacity: 0, transform: "translateY(10px)" },
-                            "100%": { opacity: 1, transform: "translateY(0)" },
+                        "tilt-shake": {
+                            "0%, 100%": { transform: "rotate(0deg)" },
+                            "25%": { transform: "rotate(-5deg)" },
+                            "75%": { transform: "rotate(5deg)" },
                         },
-                        glowBorder: {
-                            "0%": { "box-shadow": "0 0 5px rgba(220, 47, 2, 0.5)" },
-                            "100%": { "box-shadow": "0 0 20px rgba(220, 47, 2, 0.8)" },
-                        },
-                        textShuffle: {
-                            "0%": { 
-                                opacity: 0,
-                                transform: "translateY(20px) scale(0.9)",
-                                "text-shadow": "0 0 10px rgba(220, 47, 2, 0)"
-                            },
-                            "100%": { 
-                                opacity: 1,
-                                transform: "translateY(0) scale(1)",
-                                "text-shadow": "0 0 10px rgba(220, 47, 2, 0.5)"
-                            },
-                        }
                     },
                 },
             },
@@ -105,21 +85,19 @@
             src: url('assets/fonts/CodepotroAbuSayed.woff') format('woff');
             font-weight: normal;
             font-style: normal;
-            font-display: swap;
         }
         @font-face {
             font-family: 'HindSiliguri';
             src: url('assets/fonts/HindSiliguri-Regular.woff2') format('woff2');
             font-weight: normal;
             font-style: normal;
-            font-display: swap;
         }
         html {
             font-size: 14px;
             scroll-behavior: smooth;
         }
         body {
-            font-family: "HindSiliguri", sans-serif;
+            font-family: "Archivo", sans-serif;
             background-color: #f5f0e8;
             color: #1a0f1a;
             overflow-x: hidden;
@@ -143,11 +121,14 @@
         }
         .product-card {
             position: relative;
-            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 60px) 100%, 0 100%);
+            clip-path: polygon(0 0,
+                    100% 0,
+                    100% calc(100% - 20px),
+                    calc(100% - 60px) 100%,
+                    0 100%);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             height: 350px;
             background-color: #fff;
-            overflow: hidden;
         }
         .product-card::after {
             content: "";
@@ -161,64 +142,24 @@
             border-left: 2px solid #9D0208;
             border-bottom: 2px solid #9D0208;
         }
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        .product-card:hover::before {
-            opacity: 1;
-        }
-        .product-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(76, 51, 41, 0.8), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: 1;
-        }
-        .product-card .view-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-family: 'CodepotroAbuSayed', serif;
-            font-size: 1.5rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 2;
-            text-align: center;
-        }
-        .product-card:hover .view-overlay {
-            opacity: 1;
-        }
         .noise-bg {
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
         }
-        .text-shuffle-container {
+        .text-shuffle {
             display: inline-block;
             position: relative;
-            height: 1.2em;
-            overflow: hidden;
-            vertical-align: bottom;
         }
-        .text-shuffle-word {
+        .text-shuffle span {
             position: absolute;
             left: 0;
             top: 0;
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(10px);
             transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            font-family: 'CodepotroAbuSayed', serif;
         }
-        .text-shuffle-word.active {
+        .text-shuffle span.active {
             opacity: 1;
             transform: translateY(0);
-            animation: textShuffle 0.6s ease-out forwards;
         }
         .menu-item {
             position: relative;
@@ -250,327 +191,123 @@
             animation: text-gradient 8s linear infinite;
             background-size: 300% 300%;
         }
-        .hero-gradient-bg {
-            background: linear-gradient(-45deg, #f5f0e8, #AF6B41, #4C3329, #DC2F02);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
+        .collection-card {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .collection-card:hover {
+            transform: translateY(-10px) scale(1.02);
         }
-        /* Hero Swiper Styles */
-        .hero-swiper {
-            width: 100%;
-            padding-top: 50px;
-            padding-bottom: 50px;
-        }
-        .hero-swiper-slide {
-            background-position: center;
-            background-size: cover;
-            width: 100%;
-            height: 100%;
-            border-radius: 18px;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .hero-swiper-slide img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            transition: transform 0.8s ease;
-        }
-        .hero-swiper-slide.swiper-slide-active img {
+        .collection-card:hover .collection-image {
             transform: scale(1.05);
         }
-        .custom-swiper-button {
-            color: white;
-            background: rgba(220, 47, 2, 0.7);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+        .collection-image {
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-origin: center;
         }
-        .custom-swiper-button:hover {
-            background: rgba(220, 47, 2, 0.9);
-            transform: scale(1.1);
-        }
-        .custom-swiper-button::after {
-            font-size: 20px;
-            font-weight: bold;
-        }
-        .hero-swiper-pagination-bullet {
-            background: white;
-            opacity: 0.5;
-            width: 12px;
-            height: 12px;
-            transition: all 0.3s ease;
-        }
-        .hero-swiper-pagination-bullet-active {
-            background: #DC2F02;
-            opacity: 1;
-            transform: scale(1.2);
-        }
-        .container {
-            max-width: 1000px;
-        }
-        /* Timeline Styles */
-        .timeline {
-            position: relative;
-            padding: 2rem 0;
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            width: 100%;
+        .collection-overlay {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s ease;
+            transition: opacity 0.4s ease;
         }
-        .timeline-item.visible {
+        .collection-card:hover .collection-overlay {
             opacity: 1;
+        }
+        .collection-title {
+            transform: translateY(20px);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .collection-card:hover .collection-title {
             transform: translateY(0);
         }
-        .timeline-item:nth-child(odd) {
-            padding-right: calc(50% + 2rem);
-            text-align: right;
-        }
-        .timeline-item:nth-child(even) {
-            padding-left: calc(50% + 2rem);
-            text-align: left;
-        }
-        .timeline-content {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-        .timeline-item:nth-child(odd) .timeline-content::after {
-            content: '';
-            position: absolute;
-            top: 20px;
-            right: -15px;
-            width: 0;
-            height: 0;
-            border-top: 15px solid transparent;
-            border-bottom: 15px solid transparent;
-            border-left: 15px solid rgba(255, 255, 255, 0.9);
-        }
-        .timeline-item:nth-child(even) .timeline-content::after {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: -15px;
-            width: 0;
-            height: 0;
-            border-top: 15px solid transparent;
-            border-bottom: 15px solid transparent;
-            border-right: 15px solid rgba(255, 255, 255, 0.9);
-        }
-        .timeline-dot {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
-            background-color: #DC2F02;
-            border-radius: 50%;
-            border: 4px solid #f5f0e8;
-            z-index: 1;
-        }
-        .timeline-date {
-            font-family: 'CodepotroAbuSayed', sans-serif;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #DC2F02;
-            margin-bottom: 0.5rem;
-        }
-        .timeline-title {
-            font-family: 'CodepotroAbuSayed', sans-serif;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #4C3329;
-            margin-bottom: 0.5rem;
-        }
-        .timeline-teaser {
-            font-family: 'HindSiliguri', sans-serif;
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #4C3329;
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-        .timeline-description {
-            font-family: 'HindSiliguri', sans-serif;
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #4C3329;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.8s ease, margin-top 0.5s ease;
-        }
-        .timeline-item.expanded .timeline-description {
-            max-height: 500px;
-            margin-top: 1rem;
-        }
-        .read-more-btn {
-            display: inline-block;
-            font-family: 'HindSiliguri';
-            color: #DC2F02;
-            cursor: pointer;
+        .filter-btn {
             transition: all 0.3s ease;
+            transform-origin: center;
         }
-        .read-more-btn:hover {
-            color: #4C3329;
-            text-decoration: underline;
-        }
-        /* Countdown Timer */
-        .countdown-container {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-        .countdown-box {
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 8px;
-            padding: 1rem;
-            min-width: 80px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .countdown-value {
-            font-family: 'CodepotroAbuSayed', serif;
-            font-size: 2rem;
-            color: #DC2F02;
-            font-weight: bold;
-        }
-        .countdown-label {
-            font-family: 'HindSiliguri', sans-serif;
-            font-size: 0.8rem;
-            color: #4C3329;
-            text-transform: uppercase;
-        }
-        /* Newsletter Form */
-        .newsletter-form {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        .newsletter-input {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #4C3329;
-            border-radius: 0;
-            font-family: 'HindSiliguri', sans-serif;
-            background: transparent;
-            transition: all 0.3s ease;
-        }
-        .newsletter-input:focus {
-            outline: none;
-            border-color: #DC2F02;
-        }
-        .newsletter-submit {
-            width: 100%;
-            padding: 1rem;
+        .filter-btn.active {
             background-color: #4C3329;
             color: #f5f0e8;
-            border: none;
-            font-family: 'Space Grotesk', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
         }
-        .newsletter-submit:hover {
-            background-color: #DC2F02;
+        .filter-btn:hover:not(.active) {
+            transform: scale(1.05);
+            animation: tilt-shake 0.5s ease-in-out;
         }
-        /* Instagram Feed */
-        .instagram-feed {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin: 2rem 0;
+        .product-modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(20px);
         }
-        .instagram-item {
-            position: relative;
-            overflow: hidden;
-            aspect-ratio: 1;
+        .product-modal.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
-        .instagram-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+        .modal-overlay {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
         }
-        .instagram-item:hover img {
+        .size-option {
+            transition: all 0.2s ease;
+        }
+        .size-option:hover {
             transform: scale(1.1);
         }
-        .instagram-item::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(220, 47, 2, 0.3);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .instagram-item:hover::after {
-            opacity: 1;
-        }
-        /* Crafted With Passion */
-        .crafted-with {
-            font-family: 'CodepotroAbuSayed', serif;
-            font-size: 1.2rem;
+        .size-option.selected {
+            background-color: #4C3329;
             color: #f5f0e8;
-            text-align: center;
-            margin-top: 2rem;
-            position: relative;
-            display: inline-block;
         }
-        .crafted-with::before,
-        .crafted-with::after {
-            content: '♥';
-            color: #DC2F02;
-            margin: 0 0.5rem;
+        .color-option {
+            transition: all 0.2s ease;
         }
-        /* Responsive Adjustments */
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+        .color-option.selected {
+            outline: 2px solid #4C3329;
+            outline-offset: 2px;
+        }
+        .quantity-selector button {
+            transition: all 0.2s ease;
+        }
+        .quantity-selector button:hover {
+            background-color: #4C3329;
+            color: #f5f0e8;
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes tilt-shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
         @media (max-width: 768px) {
-            .timeline::before {
-                left: 30px;
-            }
-            .timeline-item {
-                padding-left: 60px !important;
-                padding-right: 0 !important;
-                text-align: left !important;
-            }
-            .timeline-dot {
-                left: 30px;
-            }
-            .timeline-item:nth-child(odd) .timeline-content::after,
-            .timeline-item:nth-child(even) .timeline-content::after {
-                display: none;
-            }
-            .instagram-feed {
+            .product-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .text-shuffle-container {
-                height: 1em;
+            
+            .collection-card {
+                height: auto;
+            }
+            
+            .filter-container {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -586,467 +323,505 @@
             class="absolute bottom-1/4 left-1/3 w-80 h-80 rounded-full bg-imperialred/10 blur-3xl animate-pulse-slow animation-delay-4000">
         </div>
     </div>
+    
     <!-- Navigation -->
     <header id="main-header"
         class="fixed top-0 left-0 w-full z-40 backdrop-blur-md bg-fabric/80 border-b border-fabric/20 shadow-md transition-all duration-300 ease-in-out py-2">
         <div class="container mx-auto px-6 flex justify-between items-center h-16">
             <!-- Logo and Text -->
-            <a href="#" class="flex items-center space-x-2">
+            <a href="index.html" class="flex items-center space-x-2">
                 <img src="assets/logo.png" alt="Logo" class="h-14 w-auto object-contain" />
                 <span
                     class="block h-16 gradient-text text-xl md:text-2xl lg:text-3xl font-bungee flex items-center justify-center">HEEMS</span>
             </a>
-            <!-- Navigation Menu -->
+            
+            <!-- Desktop Navigation Menu -->
             <nav class="hidden md:flex items-center space-x-8">
                 <a href="index.html" class="menu-item font-space uppercase text-sm tracking-wider">Home</a>
-                <a href="collections.html" class="menu-item font-space uppercase text-sm tracking-wider">Our Products</a>
+                <a href="collections.html" class="menu-item font-space uppercase text-sm tracking-wider text-bistre font-bold">Our Products</a>
                 <a href="story.html" class="menu-item font-space uppercase text-sm tracking-wider">Our Story</a>
                 <a href="contact.html" class="menu-item font-space uppercase text-sm tracking-wider">Contact Us</a>
             </nav>
-            <!-- Hamburger Button -->
-            <button class="md:hidden text-bistre" aria-label="Menu">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
+            
+            <!-- Shopping Cart -->
+            <div class="hidden md:flex items-center space-x-4">
+                <button class="relative" id="cart-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span class="absolute -top-2 -right-2 bg-mauveine text-white text-xs rounded-full h-5 w-5 flex items-center justify-center" id="cart-count">0</span>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-bistre" id="mobile-menu-button" aria-label="Menu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
         </div>
     </header>
-    <section class="min-h-screen flex items-center justify-center pt-20 hero-gradient-bg">
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed inset-y-0 right-0 w-64 bg-fabric z-50 shadow-xl p-6 md:hidden" id="mobile-menu">
+        <div class="flex justify-end mb-8">
+            <button id="mobile-menu-close" class="text-bistre">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <nav class="flex flex-col space-y-6">
+            <a href="index.html" class="text-bistre text-lg font-space uppercase tracking-wider">Home</a>
+            <a href="collections.html" class="text-bistre text-lg font-space uppercase tracking-wider font-bold">Our Products</a>
+            <a href="story.html" class="text-bistre text-lg font-space uppercase tracking-wider">Our Story</a>
+            <a href="contact.html" class="text-bistre text-lg font-space uppercase tracking-wider">Contact Us</a>
+            <div class="pt-4 border-t border-bistre/20">
+                <button class="flex items-center space-x-2 text-bistre" id="mobile-cart-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span>Cart</span>
+                    <span class="bg-mauveine text-white text-xs rounded-full h-5 w-5 flex items-center justify-center" id="mobile-cart-count">0</span>
+                </button>
+            </div>
+        </nav>
+    </div>
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 relative overflow-hidden">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col lg:flex-row items-center gap-12">
-                <div class="lg:w-1/2 relative">
-                    <div class="relative z-10">
-                        <h1 class="text-5xl md:text-7xl lg:text-8xl font-bungee mb-6">
-                            <span class="block gradient-text">FASHION</span>
-                            <span class="block text-shuffle-container">
-                                <span class="text-shuffle-word active" style="animation-delay: 0.1s">FROM</span>
-                            </span>
-                            <span class="block text-shuffle-container">
-                                <span class="text-shuffle-word active" style="animation-delay: 0.3s">BD</span>
-                            </span>
-                        </h1>
-                        <p class="text-lg md:text-xl font-space text-bistre/80 max-w-lg mb-8">
-                            Heems Clothing changes South Asian fashion with bold designs
-                            that mix traditional craftsmanship and modern style.
-                        </p>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="#collections"
-                                class="px-8 py-4 bg-bistre text-fabric font-space uppercase tracking-wider text-sm border-2 border-bistre hover:bg-transparent hover:text-bistre transition-all duration-300">
-                                View Collections
-                            </a>
-                            <a href="#story"
-                                class="px-8 py-4 border-2 border-bistre text-bistre font-space uppercase tracking-wider text-sm hover:bg-bistre hover:text-fabric transition-all duration-300">
-                                Our Journey
-                            </a>
-                        </div>
-                    </div>
-                    <div
-                        class="absolute -bottom-20 -left-20 w-64 h-64 bg-mauveine/10 rounded-full blur-xl animate-pulse-slow">
-                    </div>
-                </div>
-                <div class="lg:w-1/2 relative">
-                    <div
-                        class="relative border-animate rounded-2xl overflow-hidden aspect-[4/5] max-w-lg mx-auto h-[500px]">
-                        <!-- Hero Swiper -->
-                        <div class="swiper hero-swiper h-full">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide hero-swiper-slide">
-                                    <img src="assets/more/dress1.jpg" alt="Heems Clothing"
-                                        class="w-full h-full object-cover" />
-                                </div>
-                                <div class="swiper-slide hero-swiper-slide">
-                                    <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                                        alt="Heems Collection" class="w-full h-full object-cover" />
-                                </div>
-                                <div class="swiper-slide hero-swiper-slide">
-                                    <img src="assets/1.JPG" alt="Heems Design" class="w-full h-full object-cover" />
-                                </div>
-                            </div>
-                            <div class="swiper-pagination hero-swiper-pagination"></div>
-                            <div class="swiper-button-next custom-swiper-button"></div>
-                            <div class="swiper-button-prev custom-swiper-button"></div>
-                        </div>
-                    </div>
-                    <div
-                        class="absolute -top-12 -right-12 w-48 h-48 bg-aquamarine/10 rounded-full blur-xl animate-pulse-slow animation-delay-2000">
-                    </div>
+            <div class="text-center mb-16">
+                <h1 class="text-5xl md:text-7xl font-bungee mb-6">
+                    <span class="block gradient-text">OUR</span>
+                    <span class="block">PRODUCTS</span>
+                </h1>
+                <p class="font-space uppercase tracking-widest text-sm text-mauveine">
+                    Handcrafted in Bangladesh
+                </p>
+            </div>
+            
+            <!-- Collection Filter -->
+            <div class="mb-12">
+                <div class="flex flex-wrap justify-center gap-4 filter-container">
+                    <button class="filter-btn active px-6 py-2 border-2 border-bistre rounded-full font-space uppercase tracking-wider text-sm" data-filter="all">All Collections</button>
+                    <button class="filter-btn px-6 py-2 border-2 border-bistre rounded-full font-space uppercase tracking-wider text-sm" data-filter="clothing">Clothing</button>
+                    <button class="filter-btn px-6 py-2 border-2 border-bistre rounded-full font-space uppercase tracking-wider text-sm" data-filter="accessories">Accessories</button>
+                    <button class="filter-btn px-6 py-2 border-2 border-bistre rounded-full font-space uppercase tracking-wider text-sm" data-filter="limited">Limited Edition</button>
+                    <button class="filter-btn px-6 py-2 border-2 border-bistre rounded-full font-space uppercase tracking-wider text-sm" data-filter="new">New Arrivals</button>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Marquee -->
-    <div class="py-6 bg-bistre text-fabric overflow-hidden">
-        <div class="flex whitespace-nowrap">
-            <div class="animate-marquee flex items-center space-x-8 pr-8">
-                <span class="text-2xl font-bungee">HANDCRAFTED IN GALACHIPA</span>
-                <span class="text-2xl font-bungee">•</span>
-                <span class="text-2xl font-bungee">EXPERIMENTAL DESIGNS</span>
-                <span class="text-2xl font-bungee">•</span>
-                <span class="text-2xl font-bungee">LIMITED EDITIONS</span>
-                <span class="text-2xl font-bungee">•</span>
-                <span class="text-2xl font-bungee">ETHICAL PRODUCTION</span>
+    <!-- Collections Grid -->
+    <section class="pb-24">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 product-grid">
+                <!-- Collection 1 -->
+                <div class="collection-card rounded-xl overflow-hidden bg-white shadow-lg" data-category="clothing new">
+                    <div class="relative aspect-square overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" 
+                             alt="Monsoon Dreams Collection" 
+                             class="w-full h-full object-cover collection-image">
+                        <div class="absolute inset-0 collection-overlay flex flex-col justify-end p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2 collection-title">MONSOON DREAMS</h3>
+                            <p class="text-white/80 mb-4">Water-resistant fabrics celebrating Bangladesh's rainy season</p>
+                            <button class="self-start px-4 py-2 bg-mauveine text-white font-space uppercase tracking-wider text-sm view-product" 
+                                    data-product="monsoon-dreams">
+                                View Collection
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold text-bistre mb-1">MONSOON DREAMS</h3>
+                                <p class="text-bistre/70 text-sm">Spring 2024 Collection</p>
+                            </div>
+                            <span class="font-space uppercase tracking-widest text-xs text-aquamarine">NEW</span>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-lg font-bold text-bistre">$89 - $149</span>
+                            <button class="text-bistre hover:text-mauveine transition add-to-cart" 
+                                    data-product-id="prod-001" 
+                                    data-product-name="Monsoon Dreams Collection" 
+                                    data-product-price="89">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Collection 2 -->
+                <div class="collection-card rounded-xl overflow-hidden bg-white shadow-lg" data-category="clothing">
+                    <div class="relative aspect-square overflow-hidden">
+                        <img src="assets/more/dress1.jpg" 
+                             alt="Polo Shirt Collection" 
+                             class="w-full h-full object-cover collection-image">
+                        <div class="absolute inset-0 collection-overlay flex flex-col justify-end p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2 collection-title">POLO SHIRT</h3>
+                            <p class="text-white/80 mb-4">Contemporary takes on traditional weaving techniques</p>
+                            <button class="self-start px-4 py-2 bg-mauveine text-white font-space uppercase tracking-wider text-sm view-product" 
+                                    data-product="polo-shirt">
+                                View Collection
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold text-bistre mb-1">POLO SHIRT</h3>
+                                <p class="text-bistre/70 text-sm">Classic Collection</p>
+                            </div>
+                            <span class="font-space uppercase tracking-widest text-xs text-aquamarine">BESTSELLER</span>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-lg font-bold text-bistre">$59 - $99</span>
+                            <button class="text-bistre hover:text-mauveine transition add-to-cart" 
+                                    data-product-id="prod-002" 
+                                    data-product-name="Polo Shirt Collection" 
+                                    data-product-price="59">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Collection 3 -->
+                <div class="collection-card rounded-xl overflow-hidden bg-white shadow-lg" data-category="clothing limited">
+                    <div class="relative aspect-square overflow-hidden">
+                        <img src="assets/more/T-Shirt.jpg" 
+                             alt="T-Shirt Collection" 
+                             class="w-full h-full object-cover collection-image">
+                        <div class="absolute inset-0 collection-overlay flex flex-col justify-end p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2 collection-title">T-SHIRT</h3>
+                            <p class="text-white/80 mb-4">Celebrating the artistic heritage of Bengal</p>
+                            <button class="self-start px-4 py-2 bg-mauveine text-white font-space uppercase tracking-wider text-sm view-product" 
+                                    data-product="t-shirt">
+                                View Collection
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold text-bistre mb-1">T-SHIRT</h3>
+                                <p class="text-bistre/70 text-sm">Limited Edition</p>
+                            </div>
+                            <span class="font-space uppercase tracking-widest text-xs text-mauveine">LIMITED</span>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-lg font-bold text-bistre">$39 - $79</span>
+                            <button class="text-bistre hover:text-mauveine transition add-to-cart" 
+                                    data-product-id="prod-003" 
+                                    data-product-name="T-Shirt Collection" 
+                                    data-product-price="39">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Collection 4 -->
+                <div class="collection-card rounded-xl overflow-hidden bg-white shadow-lg" data-category="clothing">
+                    <div class="relative aspect-square overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Delta Blues Collection" 
+                             class="w-full h-full object-cover collection-image">
+                        <div class="absolute inset-0 collection-overlay flex flex-col justify-end p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2 collection-title">DELTA BLUES</h3>
+                            <p class="text-white/80 mb-4">Indigo dye collection inspired by river life</p>
+                            <button class="self-start px-4 py-2 bg-mauveine text-white font-space uppercase tracking-wider text-sm view-product" 
+                                    data-product="delta-blues">
+                                View Collection
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold text-bistre mb-1">DELTA BLUES</h3>
+                                <p class="text-bistre/70 text-sm">Summer 2024 Collection</p>
+                            </div>
+                            <span class="font-space uppercase tracking-widest text-xs text-aquamarine">POPULAR</span>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-lg font-bold text-bistre">$79 - $129</span>
+                            <button class="text-bistre hover:text-mauveine transition add-to-cart" 
+                                    data-product-id="prod-004" 
+                                    data-product-name="Delta Blues Collection" 
+                                    data-product-price="79">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Collection 5 -->
+                <div class="collection-card rounded-xl overflow-hidden bg-white shadow-lg" data-category="accessories">
+                    <div class="relative aspect-square overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1591348278863-a8fb3887e2aa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Jamdani Scarves" 
+                             class="w-full h-full object-cover collection-image">
+                        <div class="absolute inset-0 collection-overlay flex flex-col justify-end p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2 collection-title">JAMDANI SCARVES</h3>
+                            <p class="text-white/80 mb-4">Traditional weaving with contemporary designs</p>
+                            <button class="self-start px-4 py-2 bg-mauveine text-white font-space uppercase tracking-wider text-sm view-product" 
+                                    data-product="jamdani-scarves">
+                                View Collection
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold text-bistre mb-1">JAMDANI SCARVES</h3>
+                                <p class="text-bistre/70 text-sm">Accessories Collection</p>
+                            </div>
+                            <span class="font-space uppercase tracking-widest text-xs text-aquamarine">NEW</span>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-lg font-bold text-bistre">$49 - $89</span>
+                            <button class="text-bistre hover:text-mauveine transition add-to-cart" 
+                                    data-product-id="prod-005" 
+                                    data-product-name="Jamdani Scarves" 
+                                    data-product-price="49">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Collection 6 -->
+                <div class="collection-card rounded-xl overflow-hidden bg-white shadow-lg" data-category="clothing limited">
+                    <div class="relative aspect-square overflow-hidden">
+                        <img src="assets/1.JPG" 
+                             alt="Urban Jamdani 2.0" 
+                             class="w-full h-full object-cover collection-image">
+                        <div class="absolute inset-0 collection-overlay flex flex-col justify-end p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2 collection-title">URBAN JAMDANI 2.0</h3>
+                            <p class="text-white/80 mb-4">Next generation of traditional fusion</p>
+                            <button class="self-start px-4 py-2 bg-mauveine text-white font-space uppercase tracking-wider text-sm view-product" 
+                                    data-product="urban-jamdani">
+                                View Collection
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="text-xl font-bold text-bistre mb-1">URBAN JAMDANI 2.0</h3>
+                                <p class="text-bistre/70 text-sm">Limited Edition</p>
+                            </div>
+                            <span class="font-space uppercase tracking-widest text-xs text-mauveine">LIMITED</span>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-lg font-bold text-bistre">$99 - $179</span>
+                            <button class="text-bistre hover:text-mauveine transition add-to-cart" 
+                                    data-product-id="prod-006" 
+                                    data-product-name="Urban Jamdani 2.0" 
+                                    data-product-price="99">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="animate-marquee flex items-center space-x-8 pr-8" aria-hidden="true">
-                <span class="text-2xl font-bungee">HANDCRAFTED IN GALACHIPA</span>
-                <span class="text-2xl font-bungee">•</span>
-                <span class="text-2xl font-bungee">EXPERIMENTAL DESIGNS</span>
-                <span class="text-2xl font-bungee">•</span>
-                <span class="text-2xl font-bungee">LIMITED EDITIONS</span>
-                <span class="text-2xl font-bungee">•</span>
-                <span class="text-2xl font-bungee">ETHICAL PRODUCTION</span>
+            
+            <div class="text-center mt-16">
+                <button class="px-8 py-4 border-2 border-bistre text-bistre font-space uppercase tracking-wider text-sm hover:bg-bistre hover:text-fabric transition-all duration-300">
+                    Load More
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Product Modal -->
+    <div class="fixed inset-0 z-50 flex items-center justify-center p-4 product-modal" id="product-modal">
+        <div class="modal-overlay fixed inset-0" id="modal-overlay"></div>
+        <div class="relative bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto z-10">
+            <button class="absolute top-4 right-4 text-bistre hover:text-mauveine transition" id="close-modal">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
+                <!-- Product Images -->
+                <div class="swiper product-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" 
+                                 alt="Monsoon Dreams Collection" 
+                                 class="w-full h-auto rounded-lg">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="assets/more/dress1.jpg" 
+                                 alt="Monsoon Dreams Collection" 
+                                 class="w-full h-auto rounded-lg">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="assets/more/T-Shirt.jpg" 
+                                 alt="Monsoon Dreams Collection" 
+                                 class="w-full h-auto rounded-lg">
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+                
+                <!-- Product Details -->
+                <div>
+                    <h2 class="text-3xl font-bold text-bistre mb-2" id="modal-product-title">MONSOON DREAMS</h2>
+                    <p class="text-mauveine font-space uppercase tracking-wider text-sm mb-4">Spring 2024 Collection</p>
+                    <div class="flex items-center mb-6">
+                        <div class="flex text-yellowish">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-bistre/70 text-sm ml-2">(42 reviews)</span>
+                    </div>
+                    
+                    <p class="text-bistre mb-6" id="modal-product-description">
+                        Our Monsoon Dreams collection features water-resistant fabrics that celebrate Bangladesh's rainy season. Each piece is handcrafted using traditional techniques adapted for modern wear, with natural dyes that reflect the vibrant colors of the monsoon landscape.
+                    </p>
+                    
+                    <div class="mb-6">
+                        <h3 class="text-xl font-bold text-bistre mb-3">$89.00</h3>
+                        
+                        <!-- Size Selector -->
+                        <div class="mb-6">
+                            <h4 class="font-space uppercase tracking-wider text-sm text-bistre mb-3">Size</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <button class="size-option px-4 py-2 border border-bistre rounded-full text-sm" data-size="xs">XS</button>
+                                <button class="size-option px-4 py-2 border border-bistre rounded-full text-sm" data-size="s">S</button>
+                                <button class="size-option px-4 py-2 border border-bistre rounded-full text-sm selected" data-size="m">M</button>
+                                <button class="size-option px-4 py-2 border border-bistre rounded-full text-sm" data-size="l">L</button>
+                                <button class="size-option px-4 py-2 border border-bistre rounded-full text-sm" data-size="xl">XL</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Color Selector -->
+                        <div class="mb-6">
+                            <h4 class="font-space uppercase tracking-wider text-sm text-bistre mb-3">Color</h4>
+                            <div class="flex flex-wrap gap-3">
+                                <button class="color-option selected w-8 h-8 rounded-full bg-indigo-900" data-color="indigo" title="Monsoon Indigo"></button>
+                                <button class="color-option w-8 h-8 rounded-full bg-green-800" data-color="green" title="Jade Green"></button>
+                                <button class="color-option w-8 h-8 rounded-full bg-red-800" data-color="red" title="Poppy Red"></button>
+                                <button class="color-option w-8 h-8 rounded-full bg-yellow-600" data-color="yellow" title="Mustard Yellow"></button>
+                            </div>
+                        </div>
+                        
+                        <!-- Quantity Selector -->
+                        <div class="mb-8">
+                            <h4 class="font-space uppercase tracking-wider text-sm text-bistre mb-3">Quantity</h4>
+                            <div class="quantity-selector flex items-center border border-bistre rounded-full w-max">
+                                <button class="px-4 py-2 text-bistre" id="decrease-qty">-</button>
+                                <span class="px-4 py-2 text-bistre" id="quantity">1</span>
+                                <button class="px-4 py-2 text-bistre" id="increase-qty">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="flex-1 px-6 py-3 bg-bistre text-white font-space uppercase tracking-wider text-sm hover:bg-bistre/90 transition" id="add-to-cart-modal">
+                            Add to Cart
+                        </button>
+                        <button class="flex-1 px-6 py-3 border-2 border-bistre text-bistre font-space uppercase tracking-wider text-sm hover:bg-bistre hover:text-white transition">
+                            Buy Now
+                        </button>
+                    </div>
+                    
+                    <div class="mt-8 pt-6 border-t border-bistre/20">
+                        <div class="flex items-start mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-aquamarine mt-1 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <div>
+                                <h4 class="font-bold text-bistre">Ethically Produced</h4>
+                                <p class="text-bistre/80 text-sm">Handcrafted by artisans in Galachipa, Bangladesh</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-aquamarine mt-1 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <div>
+                                <h4 class="font-bold text-bistre">Natural Materials</h4>
+                                <p class="text-bistre/80 text-sm">Made with organic cotton and natural dyes</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-aquamarine mt-1 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <div>
+                                <h4 class="font-bold text-bistre">Free Shipping</h4>
+                                <p class="text-bistre/80 text-sm">On all orders over $100</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <!-- Story Section -->
-    <section id="story" class="py-24 bg-fabric relative overflow-hidden">
-        <div class="absolute inset-0 noise-bg"></div>
-        <div class="container mx-auto px-6 relative">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bungee mb-4">
-                    <span class="block">OUR</span>
-                    <span class="block gradient-text">STORY</span>
-                </h2>
-                <p class="font-space uppercase tracking-widest text-sm text-mauveine">
-                    আমাদের যাত্রা
-                </p>
-            </div>
-            <!-- Personal Quote -->
-            <div class="max-w-3xl mx-auto text-center mb-16 px-4">
-                <blockquote class="text-2xl font-abusayed text-bistre italic">
-                    "ফ্যাশন শুধু পোশাক নয়, এটি আমাদের সংস্কৃতির গল্প বলার একটি মাধ্যম। প্রতিটি সেলাই, প্রতিটি নকশায় রয়েছে বাংলাদেশের হৃদয়ের স্পন্দন।"
-                </blockquote>
-                <p class="mt-4 font-hind text-mauveine">— হীমস ক্লোথিং এর প্রতিষ্ঠাতা</p>
-            </div>
-            <!-- Timeline -->
-            <div class="timeline">
-                <!-- Timeline Item 1 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">২০১৮</div>
-                        <h3 class="timeline-title">প্রতিষ্ঠান প্রতিষ্ঠিত</h3>
-                        <p class="timeline-teaser">
-                            গালাচিপার একটি ছোট কর্মশালায় জন্ম নেয় এক সাহসী স্বপ্ন...
-                        </p>
-                        <div class="timeline-description">
-                            গালাচিপায় একটি ছোট কর্মশালায় হীমস ক্লোথিং প্রতিষ্ঠিত হয়েছিল, যেখানে আমরা বাংলাদেশের
-                            ঐতিহ্যবাহী কারুশিল্পকে আধুনিক ফ্যাশনের সাথে মিশিয়ে নতুন কিছু তৈরির স্বপ্ন দেখেছিলাম। আমাদের
-                            প্রথম দিনগুলোতে মাত্র তিনজন কারিগর এবং একজন ডিজাইনার নিয়ে শুরু করেছিলাম, কিন্তু আমাদের
-                            স্বপ্ন ছিল বিশাল।
-                        </div>
-                        <span class="read-more-btn" onclick="toggleReadMore(this)">আরও পড়ুন</span>
-                    </div>
-                </div>
-                <!-- Timeline Item 2 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">২০১৯</div>
-                        <h3 class="timeline-title">প্রথম সংগ্রহ প্রকাশ</h3>
-                        <p class="timeline-teaser">
-                            বর্ষার ছন্দে তৈরি আমাদের প্রথম সংগ্রহে ঝড় তুলেছিল...
-                        </p>
-                        <div class="timeline-description">
-                            আমাদের প্রথম সংগ্রহ "মনসুন ড্রিমস" প্রকাশিত হয়েছিল, যা বাংলাদেশের বর্ষা ঋতু থেকে অনুপ্রাণিত
-                            হয়ে তৈরি করা হয়েছিল। এটি স্থানীয় বাজারে ব্যাপক সাড়া ফেলেছিল। এই সংগ্রহে আমরা প্রাকৃতিক
-                            রং এবং জল-প্রতিরোধী কাপড় ব্যবহার করেছিলাম যা বাংলাদেশের বর্ষাকালের জন্য উপযুক্ত।
-                        </div>
-                        <span class="read-more-btn" onclick="toggleReadMore(this)">আরও পড়ুন</span>
-                    </div>
-                </div>
-                <div class="text-center mt-16">
-                    <a href="story.html"
-                        class="inline-block px-8 py-4 bg-bistre text-fabric font-space uppercase tracking-wider text-sm border-2 border-bistre hover:bg-transparent hover:text-bistre transition-all duration-300">
-                        আরও জানুন
-                    </a>
-                </div>
-            </div>
-    </section>
-    <!-- Collections Section -->
-    <section id="collections" class="py-24 bg-darkbg text-fabric">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bungee mb-4">
-                    <span class="block">OUR</span>
-                    <span class="block gradient-text">COLLECTIONS</span>
-                </h2>
-                <p class="font-space uppercase tracking-widest text-sm text-aquamarine">
-                    Limited Edition Series
-                </p>
-            </div>
-            <!-- Swiper -->
-            <div class="swiper collections-swiper">
-                <div class="swiper-wrapper pb-10">
-                    <!-- Slide 1 -->
-                    <div class="swiper-slide px-2">
-                        <div
-                            class="product-card bg-bistre/30 backdrop-blur-sm border border-fabric/10 p-6 h-full flex flex-col">
-                            <div class="aspect-square mb-6 overflow-hidden flex-grow relative">
-                                <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                                    alt="Monsoon Dreams Collection"
-                                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
-                                <div class="view-overlay">
-                                    View Details
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold mb-2">MONSOON DREAMS</h3>
-                                <p class="text-fabric/70 mb-4">
-                                    Water-resistant fabrics celebrating Bangladesh's rainy
-                                    season
-                                </p>
-                                <div class="flex justify-between items-left">
-                                    <span class="font-space uppercase tracking-widest text-xs text-aquamarine">Spring
-                                        2024</span>
-                                    <button
-                                        class="font-space uppercase tracking-widest text-xs border-b border-aquamarine pb-1 hover:text-aquamarine transition">
-                                        Explore
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 2 -->
-                    <div class="swiper-slide px-2">
-                        <div
-                            class="product-card bg-bistre/30 backdrop-blur-sm border border-fabric/10 p-6 h-full flex flex-col">
-                            <div class="aspect-square mb-6 overflow-hidden flex-grow relative">
-                                <img src="assets/more/dress1.jpg" alt="Shirt Collection"
-                                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
-                                <div class="view-overlay">
-                                    View Details
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold mb-2">POLO SHIRT</h3>
-                                <p class="text-fabric/70 mb-4">
-                                    Contemporary takes on traditional weaving techniques
-                                </p>
-                                <div class="flex justify-between items-center">
-                                    <span class="font-space uppercase tracking-widest text-xs text-aquamarine">Fall
-                                        2023</span>
-                                    <button
-                                        class="font-space uppercase tracking-widest text-xs border-b border-aquamarine pb-1">
-                                        Explore
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 3 -->
-                    <div class="swiper-slide px-2">
-                        <div
-                            class="product-card bg-bistre/30 backdrop-blur-sm border border-fabric/10 p-6 h-full flex flex-col">
-                            <div class="aspect-square mb-6 overflow-hidden flex-grow relative">
-                                <img src="assets/more/T-Shirt.jpg" alt="Bengal Renaissance Collection"
-                                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
-                                <div class="view-overlay">
-                                    View Details
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold mb-2">T-SHIRT</h3>
-                                <p class="text-fabric/70 mb-4">
-                                    Celebrating the artistic heritage of Bengal
-                                </p>
-                                <div class="flex justify-between items-center">
-                                    <span class="font-space uppercase tracking-widest text-xs text-aquamarine">Limited
-                                        Edition</span>
-                                    <button
-                                        class="font-space uppercase tracking-widest text-xs border-b border-aquamarine pb-1 hover:text-aquamarine transition">
-                                        Explore
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 4 -->
-                    <div class="swiper-slide px-2">
-                        <div
-                            class="product-card bg-bistre/30 backdrop-blur-sm border border-fabric/10 p-6 h-full flex flex-col">
-                            <div class="aspect-square mb-6 overflow-hidden flex-grow relative">
-                                <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80"
-                                    alt="Delta Blues Collection"
-                                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
-                                <div class="view-overlay">
-                                    View Details
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold mb-2">DELTA BLUES</h3>
-                                <p class="text-fabric/70 mb-4">
-                                    Indigo dye collection inspired by river life
-                                </p>
-                                <div class="flex justify-between items-center">
-                                    <span class="font-space uppercase tracking-widest text-xs text-aquamarine">Summer
-                                        2024</span>
-                                    <button
-                                        class="font-space uppercase tracking-widest text-xs border-b border-aquamarine pb-1 hover:text-aquamarine transition">
-                                        Explore
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-pagination !bottom-0"></div>
-            </div>
-        </div>
-    </section>
-    <!-- Products Section -->
-    <section id="products" class="py-24 bg-fabric">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bungee mb-4 text-bistre">
-                    <span class="block">COMING</span>
-                    <span class="block gradient-text">SOON</span>
-                </h2>
-                <p class="font-space uppercase tracking-widest text-sm text-mauveine">
-                    Future Releases
-                </p>
+    
+    <!-- Shopping Cart Sidebar -->
+    <div class="fixed inset-y-0 right-0 w-full sm:w-96 bg-white z-50 shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out" id="cart-sidebar">
+        <div class="h-full flex flex-col">
+            <div class="p-6 border-b border-bistre/20 flex justify-between items-center">
+                <h3 class="text-xl font-bold text-bistre">Your Cart</h3>
+                <button class="text-bistre hover:text-mauveine transition" id="close-cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
             
-            <!-- Countdown Timer -->
-            <div class="countdown-container mb-12">
-                <div class="countdown-box">
-                    <div class="countdown-value" id="days">00</div>
-                    <div class="countdown-label">Days</div>
-                </div>
-                <div class="countdown-box">
-                    <div class="countdown-value" id="hours">00</div>
-                    <div class="countdown-label">Hours</div>
-                </div>
-                <div class="countdown-box">
-                    <div class="countdown-value" id="minutes">00</div>
-                    <div class="countdown-label">Minutes</div>
-                </div>
-                <div class="countdown-box">
-                    <div class="countdown-value" id="seconds">00</div>
-                    <div class="countdown-label">Seconds</div>
+            <div class="flex-1 overflow-y-auto p-6" id="cart-items">
+                <!-- Cart items will be added here dynamically -->
+                <div class="text-center py-12 text-bistre/70">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-bistre/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <p>Your cart is empty</p>
                 </div>
             </div>
             
-            <!-- Newsletter Form -->
-            <div class="newsletter-form mb-16">
-                <h3 class="text-2xl font-abusayed text-center mb-6 text-bistre">Get Early Access</h3>
-                <form class="flex flex-col gap-4">
-                    <input type="email" placeholder="Your email address" class="newsletter-input" required>
-                    <button type="submit" class="newsletter-submit">Notify Me</button>
-                </form>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Product 1 -->
-                <div class="group relative overflow-hidden border-animate rounded-xl">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                            alt="Silk Road Collection"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                    </div>
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-bistre/80 via-transparent to-transparent p-6 flex flex-col justify-end">
-                        <div
-                            class="transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                            <span class="font-space uppercase tracking-widest text-xs text-aquamarine mb-2 block">Coming
-                                Soon</span>
-                            <h3 class="text-2xl font-bold text-fabric mb-2">SILK ROAD</h3>
-                            <p class="text-fabric/80 mb-4">
-                                Premium silk line with modern cuts
-                            </p>
-                        </div>
-                        <button
-                            class="font-space uppercase tracking-widest text-xs text-fabric border-b border-aquamarine pb-1 w-max opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                            Get Notified
-                        </button>
-                    </div>
+            <div class="p-6 border-t border-bistre/20">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-bistre">Subtotal</span>
+                    <span class="font-bold text-bistre" id="cart-subtotal">$0.00</span>
                 </div>
-                <!-- Product 2 -->
-                <div class="group relative overflow-hidden border-animate rounded-xl">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                            alt="Delta Collection"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                    </div>
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-bistre/80 via-transparent to-transparent p-6 flex flex-col justify-end">
-                        <div
-                            class="transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                            <span class="font-space uppercase tracking-widest text-xs text-aquamarine mb-2 block">Coming
-                                Soon</span>
-                            <h3 class="text-2xl font-bold text-fabric mb-2">DELTA</h3>
-                            <p class="text-fabric/80 mb-4">
-                                Fluid silhouettes inspired by river deltas
-                            </p>
-                        </div>
-                        <button
-                            class="font-space uppercase tracking-widest text-xs text-fabric border-b border-aquamarine pb-1 w-max opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                            Get Notified
-                        </button>
-                    </div>
-                </div>
-                <!-- Product 3 -->
-                <div class="group relative overflow-hidden border-animate rounded-xl">
-                    <div class="aspect-square overflow-hidden">
-                        <img src="assets/1.JPG" alt="Urban Jamdani 2.0"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                    </div>
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-bistre/80 via-transparent to-transparent p-6 flex flex-col justify-end">
-                        <div
-                            class="transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                            <span class="font-space uppercase tracking-widest text-xs text-aquamarine mb-2 block">Coming
-                                Soon</span>
-                            <h3 class="text-2xl font-bold text-fabric mb-2">
-                                URBAN JAMDANI 2.0
-                            </h3>
-                            <p class="text-fabric/80 mb-4">
-                                Next generation of traditional fusion
-                            </p>
-                        </div>
-                        <button
-                            class="font-space uppercase tracking-widest text-xs text-fabric border-b border-aquamarine pb-1 w-max opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                            Get Notified
-                        </button>
-                    </div>
+                <p class="text-sm text-bistre/70 mb-6">Shipping and taxes calculated at checkout</p>
+                <button class="w-full px-6 py-3 bg-bistre text-white font-space uppercase tracking-wider text-sm hover:bg-bistre/90 transition">
+                    Checkout
+                </button>
+                <div class="text-center mt-4">
+                    <a href="collections.html" class="text-sm text-bistre/70 hover:text-mauveine transition">Continue Shopping</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+    
     <!-- Footer -->
     <footer id="contact" class="bg-bistre text-fabric/70 py-12">
         <div class="container mx-auto px-6">
-            <!-- Instagram Feed -->
-            <div class="instagram-feed">
-                <div class="instagram-item">
-                    <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Instagram Post">
-                </div>
-                <div class="instagram-item">
-                    <img src="assets/more/dress1.jpg" alt="Instagram Post">
-                </div>
-                <div class="instagram-item">
-                    <img src="assets/more/T-Shirt.jpg" alt="Instagram Post">
-                </div>
-                <div class="instagram-item">
-                    <img src="assets/1.JPG" alt="Instagram Post">
-                </div>
-            </div>
-            
-            <!-- Customer Reviews -->
-            <div class="my-12 text-center">
-                <h3 class="text-2xl font-abusayed mb-6 text-fabric">What Our Customers Say</h3>
-                <div class="max-w-3xl mx-auto">
-                    <div class="bg-bistre/50 p-6 rounded-lg mb-4">
-                        <p class="italic text-fabric/90 mb-2">"The craftsmanship is exceptional. Each piece tells a story of Bangladeshi heritage with a modern twist."</p>
-                        <p class="text-aquamarine">— Ayesha Rahman, Dhaka</p>
-                    </div>
-                    <div class="bg-bistre/50 p-6 rounded-lg">
-                        <p class="italic text-fabric/90 mb-2">"I love how Heems combines traditional fabrics with contemporary designs. Truly unique!"</p>
-                        <p class="text-aquamarine">— Nabil Ahmed, Chittagong</p>
-                    </div>
-                </div>
-            </div>
-            
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
                     <a href="#" class="text-3xl font-bungee block mb-4">HEEMS</a>
@@ -1058,22 +833,19 @@
                 <div class="flex flex-col items-center md:items-end">
                     <div class="flex space-x-6 mb-6">
                         <a href="#" class="hover:text-aquamarine transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor"
-                                viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
                             </svg>
                         </a>
                         <a href="#" class="hover:text-aquamarine transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor"
-                                viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                             </svg>
                         </a>
                         <a href="#" class="hover:text-aquamarine transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor"
-                                viewBox="0 0 24 24">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
                             </svg>
@@ -1083,211 +855,161 @@
                 </div>
             </div>
             <div class="border-t border-fabric/20 mt-12 pt-8 text-center text-sm">
-                <p class="crafted-with">
-                    &copy; 2024 Heems Clothing. All rights reserved. Crafted with passion in Galachipa, Bangladesh.
+                <p>
+                    &copy; 2024 Heems Clothing. All rights reserved. Crafted with
+                    passion in Galachipa, Bangladesh.
                 </p>
             </div>
         </div>
     </footer>
+    
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Initialize Swipers
-        document.addEventListener("DOMContentLoaded", function () {
-            // Collections Swiper
-            const collectionsSwiper = new Swiper(".collections-swiper", {
-                slidesPerView: 1,
-                spaceBetween: 20,
-                pagination: {
-                    el: ".collections-swiper .swiper-pagination",
-                    clickable: true,
-                },
-                breakpoints: {
-                    640: {
-                        slidesPerView: 2,
-                    },
-                    1024: {
-                        slidesPerView: 3,
-                    },
-                },
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.add('open');
+                document.body.style.overflow = 'hidden';
             });
             
-            // Hero Swiper with enhanced parallax effect
-            const heroSwiper = new Swiper(".hero-swiper", {
-                effect: "coverflow",
-                grabCursor: true,
-                centeredSlides: true,
-                loop: true,
-                slidesPerView: "auto",
-                coverflowEffect: {
-                    rotate: 0,
-                    stretch: 0,
-                    depth: 100,
-                    modifier: 1,
-                    slideShadows: false,
-                },
-                autoplay: {
-                    delay: 2500,
-                    disableOnInteraction: false,
-                },
-                speed: 800,
-                parallax: true,
+            mobileMenuClose.addEventListener('click', function() {
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+            
+            // Initialize product swiper in modal
+            const productSwiper = new Swiper('.product-swiper', {
+                slidesPerView: 1,
+                spaceBetween: 10,
                 pagination: {
-                    el: ".hero-swiper-pagination",
+                    el: '.swiper-pagination',
                     clickable: true,
                 },
                 navigation: {
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev",
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
                 },
-                on: {
-                    init: function () {
-                        // Add parallax effect to images
-                        this.slides.forEach(slide => {
-                            const img = slide.querySelector('img');
-                            if (img) {
-                                img.style.transition = 'transform 0.8s ease';
-                            }
-                        });
-                    },
-                    slideChangeTransitionStart: function () {
-                        // Reset all images
-                        this.slides.forEach(slide => {
-                            const img = slide.querySelector('img');
-                            if (img) {
-                                img.style.transform = 'scale(1)';
-                            }
-                        });
-                    },
-                    slideChangeTransitionEnd: function () {
-                        // Scale up active slide image
-                        const activeImg = this.slides[this.activeIndex].querySelector('img');
-                        if (activeImg) {
-                            activeImg.style.transform = 'scale(1.05)';
+            });
+            
+            // Collection filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const collectionCards = document.querySelectorAll('.collection-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active state
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter collections
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    collectionCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category').includes(filterValue)) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                            }, 10);
+                        } else {
+                            card.style.opacity = '0';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
                         }
-                    }
+                    });
+                });
+            });
+            
+            // Product modal functionality
+            const viewProductButtons = document.querySelectorAll('.view-product');
+            const productModal = document.getElementById('product-modal');
+            const modalOverlay = document.getElementById('modal-overlay');
+            const closeModalButton = document.getElementById('close-modal');
+            
+            viewProductButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-product');
+                    // In a real implementation, you would fetch product details based on the ID
+                    // For this demo, we'll just show the modal with placeholder content
+                    productModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            function closeModal() {
+                productModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            modalOverlay.addEventListener('click', closeModal);
+            closeModalButton.addEventListener('click', closeModal);
+            
+            // Size selector in modal
+            const sizeOptions = document.querySelectorAll('.size-option');
+            sizeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    sizeOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+            
+            // Color selector in modal
+            const colorOptions = document.querySelectorAll('.color-option');
+            colorOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    colorOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            });
+            
+            // Quantity selector in modal
+            const decreaseQty = document.getElementById('decrease-qty');
+            const increaseQty = document.getElementById('increase-qty');
+            const quantityDisplay = document.getElementById('quantity');
+            
+            decreaseQty.addEventListener('click', function() {
+                let currentQty = parseInt(quantityDisplay.textContent);
+                if (currentQty > 1) {
+                    quantityDisplay.textContent = currentQty - 1;
                 }
             });
             
-            // Text shuffle effect for hero section
-            const heroWords = ["DESIGNS", "CULTURE", "ART", "PASSION", "HEEMS"];
-            const shuffleContainers = document.querySelectorAll(".text-shuffle-container");
-            
-            if (shuffleContainers.length > 0) {
-                // Clear existing spans
-                shuffleContainers.forEach(container => {
-                    container.innerHTML = '';
-                });
-                
-                // Add words to containers
-                heroWords.forEach((word, index) => {
-                    const span = document.createElement("span");
-                    span.className = "text-shuffle-word";
-                    span.textContent = word;
-                    // Distribute words to containers in a round-robin fashion
-                    const containerIndex = index % shuffleContainers.length;
-                    shuffleContainers[containerIndex].appendChild(span);
-                });
-                
-                // Rotate words in each container
-                shuffleContainers.forEach(container => {
-                    const spans = container.querySelectorAll(".text-shuffle-word");
-                    if (spans.length > 0) {
-                        let currentIndex = 0;
-                        // Show first word
-                        spans[currentIndex].classList.add("active");
-                        
-                        // Set up rotation
-                        setInterval(() => {
-                            spans[currentIndex].classList.remove("active");
-                            currentIndex = (currentIndex + 1) % spans.length;
-                            spans[currentIndex].classList.add("active");
-                        }, 2000);
-                    }
-                });
-            }
-            
-            // Scroll animation for timeline items using GSAP
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            timelineItems.forEach(item => {
-                gsap.from(item, {
-                    scrollTrigger: {
-                        trigger: item,
-                        start: "top 80%",
-                        toggleActions: "play none none none"
-                    },
-                    opacity: 0,
-                    y: 40,
-                    duration: 0.8,
-                    ease: "power2.out"
-                });
+            increaseQty.addEventListener('click', function() {
+                let currentQty = parseInt(quantityDisplay.textContent);
+                quantityDisplay.textContent = currentQty + 1;
             });
             
-            // Scroll animation for header
-            gsap.to("#main-header", {
-                scrollTrigger: {
-                    trigger: "body",
-                    start: "50px top",
-                    toggleActions: "play pause resume reset",
-                    scrub: true
-                },
-                backdropFilter: "blur(10px)",
-                backgroundColor: "rgba(245, 240, 232, 0.9)",
-                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                duration: 0.3
+            // Animate collection cards on scroll
+            const animateOnScroll = () => {
+                const collectionCards = document.querySelectorAll('.collection-card');
+                
+                collectionCards.forEach(card => {
+                    const cardPosition = card.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (cardPosition < screenPosition) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Set initial state for animation
+            document.querySelectorAll('.collection-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             });
             
-            // Countdown Timer
-            function updateCountdown() {
-                // Set the date we're counting down to (next month's first day)
-                const countDownDate = new Date();
-                countDownDate.setMonth(countDownDate.getMonth() + 1);
-                countDownDate.setDate(1);
-                countDownDate.setHours(0, 0, 0, 0);
-                
-                // Update the countdown every 1 second
-                const x = setInterval(function() {
-                    // Get today's date and time
-                    const now = new Date().getTime();
-                    
-                    // Find the distance between now and the countdown date
-                    const distance = countDownDate - now;
-                    
-                    // Time calculations for days, hours, minutes and seconds
-                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                    
-                    // Display the result
-                    document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
-                    document.getElementById("hours").innerHTML = Math.floor(hours).toString().padStart(2, '0');
-                    document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
-                    document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
-                    
-                    // If the countdown is finished, reset to next month
-                    if (distance < 0) {
-                        clearInterval(x);
-                        updateCountdown(); // Restart with new date
-                    }
-                }, 1000);
-            }
-            
-            // Start the countdown
-            updateCountdown();
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Run once on load
         });
-        
-        // Toggle আরও পড়ুন functionality
-        function toggleReadMore(button) {
-            const timelineItem = button.closest('.timeline-item');
-            timelineItem.classList.toggle('expanded');
-            // Change button text based on state
-            if (timelineItem.classList.contains('expanded')) {
-                button.textContent = 'Read Less';
-            } else {
-                button.textContent = 'আরও পড়ুন';
-            }
-        }
     </script>
+    <script src="js/cart.js"></script>
 </body>
 </html>
