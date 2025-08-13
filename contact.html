@@ -1,18 +1,826 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Collections</title>
-    <!-- Embed Hind Siliguri font from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri&display=swap" rel="stylesheet" />
+    <title>Heems | Contact Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Archivo:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        brownsugar: "#AF6B41",
+                        bistre: "#4C3329",
+                        mauveine: "#DC2F02",
+                        imperialred: "#FB3A48",
+                        aquamarine: "#28EEB6",
+                        yellowish: "#FBDA58",
+                        orange: "#FAA049",
+                        red2: "#C01A27",
+                        pinkish: "#B51490",
+                        purpletext: "#a178b7",
+                        darkbg: "#1a0f1a",
+                        fabric: "#f5f0e8",
+                    },
+                    fontFamily: {
+                        bungee: ["Bungee Spice", "cursive"],
+                        archivo: ["Archivo", "sans-serif"],
+                        space: ["Space Grotesk", "sans-serif"],
+                    },
+                    animation: {
+                        float: "float 6s ease-in-out infinite",
+                        "float-reverse": "float 6s ease-in-out infinite reverse",
+                        "pulse-slow": "pulse 8s cubic-bezier(0.4, 1, 0.6, 1) infinite",
+                        "text-gradient": "text-gradient 8s linear infinite",
+                        marquee: "marquee 20s linear infinite",
+                        "fade-in": "fadeIn 1.5s ease-out forwards",
+                        "slide-up": "slideUp 1.2s ease-out forwards",
+                        "tilt-shake": "tilt-shake 0.5s ease-in-out",
+                    },
+                    keyframes: {
+                        float: {
+                            "0%, 100%": { transform: "translateY(0)" },
+                            "50%": { transform: "translateY(-20px)" },
+                        },
+                        "text-gradient": {
+                            "0%": { "background-position": "0% 50%" },
+                            "50%": { "background-position": "100% 50%" },
+                            "100%": { "background-position": "0% 50%" },
+                        },
+                        marquee: {
+                            "0%": { transform: "translateX(0)" },
+                            "100%": { transform: "translateX(-100%)" },
+                        },
+                        fadeIn: {
+                            "0%": { opacity: 0 },
+                            "100%": { opacity: 1 },
+                        },
+                        slideUp: {
+                            "0%": { opacity: 0, transform: "translateY(40px)" },
+                            "100%": { opacity: 1, transform: "translateY(0)" },
+                        },
+                        "tilt-shake": {
+                            "0%, 100%": { transform: "rotate(0deg)" },
+                            "25%": { transform: "rotate(-5deg)" },
+                            "75%": { transform: "rotate(5deg)" },
+                        },
+                    },
+                },
+            },
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ScrollTrigger@5.4.0/ScrollTrigger.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+    </script>
     <style>
+        @font-face {
+            font-family: 'CodepotroAbuSayed';
+            src: url('assets/fonts/CodepotroAbuSayed.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'HindSiliguri';
+            src: url('assets/fonts/HindSiliguri-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        html {
+            font-size: 14px;
+            scroll-behavior: smooth;
+        }
         body {
-            font-family: 'Hind Siliguri', sans-serif;
+            font-family: "Archivo", sans-serif;
+            background-color: #f5f0e8;
+            color: #1a0f1a;
+            overflow-x: hidden;
+        }
+        .text-stroke {
+            -webkit-text-stroke: 1px currentColor;
+            color: transparent;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #fb3a48, #DC2F02, #28eeb6);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .fabric-texture {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645 4.849 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.849.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.059 1.645-.073 4.849-.073z' fill='%23af6b41' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        .text-shuffle {
+            display: inline-block;
+            position: relative;
+        }
+        .text-shuffle span {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .text-shuffle span.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .menu-item {
+            position: relative;
+        }
+        .menu-item:after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: currentColor;
+            transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .menu-item:hover:after {
+            width: 100%;
+        }
+        .border-animate {
+            position: relative;
+        }
+        .border-animate:before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border: 2px solid transparent;
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            border-radius: inherit;
+            animation: text-gradient 8s linear infinite;
+            background-size: 300% 300%;
+        }
+        .collection-card {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+        .collection-card:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+        .collection-card:hover .collection-image {
+            transform: scale(1.05);
+        }
+        .collection-overlay {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .collection-card:hover .collection-overlay {
+            opacity: 1;
+        }
+        .collection-title {
+            transform: translateY(20px);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .collection-card:hover .collection-title {
+            transform: translateY(0);
+        }
+        .filter-btn.active {
+            background-color: #4C3329;
+            color: #f5f0e8;
+        }
+        .product-modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(20px);
+        }
+        .product-modal.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .modal-overlay {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+        .size-option {
+            transition: all 0.2s ease;
+        }
+        .size-option:hover {
+            transform: scale(1.1);
+        }
+        .size-option.selected {
+            background-color: #4C3329;
+            color: #f5f0e8;
+        }
+        .color-option {
+            transition: all 0.2s ease;
+        }
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+        .color-option.selected {
+            outline: 2px solid #4C3329;
+            outline-offset: 2px;
+        }
+        .quantity-selector button {
+            transition: all 0.2s ease;
+        }
+        .quantity-selector button:hover {
+            background-color: #4C3329;
+            color: #f5f0e8;
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        @keyframes tilt-shake {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(-5deg);
+            }
+            75% {
+                transform: rotate(5deg);
+            }
+        }
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .collection-card {
+                height: auto;
+            }
+            .filter-container {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
-<body>
-    এই পৃষ্ঠার নকশা করা হবে। <a href="index.html">ফিরে যান।</a>
+<body class="fabric-texture antialiased">
+    <!-- Animated Background Elements -->
+    <div class="fixed inset-0 overflow-hidden -z-10">
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-mauveine/10 blur-3xl animate-pulse-slow"></div>
+        <div class="absolute top-3/4 right-1/4 w-96 h-96 rounded-full bg-aquamarine/10 blur-3xl animation-delay-2000">
+        </div>
+        <div
+            class="absolute bottom-1/4 left-1/3 w-80 h-80 rounded-full bg-imperialred/10 blur-3xl animation-delay-4000">
+        </div>
+    </div>
+    <!-- Header -->
+    <header id="main-header"
+        class="fixed top-0 left-0 w-full z-40 backdrop-blur-md bg-fabric/80 border-b border-fabric/20 shadow-md transition-all duration-300 ease-in-out py-2">
+        <div class="container mx-auto px-6 flex justify-between items-center h-16">
+            <!-- Logo and Text -->
+            <a href="index.html" class="flex items-center space-x-2">
+                <img src="assets/logo.png" alt="Logo" class="h-14 w-auto object-contain" />
+                <span
+                    class="block h-16 gradient-text text-xl md:text-2xl lg:text-3xl font-bungee flex items-center justify-center">HEEMS</span>
+            </a>
+            <!-- Desktop Navigation Menu -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="menu-item font-space uppercase tracking-wider">Home</a>
+                <a href="collections.html"
+                    class="menu-item font-space uppercase tracking-wider text-bistre font-bold">Our Products</a>
+                <a href="story.html" class="menu-item font-space uppercase tracking-wider">Our Story</a>
+                <a href="contact.html" class="menu-item font-space uppercase tracking-wider">Contact Us</a>
+            </nav>
+            <!-- Shopping Cart -->
+            <div class="hidden md:flex items-center space-x-4">
+                <button class="relative" id="cart-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span
+                        class="absolute -top-2 -right-2 bg-mauveine text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+                        id="cart-count"><i class="fa-solid fa-truck-ramp-box"></i></span>
+                </button>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-bistre" id="mobile-menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </header>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed inset-y-0 right-0 w-full sm:w-96 bg-white z-50 shadow-xl p-6 md:hidden"
+        id="mobile-menu">
+        <div class="flex justify-end mb-8">
+            <button class="text-bistre" id="mobile-menu-close">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="flex flex-col space-y-6">
+            <a href="index.html" class="text-bistre text-lg font-space uppercase tracking-wider">Home</a>
+            <a href="collections.html" class="text-bistre text-lg font-space uppercase tracking-wider font-bold">Our
+                Products</a>
+            <a href="story.html" class="text-bistre text-lg font-space uppercase tracking-wider">Our Story</a>
+            <a href="contact.html" class="text-bistre text-lg font-space uppercase tracking-wider">Contact Us</a>
+            <div class="pt-4 border-t border-bistre/20">
+                <button class="flex items-center bg-fabric text-bistre hover:text-mauveine transition px-3 py-2 rounded"
+                    id="mobile-cart-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span>Cart</span>
+                    <span class="bg-mauveine text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+                        id="mobile-cart-count"><i class="fa-solid fa-truck-ramp-box"></i></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <main>
+        <!-- Contact Hero Section -->
+        <section class="pt-32 pb-20 relative overflow-hidden">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h1 class="text-5xl md:text-7xl lg:text-8xl font-bungee mb-6">
+                        <span class="block gradient-text">GET IN</span>
+                        <span class="block">TOUCH</span>
+                    </h1>
+                    <p class="font-space uppercase tracking-widest text-sm text-mauveine">
+                        We'd love to hear from you
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Information Section -->
+        <section class="py-16 bg-fabric">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Phone Number -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg border border-bistre/10">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-mauveine rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-phone-alt text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-bistre">Phone</h3>
+                        </div>
+                        <p class="text-bistre/70 mb-2">Call us directly</p>
+                        <a href="tel:+880123456789" class="text-bistre font-semibold text-lg hover:text-mauveine transition">+880 123 456 789</a>
+                    </div>
+
+                    <!-- Social Media Links -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg border border-bistre/10">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-aquamarine rounded-full flex items-center justify-center mr-4">
+                                <i class="fab fa-facebook-f text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-bistre">Facebook</h3>
+                        </div>
+                        <p class="text-bistre/70 mb-2">Follow our updates</p>
+                        <a href="https://facebook.com/heemsbd" target="_blank" 
+                           class="text-bistre font-semibold text-lg hover:text-aquamarine transition">heemsbd</a>
+                    </div>
+
+                    <!-- Email Address -->
+                    <div class="bg-white p-8 rounded-xl shadow-lg border border-bistre/10">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-orange rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-bistre">Email</h3>
+                        </div>
+                        <p class="text-bistre/70 mb-2">Send us an email</p>
+                        <a href="mailto:info@heemsbd.com" class="text-bistre font-semibold text-lg hover:text-orange transition">info@heemsbd.com</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section class="py-16 bg-darkbg">
+            <div class="container mx-auto px-6">
+                <div class="max-w-3xl mx-auto">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bungee mb-4 text-white">Get In Touch</h2>
+                        <p class="text-bistre/80 text-lg">Have questions? We're here to help.</p>
+                    </div>
+                    
+                    <form id="contact-form" class="bg-fabric p-8 rounded-xl shadow-2xl border border-bistre/20">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-bistre font-semibold mb-2">Full Name *</label>
+                                <input type="text" id="name" name="name" required 
+                                       class="w-full px-4 py-3 border border-bistre/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-mauveine focus:border-transparent">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-bistre font-semibold mb-2">Email Address *</label>
+                                <input type="email" id="email" name="email" required 
+                                       class="w-full px-4 py-3 border border-bistre/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-mauveine focus:border-transparent">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="phone" class="block text-bistre font-semibold mb-2">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" 
+                                   class="w-full px-4 py-3 border border-bistre/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-mauveine focus:border-transparent">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="subject" class="block text-bistre font-semibold mb-2">Subject *</label>
+                            <select id="subject" name="subject" required 
+                                    class="w-full px-4 py-3 border border-bistre/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-mauveine focus:border-transparent">
+                                <option value="">Select a subject...</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="order">Order Status</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="wholesale">Wholesale Inquiry</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <label for="message" class="block text-bistre font-semibold mb-2">Your Message *</label>
+                            <textarea id="message" name="message" rows="6" required 
+                                      class="w-full px-4 py-3 border border-bistre/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-mauveine focus:border-transparent resize-none"></textarea>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" 
+                                    class="px-8 py-3 bg-mauveine text-white font-space uppercase tracking-wider rounded-lg hover:bg-mauveine/90 transition flex items-center justify-center mx-auto">
+                                <span>Send Message</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H9" />
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <!-- Success Message (Hidden by default) -->
+                        <div id="success-message" class="mt-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg hidden">
+                            <div class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                </svg>
+                                <span>Your message has been sent successfully!</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-bistre text-fabric/70 py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-3xl font-bungee block mb-4">HEEMS</a>
+                    <p class="text-sm max-w-xs">
+                        Experimental fashion house from Galachipa, Bangladesh. Redefining South Asian aesthetics.
+                    </p>
+                </div>
+                <div class="flex flex-col items-center md:items-end">
+                    <div class="flex space-x-6 mb-6">
+                        <a href="#" class="hover:text-aquamarine transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0 6.627-5.373 12-12 12-6.628 0-12-5.373-12-12 0-6.628 5.372-12 12-12 6.627 0 12 5.372 12 12z" />
+                                <path d="M15.546 17.942a.75.75 0 0 1-.75-.75v-5.086a.75.75 0 0 1 1.5 0v5.086a.75.75 0 0 1-.75.75zM10.254 17.942a.75.75 0 0 1-.75-.75v-5.086a.75.75 0 0 1 1.5 0v5.086a.75.75 0 0 1-.75.75zM12.9 17.942a.75.75 0 0 1-.75-.75v-8.5a.75.75 0 0 1 1.5 0v8.5a.75.75 0 0 1-.75.75z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="hover:text-aquamarine transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M21.543 6.108C20.042 3.89 17.395 2.5 14.5 2.5c-3.905 0-7.07 2.473-8.305 6.055-.123.36-.185.742-.185 1.145 0 1.765.885 3.333 2.23 4.233-.308.79-.47 1.655-.47 2.56 0 3.63 2.954 6.583 6.583 6.583s6.583-2.954 6.583-6.583c0-.905-.162-1.77-.47-2.56 1.345-.9 2.23-2.468 2.23-4.233 0-.403-.062-.785-.185-1.145 1.202-1.265 1.937-2.99 1.937-4.867 0-.838-.135-1.646-.387-2.402z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="hover:text-aquamarine transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M21.543 6.108C20.042 3.89 17.395 2.5 14.5 2.5c-3.905 0-7.07 2.473-8.305 6.055-.123.36-.185.742-.185 1.145 0 1.765.885 3.333 2.23 4.233-.308.79-.47 1.655-.47 2.56 0 3.63 2.954 6.583 6.583 6.583s6.583-2.954 6.583-6.583c0-.905-.162-1.77-.47-2.56 1.345-.9 2.23-2.468 2.23-4.233 0-.403-.062-.785-.185-1.145 1.202-1.265 1.937-2.99 1.937-4.867 0-.838-.135-1.646-.387-2.402z" />
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="text-sm mt-2">contact@heemsbd.com</p>
+                </div>
+            </div>
+            <div class="border-t border-bistre/20 mt-8 pt-8 text-center">
+                <p class="text-sm">&copy; 2024 Heems Clothing. All rights reserved. Crafted with passion in Galachipa, Bangladesh.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="fixed inset-y-0 right-0 w-full sm:w-96 bg-white z-50 shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out"
+        id="cart-sidebar">
+        <div class="h-full flex flex-col">
+            <div class="p-6 border-b border-bistre/20 flex justify-between items-center">
+                <h3 class="text-xl font-bold text-bistre">Your Cart</h3>
+                <button class="text-bistre" id="close-cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-6" id="cart-items">
+                <!-- Cart items will be added here dynamically -->
+                <div class="text-center py-12 text-bistre/70">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-bistre/30" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <p>Your cart is empty</p>
+                </div>
+            </div>
+            <div class="p-6 border-t border-bistre/20">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="font-bold text-bistre">Subtotal</span>
+                    <span class="font-bold text-bistre" id="cart-subtotal">৳0.00</span>
+                </div>
+                <p class="text-bistre/70 text-sm mb-6">Shipping and taxes calculated at checkout</p>
+                <button class="w-full px-6 py-3 bg-bistre text-white font-space uppercase tracking-wider rounded-lg hover:bg-bistre/90 transition">
+                    Checkout
+                </button>
+                <div class="text-center mt-4">
+                    <a href="collections.html" class="text-sm text-bistre/70 hover:text-mauveine transition">Continue
+                        Shopping</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Cart functionality
+            let cart = loadCart();
+            const cartBtn = document.getElementById('cart-btn');
+            const mobileCartBtn = document.getElementById('mobile-cart-btn');
+            const cartSidebar = document.getElementById('cart-sidebar');
+            const closeCartButton = document.getElementById('close-cart');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartSubtotal = document.getElementById('cart-subtotal');
+            const cartCountElements = document.querySelectorAll('#cart-count, #mobile-cart-count');
+            
+            if (cartBtn) {
+                cartBtn.addEventListener('click', toggleCart);
+            }
+            if (mobileCartBtn) {
+                mobileCartBtn.addEventListener('click', function () {
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (mobileMenu.classList.contains('open')) {
+                        mobileMenu.classList.remove('open');
+                    }
+                    toggleCart();
+                });
+            }
+            if (closeCartButton) {
+                closeCartButton.addEventListener('click', toggleCart);
+            }
+            
+            // Close cart when clicking outside
+            document.addEventListener('click', function (event) {
+                // Only close cart if clicking outside the cart sidebar AND not on cart buttons
+                if (!cartSidebar.contains(event.target) &&
+                    !cartBtn.contains(event.target) &&
+                    !mobileCartBtn.contains(event.target) &&
+                    !event.target.closest('#cart-sidebar') &&
+                    !event.target.closest('#cart-btn') &&
+                    !event.target.closest('#mobile-cart-btn')) {
+                    cartSidebar.classList.add('translate-x-full');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // Mobile menu functionality
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', function () {
+                    mobileMenu.classList.add('open');
+                });
+            }
+            if (mobileMenuClose) {
+                mobileMenuClose.addEventListener('click', function () {
+                    mobileMenu.classList.remove('open');
+                });
+            }
+            
+            // Initialize cart UI
+            updateCartUI();
+            
+            // Load cart from localStorage
+            function loadCart() {
+                const savedCart = localStorage.getItem('heems-cart');
+                return savedCart ? JSON.parse(savedCart) : [];
+            }
+            
+            function saveCart() {
+                localStorage.setItem('heems-cart', JSON.stringify(cart));
+            }
+            
+            function addToCart(item) {
+                // Check if product already in cart
+                const existingItemIndex = cart.findIndex(cartItem =>
+                    cartItem.id === item.id &&
+                    cartItem.size === item.size &&
+                    cartItem.color === item.color
+                );
+                
+                if (existingItemIndex !== -1) {
+                    // Update quantity if item already exists
+                    cart[existingItemIndex].quantity += item.quantity;
+                } else {
+                    // Add new item to cart
+                    cart.push(item);
+                }
+                saveCart();
+                updateCartUI();
+            }
+            
+            function updateItemQuantity(itemId, action) {
+                const itemIndex = cart.findIndex(item => item.id === itemId);
+                if (itemIndex !== -1) {
+                    if (action === 'increase') {
+                        cart[itemIndex].quantity += 1;
+                    } else if (action === 'decrease') {
+                        if (cart[itemIndex].quantity > 1) {
+                            cart[itemIndex].quantity -= 1;
+                        } else {
+                            // Remove item if quantity becomes 0
+                            cart.splice(itemIndex, 1);
+                        }
+                    }
+                    saveCart();
+                    updateCartUI();
+                }
+            }
+            
+            function removeFromCart(itemId) {
+                cart = cart.filter(item => item.id !== itemId);
+                saveCart();
+                updateCartUI();
+            }
+            
+            function updateCartUI() {
+                // Update cart count
+                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                cartCountElements.forEach(el => el.textContent = totalItems);
+                
+                // Update cart sidebar if it exists on the page
+                if (!cartItemsContainer || !cartSubtotal) {
+                    return; // Not on a page with cart sidebar
+                }
+                
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = `
+                        <div class="text-center py-12 text-bistre/70">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-bistre/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                            </svg>
+                            <p>Your cart is empty</p>
+                        </div>
+                    `;
+                    cartSubtotal.textContent = '৳0.00';
+                    return;
+                }
+                
+                let itemsHTML = '';
+                let subtotal = 0;
+                cart.forEach(item => {
+                    subtotal += item.price * item.quantity;
+                    itemsHTML += `
+                        <div class="flex py-4 border-b border-bistre/20">
+                            <div class="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden">
+                                <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-1 pl-4">
+                                <h4 class="font-bold text-bistre">${item.name}</h4>
+                                <p class="text-bistre/70 text-sm mb-1">${item.color}, ${item.size}</p>
+                                <p class="text-bistre/70 text-sm">৳${item.price} × ${item.quantity}</p>
+                            </div>
+                            <div class="flex flex-col items-end space-y-2">
+                                <p class="font-bold text-bistre">৳${(item.price * item.quantity).toFixed(2)}</p>
+                                <div class="flex items-center space-x-2">
+                                    <button class="quantity-btn text-bistre hover:text-mauveine transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-bistre/30 hover:border-bistre" data-id="${item.id}" data-action="decrease">-</button>
+                                    <span class="text-sm text-bistre font-medium min-w-[20px] text-center">${item.quantity}</span>
+                                    <button class="quantity-btn text-bistre hover:text-mauveine transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-bistre/30 hover:border-bistre" data-id="${item.id}" data-action="increase">+</button>
+                                </div>
+                                <button class="text-xs text-bistre/50 hover:text-mauveine transition remove-item" data-id="${item.id}">
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+                cartItemsContainer.innerHTML = itemsHTML;
+                cartSubtotal.textContent = `৳${subtotal.toFixed(2)}`;
+                
+                // Add event listeners to remove buttons and quantity buttons
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', function (e) {
+                        e.stopPropagation(); // Prevent event bubbling
+                        const itemId = this.getAttribute('data-id');
+                        removeFromCart(itemId);
+                    });
+                });
+                
+                // Add event listeners to quantity buttons
+                document.querySelectorAll('.quantity-btn').forEach(button => {
+                    button.addEventListener('click', function (e) {
+                        e.stopPropagation(); // Prevent event bubbling
+                        const itemId = this.getAttribute('data-id');
+                        const action = this.getAttribute('data-action');
+                        updateItemQuantity(itemId, action);
+                    });
+                });
+            }
+            
+            function toggleCart() {
+                cartSidebar.classList.toggle('translate-x-full');
+                document.body.style.overflow = cartSidebar.classList.contains('translate-x-full') ? '' : 'hidden';
+            }
+            
+            function showNotification(message) {
+                const notification = document.createElement('div');
+                notification.className = 'fixed bottom-4 right-4 bg-bistre text-white px-4 py-2 rounded-lg shadow-lg animate-fade-in z-50';
+                notification.textContent = message;
+                document.body.appendChild(notification);
+                setTimeout(() => {
+                    notification.classList.add('opacity-0', 'transition-opacity', 'duration-300');
+                    setTimeout(() => notification.remove(), 300);
+                }, 2000);
+            }
+            
+            // Contact form submission
+            const contactForm = document.getElementById('contact-form');
+            const successMessage = document.getElementById('success-message');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+                    
+                    // Show loading state
+                    const submitButton = contactForm.querySelector('button[type="submit"]');
+                    const originalContent = submitButton.innerHTML;
+                    submitButton.innerHTML = `
+                        <svg aria-hidden="true" role="status" class="inline w-4 h-4 me-2 text-gray-200 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908Z" fill="#fff"/>
+                            <path d="M81.201 9.28813C74.22 4.64874 66.602 1.34274 58.496 1.03604C43.4056 0.34001 26.4176 8.96186 20.6476 25.2731C16.1195 34.628 16.1116 47.0522 20.6317 57.249C26.7288 70.5178 39.0057 80.4264 52.5926 80.4264C65.8096 80.4264 79.3107 72.2177 84.9422 62.097C90.9642 51.4688 89.0778 36.7156 80.4264 20.1584C78.2118 15.7284 71.5311 15.5304 68.0928 19.1765C64.8462 22.647 65.2547 27.9926 67.1307 32.188C68.8411 35.9475 73.2912 39.2086 79.4205 39.8033C83.1957 40.2235 86.4281 35.3003 86.4281 35.3003C86.4281 35.3003 81.9505 33.9944 81.201 39.2881Z" fill="currentColor"/>
+                        </svg>
+                        Sending...
+                    `;
+                    submitButton.disabled = true;
+                    
+                    // Simulate form submission delay
+                    setTimeout(() => {
+                        // Hide form and show success message
+                        contactForm.style.display = 'none';
+                        successMessage.classList.remove('hidden');
+                        
+                        // Restore button after 3 seconds
+                        setTimeout(() => {
+                            contactForm.style.display = 'block';
+                            successMessage.classList.add('hidden');
+                            contactForm.reset();
+                            submitButton.innerHTML = originalContent;
+                            submitButton.disabled = false;
+                        }, 3000);
+                    }, 2000);
+                });
+            }
+        });
+    </script>
 </body>
 </html>
