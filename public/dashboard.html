@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEEMS Dashboard - Products</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>HEEMS Product Dashboard</h1>
+            <div class="header-actions">
+                <button id="addProductBtn" class="btn-success">Add New Product</button>
+                <button id="saveBtn" class="btn-primary">Save Changes</button>
+                <button id="logoutBtn" class="btn-secondary">Logout</button>
+            </div>
+        </header>
+        
+        <main class="dashboard-main">
+            <div class="table-container">
+                <table id="productsTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Image URL</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsBody">
+                        <!-- Products will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        
+        <div id="message" class="message" style="display: none;"></div>
+    </div>
+
+    <script>
+        let products = [];
+        const token = localStorage.getItem('dashboardToken');
+        
+        // Check authentication
+        if (!token) {
+            window.location.href = '/login.html';
+        }
+        
+        // Load products on page load
+        document.addEventListener('DOMContentLoaded', loadProducts);
+        
+        // Event listeners
+        document.getElementById('addProductBtn').addEventListener('click', addNewProduct);
+        document.getElementById('saveBtn').addEventListener('click', saveProducts);
+        document.getElementById('logoutBtn').addEventListener('click', logout);
+        
+        async function loadProducts() {
+            try {
+                const response = await fetch('/products', {
+                    headers: {
+                        'Authorization': token
+                    }
+                });
+                
+                if (response.status === 401) {
+                    // Token expired or invalid
+                    localStorage.removeItem('dashboardToken');
+                    window.location.href = '/login.html';
+                    return;
+                }
+                
+                products = await response.json();
+                renderProducts();
+            } catch (error) {
+                showMessage('Error loading products: ' + error.message, 'error');
+            }
+        }
+        
+        function renderProducts() {
+            const tbody = document.getElementById('productsBody');
+            tbody.innerHTML = '';
+            
+            products.forEach((product, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><input type="text" value="${product.id || ''}" data-field="id" data-index="${index}"></td>
+                    <td><input type="text" value="${product.name || ''}" data-field="name" data-index="${index}"></td>
+                    <td><input type="number" value="${product.price || ''}" data-field="price" data-index="${index}"></td>
+                    <td><input type="text" value="${product.category || ''}" data-field="category" data-index="${index}"></td>
+                    <td><textarea data-field="description" data-index="${index}">${product.description || ''}</textarea></td>
+                    <td><input type="text" value="${product.image || ''}" data-field="image" data-index="${index}"></td>
+                    <td>
+                        <button class="btn-delete" onclick="deleteProduct(${index})">Delete</button>
+                    </td>
+                `;
+                
+                // Add input event listeners to update products array
+                row.querySelectorAll('input, textarea').forEach(input => {
+                    input.addEventListener('input', (e) => {
+                        const field = e.target.dataset.field;
+                        const index = parseInt(e.target.dataset.index);
+                        const value = e.target.type === 'number' ? parseFloat(e.target.value) : e.target.value;
+                        
+                        if (index >= 0 && index < products.length) {
+                            products[index][field] = value;
+                        }
+                    });
+                });
+                
+                tbody.appendChild(row);
+            });
+        }
+        
+        async function saveProducts() {
+            try {
+                const response = await fetch('/products', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    },
+                    body: JSON.stringify({ products })
+                });
+                
+                if (response.status === 401) {
+                    // Token expired or invalid
+                    localStorage.removeItem('dashboardToken');
+                    window.location.href = '/login.html';
+                    return;
+                }
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showMessage('Products saved successfully!', 'success');
+                } else {
+                    showMessage('Error saving products: ' + (data.error || 'Unknown error'), 'error');
+                }
+            } catch (error) {
+                showMessage('Error saving products: ' + error.message, 'error');
+            }
+        }
+        
+        function logout() {
+            // Call logout endpoint
+            fetch('/logout', {
+                method: 'POST',
+                headers: {
+                    'Authorization': token
+                }
+            }).finally(() => {
+                // Remove token and redirect regardless of response
+                localStorage.removeItem('dashboardToken');
+                window.location.href = '/login.html';
+            });
+        }
+        
+        function addNewProduct() {
+            const newProduct = {
+                id: '',
+                name: '',
+                price: '',
+                category: '',
+                description: '',
+                image: ''
+            };
+            
+            products.push(newProduct);
+            renderProducts();
+            showMessage('New product added! Fill in the details and save.', 'info');
+        }
+        
+        function deleteProduct(index) {
+            if (confirm('Are you sure you want to delete this product?')) {
+                products.splice(index, 1);
+                renderProducts();
+                showMessage('Product deleted! Remember to save changes.', 'info');
+            }
+        }
+        
+        function showMessage(text, type = 'info') {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = `message message-${type}`;
+            messageDiv.style.display = 'block';
+            
+            // Auto-hide after 3 seconds
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+</body>
+</html> 
