@@ -34,6 +34,43 @@ function writeProducts(products) {
     }
 }
 
+// Helper function to read HTML files
+function readHtmlFile(filename) {
+    try {
+        const filePath = path.join(__dirname, filename);
+        if (fs.existsSync(filePath)) {
+            return fs.readFileSync(filePath, 'utf8');
+        }
+        return null;
+    } catch (error) {
+        console.error(`Error reading HTML file ${filename}:`, error);
+        return null;
+    }
+}
+
+// Helper function to write HTML files
+function writeHtmlFile(filename, content) {
+    try {
+        const filePath = path.join(__dirname, filename);
+        fs.writeFileSync(filePath, content, 'utf8');
+        return true;
+    } catch (error) {
+        console.error(`Error writing HTML file ${filename}:`, error);
+        return false;
+    }
+}
+
+// Helper function to get list of HTML files
+function getHtmlFiles() {
+    try {
+        const files = fs.readdirSync(__dirname);
+        return files.filter(file => file.endsWith('.html') && file !== 'login.html' && file !== 'dashboard.html');
+    } catch (error) {
+        console.error('Error reading directory:', error);
+        return [];
+    }
+}
+
 // Authentication middleware
 function requireAuth(req, res, next) {
     const token = req.headers.authorization;
@@ -85,6 +122,42 @@ app.post('/products', requireAuth, (req, res) => {
         res.json({ success: true, message: 'Products updated successfully' });
     } else {
         res.status(500).json({ error: 'Failed to update products' });
+    }
+});
+
+// Get list of HTML files (protected)
+app.get('/html-files', requireAuth, (req, res) => {
+    const htmlFiles = getHtmlFiles();
+    res.json({ files: htmlFiles });
+});
+
+// Get HTML file content (protected)
+app.get('/html-content/:filename', requireAuth, (req, res) => {
+    const { filename } = req.params;
+    const content = readHtmlFile(filename);
+    
+    if (content === null) {
+        return res.status(404).json({ error: 'File not found' });
+    }
+    
+    res.json({ content, filename });
+});
+
+// Update HTML file content (protected)
+app.post('/html-content/:filename', requireAuth, (req, res) => {
+    const { filename } = req.params;
+    const { content } = req.body;
+    
+    if (!content) {
+        return res.status(400).json({ error: 'Content is required' });
+    }
+    
+    const success = writeHtmlFile(filename, content);
+    
+    if (success) {
+        res.json({ success: true, message: 'HTML file updated successfully' });
+    } else {
+        res.status(500).json({ error: 'Failed to update HTML file' });
     }
 });
 
