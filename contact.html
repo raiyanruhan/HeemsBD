@@ -413,147 +413,151 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="pb-24">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 contact-grid">
-                <!-- Contact Info -->
-                <div class="space-y-8">
-                    <div class="contact-card bg-white p-8 rounded-xl shadow-lg">
-                        <h2 class="text-3xl font-bold text-bistre mb-6">Contact Information</h2>
-                        
-                        <div class="space-y-6">
-                            <div class="flex items-start space-x-4">
-                                <div class="bg-bistre/10 p-3 rounded-full text-bistre">
-                                    <i class="fas fa-map-marker-alt text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-bistre">Our Location</h3>
-                                    <p class="text-bistre/80">Galachipa, Patuakhali, Bangladesh</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start space-x-4">
-                                <div class="bg-bistre/10 p-3 rounded-full text-bistre">
-                                    <i class="fas fa-phone-alt text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-bistre">Phone Number</h3>
-                                    <p class="text-bistre/80">+880 1234 567890</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start space-x-4">
-                                <div class="bg-bistre/10 p-3 rounded-full text-bistre">
-                                    <i class="fas fa-envelope text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-bistre">Email Address</h3>
-                                    <p class="text-bistre/80">contact@heemsbd.com</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-10">
-                            <h3 class="font-bold text-bistre mb-4">Follow Us</h3>
-                            <div class="flex space-x-4">
-                                <a href="#" class="social-icon bg-bistre/10 p-3 rounded-full text-bistre hover:bg-mauveine hover:text-white">
-                                    <i class="fab fa-facebook-f text-xl"></i>
-                                </a>
-                                <a href="#" class="social-icon bg-bistre/10 p-3 rounded-full text-bistre hover:bg-mauveine hover:text-white">
-                                    <i class="fab fa-instagram text-xl"></i>
-                                </a>
-                                <a href="#" class="social-icon bg-bistre/10 p-3 rounded-full text-bistre hover:bg-mauveine hover:text-white">
-                                    <i class="fab fa-twitter text-xl"></i>
-                                </a>
-                                <a href="#" class="social-icon bg-bistre/10 p-3 rounded-full text-bistre hover:bg-mauveine hover:text-white">
-                                    <i class="fab fa-pinterest text-xl"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-card bg-white p-8 rounded-xl shadow-lg">
-                        <h2 class="text-3xl font-bold text-bistre mb-6">Business Hours</h2>
-                        <div class="space-y-4">
-                            <div class="flex justify-between border-b border-bistre/20 pb-2">
-                                <span class="text-bistre">Monday - Friday</span>
-                                <span class="font-bold text-bistre">9:00 AM - 6:00 PM</span>
-                            </div>
-                            <div class="flex justify-between border-b border-bistre/20 pb-2">
-                                <span class="text-bistre">Saturday</span>
-                                <span class="font-bold text-bistre">10:00 AM - 4:00 PM</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-bistre">Sunday</span>
-                                <span class="font-bold text-bistre">Closed</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Contact Form -->
-                <div class="contact-card bg-white p-8 rounded-xl shadow-lg" id="contact-form-container">
-                    <h2 class="text-3xl font-bold text-bistre mb-6">Send Us a Message</h2>
-                    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
-                        <input type="hidden" name="access_key" value="9c91b834-9019-4350-87dc-5c690d77f8e2">
-                        <input type="hidden" name="subject" value="New Contact Form Submission from HEEMS Website">
-                        <input type="hidden" name="from_name" value="HEEMS Website">
-                        <input type="hidden" name="redirect" value="">
-                        <input type="checkbox" name="botcheck" style="display: none;">
-                        
-                        <div class="space-y-6">
-                            <div>
-                                <label for="name" class="block text-bistre font-medium mb-2">Full Name</label>
-                                <input type="text" id="name" name="name" required
-                                    class="contact-input w-full px-4 py-3 rounded-t-lg focus:outline-none">
-                            </div>
-                            
-                            <div>
-                                <label for="email" class="block text-bistre font-medium mb-2">Email Address</label>
-                                <input type="email" id="email" name="email" required
-                                    class="contact-input w-full px-4 py-3 rounded-t-lg focus:outline-none">
-                            </div>
-                            
-                            <div>
-                                <label for="phone" class="block text-bistre font-medium mb-2">Phone Number</label>
-                                <input type="tel" id="phone" name="phone"
-                                    class="contact-input w-full px-4 py-3 rounded-t-lg focus:outline-none">
-                            </div>
-                            
-                            <div>
-                                <label for="message" class="block text-bistre font-medium mb-2">Your Message</label>
-                                <textarea id="message" name="message" rows="5" required
-                                    class="contact-input w-full px-4 py-3 rounded-t-lg focus:outline-none"></textarea>
-                            </div>
-                            
-                            <button type="submit" class="submit-btn w-full bg-bistre text-white py-4 rounded-lg font-space uppercase tracking-wider hover:bg-bistre/90 transition">
-                                Send Message
-                            </button>
-                        </div>
-                    </form>
-                    
-                    <!-- Success Message (hidden by default) -->
-                    <div id="success-message" class="hidden text-center py-12">
-                        <div class="success-checkmark mb-6">
-                            <div class="check-icon">
-                                <span class="icon-line line-tip"></span>
-                                <span class="icon-line line-long"></span>
-                                <div class="icon-circle"></div>
-                                <div class="icon-fix"></div>
-                            </div>
-                        </div>
-                        <h3 class="text-2xl font-bold text-bistre mb-2">Message Sent!</h3>
-                        <p class="text-bistre/80 mb-6">Thank you for contacting us. We'll get back to you soon.</p>
-                        <button id="send-another" class="px-6 py-2 border-2 border-bistre rounded-full font-space uppercase tracking-wider text-sm hover:bg-bistre hover:text-white transition">
-                            Send Another Message
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- Contact Section -->
+<section class="pb-24 bg-gray-50">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 contact-grid">
 
+      <!-- Left Side: Contact Info & Business Hours -->
+      <div class="space-y-8">
+
+        <!-- Contact Info Card -->
+        <div class="contact-card bg-white p-8 rounded-xl shadow-lg">
+          <h2 class="text-3xl font-bold text-bistre mb-6">Contact Information</h2>
+
+          <!-- Location -->
+          <div class="flex items-start space-x-4 mb-4">
+            <div class="bg-bistre/10 p-3 rounded-full text-bistre">
+              <i class="fas fa-map-marker-alt text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-bistre mb-1">Our Location</h3>
+              <p class="text-bistre/80">Galachipa, Patuakhali, Bangladesh</p>
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="flex items-start space-x-4 mb-4">
+            <div class="bg-bistre/10 p-3 rounded-full text-bistre">
+              <i class="fas fa-phone-alt text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-bistre mb-1">Phone Number</h3>
+              <a href="tel:+8801234567890" class="inline-block bg-mauveine text-white px-4 py-2 rounded hover:bg-purple-700 transition">
+                Call Now
+              </a>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="flex items-start space-x-4 mb-4">
+            <div class="bg-bistre/10 p-3 rounded-full text-bistre">
+              <i class="fas fa-envelope text-xl"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-bistre mb-1">Email Address</h3>
+              <a href="mailto:contact@heemsbd.com" class="inline-block bg-mauveine text-white px-4 py-2 rounded hover:bg-purple-700 transition">
+                Email Us
+              </a>
+            </div>
+          </div>
+
+          <!-- Follow Us -->
+          <div class="mt-10">
+            <h3 class="font-bold text-bistre mb-4">Follow Us</h3>
+            <div class="flex space-x-4">
+              <a href="#" class="social-icon bg-bistre/10 p-3 rounded-full text-bistre hover:bg-mauveine hover:text-white">
+                <i class="fab fa-facebook-f text-xl"></i>
+              </a>
+              <a href="#" class="social-icon bg-bistre/10 p-3 rounded-full text-bistre hover:bg-mauveine hover:text-white">
+                <i class="fab fa-instagram text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Business Hours Card -->
+        <div class="contact-card bg-white p-8 rounded-xl shadow-lg">
+          <h2 class="text-3xl font-bold text-bistre mb-6">Business Hours</h2>
+          <div class="space-y-4">
+            <div class="flex justify-between border-b border-bistre/20 pb-2">
+              <span class="text-bistre">Monday - Friday</span>
+              <span class="font-bold text-bistre">9:00 AM - 6:00 PM</span>
+            </div>
+            <div class="flex justify-between border-b border-bistre/20 pb-2">
+              <span class="text-bistre">Saturday</span>
+              <span class="font-bold text-bistre">10:00 AM - 4:00 PM</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-bistre">Sunday</span>
+              <span class="font-bold text-bistre">Closed</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Side: Contact Form -->
+      <div class="contact-card bg-white p-8 rounded-xl shadow-lg" id="contact-form-container">
+        <h2 class="text-3xl font-bold text-bistre mb-6">Send Us a Message</h2>
+        <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
+          <input type="hidden" name="access_key" value="9c91b834-9019-4350-87dc-5c690d77f8e2">
+          <input type="hidden" name="subject" value="New Contact Form Submission from HEEMS Website">
+          <input type="hidden" name="from_name" value="HEEMS Website">
+          <input type="hidden" name="redirect" value="">
+          <input type="checkbox" name="botcheck" style="display: none;">
+
+          <!-- Full Name -->
+          <div>
+            <label for="name" class="block text-bistre font-medium mb-2">Full Name</label>
+            <input type="text" id="name" name="name" required class="contact-input w-full px-4 py-3 rounded-lg focus:outline-none border border-bistre/20">
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label for="email" class="block text-bistre font-medium mb-2">Email Address</label>
+            <input type="email" id="email" name="email" required class="contact-input w-full px-4 py-3 rounded-lg focus:outline-none border border-bistre/20">
+          </div>
+
+          <!-- Phone -->
+          <div>
+            <label for="phone" class="block text-bistre font-medium mb-2">Phone Number</label>
+            <input type="tel" id="phone" name="phone" class="contact-input w-full px-4 py-3 rounded-lg focus:outline-none border border-bistre/20">
+          </div>
+
+          <!-- Message -->
+          <div>
+            <label for="message" class="block text-bistre font-medium mb-2">Your Message</label>
+            <textarea id="message" name="message" rows="5" required class="contact-input w-full px-4 py-3 rounded-lg focus:outline-none border border-bistre/20"></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="w-full bg-bistre text-white py-4 rounded-lg font-space uppercase tracking-wider hover:bg-bistre/90 transition">
+            Send Message
+          </button>
+        </form>
+
+        <!-- Success Message -->
+        <div id="success-message" class="hidden text-center py-12">
+          <div class="success-checkmark mb-6 mx-auto w-16 h-16 relative">
+            <div class="check-icon absolute inset-0">
+              <span class="icon-line line-tip"></span>
+              <span class="icon-line line-long"></span>
+              <div class="icon-circle"></div>
+              <div class="icon-fix"></div>
+            </div>
+          </div>
+          <h3 class="text-2xl font-bold text-bistre mb-2">Message Sent!</h3>
+          <p class="text-bistre/80 mb-6">Thank you for contacting us. We'll get back to you soon.</p>
+          <button id="send-another" class="px-6 py-2 border-2 border-bistre rounded-full font-space uppercase tracking-wider text-sm hover:bg-bistre hover:text-white transition">
+            Send Another Message
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
     <!-- Shopping Cart Sidebar -->
     <div class="fixed inset-y-0 right-0 w-full sm:w-96 bg-white z-50 shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out"
         id="cart-sidebar">
