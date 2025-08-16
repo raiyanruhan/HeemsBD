@@ -1,918 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HEEMS | Experimental Fashion from Bangladesh</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Archivo:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        brownsugar: "#AF6B41",
-                        bistre: "#4C3329",
-                        mauveine: "#9A219E",
-                        imperialred: "#FB3A48",
-                        aquamarine: "#28EEB6",
-                        yellowish: "#FBDA58",
-                        orange: "#FAA049",
-                        red2: "#C01A27",
-                        pinkish: "#B51490",
-                        purpletext: "#a178b7",
-                        darkbg: "#1a0f1a",
-                        fabric: "#f5f0e8",
-                    },
-                    fontFamily: {
-                        bungee: ["Bungee Spice", "cursive"],
-                        archivo: ["Archivo", "sans-serif"],
-                        space: ["Space Grotesk", "sans-serif"],
-                    },
-                    animation: {
-                        float: "float 6s ease-in-out infinite",
-                        "float-reverse": "float 6s ease-in-out infinite reverse",
-                        "pulse-slow": "pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-                        "text-gradient": "text-gradient 8s linear infinite",
-                        marquee: "marquee 20s linear infinite",
-                        "fade-in": "fadeIn 1.5s ease-out forwards",
-                        "slide-up": "slideUp 1.2s ease-out forwards",
-                        "tilt-shake": "tilt-shake 0.5s ease-in-out",
-                    },
-                    keyframes: {
-                        float: {
-                            "0%, 100%": { transform: "translateY(0)" },
-                            "50%": { transform: "translateY(-20px)" },
-                        },
-                        "text-gradient": {
-                            "0%": { "background-position": "0% 50%" },
-                            "50%": { "background-position": "100% 50%" },
-                            "100%": { "background-position": "0% 50%" },
-                        },
-                        marquee: {
-                            "0%": { transform: "translateX(0)" },
-                            "100%": { transform: "translateX(-100%)" },
-                        },
-                        fadeIn: {
-                            "0%": { opacity: 0 },
-                            "100%": { opacity: 1 },
-                        },
-                        slideUp: {
-                            "0%": { opacity: 0, transform: "translateY(40px)" },
-                            "100%": { opacity: 1, transform: "translateY(0)" },
-                        },
-                        "tilt-shake": {
-                            "0%, 100%": { transform: "rotate(0deg)" },
-                            "25%": { transform: "rotate(-5deg)" },
-                            "75%": { transform: "rotate(5deg)" },
-                        },
-                    },
-                },
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HEEMS — Press Start</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Archivo:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet"/>
+
+  <!-- Font Awesome (for footer icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brownsugar: "#AF6B41",
+            bistre: "#4C3329",
+            mauveine: "#9A219E",
+            imperialred: "#FB3A48",   /* neon red/orange */
+            aquamarine: "#28EEB6",
+            yellowish: "#FBDA58",
+            orange: "#FAA049",
+            red2: "#C01A27",          /* deep red */
+            pinkish: "#B51490",
+            purpletext: "#a178b7",
+            darkbg: "#0B0B10",        /* near-black */
+            fabric: "#f5f0e8",
+          },
+          fontFamily: {
+            bungee: ["Bungee Spice", "cursive"],
+            archivo: ["Archivo", "sans-serif"],
+            space: ["Space Grotesk", "sans-serif"],
+          },
+          animation: {
+            'scan': 'scan 6s linear infinite',
+            'flicker': 'flicker 5s linear infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'fade-in': 'fadeIn 1.2s ease-out forwards',
+          },
+          keyframes: {
+            scan: {
+              '0%': { transform: 'translateY(-100%)' },
+              '100%': { transform: 'translateY(100%)' },
             },
-        };
-    </script>
-    <style>
-        @font-face {
-            font-family: 'CodepotroAbuSayed';
-            src: url('assets/fonts/CodepotroAbuSayed.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
+            flicker: {
+              '0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100%': { opacity: 1 },
+              '20%, 21.999%, 63%, 63.999%, 65%, 69.999%': { opacity: .7 },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            fadeIn: {
+              '0%': { opacity: 0, transform: 'translateY(20px)' },
+              '100%': { opacity: 1, transform: 'translateY(0)' },
+            },
+          }
         }
-        
-        @font-face {
-            font-family: 'HindSiliguri';
-            src: url('assets/fonts/HindSiliguri-Regular.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-        
-        html {
-            font-size: 14px;
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: "Archivo", sans-serif;
-            background-color: #f5f0e8;
-            color: #1a0f1a;
-            overflow-x: hidden;
-        }
-        
-        .text-stroke {
-            -webkit-text-stroke: 1px currentColor;
-            color: transparent;
-        }
-        
-        .gradient-text {
-            background: linear-gradient(90deg, #fb3a48, #9a219e, #28eeb6);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .fabric-texture {
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23af6b41' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-        }
-        
-        .glossy-overlay {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .glossy-overlay::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 60%);
-            pointer-events: none;
-        }
-        
-        .parallax-bg {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-        
-        .menu-item {
-            position: relative;
-        }
-        
-        .menu-item:after {
-            content: "";
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: currentColor;
-            transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        
-        .menu-item:hover:after {
-            width: 100%;
-        }
-        
-        .collection-card {
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-        
-        .collection-card:hover {
-            transform: translateY(-10px) scale(1.02);
-        }
-        
-        .collection-card:hover .collection-image {
-            transform: scale(1.05);
-        }
-        
-        .collection-overlay {
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        
-        .collection-card:hover .collection-overlay {
-            opacity: 1;
-        }
-        
-        .collection-title {
-            transform: translateY(20px);
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        
-        .collection-card:hover .collection-title {
-            transform: translateY(0);
-        }
-        
-        .mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        
-        .mobile-menu.open {
-            transform: translateX(0);
-        }
-        
-        .story-section {
-            background: linear-gradient(135deg, rgba(154,33,158,0.1) 0%, rgba(40,238,182,0.1) 100%);
-        }
-        
-        .story-card {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.85);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-        
-        .hero-text {
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-        }
-        
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-        
-        .noise-bg {
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        @keyframes tilt-shake {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-5deg); }
-            75% { transform: rotate(5deg); }
-        }
-        
-        @media (max-width: 768px) {
-            .hero-content {
-                flex-direction: column;
-            }
-            
-            .parallax-bg {
-                background-attachment: scroll;
-            }
-        }
-    </style>
+      }
+    }
+  </script>
+
+  <style>
+    :root{
+      --bg1:#0B0B10;
+      --bg2:#1a0f13;
+      --glow:#FB3A48;
+      --glow2:#C01A27;
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      background: radial-gradient(1200px 600px at 50% 20%, rgba(251,58,72,0.12), transparent 60%)
+                  , radial-gradient(800px 400px at 20% 80%, rgba(192,26,39,0.16), transparent 70%)
+                  , linear-gradient(180deg, var(--bg1), var(--bg2));
+      color: #fff;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      touch-action: manipulation;
+    }
+
+    /* Subtle CRT scanlines */
+    .scanlines:before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.04) 0,
+        rgba(255,255,255,0.04) 1px,
+        transparent 2px,
+        transparent 3px
+      );
+      pointer-events:none;
+      mix-blend-mode: soft-light;
+    }
+
+    /* Vertical scanning bar */
+    .scanner {
+      position:absolute;
+      left:0; right:0;
+      height: 40%;
+      top:-40%;
+      background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(251,58,72,0.10) 40%, rgba(255,255,255,0) 100%);
+      filter: blur(8px);
+      opacity: .5;
+      pointer-events:none;
+      animation: scan 7s linear infinite;
+    }
+
+    /* Vignette for cinematic look */
+    .vignette:after {
+      content:"";
+      position:absolute;
+      inset:-10%;
+      pointer-events:none;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0) 40%, rgba(0,0,0,.6) 100%);
+      mix-blend-mode:multiply;
+    }
+
+    /* Neon text effect */
+    .neon {
+      text-shadow:
+        0 0 6px rgba(251,58,72,.6),
+        0 0 14px rgba(251,58,72,.6),
+        0 0 24px rgba(251,58,72,.5),
+        0 0 42px rgba(192,26,39,.35);
+      filter: drop-shadow(0 6px 24px rgba(251,58,72,.35));
+    }
+
+    .title-stroke {
+      -webkit-text-stroke: 2px rgba(251,58,72,.8);
+      color: transparent;
+    }
+
+    /* Hover pulse for CTA */
+    .cta-glow {
+      box-shadow:
+        0 0 0 0 rgba(251,58,72,0.35),
+        0 0 20px 0 rgba(251,58,72,0.35),
+        inset 0 0 12px rgba(251,58,72,0.35);
+      transition: transform .25s ease, box-shadow .25s ease, background-color .25s ease, border-color .25s ease;
+    }
+    .cta-glow:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow:
+        0 0 0 6px rgba(251,58,72,0.08),
+        0 0 28px 0 rgba(251,58,72,0.55),
+        inset 0 0 12px rgba(251,58,72,0.6);
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .scanner, .animate-flicker, .animate-float { animation: none !important; }
+    }
+  </style>
 </head>
 
-<body class="fabric-texture antialiased">
-    <!-- Animated Background Elements -->
-    <div class="fixed inset-0 overflow-hidden -z-10">
-        <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-mauveine/10 blur-3xl animate-pulse-slow"></div>
-        <div class="absolute top-3/4 right-1/4 w-96 h-96 rounded-full bg-aquamarine/10 blur-3xl animation-delay-2000"></div>
-        <div class="absolute bottom-1/4 left-1/3 w-80 h-80 rounded-full bg-imperialred/10 blur-3xl animation-delay-4000"></div>
+<body class="min-h-screen relative">
+  <!-- Splash Screen -->
+  <section id="start-screen" class="relative min-h-[100svh] flex items-center justify-center select-none cursor-pointer overflow-hidden scanlines vignette">
+    <!-- Moving Scanner -->
+    <div class="scanner"></div>
+
+    <!-- Floating glow orbs -->
+    <div class="pointer-events-none absolute -z-10 top-1/4 left-[10%] w-64 h-64 rounded-full bg-imperialred/20 blur-3xl animate-float"></div>
+    <div class="pointer-events-none absolute -z-10 bottom-1/4 right-[5%] w-80 h-80 rounded-full bg-red2/25 blur-3xl animate-float" style="animation-delay:1.5s"></div>
+
+    <div class="relative z-10 w-full px-6 max-w-6xl text-center">
+      <!-- Logo/Text -->
+      <div class="animate-fade-in">
+        <!-- Small logo added above the HEEMS title -->
+        <img src="assets/logo.png" alt="HEEMS logo" class="mx-auto mb-4 w-16 sm:w-20 md:w-24 h-auto neon" />
+
+        <h1 class="font-bungee title-stroke neon text-5xl sm:text-7xl md:text-8xl tracking-widest leading-[0.95]">
+          HEEMS
+        </h1>
+        <p class="mt-4 md:mt-6 font-space uppercase tracking-[0.35em] text-sm md:text-base text-white/70">
+          Fashion from Bangladesh
+        </p>
+      </div>
+
+      <!-- Press to start -->
+      <div class="mt-12 md:mt-16 animate-fade-in" style="animation-delay:.15s">
+        <!-- Desktop / Tablet hint -->
+        <p class="hidden sm:block font-archivo text-white/80 text-lg md:text-xl neon animate-flicker">
+          Hit ENTER to open
+        </p>
+
+        <!-- Mobile CTA -->
+        <button id="tap-start"
+                class="sm:hidden mt-6 inline-flex items-center gap-3 px-8 py-4 rounded-full border border-imperialred/60 bg-red2/20 text-white font-space uppercase tracking-wider text-sm cta-glow"
+                aria-label="Tap to Start">
+          <span class="inline-block w-2 h-2 rounded-full bg-imperialred animate-pulse"></span>
+          Tap here to start
+        </button>
+
+        <!-- Desktop CTA (optional) -->
+        <div class="hidden sm:flex items-center justify-center mt-6">
+          <div class="px-5 py-2 rounded-full border border-white/10 bg-white/5 text-xs tracking-wider text-white/70">
+            Press Enter or Space • Click anywhere
+          </div>
+        </div>
+      </div>
+
+      <!-- Tiny helper -->
+      <div class="mt-10 text-[11px] md:text-xs text-white/40 font-archivo tracking-widest">
+        <p class="animate-flicker">
+          <span class="inline-block w-2 h-2 rounded-full bg-imperialred animate-pulse"></span>
+          <span class="ml-2">
+            By proceeding, you acknowledge that you have read and agree to our
+            <a href="terms.html" class="underline text-aquamarine hover:text-yellowish transition-colors duration-200" target="_blank" rel="noopener">Terms and Conditions</a>.
+          </span>
+        </p>
+      </div>
     </div>
 
-    <!-- Navigation -->
-    <header id="main-header" class="fixed top-0 left-0 w-full z-40 backdrop-blur-md bg-fabric/80 border-b border-fabric/20 shadow-md transition-all duration-300 ease-in-out py-2">
-        <div class="container mx-auto px-6 flex justify-between items-center h-16">
-            <!-- Logo and Text -->
-            <a href="index.html" class="flex items-center space-x-2">
-                <img src="assets/logo.png" alt="Logo" class="h-14 w-auto object-contain" />
-                <span class="block h-16 gradient-text text-xl md:text-2xl lg:text-3xl font-bungee flex items-center justify-center">HEEMS</span>
-            </a>
+    <!-- Click catcher (entire screen) -->
+    <a id="click-catcher" href="landing.html" class="absolute inset-0" aria-label="Start" tabindex="-1"></a>
+  </section>
 
-            <!-- Desktop Navigation Menu -->
-            <nav class="hidden md:flex items-center space-x-8">
-                <a href="index.html" class="menu-item font-space uppercase tracking-wider font-bold">Home</a>
-                <a href="collections.html" class="menu-item font-space uppercase tracking-wider">Our Products</a>
-                <a href="story.html" class="menu-item font-space uppercase tracking-wider">Our Story</a>
-                <a href="contact.html" class="menu-item font-space uppercase tracking-wider">Contact Us</a>
-            </nav>
+  <!-- Spacer to allow scrolling to footer -->
+  <div class="h-24 sm:h-32 md:h-36 lg:h-40"></div>
 
-            <!-- Shopping Cart -->
-            <div class="hidden md:flex items-center space-x-4">
-                <button class="relative" id="cart-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                    </svg>
-                    <span class="absolute -top-2 -right-2 bg-mauveine text-white text-xs rounded-full h-5 w-5 flex items-center justify-center" id="cart-count">0</span>
-                </button>
-            </div>
-
-            <!-- Mobile Menu Button -->
-            <button class="md:hidden text-bistre" id="mobile-menu-button">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
+  <!-- Footer (same to same as homepage) -->
+  <footer id="contact" class="bg-gradient-to-r from-gray-800 via-gray-900 to-black text-fabric/70 py-12 relative overflow-hidden opacity-0 translate-y-6 transition-all duration-700 ease-out will-change-transform"
+          style="background: linear-gradient(135deg, #4b1f1f, #1a1a1a); border-top: 2px solid #fcd34d; box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2);">
+    <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+      <!-- Left Section -->
+      <div class="mb-6 md:mb-0 flex-1">
+        <h2 class="text-3xl font-bungee mb-4" style="letter-spacing: 2px;">HEEMS</h2>
+        <p class="text-sm max-w-xs mb-4" style="font-family: 'Courier New', monospace;">Experimental fashion house from Galachipa, Bangladesh. Redefining South Asian aesthetics.</p>
+        <!-- Social icons -->
+        <div class="flex justify-center md:justify-start space-x-6 mb-4">
+          <a href="#" class="hover:text-aquamarine transition duration-300">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="hover:text-aquamarine transition duration-300">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="hover:text-aquamarine transition duration-300">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="hover:text-aquamarine transition duration-300">
+            <i class="fab fa-pinterest"></i>
+          </a>
         </div>
-    </header>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu fixed inset-y-0 right-0 w-full sm:w-96 bg-white z-50 shadow-xl p-6 md:hidden" id="mobile-menu">
-        <div class="flex justify-end mb-8">
-            <button class="text-bistre" id="mobile-menu-close">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
-        <div class="flex flex-col space-y-6">
-            <a href="index.html" class="text-bistre text-lg font-space uppercase tracking-wider font-bold">Home</a>
-            <a href="collections.html" class="text-bistre text-lg font-space uppercase tracking-wider">Our Products</a>
-            <a href="story.html" class="text-bistre text-lg font-space uppercase tracking-wider">Our Story</a>
-            <a href="contact.html" class="text-bistre text-lg font-space uppercase tracking-wider">Contact Us</a>
-            <div class="pt-4 border-t border-bistre/20">
-                <button class="flex items-center space-x-2" id="mobile-cart-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                    </svg>
-                    <span>Cart</span>
-                    <span class="bg-mauveine text-white text-xs rounded-full h-5 w-5 flex items-center justify-center" id="mobile-cart-count">0</span>
-                </button>
-            </div>
-        </div>
+        <p class="text-sm" style="font-family: 'Courier New', monospace;">contact@heemsclothing.com</p>
+      </div>
+      <!-- Right Section -->
+      <div class="flex-1 mt-8 md:mt-0 text-center md:text-right">
+        <p class="text-sm" style="font-family: 'Courier New', monospace;">&copy; 2024 Heems Clothing. All rights reserved. </p>
+      </div>
     </div>
+    <!-- Glossy Overlay for Glossy Finish -->
+    <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0)); mix-blend-mode: overlay; border-top: 2px solid #fcd34d; pointer-events: none;"></div>
+  </footer>
 
-<!-- Hero Section with Parallax -->
-<section class="min-h-screen relative overflow-hidden flex items-center justify-center pt-20">
-    
-    <div class="container mx-auto px-6 relative z-10">
-        <!-- Use flex-col on mobile and flex-row on larger screens, with items centered -->
-        <div class="flex flex-col lg:flex-row items-center justify-center gap-12 hero-content">
-            <div class="w-full lg:w-1/2 relative animate-slide-up flex flex-col items-center lg:items-start text-center lg:text-left">
-                <h1 class="text-5xl md:text-7xl lg:text-8xl font-bungee mb-6 hero-text">
-                    <span class="block gradient-text">FROM</span>
-                    <span class="block">STRUGGLE</span>
-                    <span class="block">TO STYLE</span>
-                </h1>
-                <p class="text-lg md:text-xl font-space text-mauveine max-w-lg mb-8">
-                    Yasir Himel's journey from poverty in Galachipa to creating Bangladesh's most innovative fashion brand.
-                </p>
-                <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
-                    <a href="collections.html" class="px-8 py-4 bg-bistre text-fabric font-space uppercase tracking-wider text-sm border-2 border-bistre hover:bg-transparent hover:text-bistre transition-all duration-300 glass-effect">
-                        Shop Collections
-                    </a>
-                    <a href="story.html" class="px-8 py-4 border-2 border-white text-black font-space uppercase tracking-wider text-sm hover:bg-white hover:text-bistre transition-all duration-300 glass-effect">
-                        Discover Our Story
-                    </a>
-                </div>
-            </div>
-            
-<div class="w-full lg:w-1/2 relative animate-slide-up" style="animation-delay: 0.2s;">
-    <!-- Make sure the container is responsive -->
-<div inert class="border-2 border-white/30 rounded-2xl overflow-hidden max-w-lg w-full mx-auto" style="height: 400px;">
-    <video
-        src="https://cdn.jsdelivr.net/gh/raiyanruhan/HeemsBD@main/assets/videos/IMG_4976.mp4"
-        class="w-full h-full object-cover"
-        autoplay
-        muted
-        loop
-    ></video>
-</div>
-</div>
-        </div>
-    </div>
-</section>
-    <!-- Brand Marquee -->
-    <div class="py-6 bg-bistre text-fabric overflow-hidden">
-        <div class="flex whitespace-nowrap">
-            <div class="animate-marquee flex items-center space-x-8 pr-8">
-                <span class="text-2xl font-bungee">HANDCRAFTED IN GALACHIPA</span>
-                <span class="text-2xl font-bungee">•</span>
-                <span class="text-2xl font-bungee">EXPERIMENTAL DESIGNS</span>
-                <span class="text-2xl font-bungee">•</span>
-                <span class="text-2xl font-bungee">LIMITED EDITIONS</span>
-                <span class="text-2xl font-bungee">•</span>
-                <span class="text-2xl font-bungee">ETHICAL PRODUCTION</span>
-            </div>
-            <div class="animate-marquee flex items-center space-x-8 pr-8" aria-hidden="true">
-                <span class="text-2xl font-bungee">HANDCRAFTED IN GALACHIPA</span>
-                <span class="text-2xl font-bungee">•</span>
-                <span class="text-2xl font-bungee">EXPERIMENTAL DESIGNS</span>
-                <span class="text-2xl font-bungee">•</span>
-                <span class="text-2xl font-bungee">LIMITED EDITIONS</span>
-                <span class="text-2xl font-bungee">•</span>
-                <span class="text-2xl font-bungee">ETHICAL PRODUCTION</span>
-            </div>
-        </div>
-    </div>
+  <script>
+    // Redirect handler
+    function go() {
+      // Optional mini flash effect before redirect
+      document.body.style.transition = 'filter .15s ease';
+      document.body.style.filter = 'brightness(1.25)';
+      setTimeout(() => {
+        window.location.href = 'landing.html';
+      }, 120);
+    }
 
-    <!-- Story Section -->
-    <section id="story" class="py-24 story-section relative overflow-hidden noise-bg">
-        <div class="absolute inset-0" style="background: radial-gradient(circle at center, rgba(154,33,158,0.1) 0%, rgba(40,238,182,0.1) 100%);"></div>
-        
-        <div class="container mx-auto px-6 relative">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bungee mb-4">
-                    <span class="block">THE</span>
-                    <span class="block gradient-text">HEEMS STORY</span>
-                </h2>
-                <p class="font-space uppercase tracking-widest text-sm text-mauveine">
-                    From Humble Beginnings to Fashion Revolution
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                <div class="story-card p-8 rounded-xl animate-fade-in">
-                    <h3 class="text-2xl font-bold text-bistre mb-4">The Early Struggle</h3>
-                    <p class="text-bistre mb-4">
-                        Yasir Himel grew up in extreme poverty in Galachipa, a small coastal town in Bangladesh. With limited resources but unlimited creativity, he began designing clothes from scrap fabrics at age 14.
-                    </p>
-                    <p class="text-bistre">
-                        "I used to watch the fishermen's nets and imagine them as dresses," Himel recalls. "The patterns of the waves, the colors of the sunset - these became my first inspirations."
-                    </p>
-                </div>
-                
-                <div class="story-card p-8 rounded-xl animate-fade-in" style="animation-delay: 0.2s;">
-                    <h3 class="text-2xl font-bold text-bistre mb-4">The Breakthrough</h3>
-                    <p class="text-bistre mb-4">
-                        After years of saving, Yasir opened a tiny workshop in 2018 with just one sewing machine. His innovative designs blending traditional Bangladeshi textiles with modern silhouettes quickly gained attention.
-                    </p>
-                    <p class="text-bistre">
-                        The "Monsoon Dreams" collection in 2019, featuring water-resistant fabrics inspired by Bangladesh's rainy season, put HEEMS on the fashion map.
-                    </p>
-                </div>
-            </div>
-            
-            <div class="story-card p-8 rounded-xl animate-fade-in" style="animation-delay: 0.4s;">
-                <h3 class="text-2xl font-bold text-bistre mb-4">Today's Vision</h3>
-                <p class="text-bistre mb-4">
-                    From that single sewing machine, HEEMS has grown into an internationally recognized brand while staying true to its roots. The company now employs over 50 local artisans from Galachipa, providing fair wages and skills training.
-                </p>
-                <p class="text-bistre">
-                    "Our mission is to prove that world-class fashion can come from anywhere," says Himel. "Every HEEMS piece tells the story of Bangladesh - its beauty, its resilience, and its incredible creative spirit."
-                </p>
-            </div>
-            
-            <div class="text-center mt-16">
-                <a href="story.html" class="inline-block px-8 py-4 bg-bistre text-fabric font-space uppercase tracking-wider text-sm border-2 border-bistre hover:bg-transparent hover:text-bistre transition-all duration-300">
-                    Read the Full Story
-                </a>
-            </div>
-        </div>
-    </section>
+    // Keyboard: Enter / Space
+    document.addEventListener('keydown', (e) => {
+      const key = e.key || e.code;
+      if (key === 'Enter' || key === 'Space' || key === ' ') {
+        e.preventDefault();
+        go();
+      }
+    });
 
-    <!-- Signature Collections -->
-    <section class="py-24 bg-fabric relative overflow-hidden">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bungee mb-4">
-                    <span class="block">SIGNATURE</span>
-                    <span class="block gradient-text">COLLECTIONS</span>
-                </h2>
-                <p class="font-space uppercase tracking-widest text-sm text-mauveine">
-                    Handcrafted in Bangladesh
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Collection 1 -->
-                <div class="collection-card rounded-xl overflow-hidden bg-white shadow-lg animate-fade-in">
-                    <div class="relative aspect-square overflow-hidden">
-                        <img src="assets/more/dress1.jpg" alt="Monsoon Dreams Collection" class="w-full h-full object-cover collection-image transition-transform duration-500">
-                        <div class="absolute inset-0 collection-overlay flex flex-col justify-end p-6">
-                            <h3 class="text-2xl font-bold text-white mb-2 collection-title">MONSOON DREAMS</h3>
-                            <p class="text-white/80 mb-4">Water-resistant fabrics celebrating Bangladesh's rainy season</p>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-xl font-bold text-bistre mb-1">MONSOON DREAMS</h3>
-                                <p class="text-bistre/70 text-sm">Spring 2024 Collection</p>
-                            </div>
-                            <span class="font-space uppercase tracking-wider text-xs text-aquamarine">NEW</span>
-                        </div>
-                        <div class="mt-4 flex justify-between items-center">
-                            <span class="text-lg font-bold text-bistre">৳4,200.00</span>
-                            <a href="collections.html" class="font-space uppercase tracking-wider text-xs border-b border-bistre pb-1 hover:text-mauveine transition">
-                                View Collection
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Collection 2 -->
-                <div class="collection-card rounded-xl overflow-hidden bg-white shadow-lg animate-fade-in" style="animation-delay: 0.2s;">
-                    <div class="relative aspect-square overflow-hidden">
-                        <img src="assets/more/T-Shirt.jpg" alt="Urban Jamdani Collection" class="w-full h-full object-cover collection-image transition-transform duration-500">
-                        <div class="absolute inset-0 collection-overlay flex flex-col justify-end p-6">
-                            <h3 class="text-2xl font-bold text-white mb-2 collection-title">URBAN JAMDANI</h3>
-                            <p class="text-white/80 mb-4">Traditional weaving meets contemporary streetwear</p>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-xl font-bold text-bistre mb-1">URBAN JAMDANI</h3>
-                                <p class="text-bistre/70 text-sm">Fall 2023 Collection</p>
-                            </div>
-                            <span class="font-space uppercase tracking-wider text-xs text-mauveine">BESTSELLER</span>
-                        </div>
-                        <div class="mt-4 flex justify-between items-center">
-                            <span class="text-lg font-bold text-bistre">৳3,500.00</span>
-                            <a href="collections.html" class="font-space uppercase tracking-wider text-xs border-b border-bistre pb-1 hover:text-mauveine transition">
-                                View Collection
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Collection 3 -->
-                <div class="collection-card rounded-xl overflow-hidden bg-white shadow-lg animate-fade-in" style="animation-delay: 0.4s;">
-                    <div class="relative aspect-square overflow-hidden">
-                        <img src="assets/1.jpg" alt="Delta Blues Collection" class="w-full h-full object-cover collection-image transition-transform duration-500">
-                        <div class="absolute inset-0 collection-overlay flex flex-col justify-end p-6">
-                            <h3 class="text-2xl font-bold text-white mb-2 collection-title">DELTA BLUES</h3>
-                            <p class="text-white/80 mb-4">Indigo dye collection inspired by river life</p>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-xl font-bold text-bistre mb-1">DELTA BLUES</h3>
-                                <p class="text-bistre/70 text-sm">Summer 2024 Collection</p>
-                            </div>
-                            <span class="font-space uppercase tracking-wider text-xs text-yellowish">LIMITED</span>
-                        </div>
-                        <div class="mt-4 flex justify-between items-center">
-                            <span class="text-lg font-bold text-bistre">৳4,800.00</span>
-                            <a href="collections.html" class="font-space uppercase tracking-wider text-xs border-b border-bistre pb-1 hover:text-mauveine transition">
-                                View Collection
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-16">
-                <a href="collections.html" class="inline-block px-8 py-4 bg-bistre text-fabric font-space uppercase tracking-wider text-sm border-2 border-bistre hover:bg-transparent hover:text-bistre transition-all duration-300">
-                    View All Collections
-                </a>
-            </div>
-        </div>
-    </section>
+    // Click / Tap anywhere
+    document.getElementById('start-screen').addEventListener('click', (e) => {
+      // Allow links inside footer to work without redirect from the splash section
+      const footer = document.querySelector('footer');
+      if (footer && footer.contains(e.target)) return;
+      go();
+    });
 
-    <!-- Founder's Vision -->
-    <section class="py-24 bg-bistre text-fabric relative overflow-hidden">
-        <div class="absolute inset-0 bg-black/50"></div>
-        
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="max-w-3xl mx-auto text-center glass-effect p-8 rounded-xl backdrop-blur-sm">
-                <blockquote class="text-2xl md:text-3xl font-bold mb-6">
-                    "Fashion should tell a story. At HEEMS, every stitch carries the dreams of our artisans, every pattern reflects the beauty of Bangladesh."
-                </blockquote>
-                <p class="font-space uppercase tracking-widest text-sm text-aquamarine">— Yasir Himel, Founder</p>
-            </div>
-        </div>
-    </section>
+    // Dedicated mobile button
+    const tapBtn = document.getElementById('tap-start');
+    if (tapBtn) tapBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      go();
+    });
 
-    <!-- Shopping Cart Sidebar -->
-    <div class="fixed inset-y-0 right-0 w-full sm:w-96 bg-white z-50 shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out" id="cart-sidebar">
-        <div class="h-full flex flex-col">
-            <div class="p-6 border-b border-bistre/20 flex justify-between items-center">
-                <h3 class="text-xl font-bold text-bistre">Your Cart</h3>
-                <button class="text-bistre hover:text-mauveine transition" id="close-cart">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-
-            <div class="flex-1 overflow-y-auto p-6" id="cart-items">
-                <!-- Cart items will be added here dynamically -->
-                <div class="text-center py-12 text-bistre/70">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-bistre/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                    </svg>
-                    <p>Your cart is empty</p>
-                </div>
-            </div>
-
-            <div class="p-6 border-t border-bistre/20">
-                <div class="flex justify-between items-center mb-4">
-                    <span class="text-bistre">Subtotal</span>
-                    <span class="font-bold text-bistre" id="cart-subtotal">৳0.00</span>
-                </div>
-                <p class="text-sm text-bistre/70 mb-6">Shipping and taxes calculated at checkout</p>
-                <button class="w-full px-6 py-3 bg-bistre text-white font-space uppercase tracking-wider text-sm hover:bg-bistre/90 transition">
-                    Checkout
-                </button>
-                <div class="text-center mt-4">
-                    <a href="collections.html" class="text-sm text-bistre/70 hover:text-mauveine transition">Continue Shopping</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer id="contact" class="bg-gradient-to-r from-gray-800 via-gray-900 to-black text-fabric/70 py-12 relative overflow-hidden" style="background: linear-gradient(135deg, #4b1f1f, #1a1a1a); border-top: 2px solid #fcd34d; box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2);">
-        <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-            <!-- Left Section -->
-            <div class="mb-6 md:mb-0 flex-1">
-                <h2 class="text-3xl font-bungee mb-4" style="letter-spacing: 2px;">HEEMS</h2>
-                <p class="text-sm max-w-xs mb-4" style="font-family: 'Courier New', monospace;">Experimental fashion house from Galachipa, Bangladesh. Redefining South Asian aesthetics.</p>
-                <!-- Social icons -->
-                <div class="flex justify-center md:justify-start space-x-6 mb-4">
-                    <a href="#" class="hover:text-aquamarine transition duration-300">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="hover:text-aquamarine transition duration-300">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="hover:text-aquamarine transition duration-300">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="hover:text-aquamarine transition duration-300">
-                        <i class="fab fa-pinterest"></i>
-                    </a>
-                </div>
-                <p class="text-sm" style="font-family: 'Courier New', monospace;">contact@heemsclothing.com</p>
-            </div>
-            <!-- Right Section -->
-            <div class="flex-1 mt-8 md:mt-0 text-center md:text-right">
-                <p class="text-sm" style="font-family: 'Courier New', monospace;">&copy; 2024 Heems Clothing. All rights reserved. </p>
-            </div>
-        </div>
-        <!-- Glossy Overlay for Glossy Finish -->
-        <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0)); mix-blend-mode: overlay; border-top: 2px solid #fcd34d; pointer-events: none;"></div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Initialize GSAP animations
-            gsap.registerPlugin(ScrollTrigger);
-            
-            // Animate elements on scroll
-            gsap.utils.toArray('.animate-fade-in').forEach(element => {
-                gsap.from(element, {
-                    opacity: 0,
-                    y: 50,
-                    duration: 1,
-                    scrollTrigger: {
-                        trigger: element,
-                        start: "top 80%",
-                        toggleActions: "play none none none"
-                    }
-                });
-            });
-            
-            gsap.utils.toArray('.animate-slide-up').forEach((element, i) => {
-                gsap.from(element, {
-                    opacity: 0,
-                    y: 100,
-                    duration: 1,
-                    delay: i * 0.2,
-                    ease: "power3.out"
-                });
-            });
-            
-            // Parallax effect for hero background
-            gsap.to(".parallax-bg", {
-                yPercent: 20,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: ".hero-content",
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: true
-                }
-            });
-            
-            // Cart functionality
-            let cart = [];
-            
-            // Load cart from localStorage
-            function loadCart() {
-                const savedCart = localStorage.getItem('heems-cart');
-                return savedCart ? JSON.parse(savedCart) : [];
-            }
-            
-            // Save cart to localStorage
-            function saveCart() {
-                localStorage.setItem('heems-cart', JSON.stringify(cart));
-            }
-            
-            // Sample function to add items to cart (for testing)
-            function addToCart(name, price, image = 'assets/logo.png', color = 'Default', size = 'M') {
-                const itemId = Date.now().toString();
-                const newItem = {
-                    id: itemId,
-                    name: name,
-                    price: price,
-                    image: image,
-                    color: color,
-                    size: size,
-                    quantity: 1
-                };
-                
-                // Check if item already exists
-                const existingItemIndex = cart.findIndex(item => 
-                    item.name === name && item.color === color && item.size === size
-                );
-                
-                if (existingItemIndex !== -1) {
-                    cart[existingItemIndex].quantity += 1;
-                } else {
-                    cart.push(newItem);
-                }
-                
-                saveCart();
-                updateCartUI();
-                showNotification(`${name} added to cart`);
-            }
-            
-            // Initialize cart
-            cart = loadCart();
-            
-            // DOM Elements
-            const cartBtn = document.getElementById('cart-btn');
-            const mobileCartBtn = document.getElementById('mobile-cart-btn');
-            const cartSidebar = document.getElementById('cart-sidebar');
-            const closeCartButton = document.getElementById('close-cart');
-            const cartItemsContainer = document.getElementById('cart-items');
-            const cartSubtotal = document.getElementById('cart-subtotal');
-            const cartCountElements = document.querySelectorAll('#cart-count, #mobile-cart-count');
-            
-            // Mobile menu functionality
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileMenuClose = document.getElementById('mobile-menu-close');
-            
-            if (mobileMenuButton) {
-                mobileMenuButton.addEventListener('click', function () {
-                    mobileMenu.classList.add('open');
-                });
-            }
-            
-            if (mobileMenuClose) {
-                mobileMenuClose.addEventListener('click', function () {
-                    mobileMenu.classList.remove('open');
-                });
-            }
-            
-            // Cart sidebar toggle
-            if (cartBtn) {
-                cartBtn.addEventListener('click', toggleCart);
-            }
-            
-            if (mobileCartBtn) {
-                mobileCartBtn.addEventListener('click', function () {
-                    // Close mobile menu if open
-                    if (mobileMenu.classList.contains('open')) {
-                        mobileMenu.classList.remove('open');
-                    }
-                    toggleCart();
-                });
-            }
-            
-            if (closeCartButton) {
-                closeCartButton.addEventListener('click', toggleCart);
-            }
-            
-            // Close cart when clicking outside
-            document.addEventListener('click', function (event) {
-                if (!cartSidebar.contains(event.target) &&
-                    !cartBtn.contains(event.target) &&
-                    !mobileCartBtn.contains(event.target) &&
-                    !event.target.closest('#cart-sidebar') &&
-                    !event.target.closest('#cart-btn') &&
-                    !event.target.closest('#mobile-cart-btn')) {
-                    cartSidebar.classList.add('translate-x-full');
-                    document.body.style.overflow = '';
-                }
-            });
-            
-            // Initialize cart UI
-            updateCartUI();
-            
-            function toggleCart() {
-                cartSidebar.classList.toggle('translate-x-full');
-                document.body.style.overflow = cartSidebar.classList.contains('translate-x-full') ? '' : 'hidden';
-                updateCartUI();
-            }
-            
-            function updateCartUI() {
-                try {
-                    // Update cart count
-                    const totalItems = cart.reduce((total, item) => total + (item.quantity || 0), 0);
-                    cartCountElements.forEach(el => {
-                        if (el) el.textContent = totalItems;
-                    });
-                    
-                    // Update cart sidebar if it exists on the page
-                    if (!cartItemsContainer || !cartSubtotal) return;
-                    
-                    if (cart.length === 0) {
-                        cartItemsContainer.innerHTML = `
-                            <div class="text-center py-12 text-bistre/70">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-bistre/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                        </svg>
-                                <p>Your cart is empty</p>
-                            </div>
-                        `;
-                        cartSubtotal.textContent = '৳0.00';
-                        return;
-                    }
-                
-                let itemsHTML = '';
-                let subtotal = 0;
-                
-                cart.forEach(item => {
-                    subtotal += item.price * item.quantity;
-                    itemsHTML += `
-                        <div class="flex py-4 border-b border-bistre/20">
-                            <div class="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
-                                <img src="${item.image || 'assets/logo.png'}" alt="${item.name}" class="w-full h-full object-cover">
-                            </div>
-                            <div class="flex-1 pl-4 min-w-0">
-                                <h4 class="font-bold text-bistre text-sm">${item.name}</h4>
-                                <p class="text-xs text-bistre/70 mb-1">${item.color || 'N/A'}, ${item.size || 'N/A'}</p>
-                                <p class="text-xs text-bistre/70">৳${item.price} × ${item.quantity}</p>
-                            </div>
-                            <div class="flex flex-col items-end space-y-2 flex-shrink-0">
-                                <p class="font-bold text-bistre text-sm">৳${(item.price * item.quantity).toFixed(2)}</p>
-                                <div class="flex items-center space-x-2">
-                                    <button class="quantity-btn text-bistre hover:text-mauveine transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-bistre/30 hover:border-bistre" data-id="${item.id}" data-action="decrease">-</button>
-                                    <span class="text-sm text-bistre font-medium min-w-[20px] text-center">${item.quantity}</span>
-                                    <button class="quantity-btn text-bistre hover:text-mauveine transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-bistre/30 hover:border-bistre" data-id="${item.id}" data-action="increase">+</button>
-                                </div>
-                                <button class="text-xs text-bistre/50 hover:text-mauveine transition remove-item" data-id="${item.id}">
-                                    Remove
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                });
-                
-                    cartItemsContainer.innerHTML = itemsHTML;
-                    cartSubtotal.textContent = `৳${subtotal.toFixed(2)}`;
-                    
-                    // Add event listeners to remove buttons and quantity buttons
-                    document.querySelectorAll('.remove-item').forEach(button => {
-                        button.addEventListener('click', function (e) {
-                            e.stopPropagation();
-                            const itemId = this.getAttribute('data-id');
-                            removeFromCart(itemId);
-                        });
-                    });
-                    
-                    document.querySelectorAll('.quantity-btn').forEach(button => {
-                        button.addEventListener('click', function (e) {
-                            e.stopPropagation();
-                            const itemId = this.getAttribute('data-id');
-                            const action = this.getAttribute('data-action');
-                            updateItemQuantity(itemId, action);
-                        });
-                    });
-                } catch (error) {
-                    console.error('Error updating cart UI:', error);
-                }
-            }
-            
-            function removeFromCart(itemId) {
-                cart = cart.filter(item => item.id !== itemId);
-                saveCart();
-                updateCartUI();
-                showNotification('Item removed from cart');
-            }
-            
-            function updateItemQuantity(itemId, action) {
-                const itemIndex = cart.findIndex(item => item.id === itemId);
-                if (itemIndex !== -1) {
-                    if (action === 'increase') {
-                        cart[itemIndex].quantity += 1;
-                    } else if (action === 'decrease') {
-                        if (cart[itemIndex].quantity > 1) {
-                            cart[itemIndex].quantity -= 1;
-                        } else {
-                            cart.splice(itemIndex, 1);
-                        }
-                    }
-                    saveCart();
-                    updateCartUI();
-                }
-            }
-            
-            function showNotification(message) {
-                const notification = document.createElement('div');
-                notification.className = 'fixed bottom-4 right-4 bg-bistre text-white px-4 py-2 rounded-lg shadow-lg animate-fade-in z-50';
-                notification.textContent = message;
-                document.body.appendChild(notification);
-                
-                setTimeout(() => {
-                    notification.classList.add('opacity-0', 'transition-opacity', 'duration-300');
-                    setTimeout(() => notification.remove(), 300);
-                }, 2000);
-            }
-            
-            // Make cart functions globally accessible for testing
-            window.addToCart = addToCart;
-            window.updateCartUI = updateCartUI;
-            window.removeFromCart = removeFromCart;
-            window.updateItemQuantity = updateItemQuantity;
-            
-            // Also make cart accessible globally for debugging
-            window.cart = cart;
-        });
-    </script>
+    // Reveal footer on scroll
+    const footer = document.querySelector('footer');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          footer.classList.remove('opacity-0', 'translate-y-6');
+          footer.classList.add('opacity-100', 'translate-y-0');
+        }
+      });
+    }, { threshold: 0.2 });
+    if (footer) obs.observe(footer);
+  </script>
 </body>
 </html>
