@@ -277,6 +277,18 @@
             transform: translateX(0);
         }
 
+        /* New styles for View Details button */
+        .view-details-btn {
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #4C3329;
+        }
+
+        .view-details-btn:hover {
+            background-color: #4C3329;
+            color: white;
+        }
+
         @keyframes float {
 
             0%,
@@ -513,448 +525,472 @@
     </div>
 
     <!-- Footer -->
-<footer id="contact" class="bg-gradient-to-r from-gray-800 via-gray-900 to-black text-fabric/70 py-12 relative overflow-hidden" style="background: linear-gradient(135deg, #4b1f1f, #1a1a1a); border-top: 2px solid #fcd34d; box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2);">
-  <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-    <!-- Left Section -->
-    <div class="mb-6 md:mb-0 flex-1">
-      <h2 class="text-3xl font-bungee mb-4" style="letter-spacing: 2px;">HEEMS</h2>
-      <p class="text-sm max-w-xs mb-4" style="font-family: 'Courier New', monospace;">Experimental fashion house from Galachipa, Bangladesh. Redefining South Asian aesthetics.</p>
-      <!-- Social icons -->
-      <div class="flex justify-center md:justify-start space-x-6 mb-4">
-        <a href="#" class="hover:text-aquamarine transition duration-300">
-          <!-- Facebook Icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.35C0 23.407.593 24 1.325 24h21.35C23.407 24 24 23.407 24 22.675V1.325C24 .593 23.407 0 22.675 0zM8.06 15.845H3.937V9.296h4.125V15.845zm.84-6.99h-.002c-1.158 0-1.85-.656-1.85-1.678V6.08c0-1.022.692-1.678 1.85-1.678h.002c1.17 0 1.86.656 1.86 1.678v1.097c0 1.022-.69 1.678-1.86 1.678zM18.188 15.845h-3.197v-3.469h.038c.877 0 1.343-.54 1.343-1.177 0-.638-.467-1.177-1.343-1.177h-.037V8.93h3.126c2.756 0 4.196 1.588 4.196 3.954v.001c0 2.367-1.44 3.96-4.196 3.96z" />
-          </svg>
-        </a>
-        <a href="#" class="hover:text-aquamarine transition duration-300">
-          <!-- Twitter Icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M24 4.557a9.83 9.83 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724 9.861 9.861 0 0 1-3.127 1.195 4.92 4.92 0 0 0-8.384 4.482A13.978 13.978 0 0 1 1.671 3.149 4.916 4.916 0 0 0 3.195 9.722 4.903 4.903 0 0 1 .964 9.1v.062a4.92 4.92 0 0 0 3.941 4.827 4.996 4.996 0 0 1-2.212.084 4.927 4.927 0 0 0 4.6 3.417A9.868 9.868 0 0 1 0 19.54a13.94 13.94 0 0 0 7.548 2.209c9.057 0 14-7.514 14-14 0-.213-.005-.425-.014-.637A10.025 10.025 0 0 0 24 4.557z"/>
-          </svg>
-        </a>
-        <a href="#" class="hover:text-aquamarine transition duration-300">
-          <!-- LinkedIn Icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.5c0-1.379-1.121-2.5-2.5-2.5s-2.5 1.121-2.5 2.5v5.5h-3v-10h3v1.293c.385-.296.842-.493 1.371-.493 1.519 0 2.75 1.231 2.75 2.75v6.45z"/>
-          </svg>
-        </a>
-      </div>
-      <p class="text-sm" style="font-family: 'Courier New', monospace;">contact@heemsclothing.com</p>
-    </div>
-    <!-- Right Section -->
-    <div class="flex-1 mt-8 md:mt-0 text-center md:text-right">
-      <p class="text-sm" style="font-family: 'Courier New', monospace;">&copy; 2024 Heems Clothing. All rights reserved. </p>
-    </div>
-  </div>
-  <!-- Glossy Overlay for Glossy Finish -->
-  <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0)); mix-blend-mode: overlay; border-top: 2px solid #fcd34d; pointer-events: none;"></div>
-</footer>
+    <footer id="contact" class="bg-gradient-to-r from-gray-800 via-gray-900 to-black text-fabric/70 py-12 relative overflow-hidden" style="background: linear-gradient(135deg, #4b1f1f, #1a1a1a); border-top: 2px solid #fcd34d; box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2);">
+        <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <!-- Left Section -->
+            <div class="mb-6 md:mb-0 flex-1">
+                <h2 class="text-3xl font-bungee mb-4" style="letter-spacing: 2px;">HEEMS</h2>
+                <p class="text-sm max-w-xs mb-4" style="font-family: 'Courier New', monospace;">Experimental fashion house from Galachipa, Bangladesh. Redefining South Asian aesthetics.</p>
+                <!-- Social icons -->
+                <div class="flex justify-center md:justify-start space-x-6 mb-4">
+                    <a href="#" class="hover:text-aquamarine transition duration-300">
+                        <!-- Facebook Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.35C0 23.407.593 24 1.325 24h21.35C23.407 24 24 23.407 24 22.675V1.325C24 .593 23.407 0 22.675 0zM8.06 15.845H3.937V9.296h4.125V15.845zm.84-6.99h-.002c-1.158 0-1.85-.656-1.85-1.678V6.08c0-1.022.692-1.678 1.85-1.678h.002c1.17 0 1.86.656 1.86 1.678v1.097c0 1.022-.69 1.678-1.86 1.678zM18.188 15.845h-3.197v-3.469h.038c.877 0 1.343-.54 1.343-1.177 0-.638-.467-1.177-1.343-1.177h-.037V8.93h3.126c2.756 0 4.196 1.588 4.196 3.954v.001c0 2.367-1.44 3.96-4.196 3.96z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="hover:text-aquamarine transition duration-300">
+                        <!-- Twitter Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 4.557a9.83 9.83 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724 9.861 9.861 0 0 1-3.127 1.195 4.92 4.92 0 0 0-8.384 4.482A13.978 13.978 0 0 1 1.671 3.149 4.916 4.916 0 0 0 3.195 9.722 4.903 4.903 0 0 1 .964 9.1v.062a4.92 4.92 0 0 0 3.941 4.827 4.996 4.996 0 0 1-2.212.084 4.927 4.927 0 0 0 4.6 3.417A9.868 9.868 0 0 1 0 19.54a13.94 13.94 0 0 0 7.548 2.209c9.057 0 14-7.514 14-14 0-.213-.005-.425-.014-.637A10.025 10.025 0 0 0 24 4.557z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="hover:text-aquamarine transition duration-300">
+                        <!-- LinkedIn Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.5c0-1.379-1.121-2.5-2.5-2.5s-2.5 1.121-2.5 2.5v5.5h-3v-10h3v1.293c.385-.296.842-.493 1.371-.493 1.519 0 2.75 1.231 2.75 2.75v6.45z"/>
+                        </svg>
+                    </a>
+                </div>
+                <p class="text-sm" style="font-family: 'Courier New', monospace;">contact@heemsclothing.com</p>
+            </div>
+            <!-- Right Section -->
+            <div class="flex-1 mt-8 md:mt-0 text-center md:text-right">
+                <p class="text-sm" style="font-family: 'Courier New', monospace;">&copy; 2024 Heems Clothing. All rights reserved. </p>
+            </div>
+        </div>
+        <!-- Glossy Overlay for Glossy Finish -->
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0)); mix-blend-mode: overlay; border-top: 2px solid #fcd34d; pointer-events: none;"></div>
+    </footer>
+
     <!-- Scripts -->
-</body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Cart functionality
+            let cart = loadCart();
 
-</html>
+            // DOM Elements
+            const cartBtn = document.getElementById('cart-btn');
+            const mobileCartBtn = document.getElementById('mobile-cart-btn');
+            const cartSidebar = document.getElementById('cart-sidebar');
+            const closeCartButton = document.getElementById('close-cart');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartSubtotal = document.getElementById('cart-subtotal');
+            const cartCountElements = document.querySelectorAll('#cart-count, #mobile-cart-count');
+            const loadMoreBtn = document.getElementById('load-more-btn');
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Cart functionality
-        let cart = loadCart();
-
-        // DOM Elements
-        const cartBtn = document.getElementById('cart-btn');
-        const mobileCartBtn = document.getElementById('mobile-cart-btn');
-        const cartSidebar = document.getElementById('cart-sidebar');
-        const closeCartButton = document.getElementById('close-cart');
-        const cartItemsContainer = document.getElementById('cart-items');
-        const cartSubtotal = document.getElementById('cart-subtotal');
-        const cartCountElements = document.querySelectorAll('#cart-count, #mobile-cart-count');
-        const loadMoreBtn = document.getElementById('load-more-btn');
-
-        // Initialize cart UI
-        updateCartUI();
-
-        // Cart sidebar toggle
-        if (cartBtn) {
-            cartBtn.addEventListener('click', toggleCart);
-        }
-        if (mobileCartBtn) {
-            mobileCartBtn.addEventListener('click', function () {
-                // Close mobile menu if open
-                const mobileMenu = document.getElementById('mobile-menu');
-                if (mobileMenu.classList.contains('open')) {
-                    mobileMenu.classList.remove('open');
-                }
-                toggleCart();
-            });
-        }
-        if (closeCartButton) {
-            closeCartButton.addEventListener('click', toggleCart);
-        }
-
-        // Close cart when clicking outside
-        document.addEventListener('click', function (event) {
-            // Only close cart if clicking outside the cart sidebar AND not on cart buttons
-            if (!cartSidebar.contains(event.target) &&
-                !cartBtn.contains(event.target) &&
-                !mobileCartBtn.contains(event.target) &&
-                !event.target.closest('#cart-sidebar') &&
-                !event.target.closest('#cart-btn') &&
-                !event.target.closest('#mobile-cart-btn')) {
-                cartSidebar.classList.add('translate-x-full');
-                document.body.style.overflow = '';
-            }
-        });
-
-        // Mobile menu functionality
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuClose = document.getElementById('mobile-menu-close');
-        if (mobileMenuButton) {
-            mobileMenuButton.addEventListener('click', function () {
-                mobileMenu.classList.add('open');
-            });
-        }
-        if (mobileMenuClose) {
-            mobileMenuClose.addEventListener('click', function () {
-                mobileMenu.classList.remove('open');
-            });
-        }
-
-        // Fetch products from JSON file
-        let currentPage = 1;
-        const itemsPerPage = 9; // Initial load
-        let allProducts = [];
-        let currentFilteredProducts = [];
-
-        fetch('data/dress.json')
-            .then(response => response.json())
-            .then(products => {
-                allProducts = products; // Store all products
-                currentFilteredProducts = [...allProducts]; // Copy for filtering
-                const container = document.getElementById('products-container');
-                // Generate initial product cards
-                const initialProducts = currentFilteredProducts.slice(0, itemsPerPage);
-                initialProducts.forEach(product => {
-                    const card = createProductCard(product);
-                    container.appendChild(card);
-                });
-                // Add event listeners to all add-to-cart buttons after they're created
-                addCartEventListeners();
-                // Add event listener for load more button
-                if (loadMoreBtn) {
-                    loadMoreBtn.addEventListener('click', loadMoreProducts);
-                }
-            })
-            .catch(error => console.error('Error loading products:', error));
-
-        // Filter functionality
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                // Update active state
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-                // Reset pagination
-                currentPage = 1;
-                // Filter collections
-                const filterValue = this.getAttribute('data-filter');
-                // Clear current products
-                const container = document.getElementById('products-container');
-                container.innerHTML = '';
-                // Filter products based on category
-                let filteredProducts = allProducts;
-                if (filterValue !== 'all') {
-                    filteredProducts = allProducts.filter(product =>
-                        product.category.includes(filterValue)
-                    );
-                }
-                // Update current filtered products
-                currentFilteredProducts = filteredProducts;
-                // Show initial products for filtered results
-                const initialProducts = currentFilteredProducts.slice(0, itemsPerPage);
-                initialProducts.forEach(product => {
-                    const card = createProductCard(product);
-                    container.appendChild(card);
-                });
-                // Re-add cart event listeners
-                addCartEventListeners();
-                // Update load more button
-                if (currentFilteredProducts.length <= itemsPerPage) {
-                    loadMoreBtn.style.display = 'none';
-                } else {
-                    loadMoreBtn.style.display = 'inline-block';
-                    loadMoreBtn.disabled = false;
-                    loadMoreBtn.textContent = 'Load More';
-                }
-            });
-        });
-
-        // Functions
-        function loadCart() {
-            const savedCart = localStorage.getItem('heems-cart');
-            return savedCart ? JSON.parse(savedCart) : [];
-        }
-
-        function saveCart() {
-            localStorage.setItem('heems-cart', JSON.stringify(cart));
-        }
-
-        function addToCart(item) {
-            // Check if product already in cart
-            const existingItemIndex = cart.findIndex(cartItem =>
-                cartItem.id === item.id &&
-                cartItem.size === item.size &&
-                cartItem.color === item.color
-            );
-
-            if (existingItemIndex !== -1) {
-                // Update quantity if item already exists
-                cart[existingItemIndex].quantity += item.quantity;
-            } else {
-                // Add new item to cart
-                cart.push(item);
-            }
-
-            saveCart();
+            // Initialize cart UI
             updateCartUI();
-        }
 
-        function updateItemQuantity(itemId, action) {
-            const itemIndex = cart.findIndex(item => item.id === itemId);
-            if (itemIndex !== -1) {
-                if (action === 'increase') {
-                    cart[itemIndex].quantity += 1;
-                } else if (action === 'decrease') {
-                    if (cart[itemIndex].quantity > 1) {
-                        cart[itemIndex].quantity -= 1;
-                    } else {
-                        // Remove item if quantity becomes 0
-                        cart.splice(itemIndex, 1);
+            // Cart sidebar toggle
+            if (cartBtn) {
+                cartBtn.addEventListener('click', toggleCart);
+            }
+            if (mobileCartBtn) {
+                mobileCartBtn.addEventListener('click', function () {
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (mobileMenu.classList.contains('open')) {
+                        mobileMenu.classList.remove('open');
                     }
+                    toggleCart();
+                });
+            }
+            if (closeCartButton) {
+                closeCartButton.addEventListener('click', toggleCart);
+            }
+
+            // Close cart when clicking outside
+            document.addEventListener('click', function (event) {
+                // Only close cart if clicking outside the cart sidebar AND not on cart buttons
+                if (!cartSidebar.contains(event.target) &&
+                    !cartBtn.contains(event.target) &&
+                    !mobileCartBtn.contains(event.target) &&
+                    !event.target.closest('#cart-sidebar') &&
+                    !event.target.closest('#cart-btn') &&
+                    !event.target.closest('#mobile-cart-btn')) {
+                    cartSidebar.classList.add('translate-x-full');
+                    document.body.style.overflow = '';
                 }
+            });
+
+            // Mobile menu functionality
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', function () {
+                    mobileMenu.classList.add('open');
+                });
+            }
+            if (mobileMenuClose) {
+                mobileMenuClose.addEventListener('click', function () {
+                    mobileMenu.classList.remove('open');
+                });
+            }
+
+            // Fetch products from JSON file
+            let currentPage = 1;
+            const itemsPerPage = 9; // Initial load
+            let allProducts = [];
+            let currentFilteredProducts = [];
+
+            fetch('data/dress.json')
+                .then(response => response.json())
+                .then(products => {
+                    allProducts = products; // Store all products
+                    currentFilteredProducts = [...allProducts]; // Copy for filtering
+                    const container = document.getElementById('products-container');
+                    // Generate initial product cards
+                    const initialProducts = currentFilteredProducts.slice(0, itemsPerPage);
+                    initialProducts.forEach(product => {
+                        const card = createProductCard(product);
+                        container.appendChild(card);
+                    });
+                    // Add event listeners to all add-to-cart buttons after they're created
+                    addCartEventListeners();
+                    // Add event listener for load more button
+                    if (loadMoreBtn) {
+                        loadMoreBtn.addEventListener('click', loadMoreProducts);
+                    }
+                })
+                .catch(error => console.error('Error loading products:', error));
+
+            // Filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Update active state
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    // Reset pagination
+                    currentPage = 1;
+                    // Filter collections
+                    const filterValue = this.getAttribute('data-filter');
+                    // Clear current products
+                    const container = document.getElementById('products-container');
+                    container.innerHTML = '';
+                    // Filter products based on category
+                    let filteredProducts = allProducts;
+                    if (filterValue !== 'all') {
+                        filteredProducts = allProducts.filter(product =>
+                            product.category.includes(filterValue)
+                        );
+                    }
+                    // Update current filtered products
+                    currentFilteredProducts = filteredProducts;
+                    // Show initial products for filtered results
+                    const initialProducts = currentFilteredProducts.slice(0, itemsPerPage);
+                    initialProducts.forEach(product => {
+                        const card = createProductCard(product);
+                        container.appendChild(card);
+                    });
+                    // Re-add cart event listeners
+                    addCartEventListeners();
+                    // Update load more button
+                    if (currentFilteredProducts.length <= itemsPerPage) {
+                        loadMoreBtn.style.display = 'none';
+                    } else {
+                        loadMoreBtn.style.display = 'inline-block';
+                        loadMoreBtn.disabled = false;
+                        loadMoreBtn.textContent = 'Load More';
+                    }
+                });
+            });
+
+            // Functions
+            function loadCart() {
+                const savedCart = localStorage.getItem('heems-cart');
+                return savedCart ? JSON.parse(savedCart) : [];
+            }
+
+            function saveCart() {
+                localStorage.setItem('heems-cart', JSON.stringify(cart));
+            }
+
+            function addToCart(item) {
+                // Check if product already in cart
+                const existingItemIndex = cart.findIndex(cartItem =>
+                    cartItem.id === item.id &&
+                    cartItem.size === item.size &&
+                    cartItem.color === item.color
+                );
+
+                if (existingItemIndex !== -1) {
+                    // Update quantity if item already exists
+                    cart[existingItemIndex].quantity += item.quantity;
+                } else {
+                    // Add new item to cart
+                    cart.push(item);
+                }
+
                 saveCart();
                 updateCartUI();
             }
-        }
 
-        function removeFromCart(itemId) {
-            cart = cart.filter(item => item.id !== itemId);
-            saveCart();
-            updateCartUI();
-        }
-
-        function updateCartUI() {
-            // Update cart count
-            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-            cartCountElements.forEach(el => el.textContent = totalItems);
-
-            // Update cart sidebar if it exists on the page
-            if (!cartItemsContainer || !cartSubtotal) {
-                return; // Not on a page with cart sidebar
+            function updateItemQuantity(itemId, action) {
+                const itemIndex = cart.findIndex(item => item.id === itemId);
+                if (itemIndex !== -1) {
+                    if (action === 'increase') {
+                        cart[itemIndex].quantity += 1;
+                    } else if (action === 'decrease') {
+                        if (cart[itemIndex].quantity > 1) {
+                            cart[itemIndex].quantity -= 1;
+                        } else {
+                            // Remove item if quantity becomes 0
+                            cart.splice(itemIndex, 1);
+                        }
+                    }
+                    saveCart();
+                    updateCartUI();
+                }
             }
 
-            if (cart.length === 0) {
-                cartItemsContainer.innerHTML = `
-                    <div class="text-center py-12 text-bistre/70">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-bistre/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                        </svg>
-                        <p>Your cart is empty</p>
-                    </div>
-                `;
-                cartSubtotal.textContent = '৳0.00';
-                return;
+            function removeFromCart(itemId) {
+                cart = cart.filter(item => item.id !== itemId);
+                saveCart();
+                updateCartUI();
             }
 
-            let itemsHTML = '';
-            let subtotal = 0;
-            cart.forEach(item => {
-                subtotal += item.price * item.quantity;
-                itemsHTML += `
-                    <div class="flex py-4 border-b border-bistre/20">
-                        <div class="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden">
-                            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+            function updateCartUI() {
+                // Update cart count
+                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                cartCountElements.forEach(el => el.textContent = totalItems);
+
+                // Update cart sidebar if it exists on the page
+                if (!cartItemsContainer || !cartSubtotal) {
+                    return; // Not on a page with cart sidebar
+                }
+
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = `
+                        <div class="text-center py-12 text-bistre/70">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-bistre/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                            </svg>
+                            <p>Your cart is empty</p>
                         </div>
-                        <div class="flex-1 pl-4">
-                            <h4 class="font-bold text-bistre">${item.name}</h4>
-                            <p class="text-sm text-bistre/70 mb-1">${item.color}, ${item.size}</p>
-                            <p class="text-sm text-bistre/70">৳${item.price} × ${item.quantity}</p>
-                        </div>
-                        <div class="flex flex-col items-end space-y-2">
-                            <p class="font-bold text-bistre">৳${(item.price * item.quantity).toFixed(2)}</p>
-                            <div class="flex items-center space-x-2">
-                                <button class="quantity-btn text-bistre hover:text-mauveine transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-bistre/30 hover:border-bistre" data-id="${item.id}" data-action="decrease">-</button>
-                                <span class="text-sm text-bistre font-medium min-w-[20px] text-center">${item.quantity}</span>
-                                <button class="quantity-btn text-bistre hover:text-mauveine transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-bistre/30 hover:border-bistre" data-id="${item.id}" data-action="increase">+</button>
+                    `;
+                    cartSubtotal.textContent = '৳0.00';
+                    return;
+                }
+
+                let itemsHTML = '';
+                let subtotal = 0;
+                cart.forEach(item => {
+                    subtotal += item.price * item.quantity;
+                    itemsHTML += `
+                        <div class="flex py-4 border-b border-bistre/20">
+                            <div class="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden">
+                                <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
                             </div>
-                            <button class="text-xs text-bistre/50 hover:text-mauveine transition remove-item" data-id="${item.id}">
-                                Remove
+                            <div class="flex-1 pl-4">
+                                <h4 class="font-bold text-bistre">${item.name}</h4>
+                                <p class="text-sm text-bistre/70 mb-1">${item.color}, ${item.size}</p>
+                                <p class="text-sm text-bistre/70">৳${item.price} × ${item.quantity}</p>
+                            </div>
+                            <div class="flex flex-col items-end space-y-2">
+                                <p class="font-bold text-bistre">৳${(item.price * item.quantity).toFixed(2)}</p>
+                                <div class="flex items-center space-x-2">
+                                    <button class="quantity-btn text-bistre hover:text-mauveine transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-bistre/30 hover:border-bistre" data-id="${item.id}" data-action="decrease">-</button>
+                                    <span class="text-sm text-bistre font-medium min-w-[20px] text-center">${item.quantity}</span>
+                                    <button class="quantity-btn text-bistre hover:text-mauveine transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-bistre/30 hover:border-bistre" data-id="${item.id}" data-action="increase">+</button>
+                                </div>
+                                <button class="text-xs text-bistre/50 hover:text-mauveine transition remove-item" data-id="${item.id}">
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                cartItemsContainer.innerHTML = itemsHTML;
+                cartSubtotal.textContent = `৳${subtotal.toFixed(2)}`;
+
+                // Add event listeners to remove buttons and quantity buttons
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', function (e) {
+                        e.stopPropagation(); // Prevent event bubbling
+                        const itemId = this.getAttribute('data-id');
+                        removeFromCart(itemId);
+                    });
+                });
+
+                // Add event listeners to quantity buttons
+                document.querySelectorAll('.quantity-btn').forEach(button => {
+                    button.addEventListener('click', function (e) {
+                        e.stopPropagation(); // Prevent event bubbling
+                        const itemId = this.getAttribute('data-id');
+                        const action = this.getAttribute('data-action');
+                        updateItemQuantity(itemId, action);
+                    });
+                });
+            }
+
+            function toggleCart() {
+                cartSidebar.classList.toggle('translate-x-full');
+                document.body.style.overflow = cartSidebar.classList.contains('translate-x-full') ? '' : 'hidden';
+            }
+
+            function showNotification(message) {
+                const notification = document.createElement('div');
+                notification.className = 'fixed bottom-4 right-4 bg-bistre text-white px-4 py-2 rounded-lg shadow-lg animate-fade-in z-50';
+                notification.textContent = message;
+                document.body.appendChild(notification);
+                setTimeout(() => {
+                    notification.classList.add('opacity-0', 'transition-opacity', 'duration-300');
+                    setTimeout(() => notification.remove(), 300);
+                }, 2000);
+            }
+
+            function addCartEventListeners() {
+                const cartButtons = document.querySelectorAll('.add-to-cart');
+                cartButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const productId = this.getAttribute('data-product-id');
+                        const productName = this.getAttribute('data-product-name');
+                        const productPrice = parseFloat(this.getAttribute('data-product-price'));
+                        const productImage = this.closest('.collection-card').querySelector('.collection-image').src;
+
+                        // Show loading spinner
+                        const originalContent = this.innerHTML;
+                        this.innerHTML = `
+                            <svg aria-hidden="true" role="status" class="inline w-4 h-4 me-2 text-gray-200 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#1C64F2"/>
+                            </svg>
+                            Adding...
+                        `;
+                        this.disabled = true;
+
+                        // Add to cart after 2 seconds
+                        setTimeout(() => {
+                            addToCart({
+                                id: productId,
+                                name: productName,
+                                price: productPrice,
+                                quantity: 1,
+                                size: 'M',
+                                color: 'Default',
+                                image: productImage
+                            });
+
+                            // Restore button
+                            this.innerHTML = originalContent;
+                            this.disabled = false;
+                            showNotification(`${productName} added to cart`);
+                        }, 1000);
+                    });
+                });
+
+                // Add event listeners to view details buttons
+                const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
+                viewDetailsButtons.forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const productId = this.getAttribute('data-product-id');
+                        if (productId && productId !== 'unknown') {
+                            window.location.href = `product.html?id=${productId}`;
+                        } else {
+                            console.error('Invalid product ID:', productId);
+                            // You could show an error message to the user here
+                        }
+                    });
+                });
+            }
+
+            function loadMoreProducts() {
+                // Show loading spinner
+                const originalContent = loadMoreBtn.innerHTML;
+                loadMoreBtn.innerHTML = `
+                    <svg aria-hidden="true" role="status" class="inline w-4 h-4 me-2 text-gray-200 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#1C64F2"/>
+                    </svg>
+                    Loading...
+                `;
+                loadMoreBtn.disabled = true;
+
+                // Simulate loading delay
+                setTimeout(() => {
+                    const startIndex = currentPage * itemsPerPage;
+                    const endIndex = startIndex + itemsPerPage;
+                    const productsToAdd = currentFilteredProducts.slice(startIndex, endIndex);
+
+                    if (productsToAdd.length > 0) {
+                        productsToAdd.forEach(product => {
+                            const card = createProductCard(product);
+                            document.getElementById('products-container').appendChild(card);
+                        });
+
+                        addCartEventListeners(); // Re-add event listeners for newly added cards
+                        currentPage++;
+
+                        // Check if we've loaded all products
+                        if (endIndex >= currentFilteredProducts.length) {
+                            loadMoreBtn.disabled = true;
+                            loadMoreBtn.textContent = 'No more products';
+                        } else {
+                            // Restore button
+                            loadMoreBtn.innerHTML = originalContent;
+                            loadMoreBtn.disabled = false;
+                        }
+                    } else {
+                        loadMoreBtn.disabled = true;
+                        loadMoreBtn.textContent = 'No more products';
+                    }
+                }, 1000); // 1 second loading delay
+            }
+
+            // Function to create product card
+            function createProductCard(product) {
+                const card = document.createElement('div');
+                card.className = 'collection-card rounded-xl overflow-hidden bg-white shadow-lg';
+                card.setAttribute('data-category', product.category);
+                
+                // Ensure product ID exists and is valid
+                const productId = product.id || product._id || 'unknown';
+                
+                card.innerHTML = `
+                    <div class="relative aspect-square overflow-hidden">
+                        <img
+                            src="${product.image}"
+                            alt="${product.name}"
+                            class="w-full h-full object-cover collection-image"
+                        >
+                        <div class="absolute inset-0 collection-overlay flex flex-col justify-end p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2 collection-title">${product.name}</h3>
+                            <p class="text-white/80 mb-4">${product.description}</p>
+                            <div class="flex space-x-2">
+                                <a href="product.html?id=${productId}" class="view-details-btn px-4 py-2 rounded-full font-space uppercase tracking-wider text-xs" data-product-id="${productId}">
+                                    View Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-bistre mb-1">${product.name}</h3>
+                                <p class="text-bistre/70 text-sm">${product.category.includes('new') ? 'Spring 2024 Collection' : product.category.includes('limited') ? 'Limited Edition' : 'Classic Collection'}</p>
+                            </div>
+                            <span class="font-space uppercase tracking-wider text-xs ${product.category.includes('new') ? 'text-aquamarine' : product.category.includes('limited') ? 'text-mauveine' : 'text-yellowish'}">${product.category.includes('new') ? 'NEW' : product.category.includes('limited') ? 'LIMITED' : product.category.includes('bestseller') ? 'BESTSELLER' : ''}</span>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-lg font-bold text-bistre">৳${product.price}.00</span>
+                            <button class="add-to-cart flex items-center bg-fabric text-bistre hover:text-mauveine transition px-3 py-2 rounded" data-product-id="${productId}" data-product-name="${product.name}" data-product-price="${product.price}">
+                                <span class="mr-2">Add to Cart </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
                             </button>
                         </div>
                     </div>
                 `;
-            });
+                return card;
+            }
+        });
+    </script>
+</body>
 
-            cartItemsContainer.innerHTML = itemsHTML;
-            cartSubtotal.textContent = `৳${subtotal.toFixed(2)}`;
-
-            // Add event listeners to remove buttons and quantity buttons
-            document.querySelectorAll('.remove-item').forEach(button => {
-                button.addEventListener('click', function (e) {
-                    e.stopPropagation(); // Prevent event bubbling
-                    const itemId = this.getAttribute('data-id');
-                    removeFromCart(itemId);
-                });
-            });
-
-            // Add event listeners to quantity buttons
-            document.querySelectorAll('.quantity-btn').forEach(button => {
-                button.addEventListener('click', function (e) {
-                    e.stopPropagation(); // Prevent event bubbling
-                    const itemId = this.getAttribute('data-id');
-                    const action = this.getAttribute('data-action');
-                    updateItemQuantity(itemId, action);
-                });
-            });
-        }
-
-        function toggleCart() {
-            cartSidebar.classList.toggle('translate-x-full');
-            document.body.style.overflow = cartSidebar.classList.contains('translate-x-full') ? '' : 'hidden';
-        }
-
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.className = 'fixed bottom-4 right-4 bg-bistre text-white px-4 py-2 rounded-lg shadow-lg animate-fade-in z-50';
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            setTimeout(() => {
-                notification.classList.add('opacity-0', 'transition-opacity', 'duration-300');
-                setTimeout(() => notification.remove(), 300);
-            }, 2000);
-        }
-
-        function addCartEventListeners() {
-            const cartButtons = document.querySelectorAll('.add-to-cart');
-            cartButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const productId = this.getAttribute('data-product-id');
-                    const productName = this.getAttribute('data-product-name');
-                    const productPrice = parseFloat(this.getAttribute('data-product-price'));
-                    const productImage = this.closest('.collection-card').querySelector('.collection-image').src;
-
-                    // Show loading spinner
-                    const originalContent = this.innerHTML;
-                    this.innerHTML = `
-                        <svg aria-hidden="true" role="status" class="inline w-4 h-4 me-2 text-gray-200 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-                            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#1C64F2"/>
-                        </svg>
-                        Adding...
-                    `;
-                    this.disabled = true;
-
-                    // Add to cart after 2 seconds
-                    setTimeout(() => {
-                        addToCart({
-                            id: productId,
-                            name: productName,
-                            price: productPrice,
-                            quantity: 1,
-                            size: 'M',
-                            color: 'Default',
-                            image: productImage
-                        });
-
-                        // Restore button
-                        this.innerHTML = originalContent;
-                        this.disabled = false;
-                        showNotification(`${productName} added to cart`);
-                    }, 1000);
-                });
-            });
-        }
-
-        function loadMoreProducts() {
-            // Show loading spinner
-            const originalContent = loadMoreBtn.innerHTML;
-            loadMoreBtn.innerHTML = `
-                <svg aria-hidden="true" role="status" class="inline w-4 h-4 me-2 text-gray-200 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-                    <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#1C64F2"/>
-                </svg>
-                Loading...
-            `;
-            loadMoreBtn.disabled = true;
-
-            // Simulate loading delay
-            setTimeout(() => {
-                const startIndex = currentPage * itemsPerPage;
-                const endIndex = startIndex + itemsPerPage;
-                const productsToAdd = currentFilteredProducts.slice(startIndex, endIndex);
-
-                if (productsToAdd.length > 0) {
-                    productsToAdd.forEach(product => {
-                        const card = createProductCard(product);
-                        document.getElementById('products-container').appendChild(card);
-                    });
-
-                    addCartEventListeners(); // Re-add event listeners for newly added cards
-                    currentPage++;
-
-                    // Check if we've loaded all products
-                    if (endIndex >= currentFilteredProducts.length) {
-                        loadMoreBtn.disabled = true;
-                        loadMoreBtn.textContent = 'No more products';
-                    } else {
-                        // Restore button
-                        loadMoreBtn.innerHTML = originalContent;
-                        loadMoreBtn.disabled = false;
-                    }
-                } else {
-                    loadMoreBtn.disabled = true;
-                    loadMoreBtn.textContent = 'No more products';
-                }
-            }, 1000); // 1 second loading delay
-        }
-
-        // Function to create product card
-        function createProductCard(product) {
-            const card = document.createElement('div');
-            card.className = 'collection-card rounded-xl overflow-hidden bg-white shadow-lg';
-            card.setAttribute('data-category', product.category);
-            card.innerHTML = `
-                <div class="relative aspect-square overflow-hidden">
-                    <img
-                        src="${product.image}"
-                        alt="${product.name}"
-                        class="w-full h-full object-cover collection-image"
-                    >
-                    <div class="absolute inset-0 collection-overlay flex flex-col justify-end p-6">
-                        <h3 class="text-2xl font-bold text-white mb-2 collection-title">${product.name}</h3>
-                        <p class="text-white/80 mb-4">${product.description}</p>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-bistre mb-1">${product.name}</h3>
-                            <p class="text-bistre/70 text-sm">${product.category.includes('new') ? 'Spring 2024 Collection' : product.category.includes('limited') ? 'Limited Edition' : 'Classic Collection'}</p>
-                        </div>
-                        <span class="font-space uppercase tracking-wider text-xs ${product.category.includes('new') ? 'text-aquamarine' : product.category.includes('limited') ? 'text-mauveine' : 'text-yellowish'}">${product.category.includes('new') ? 'NEW' : product.category.includes('limited') ? 'LIMITED' : product.category.includes('bestseller') ? 'BESTSELLER' : ''}</span>
-                    </div>
-                    <div class="mt-4 flex justify-between items-center">
-                        <span class="text-lg font-bold text-bistre">৳${product.price}.00</span>
-                        <button class="add-to-cart flex items-center bg-fabric text-bistre hover:text-mauveine transition px-3 py-2 rounded" data-product-id="${product.id}" data-product-name="${product.name}" data-product-price="${product.price}">
-                            <span class="mr-2">Add to Cart</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            `;
-            return card;
-        }
-    });
-</script>
+</html>

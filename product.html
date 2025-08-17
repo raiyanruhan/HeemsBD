@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HEEMS | Product Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Archivo:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        brownsugar: "#AF6B41",
+                        bistre: "#4C3329",
+                        mauveine: "#DC2F02",
+                        imperialred: "#FB3A48",
+                        aquamarine: "#28EEB6",
+                        yellowish: "#FBDA58",
+                        orange: "#FAA049",
+                        red2: "#C01A27",
+                        pinkish: "#B51490",
+                        purpletext: "#a178b7",
+                        darkbg: "#1a0f1a",
+                        fabric: "#f5f0e8",
+                    },
+                    fontFamily: {
+                        bungee: ["Bungee Spice", "cursive"],
+                        archivo: ["Archivo", "sans-serif"],
+                        space: ["Space Grotesk", "sans-serif"],
+                    },
+                    animation: {
+                        float: "float 6s ease-in-out infinite",
+                        "float-reverse": "float 6s ease-in-out infinite reverse",
+                        "pulse-slow": "pulse 8s cubic-bezier(0.4, 1, 0.6, 1) infinite",
+                        "text-gradient": "text-gradient 8s linear infinite",
+                        marquee: "marquee 20s linear infinite",
+                        "fade-in": "fadeIn 1.5s ease-out forwards",
+                        "slide-up": "slideUp 1.2s ease-out forwards",
+                        "tilt-shake": "tilt-shake 0.5s ease-in-out",
+                    },
+                    keyframes: {
+                        float: {
+                            "0%, 100%": { transform: "translateY(0)" },
+                            "50%": { transform: "translateY(-20px)" },
+                        },
+                        "text-gradient": {
+                            "0%": { "background-position": "0% 50%" },
+                            "50%": { "background-position": "100% 50%" },
+                            "100%": { "background-position": "0% 50%" },
+                        },
+                        marquee: {
+                            "0%": { transform: "translateX(0)" },
+                            "100%": { transform: "translateX(-100%)" },
+                        },
+                        fadeIn: {
+                            "0%": { opacity: 0 },
+                            "100%": { opacity: 1 },
+                        },
+                        slideUp: {
+                            "0%": { opacity: 0, transform: "translateY(40px)" },
+                            "100%": { opacity: 1, transform: "translateY(0)" },
+                        },
+                        "tilt-shake": {
+                            "0%, 100%": { transform: "rotate(0deg)" },
+                            "25%": { transform: "rotate(-5deg)" },
+                            "75%": { transform: "rotate(5deg)" },
+                        },
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        @font-face {
+            font-family: 'CodepotroAbuSayed';
+            src: url('assets/fonts/CodepotroAbuSayed.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'HindSiliguri';
+            src: url('assets/fonts/HindSiliguri-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        html {
+            font-size: 14px;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: "Archivo", sans-serif;
+            background-color: #f5f0e8;
+            color: #1a0f1a;
+            overflow-x: hidden;
+        }
+        .text-stroke {
+            -webkit-text-stroke: 1px currentColor;
+            color: transparent;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #fb3a48, #DC2F02, #28eeb6);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .fabric-texture {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.059 1.645-.073 4.849-.073z' fill='%23af6b41' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        .text-shuffle {
+            display: inline-block;
+            position: relative;
+        }
+        .text-shuffle span {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .text-shuffle span.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .menu-item {
+            position: relative;
+        }
+        .menu-item:after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: currentColor;
+            transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .menu-item:hover:after {
+            width: 100%;
+        }
+        .border-animate {
+            position: relative;
+        }
+        .border-animate:before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border: 2px solid transparent;
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            border-radius: inherit;
+            animation: text-gradient 8s linear infinite;
+            background-size: 300% 300%;
+        }
+        .filter-btn.active {
+            background-color: #4C3329;
+            color: #f5f0e8;
+        }
+        .product-modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(20px);
+        }
+        .product-modal.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .modal-overlay {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+        .size-option {
+            transition: all 0.2s ease;
+        }
+        .size-option:hover {
+            transform: scale(1.1);
+        }
+        .size-option.selected {
+            background-color: #4C3329;
+            color: #f5f0e8;
+        }
+        .size-option.unavailable {
+            opacity: 0.5;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+        .color-option {
+            transition: all 0.2s ease;
+        }
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+        .color-option.selected {
+            outline: 2px solid #4C3329;
+            outline-offset: 2px;
+        }
+        .quantity-selector button {
+            transition: all 0.2s ease;
+        }
+        .quantity-selector button:hover {
+            background-color: #4C3329;
+            color: #f5f0e8;
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        /* Product Detail Page Specific Styles */
+        .product-gallery {
+            height: 500px;
+        }
+        .product-thumbnails {
+            height: 500px;
+        }
+        .thumbnail {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .thumbnail:hover {
+            opacity: 0.8;
+        }
+        .thumbnail.active {
+            border: 2px solid #AF6B41;
+        }
+        .zoom-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .zoom-result {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 1px solid #AF6B41;
+            border-radius: 4px;
+            background-repeat: no-repeat;
+            display: none;
+            z-index: 100;
+            pointer-events: none;
+        }
+        /* Loading Spinner */
+        .loading-spinner {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #AF6B41;
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: #f5f0e8;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .progress-bar {
+            height: 100%;
+            background: #AF6B41;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+        .stock-indicator {
+            height: 4px;
+            background-color: #e5e7eb;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .stock-progress {
+            height: 100%;
+            background-color: #10b981;
+            transition: width 0.5s ease;
+        }
+        @media (max-width: 768px) {
+            .product-gallery {
+                height: 350px;
+            }
+            .product-thumbnails {
+                height: auto;
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 1rem;
+            }
+            .thumbnail {
+                min-width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body class="fabric-texture antialiased">
+    <!-- Progress Bar -->
+    <div class="progress-container" id="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <script>
+        // Hide progress bar smoothly after it reaches 100%
+        (function () {
+            const progressBar = document.getElementById('progress-bar');
+            const progressContainer = document.getElementById('progress-container');
+            if (!progressBar || !progressContainer) return;
+            // Listen for width change to 100%
+            const observer = new MutationObserver(() => {
+                if (progressBar.style.width === '100%') {
+                    setTimeout(() => {
+                        progressContainer.style.transition = 'opacity 0.5s';
+                        progressContainer.style.opacity = '0';
+                        setTimeout(() => {
+                            progressContainer.style.display = 'none';
+                        }, 500);
+                    }, 1600);
+                }
+            });
+            observer.observe(progressBar, { attributes: true, attributeFilter: ['style'] });
+        })();
+    </script>
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center transition-opacity duration-500">
+        <div class="loading-spinner mb-4"></div>
+        <p class="text-bistre font-space uppercase tracking-wider">Loading Product Details...</p>
+    </div>
+    <!-- Animated Background Elements -->
+    <div class="fixed inset-0 overflow-hidden -z-10">
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-mauveine/10 blur-3xl animate-pulse-slow"></div>
+        <div class="absolute top-3/4 right-1/4 w-96 h-96 rounded-full bg-aquamarine/10 blur-3xl animation-delay-2000">
+        </div>
+        <div
+            class="absolute bottom-1/4 left-1/3 w-80 h-80 rounded-full bg-imperialred/10 blur-3xl animation-delay-4000">
+        </div>
+    </div>
+    <!-- Navigation -->
+    <header id="main-header"
+        class="fixed top-0 left-0 w-full z-40 backdrop-blur-md bg-fabric/80 border-b border-fabric/20 shadow-md transition-all duration-300 ease-in-out py-2">
+        <div class="container mx-auto px-6 flex justify-between items-center h-16">
+            <!-- Logo and Text -->
+            <a href="landing.html" class="flex items-center space-x-2">
+                <img src="assets/logo.png" alt="Logo" class="h-14 w-auto object-contain" />
+                <span
+                    class="block h-16 gradient-text text-xl md:text-2xl lg:text-3xl font-bungee flex items-center justify-center">HEEMS</span>
+            </a>
+            <!-- Desktop Navigation Menu -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="landing.html" class="menu-item font-space uppercase tracking-wider">Home</a>
+                <a href="collections.html" class="menu-item font-space uppercase tracking-wider text-bistre font-bold">Our Products</a>
+                <a href="story.html" class="menu-item font-space uppercase tracking-wider">Our Story</a>
+                <a href="contact.html" class="menu-item font-space uppercase tracking-wider">Contact Us</a>
+            </nav>
+            <!-- Shopping Cart -->
+            <div class="hidden md:flex items-center space-x-4">
+                <button class="relative" id="cart-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span
+                        class="absolute -top-2 -right-2 bg-mauveine text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+                        id="cart-count"><i class="fa-solid fa-truck-ramp-box"></i></span>
+                </button>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-bistre" id="mobile-menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </header>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed inset-y-0 right-0 w-full sm:w-96 bg-white z-50 shadow-xl p-6 md:hidden"
+        id="mobile-menu">
+        <div class="flex justify-end mb-8">
+            <button class="text-bistre" id="mobile-menu-close">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="flex flex-col space-y-6">
+            <a href="landing.html" class="text-bistre text-lg font-space uppercase tracking-wider">Home</a>
+            <a href="collections.html" class="text-bistre text-lg font-space uppercase tracking-wider font-bold">Our Products</a>
+            <a href="story.html" class="text-bistre text-lg font-space uppercase tracking-wider">Our Story</a>
+            <a href="contact.html" class="text-bistre text-lg font-space uppercase tracking-wider">Contact Us</a>
+            <div class="pt-4 border-t border-bistre/20">
+                <button class="flex items-center space-x-2" id="mobile-cart-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span>Cart</span>
+                    <span class="bg-mauveine text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+                        id="mobile-cart-count"><i class="fa-solid fa-truck-ramp-box"></i></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Product Details Section -->
+    <section class="pt-32 pb-20">
+        <div class="container mx-auto px-6">
+            <!-- Breadcrumbs -->
+            <div class="mb-8">
+                <nav class="flex" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-1 md:space-x-2">
+                        <li class="inline-flex items-center">
+                            <a href="landing.html" class="inline-flex items-center text-sm font-medium text-bistre/70 hover:text-mauveine">
+                                <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+                                </svg>
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <div class="flex items-center">
+                                <svg class="w-3 h-3 text-bistre/70 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                                </svg>
+                                <a href="collections.html" class="ml-1 text-sm font-medium text-bistre/70 hover:text-mauveine md:ml-2">Products</a>
+                            </div>
+                        </li>
+                        <li aria-current="page">
+                            <div class="flex items-center">
+                                <svg class="w-3 h-3 text-bistre/70 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                                </svg>
+                                <span class="ml-1 text-sm font-medium text-bistre md:ml-2" id="breadcrumb-product-name">Product Details</span>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <!-- Product Content -->
+            <div class="flex flex-col lg:flex-row gap-12">
+                <!-- Product Gallery -->
+                <div class="w-full lg:w-1/2">
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <!-- Main Image -->
+                        <div class="w-full md:w-4/5">
+                            <div class="zoom-container relative bg-white rounded-xl shadow-lg overflow-hidden product-gallery">
+                                <img id="main-product-image" src="" alt="Product Image" class="w-full h-full object-contain cursor-zoom-in">
+                                <div id="zoom-result" class="zoom-result"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Thumbnails -->
+                        <div class="w-full md:w-1/5">
+                            <div class="product-thumbnails flex flex-col gap-2 overflow-y-auto">
+                                <!-- Thumbnails will be added here by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Info -->
+                <div class="w-full lg:w-1/2">
+                    <div class="bg-white rounded-xl shadow-lg p-8">
+                        <!-- Product Title -->
+                        <h1 class="text-3xl md:text-4xl font-bold text-bistre mb-2" id="product-title">Loading...</h1>
+                        
+                        <!-- Product Category -->
+                        <div class="flex items-center mb-4">
+                            <span class="font-space uppercase tracking-wider text-xs bg-bistre text-white px-2 py-1 rounded" id="product-category">LOADING</span>
+                            <span class="ml-2 text-sm text-bistre/70" id="product-availability"></span>
+                        </div>
+                        
+                        <!-- Product Price -->
+                        <div class="mb-6">
+                            <span class="text-3xl font-bold text-mauveine" id="product-price">৳0.00</span>
+                        </div>
+                        
+                        <!-- Stock Indicator -->
+                        <div class="mb-4 hidden" id="stock-indicator-container">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm text-bistre/70">Available: <span id="stock-count">0</span>/<span id="max-quantity">0</span></span>
+                                <span class="text-xs font-medium" id="stock-status"></span>
+                            </div>
+                            <div class="stock-indicator">
+                                <div class="stock-progress" id="stock-progress"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product Description -->
+                        <div class="mb-8">
+                            <p class="text-bistre/80" id="product-description">Loading product description...</p>
+                        </div>
+                        
+                        <!-- Size Selector -->
+                        <div class="mb-6">
+                            <h3 class="text-sm font-space uppercase tracking-wider text-bistre mb-3">Size</h3>
+                            <div class="flex flex-wrap gap-2" id="size-options-container">
+                                <!-- Size options will be added here by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <!-- Color Selector -->
+                        <div class="mb-8">
+                            <h3 class="text-sm font-space uppercase tracking-wider text-bistre mb-3">Color</h3>
+                            <div class="flex flex-wrap gap-3" id="color-options-container">
+                                <!-- Color options will be added here by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <!-- Quantity Selector -->
+                        <div class="mb-8">
+                            <h3 class="text-sm font-space uppercase tracking-wider text-bistre mb-3">Quantity</h3>
+                            <div class="quantity-selector flex items-center">
+                                <button class="w-10 h-10 flex items-center justify-center border border-bistre/30 rounded-l-lg" id="decrease-qty">-</button>
+                                <input type="number" min="1" value="1" class="w-16 h-10 text-center border-t border-b border-bistre/30" id="product-qty">
+                                <button class="w-10 h-10 flex items-center justify-center border border-bistre/30 rounded-r-lg" id="increase-qty">+</button>
+                            </div>
+                            <p class="text-xs text-bistre/50 mt-1" id="max-quantity-message"></p>
+                        </div>
+                        
+                        <!-- Add to Cart Button -->
+                        <button class="w-full py-4 bg-bistre text-white font-space uppercase tracking-wider text-sm hover:bg-bistre/90 transition mb-4 flex items-center justify-center" id="add-to-cart-btn">
+                            <span>Add to Cart</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            </svg>
+                        </button>
+                        
+                        <!-- Wishlist Button -->
+                        <button class="w-full py-3 border border-bistre text-bistre font-space uppercase tracking-wider text-sm hover:bg-bistre/10 transition flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                            </svg>
+                            <span>Add to Wishlist</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Related Products Section -->
+    <section class="pb-24">
+        <div class="container mx-auto px-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-bistre mb-8">You May Also Like</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="related-products">
+                <!-- Related products will be loaded here -->
+            </div>
+        </div>
+    </section>
+    <!-- Shopping Cart Sidebar -->
+    <div class="fixed inset-y-0 right-0 w-full sm:w-96 bg-white z-50 shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out"
+        id="cart-sidebar">
+        <div class="h-full flex flex-col">
+            <div class="p-6 border-b border-bistre/20 flex justify-between items-center">
+                <h3 class="text-xl font-bold text-bistre">Your Cart</h3>
+                <button class="text-bistre hover:text-mauveine transition" id="close-cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-6" id="cart-items">
+                <!-- Cart items will be added here dynamically -->
+                <div class="text-center py-12 text-bistre/70">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-bistre/30" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <p>Your cart is empty</p>
+                </div>
+            </div>
+            <div class="p-6 border-t border-bistre/20">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-bistre">Subtotal</span>
+                    <span class="font-bold text-bistre" id="cart-subtotal">৳0.00</span>
+                </div>
+                <p class="text-sm text-bistre/70 mb-6">Shipping and taxes calculated at checkout</p>
+                <button
+                    class="w-full px-6 py-3 bg-bistre text-white font-space uppercase tracking-wider text-sm hover:bg-bistre/90 transition">
+                    Checkout
+                </button>
+                <div class="text-center mt-4">
+                    <a href="collections.html" class="text-sm text-bistre/70 hover:text-mauveine transition">Continue
+                        Shopping</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer id="contact" class="bg-gradient-to-r from-gray-800 via-gray-900 to-black text-fabric/70 py-12 relative overflow-hidden" style="background: linear-gradient(135deg, #4b1f1f, #1a1a1a); border-top: 2px solid #fcd34d; box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2);">
+        <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <!-- Left Section -->
+            <div class="mb-6 md:mb-0 flex-1">
+                <h2 class="text-3xl font-bungee mb-4" style="letter-spacing: 2px;">HEEMS</h2>
+                <p class="text-sm max-w-xs mb-4" style="font-family: 'Courier New', monospace;">Experimental fashion house from Galachipa, Bangladesh. Redefining South Asian aesthetics.</p>
+                <!-- Social icons -->
+                <div class="flex justify-center md:justify-start space-x-6 mb-4">
+                    <a href="#" class="hover:text-aquamarine transition duration-300">
+                        <!-- Facebook Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.35C0 23.407.593 24 1.325 24h21.35C23.407 24 24 23.407 24 22.675V1.325C24 .593 23.407 0 22.675 0zM8.06 15.845H3.937V9.296h4.125V15.845zm.84-6.99h-.002c-1.158 0-1.85-.656-1.85-1.678V6.08c0-1.022.692-1.678 1.85-1.678h.002c1.17 0 1.86.656 1.86 1.678v1.097c0 1.022-.69 1.678-1.86 1.678zM18.188 15.845h-3.197v-3.469h.038c.877 0 1.343-.54 1.343-1.177 0-.638-.467-1.177-1.343-1.177h-.037V8.93h3.126c2.756 0 4.196 1.588 4.196 3.954v.001c0 2.367-1.44 3.96-4.196 3.96z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="hover:text-aquamarine transition duration-300">
+                        <!-- Twitter Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 4.557a9.83 9.83 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724 9.861 9.861 0 0 1-3.127 1.195 4.92 4.92 0 0 0-8.384 4.482A13.978 13.978 0 0 1 1.671 3.149 4.916 4.916 0 0 0 3.195 9.722 4.903 4.903 0 0 1 .964 9.1v.062a4.92 4.92 0 0 0 3.941 4.827 4.996 4.996 0 0 1-2.212.084 4.927 4.927 0 0 0 4.6 3.417A9.868 9.868 0 0 1 0 19.54a13.94 13.94 0 0 0 7.548 2.209c9.057 0 14-7.514 14-14 0-.213-.005-.425-.014-.637A10.025 10.025 0 0 0 24 4.557z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="hover:text-aquamarine transition duration-300">
+                        <!-- LinkedIn Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.5c0-1.379-1.121-2.5-2.5-2.5s-2.5 1.121-2.5 2.5v5.5h-3v-10h3v1.293c.385-.296.842-.493 1.371-.493 1.519 0 2.75 1.231 2.75 2.75v6.45z"/>
+                        </svg>
+                    </a>
+                </div>
+                <p class="text-sm" style="font-family: 'Courier New', monospace;">contact@heemsclothing.com</p>
+            </div>
+            <!-- Right Section -->
+            <div class="flex-1 mt-8 md:mt-0 text-center md:text-right">
+                <p class="text-sm" style="font-family: 'Courier New', monospace;">&copy; 2024 Heems Clothing. All rights reserved. </p>
+            </div>
+        </div>
+        <!-- Glossy Overlay for Glossy Finish -->
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0)); mix-blend-mode: overlay; border-top: 2px solid #fcd34d; pointer-events: none;"></div>
+    </footer>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            // Cart functionality
+            let cart = loadCart();
+            // DOM Elements
+            const cartBtn = document.getElementById('cart-btn');
+            const mobileCartBtn = document.getElementById('mobile-cart-btn');
+            const cartSidebar = document.getElementById('cart-sidebar');
+            const closeCartButton = document.getElementById('close-cart');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartSubtotal = document.getElementById('cart-subtotal');
+            const cartCountElements = document.querySelectorAll('#cart-count, #mobile-cart-count');
+            const progressBar = document.getElementById('progress-bar');
+            const loadingOverlay = document.getElementById('loading-overlay');
+            // Initialize cart UI
+            updateCartUI();
+            // Get product ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            // Load product details
+            if (productId) {
+                loadProductDetails(productId);
+            } else {
+                // Handle case where no product ID is provided
+                document.getElementById('product-title').textContent = 'Product Not Found';
+                document.getElementById('product-description').textContent = 'The requested product could not be found. Please return to our collections page.';
+                document.getElementById('add-to-cart-btn').disabled = true;
+                hideLoadingOverlay();
+            }
+            // Cart sidebar toggle
+            if (cartBtn) {
+                cartBtn.addEventListener('click', toggleCart);
+            }
+            if (mobileCartBtn) {
+                mobileCartBtn.addEventListener('click', function () {
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (mobileMenu.classList.contains('open')) {
+                        mobileMenu.classList.remove('open');
+                    }
+                    toggleCart();
+                });
+            }
+            if (closeCartButton) {
+                closeCartButton.addEventListener('click', toggleCart);
+            }
+            // Close cart when clicking outside
+            document.addEventListener('click', function (event) {
+                // Only close cart if clicking outside the cart sidebar AND not on cart buttons
+                if (!cartSidebar.contains(event.target) &&
+                    !cartBtn.contains(event.target) &&
+                    !event.target.closest('#cart-sidebar') &&
+                    !event.target.closest('#cart-btn') &&
+                    !event.target.closest('#mobile-cart-btn')) {
+                    cartSidebar.classList.add('translate-x-full');
+                    document.body.style.overflow = '';
+                }
+            });
+            // Mobile menu functionality
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', function () {
+                    mobileMenu.classList.add('open');
+                });
+            }
+            if (mobileMenuClose) {
+                mobileMenuClose.addEventListener('click', function () {
+                    mobileMenu.classList.remove('open');
+                });
+            }
+            // Size selector
+            const sizeOptionsContainer = document.getElementById('size-options-container');
+            
+            // Color selector
+            const colorOptionsContainer = document.getElementById('color-options-container');
+            
+            // Quantity selector
+            const decreaseQty = document.getElementById('decrease-qty');
+            const increaseQty = document.getElementById('increase-qty');
+            const productQty = document.getElementById('product-qty');
+            const maxQuantityMessage = document.getElementById('max-quantity-message');
+            
+            decreaseQty.addEventListener('click', function () {
+                let currentValue = parseInt(productQty.value);
+                if (currentValue > 1) {
+                    productQty.value = currentValue - 1;
+                }
+            });
+            
+            increaseQty.addEventListener('click', function () {
+                let currentValue = parseInt(productQty.value);
+                const maxQuantity = parseInt(productQty.max);
+                
+                if (currentValue < maxQuantity) {
+                    productQty.value = currentValue + 1;
+                }
+            });
+            
+            // Add to cart button
+            const addToCartBtn = document.getElementById('add-to-cart-btn');
+            if (addToCartBtn) {
+                addToCartBtn.addEventListener('click', function () {
+                    const productId = this.getAttribute('data-product-id');
+                    const productName = document.getElementById('product-title').textContent;
+                    const productPrice = parseFloat(document.getElementById('product-price').textContent.replace('৳', ''));
+                    const productImage = document.getElementById('main-product-image').src;
+                    
+                    // Get selected size and color
+                    const selectedSizeElement = document.querySelector('.size-option.selected');
+                    const selectedColorElement = document.querySelector('.color-option.selected');
+                    
+                    if (!selectedSizeElement || !selectedColorElement) {
+                        showNotification('Please select size and color');
+                        return;
+                    }
+                    
+                    const selectedSize = selectedSizeElement.getAttribute('data-size');
+                    const selectedColor = selectedColorElement.getAttribute('data-color');
+                    const quantity = parseInt(document.getElementById('product-qty').value);
+                    
+                    // Show loading state
+                    const originalContent = this.innerHTML;
+                    this.innerHTML = `
+                        <svg aria-hidden="true" role="status" class="inline w-4 h-4 me-2 text-gray-200 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#1C64F2"/>
+                        </svg>
+                        Adding...
+                    `;
+                    this.disabled = true;
+                    
+                    // Simulate delay for UX
+                    setTimeout(() => {
+                        addToCart({
+                            id: productId,
+                            name: productName,
+                            price: productPrice,
+                            quantity: quantity,
+                            size: selectedSize,
+                            color: selectedColor,
+                            image: productImage
+                        });
+                        
+                        // Restore button
+                        this.innerHTML = originalContent;
+                        this.disabled = false;
+                        showNotification(`${productName} added to cart`);
+                    }, 1000);
+                });
+            }
+            
+            // Image zoom functionality
+            const mainImage = document.getElementById('main-product-image');
+            const zoomResult = document.getElementById('zoom-result');
+            if (mainImage && zoomResult) {
+                mainImage.addEventListener('mousemove', function(e) {
+                    zoomResult.style.display = 'block';
+                    
+                    // Calculate the position of the cursor relative to the image
+                    const posX = e.offsetX;
+                    const posY = e.offsetY;
+                    
+                    // Calculate the percentage position
+                    const percentX = (posX / this.offsetWidth) * 100;
+                    const percentY = (posY / this.offsetHeight) * 100;
+                    
+                    // Set the background position of the zoom result
+                    zoomResult.style.backgroundPosition = `${percentX}% ${percentY}%`;
+                    
+                    // Set the background image
+                    zoomResult.style.backgroundImage = `url('${this.src}')`;
+                });
+                
+                mainImage.addEventListener('mouseleave', function() {
+                    zoomResult.style.display = 'none';
+                });
+            }
+            
+            // Functions
+            function loadCart() {
+                const savedCart = localStorage.getItem('heems-cart');
+                return savedCart ? JSON.parse(savedCart) : [];
+            }
+            
+            function saveCart() {
+                localStorage.setItem('heems-cart', JSON.stringify(cart));
+            }
+            
+            function addToCart(item) {
+                // Check if product already in cart with same size and color
+                const existingItemIndex = cart.findIndex(cartItem =>
+                    cartItem.id === item.id &&
+                    cartItem.size === item.size &&
+                    cartItem.color === item.color
+                );
+                
+                if (existingItemIndex !== -1) {
+                    // Update quantity if item already exists
+                    cart[existingItemIndex].quantity += item.quantity;
+                } else {
+                    // Add new item to cart
+                    cart.push(item);
+                }
+                
+                saveCart();
+                updateCartUI();
+            }
+            
+            function updateItemQuantity(itemId, action) {
+                const itemIndex = cart.findIndex(item => item.id === itemId);
+                if (itemIndex !== -1) {
+                    if (action === 'increase') {
+                        cart[itemIndex].quantity += 1;
+                    } else if (action === 'decrease') {
+                        if (cart[itemIndex].quantity > 1) {
+                            cart[itemIndex].quantity -= 1;
+                        } else {
+                            // Remove item if quantity becomes 0
+                            cart.splice(itemIndex, 1);
+                        }
+                    }
+                    saveCart();
+                    updateCartUI();
+                }
+            }
+            
+            function removeFromCart(itemId) {
+                cart = cart.filter(item => item.id !== itemId);
+                saveCart();
+                updateCartUI();
+            }
+            
+            function updateCartUI() {
+                // Update cart count
+                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                cartCountElements.forEach(el => el.textContent = totalItems);
+                
+                // Update cart sidebar if it exists on the page
+                if (!cartItemsContainer || !cartSubtotal) {
+                    return; // Not on a page with cart sidebar
+                }
+                
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = `
+                        <div class="text-center py-12 text-bistre/70">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-bistre/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                            </svg>
+                            <p>Your cart is empty</p>
+                        </div>
+                    `;
+                    cartSubtotal.textContent = '৳0.00';
+                    return;
+                }
+                
+                let itemsHTML = '';
+                let subtotal = 0;
+                
+                cart.forEach(item => {
+                    subtotal += item.price * item.quantity;
+                    itemsHTML += `
+                        <div class="flex py-4 border-b border-bistre/20">
+                            <div class="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden">
+                                <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-1 pl-4">
+                                <h4 class="font-bold text-bistre">${item.name}</h4>
+                                <p class="text-sm text-bistre/70 mb-1">${item.color}, ${item.size}</p>
+                                <p class="text-sm text-bistre/70">৳${item.price} × ${item.quantity}</p>
+                            </div>
+                            <div class="flex flex-col items-end space-y-2">
+                                <p class="font-bold text-bistre">৳${(item.price * item.quantity).toFixed(2)}</p>
+                                <div class="flex items-center space-x-2">
+                                    <button class="quantity-btn text-bistre hover:text-mauveine transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-bistre/30 hover:border-bistre" data-id="${item.id}" data-action="decrease">-</button>
+                                    <span class="text-sm text-bistre font-medium min-w-[20px] text-center">${item.quantity}</span>
+                                    <button class="quantity-btn text-bistre hover:text-mauveine transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-bistre/30 hover:border-bistre" data-id="${item.id}" data-action="increase">+</button>
+                                </div>
+                                <button class="text-xs text-bistre/50 hover:text-mauveine transition remove-item" data-id="${item.id}">
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                cartItemsContainer.innerHTML = itemsHTML;
+                cartSubtotal.textContent = `৳${subtotal.toFixed(2)}`;
+                
+                // Add event listeners to remove buttons and quantity buttons
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', function (e) {
+                        e.stopPropagation(); // Prevent event bubbling
+                        const itemId = this.getAttribute('data-id');
+                        removeFromCart(itemId);
+                    });
+                });
+                
+                // Add event listeners to quantity buttons
+                document.querySelectorAll('.quantity-btn').forEach(button => {
+                    button.addEventListener('click', function (e) {
+                        e.stopPropagation(); // Prevent event bubbling
+                        const itemId = this.getAttribute('data-id');
+                        const action = this.getAttribute('data-action');
+                        updateItemQuantity(itemId, action);
+                    });
+                });
+            }
+            
+            function toggleCart() {
+                cartSidebar.classList.toggle('translate-x-full');
+                document.body.style.overflow = cartSidebar.classList.contains('translate-x-full') ? '' : 'hidden';
+            }
+            
+            function showNotification(message) {
+                const notification = document.createElement('div');
+                notification.className = 'fixed bottom-4 right-4 bg-bistre text-white px-4 py-2 rounded-lg shadow-lg animate-fade-in z-50';
+                notification.textContent = message;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.classList.add('opacity-0', 'transition-opacity', 'duration-300');
+                    setTimeout(() => notification.remove(), 300);
+                }, 2000);
+            }
+            
+            function loadProductDetails(productId) {
+                // Start progress bar
+                updateProgress(10);
+                
+                fetch('data/dress.json')
+                    .then(response => {
+                        updateProgress(30);
+                        return response.json();
+                    })
+                    .then(products => {
+                        updateProgress(60);
+                        const product = products.find(p => p.id === productId);
+                        
+                        if (product) {
+                            // Update product details
+                            document.getElementById('product-title').textContent = product.name;
+                            document.getElementById('breadcrumb-product-name').textContent = product.name;
+                            document.getElementById('product-price').textContent = `৳${product.price}.00`;
+                            document.getElementById('product-description').textContent = product.descriptionLarger || product.description;
+                            
+                            // Set category badge
+                            const categoryBadge = document.getElementById('product-category');
+                            if (product.category.includes('new')) {
+                                categoryBadge.textContent = 'NEW';
+                                categoryBadge.classList.add('bg-aquamarine', 'text-bistre');
+                            } else if (product.category.includes('limited')) {
+                                categoryBadge.textContent = 'LIMITED';
+                                categoryBadge.classList.add('bg-mauveine', 'text-white');
+                            } else {
+                                categoryBadge.textContent = product.category.toUpperCase();
+                                categoryBadge.classList.add('bg-bistre', 'text-white');
+                            }
+                            
+                            // Set availability
+                            const availability = document.getElementById('product-availability');
+                            if (product.available) {
+                                availability.textContent = 'In Stock';
+                                availability.classList.add('text-aquamarine');
+                            } else {
+                                availability.textContent = 'Out of Stock';
+                                availability.classList.add('text-mauveine');
+                                document.getElementById('add-to-cart-btn').disabled = true;
+                            }
+                            
+                            // Set stock indicator if maxQuantity is available
+                            const stockIndicator = document.getElementById('stock-indicator-container');
+                            const stockCount = document.getElementById('stock-count');
+                            const maxQuantity = document.getElementById('max-quantity');
+                            const stockProgress = document.getElementById('stock-progress');
+                            const stockStatus = document.getElementById('stock-status');
+                            
+                            if (product.maxQuantity) {
+                                stockIndicator.classList.remove('hidden');
+                                stockCount.textContent = product.maxQuantity;
+                                maxQuantity.textContent = product.maxQuantity;
+                                
+                                // Calculate stock percentage
+                                const percentage = 100; // Assuming all items are available
+                                stockProgress.style.width = `${percentage}%`;
+                                
+                                // Set stock status text
+                                if (percentage > 75) {
+                                    stockStatus.textContent = 'High in stock';
+                                    stockStatus.classList.add('text-aquamarine');
+                                } else if (percentage > 25) {
+                                    stockStatus.textContent = 'Low in stock';
+                                    stockStatus.classList.add('text-yellowish');
+                                } else {
+                                    stockStatus.textContent = 'Very low in stock';
+                                    stockStatus.classList.add('text-mauveine');
+                                }
+                            } else {
+                                stockIndicator.classList.add('hidden');
+                            }
+                            
+                            // Set main image
+                            const mainImage = document.getElementById('main-product-image');
+                            mainImage.src = product.image;
+                            mainImage.alt = product.name;
+                            
+                            // Set thumbnails
+                            const thumbnailsContainer = document.querySelector('.product-thumbnails');
+                            thumbnailsContainer.innerHTML = '';
+                            
+                            // Add all available images as thumbnails
+                            let imageCount = 1;
+                            while (product[`image${imageCount}`] || (imageCount === 1 && product.image)) {
+                                const imgSrc = product[`image${imageCount}`] || product.image;
+                                const thumbnail = document.createElement('div');
+                                thumbnail.className = `thumbnail ${imageCount === 1 ? 'active' : ''}`;
+                                thumbnail.innerHTML = `<img src="${imgSrc}" alt="${product.name} thumbnail ${imageCount}" class="w-full h-full object-cover">`;
+                                
+                                // Add click event to change main image
+                                thumbnail.addEventListener('click', function() {
+                                    mainImage.src = imgSrc;
+                                    document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                                    this.classList.add('active');
+                                });
+                                
+                                thumbnailsContainer.appendChild(thumbnail);
+                                imageCount++;
+                            }
+                            
+                            // Set up size options
+                            sizeOptionsContainer.innerHTML = '';
+                            if (product.availableSizes && product.availableSizes.length > 0) {
+                                product.availableSizes.forEach((size, index) => {
+                                    const sizeOption = document.createElement('button');
+                                    sizeOption.className = `size-option px-4 py-2 border border-bistre rounded-full text-sm ${index === 0 ? 'selected' : ''}`;
+                                    sizeOption.setAttribute('data-size', size);
+                                    sizeOption.textContent = size;
+                                    
+                                    sizeOption.addEventListener('click', function () {
+                                        document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
+                                        this.classList.add('selected');
+                                    });
+                                    
+                                    sizeOptionsContainer.appendChild(sizeOption);
+                                });
+                            } else {
+                                // Default sizes if none specified
+                                const defaultSizes = ['XS', 'S', 'M', 'L', 'XL'];
+                                defaultSizes.forEach((size, index) => {
+                                    const sizeOption = document.createElement('button');
+                                    sizeOption.className = `size-option px-4 py-2 border border-bistre rounded-full text-sm ${index === 2 ? 'selected' : ''}`;
+                                    sizeOption.setAttribute('data-size', size);
+                                    sizeOption.textContent = size;
+                                    
+                                    sizeOption.addEventListener('click', function () {
+                                        document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
+                                        this.classList.add('selected');
+                                    });
+                                    
+                                    sizeOptionsContainer.appendChild(sizeOption);
+                                });
+                            }
+                            
+                            // Set up color options
+                            colorOptionsContainer.innerHTML = '';
+                            if (product.availableColors && product.availableColors.length > 0) {
+                                product.availableColors.forEach((color, index) => {
+                                    const colorOption = document.createElement('button');
+                                    colorOption.className = `color-option w-8 h-8 rounded-full ${index === 0 ? 'selected' : ''}`;
+                                    colorOption.setAttribute('data-color', color);
+                                    
+                                    // Set color based on color name
+                                    if (color.toLowerCase() === 'red') {
+                                        colorOption.classList.add('bg-red-500');
+                                    } else if (color.toLowerCase() === 'blue') {
+                                        colorOption.classList.add('bg-blue-500');
+                                    } else if (color.toLowerCase() === 'green') {
+                                        colorOption.classList.add('bg-green-500');
+                                    } else if (color.toLowerCase() === 'black') {
+                                        colorOption.classList.add('bg-black');
+                                    } else if (color.toLowerCase() === 'white') {
+                                        colorOption.classList.add('bg-white', 'border', 'border-bistre/30');
+                                    } else {
+                                        // Default to a gray color if not specified
+                                        colorOption.classList.add('bg-gray-300');
+                                    }
+                                    
+                                    colorOption.addEventListener('click', function () {
+                                        document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
+                                        this.classList.add('selected');
+                                    });
+                                    
+                                    colorOptionsContainer.appendChild(colorOption);
+                                });
+                            } else {
+                                // Default colors if none specified
+                                const defaultColors = ['Red', 'Blue', 'Green', 'Black', 'White'];
+                                defaultColors.forEach((color, index) => {
+                                    const colorOption = document.createElement('button');
+                                    colorOption.className = `color-option w-8 h-8 rounded-full ${index === 0 ? 'selected' : ''}`;
+                                    colorOption.setAttribute('data-color', color);
+                                    
+                                    if (color === 'Red') {
+                                        colorOption.classList.add('bg-red-500');
+                                    } else if (color === 'Blue') {
+                                        colorOption.classList.add('bg-blue-500');
+                                    } else if (color === 'Green') {
+                                        colorOption.classList.add('bg-green-500');
+                                    } else if (color === 'Black') {
+                                        colorOption.classList.add('bg-black');
+                                    } else if (color === 'White') {
+                                        colorOption.classList.add('bg-white', 'border', 'border-bistre/30');
+                                    }
+                                    
+                                    colorOption.addEventListener('click', function () {
+                                        document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
+                                        this.classList.add('selected');
+                                    });
+                                    
+                                    colorOptionsContainer.appendChild(colorOption);
+                                });
+                            }
+                            
+                            // Set quantity limits
+                            const quantityInput = document.getElementById('product-qty');
+                            if (product.maxQuantity) {
+                                quantityInput.max = product.maxQuantity;
+                                maxQuantityMessage.textContent = `Maximum ${product.maxQuantity} per customer`;
+                            } else {
+                                quantityInput.removeAttribute('max');
+                                maxQuantityMessage.textContent = '';
+                            }
+                            
+                            // Set add to cart button data
+                            document.getElementById('add-to-cart-btn').setAttribute('data-product-id', product.id);
+                            
+                            // Load related products
+                            loadRelatedProducts(product.category, product.id);
+                            
+                            updateProgress(90);
+                        } else {
+                            // Product not found
+                            document.getElementById('product-title').textContent = 'Product Not Found';
+                            document.getElementById('product-description').textContent = 'The requested product could not be found. Please return to our collections page.';
+                            document.getElementById('add-to-cart-btn').disabled = true;
+                        }
+                        
+                        updateProgress(100);
+                        setTimeout(hideLoadingOverlay, 500);
+                    })
+                    .catch(error => {
+                        console.error('Error loading product details:', error);
+                        document.getElementById('product-title').textContent = 'Error Loading Product';
+                        document.getElementById('product-description').textContent = 'There was an error loading the product details. Please try again later.';
+                        document.getElementById('add-to-cart-btn').disabled = true;
+                        updateProgress(100);
+                        setTimeout(hideLoadingOverlay, 500);
+                    });
+            }
+            
+            function loadRelatedProducts(category, currentProductId) {
+                fetch('data/dress.json')
+                    .then(response => response.json())
+                    .then(products => {
+                        // Filter products by same category (excluding current product)
+                        const relatedProducts = products.filter(p => 
+                            p.id !== currentProductId && 
+                            p.category.includes(category.split(' ')[0]) // Match first category word
+                        ).slice(0, 3); // Get up to 3 related products
+                        
+                        const relatedContainer = document.getElementById('related-products');
+                        
+                        if (relatedProducts.length > 0) {
+                            relatedProducts.forEach(product => {
+                                const card = createProductCard(product);
+                                relatedContainer.appendChild(card);
+                            });
+                            
+                            // Add event listeners to "Add to Cart" buttons in related products
+                            document.querySelectorAll('.related-add-to-cart').forEach(button => {
+                                button.addEventListener('click', function() {
+                                    const productId = this.getAttribute('data-product-id');
+                                    const productName = this.getAttribute('data-product-name');
+                                    const productPrice = parseFloat(this.getAttribute('data-product-price'));
+                                    const productImage = this.closest('.collection-card').querySelector('.collection-image').src;
+                                    
+                                    // Show loading state
+                                    const originalContent = this.innerHTML;
+                                    this.innerHTML = `
+                                        <svg aria-hidden="true" role="status" class="inline w-4 h-4 me-2 text-gray-200 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                                            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#1C64F2"/>
+                                        </svg>
+                                        Adding...
+                                    `;
+                                    this.disabled = true;
+                                    
+                                    // Add to cart after delay
+                                    setTimeout(() => {
+                                        addToCart({
+                                            id: productId,
+                                            name: productName,
+                                            price: productPrice,
+                                            quantity: 1,
+                                            size: 'M',
+                                            color: 'Default',
+                                            image: productImage
+                                        });
+                                        
+                                        // Restore button
+                                        this.innerHTML = originalContent;
+                                        this.disabled = false;
+                                        showNotification(`${productName} added to cart`);
+                                    }, 1000);
+                                });
+                            });
+                        } else {
+                            relatedContainer.innerHTML = '<p class="text-bistre/70">No related products found.</p>';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error loading related products:', error);
+                        document.getElementById('related-products').innerHTML = '<p class="text-bistre/70">Error loading related products.</p>';
+                    });
+            }
+            
+            function createProductCard(product) {
+                const card = document.createElement('div');
+                card.className = 'collection-card rounded-xl overflow-hidden bg-white shadow-lg';
+                card.innerHTML = `
+                    <div class="relative aspect-square overflow-hidden">
+                        <img
+                            src="${product.image}"
+                            alt="${product.name}"
+                            class="w-full h-full object-cover collection-image"
+                        >
+                        <div class="absolute inset-0 collection-overlay flex flex-col justify-end p-6">
+                            <h3 class="text-2xl font-bold text-white mb-2 collection-title">${product.name}</h3>
+                            <p class="text-white/80 mb-4">${product.description}</p>
+                            <a href="product.html?id=${product.id}" class="text-white font-space uppercase tracking-wider text-sm hover:underline">View Details</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-bistre mb-1">${product.name}</h3>
+                                <p class="text-bistre/70 text-sm">${product.category.includes('new') ? 'Spring 2024 Collection' : product.category.includes('limited') ? 'Limited Edition' : 'Classic Collection'}</p>
+                            </div>
+                            <span class="font-space uppercase tracking-wider text-xs ${product.category.includes('new') ? 'text-aquamarine' : product.category.includes('limited') ? 'text-mauveine' : 'text-yellowish'}">${product.category.includes('new') ? 'NEW' : product.category.includes('limited') ? 'LIMITED' : product.category.includes('bestseller') ? 'BESTSELLER' : ''}</span>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-lg font-bold text-bistre">৳${product.price}.00</span>
+                            <button class="related-add-to-cart flex items-center bg-fabric text-bistre hover:text-mauveine transition px-3 py-2 rounded" data-product-id="${product.id}" data-product-name="${product.name}" data-product-price="${product.price}">
+                                <span class="mr-2">Add to Cart</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                return card;
+            }
+            
+            function updateProgress(percent) {
+                progressBar.style.width = `${percent}%`;
+            }
+            
+            function hideLoadingOverlay() {
+                loadingOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    loadingOverlay.style.display = 'none';
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>

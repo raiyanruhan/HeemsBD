@@ -1,16 +1,67 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const multer = require('multer');
+const bcrypt = require('bcrypt');
 const app = express();
 const PORT = 3000;
+
+// Configure multer for file uploads
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        const uploadDir = path.join(__dirname, 'assets', 'uploads');
+        // Create uploads directory if it doesn't exist
+        if (!fs.existsSync(uploadDir)) {
+            fs.mkdirSync(uploadDir, { recursive: true });
+        }
+        cb(null, uploadDir);
+    },
+    filename: function (req, file, cb) {
+        // Generate unique filename
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({ 
+    storage: storage,
+    limits: {
+        fileSize: 5 * 1024 * 1024 // 5MB limit
+    },
+    fileFilter: function (req, file, cb) {
+        // Accept only image files
+        if (file.mimetype.startsWith('image/')) {
+            cb(null, true);
+        } else {
+            cb(new Error('Only image files are allowed!'), false);
+        }
+    }
+});
 
 // Middleware
 app.use(express.json());
 app.use(express.static('public'));
+app.use('/assets', express.static('assets'));
 
 // In-memory session storage (simple implementation)
 const activeTokens = new Set();
-const ADMIN_PASSWORD = 'admin123';
+const ADMIN_PASSWORD_HASH = '$2b$10$YourHashedPasswordHere'; // We'll generate this
+
+// Generate password hash for the new password
+async function generatePasswordHash() {
+    const password = "h^i^Aoi$BlF0";
+    const saltRounds = 10;
+    const hash = await bcrypt.hash(password, saltRounds);
+    console.log('Generated password hash:', hash);
+    return hash;
+}
+
+// Initialize password hash
+let ADMIN_PASSWORD_HASH_FINAL = null;
+generatePasswordHash().then(hash => {
+    ADMIN_PASSWORD_HASH_FINAL = hash;
+    console.log('Password hash initialized');
+});
 
 // Helper function to read products
 function readProducts() {
@@ -88,17 +139,28 @@ app.get('/', (req, res) => {
 });
 
 // Login endpoint
-app.post('/login', (req, res) => {
+app.post('/login', async (req, res) => {
     const { password } = req.body;
     
-    if (password === ADMIN_PASSWORD) {
-        // Generate random token
-        const token = Math.random().toString(36).substring(2) + Date.now().toString(36);
-        activeTokens.add(token);
+    if (!ADMIN_PASSWORD_HASH_FINAL) {
+        return res.status(500).json({ error: 'Server not ready' });
+    }
+    
+    try {
+        const isValid = await bcrypt.compare(password, ADMIN_PASSWORD_HASH_FINAL);
         
-        res.json({ success: true, token });
-    } else {
-        res.status(401).json({ error: 'Invalid password' });
+        if (isValid) {
+            // Generate random token
+            const token = Math.random().toString(36).substring(2) + Date.now().toString(36);
+            activeTokens.add(token);
+            
+            res.json({ success: true, token });
+        } else {
+            res.status(401).json({ error: 'Invalid password' });
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        res.status(500).json({ error: 'Login failed' });
     }
 });
 
@@ -122,6 +184,48 @@ app.post('/products', requireAuth, (req, res) => {
         res.json({ success: true, message: 'Products updated successfully' });
     } else {
         res.status(500).json({ error: 'Failed to update products' });
+    }
+});
+
+// Upload image endpoint (protected)
+app.post('/upload-image', requireAuth, upload.single('image'), (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ error: 'No file uploaded' });
+        }
+        
+        // Return the file path relative to the assets directory
+        const relativePath = `/assets/uploads/${req.file.filename}`;
+        res.json({ 
+            success: true, 
+            imageUrl: relativePath,
+            filename: req.file.filename 
+        });
+    } catch (error) {
+        console.error('Upload error:', error);
+        res.status(500).json({ error: 'Upload failed' });
+    }
+});
+
+// Upload multiple images endpoint (protected)
+app.post('/upload-multiple-images', requireAuth, upload.array('images', 10), (req, res) => {
+    try {
+        if (!req.files || req.files.length === 0) {
+            return res.status(400).json({ error: 'No files uploaded' });
+        }
+        
+        const uploadedImages = req.files.map(file => ({
+            imageUrl: `/assets/uploads/${file.filename}`,
+            filename: file.filename
+        }));
+        
+        res.json({ 
+            success: true, 
+            images: uploadedImages
+        });
+    } catch (error) {
+        console.error('Multiple upload error:', error);
+        res.status(500).json({ error: 'Upload failed' });
     }
 });
 
@@ -170,8 +274,19 @@ app.post('/logout', (req, res) => {
     res.json({ success: true });
 });
 
+// Error handling middleware
+app.use((error, req, res, next) => {
+    if (error instanceof multer.MulterError) {
+        if (error.code === 'LIMIT_FILE_SIZE') {
+            return res.status(400).json({ error: 'File too large. Maximum size is 5MB.' });
+        }
+    }
+    console.error('Server error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+});
+
 // Start server
 app.listen(PORT, () => {
     console.log(`Dashboard server running on http://localhost:${PORT}`);
-    console.log(`Admin password: ${ADMIN_PASSWORD}`);
+    console.log(`Admin password: h^i^Aoi$BlF0`);
 }); 
