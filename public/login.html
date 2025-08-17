@@ -285,7 +285,7 @@
             const errorDiv = document.getElementById('error');
             
             try {
-                const response = await fetch('/login', {
+                const response = await fetch('/console/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -299,7 +299,7 @@
                     // Save token to localStorage
                     localStorage.setItem('dashboardToken', data.token);
                     // Redirect to dashboard
-                    window.location.href = '/dashboard.html';
+                    window.location.href = '/console/dashboard';
                 } else {
                     showError(data.error || 'Login failed');
                 }
@@ -316,7 +316,7 @@
         
         // Check if already logged in
         if (localStorage.getItem('dashboardToken')) {
-            window.location.href = '/dashboard.html';
+                            window.location.href = '/console/dashboard';
         }
         
         function showSpinnerAndRedirect() {

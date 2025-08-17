@@ -376,7 +376,7 @@
         
         // Check authentication
         if (!token) {
-            window.location.href = '/login.html';
+            window.location.href = '/console';
         }
         
         // Load products on page load
@@ -394,7 +394,7 @@
         
         async function loadProducts() {
             try {
-                const response = await fetch('/products', {
+                const response = await fetch('/console/products', {
                     headers: {
                         'Authorization': token
                     }
@@ -618,7 +618,7 @@
                     const formData = new FormData();
                     formData.append('image', file);
                     
-                    const response = await fetch('/upload-image', {
+                    const response = await fetch('/console/upload-image', {
                         method: 'POST',
                         headers: {
                             'Authorization': token
@@ -651,7 +651,7 @@
                         formData.append('images', files[i]);
                     }
                     
-                    const response = await fetch('/upload-multiple-images', {
+                    const response = await fetch('/console/upload-multiple-images', {
                         method: 'POST',
                         headers: {
                             'Authorization': token
@@ -751,7 +751,7 @@
         
         async function saveProducts() {
             try {
-                const response = await fetch('/products', {
+                const response = await fetch('/console/products', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -779,14 +779,14 @@
         }
         
         function logout() {
-            fetch('/logout', {
+            fetch('/console/logout', {
                 method: 'POST',
                 headers: {
                     'Authorization': token
                 }
             }).finally(() => {
                 localStorage.removeItem('dashboardToken');
-                window.location.href = '/login.html';
+                window.location.href = '/console';
             });
         }
         

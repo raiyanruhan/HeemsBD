@@ -40,8 +40,18 @@ const upload = multer({
 
 // Middleware
 app.use(express.json());
-app.use(express.static('public'));
+
+// Serve static files from root directory (main website)
+app.use(express.static(__dirname));
+
+// Serve assets directory
 app.use('/assets', express.static('assets'));
+
+// Serve js directory
+app.use('/js', express.static('js'));
+
+// Serve data directory (for JSON files)
+app.use('/data', express.static('data'));
 
 // In-memory session storage (simple implementation)
 const activeTokens = new Set();
@@ -115,7 +125,10 @@ function writeHtmlFile(filename, content) {
 function getHtmlFiles() {
     try {
         const files = fs.readdirSync(__dirname);
-        return files.filter(file => file.endsWith('.html') && file !== 'login.html' && file !== 'dashboard.html');
+        return files.filter(file => file.endsWith('.html') && 
+            !file.includes('login') && 
+            !file.includes('dashboard') &&
+            file !== 'index.html');
     } catch (error) {
         console.error('Error reading directory:', error);
         return [];
@@ -133,13 +146,25 @@ function requireAuth(req, res, next) {
     next();
 }
 
-// Routes
+// Main website routes
 app.get('/', (req, res) => {
-    res.redirect('/login.html');
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Dashboard/Console routes
+app.get('/console', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+});
+
+app.get('/console/dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
+});
+
+// Serve dashboard static files
+app.use('/console', express.static(path.join(__dirname, 'public')));
+
 // Login endpoint
-app.post('/login', async (req, res) => {
+app.post('/console/login', async (req, res) => {
     const { password } = req.body;
     
     if (!ADMIN_PASSWORD_HASH_FINAL) {
@@ -165,13 +190,13 @@ app.post('/login', async (req, res) => {
 });
 
 // Get products (protected)
-app.get('/products', requireAuth, (req, res) => {
+app.get('/console/products', requireAuth, (req, res) => {
     const products = readProducts();
     res.json(products);
 });
 
 // Update products (protected)
-app.post('/products', requireAuth, (req, res) => {
+app.post('/console/products', requireAuth, (req, res) => {
     const { products } = req.body;
     
     if (!Array.isArray(products)) {
@@ -188,7 +213,7 @@ app.post('/products', requireAuth, (req, res) => {
 });
 
 // Upload image endpoint (protected)
-app.post('/upload-image', requireAuth, upload.single('image'), (req, res) => {
+app.post('/console/upload-image', requireAuth, upload.single('image'), (req, res) => {
     try {
         if (!req.file) {
             return res.status(400).json({ error: 'No file uploaded' });
@@ -208,7 +233,7 @@ app.post('/upload-image', requireAuth, upload.single('image'), (req, res) => {
 });
 
 // Upload multiple images endpoint (protected)
-app.post('/upload-multiple-images', requireAuth, upload.array('images', 10), (req, res) => {
+app.post('/console/upload-multiple-images', requireAuth, upload.array('images', 10), (req, res) => {
     try {
         if (!req.files || req.files.length === 0) {
             return res.status(400).json({ error: 'No files uploaded' });
@@ -230,13 +255,13 @@ app.post('/upload-multiple-images', requireAuth, upload.array('images', 10), (re
 });
 
 // Get list of HTML files (protected)
-app.get('/html-files', requireAuth, (req, res) => {
+app.get('/console/html-files', requireAuth, (req, res) => {
     const htmlFiles = getHtmlFiles();
     res.json({ files: htmlFiles });
 });
 
 // Get HTML file content (protected)
-app.get('/html-content/:filename', requireAuth, (req, res) => {
+app.get('/console/html-content/:filename', requireAuth, (req, res) => {
     const { filename } = req.params;
     const content = readHtmlFile(filename);
     
@@ -248,7 +273,7 @@ app.get('/html-content/:filename', requireAuth, (req, res) => {
 });
 
 // Update HTML file content (protected)
-app.post('/html-content/:filename', requireAuth, (req, res) => {
+app.post('/console/html-content/:filename', requireAuth, (req, res) => {
     const { filename } = req.params;
     const { content } = req.body;
     
@@ -266,7 +291,7 @@ app.post('/html-content/:filename', requireAuth, (req, res) => {
 });
 
 // Logout endpoint (optional - removes token)
-app.post('/logout', (req, res) => {
+app.post('/console/logout', (req, res) => {
     const token = req.headers.authorization;
     if (token) {
         activeTokens.delete(token);
@@ -287,6 +312,7 @@ app.use((error, req, res, next) => {
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`Dashboard server running on http://localhost:${PORT}`);
+    console.log(`HEEMS website running on http://localhost:${PORT}`);
+    console.log(`Dashboard available at http://localhost:${PORT}/console`);
     console.log(`Admin password: h^i^Aoi$BlF0`);
 }); 
