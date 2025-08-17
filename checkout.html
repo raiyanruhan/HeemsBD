@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEEMS | Secure Checkout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        viceblue: '#1a3e72',
+                        vicepink: '#ff69b4',
+                        vicegreen: '#00aa00',
+                        viceorange: '#ff8c00',
+                        vicepurple: '#8a2be2',
+                        vicedark: '#0a0a1a',
+                        vicelight: '#f0f0f5',
+                    },
+                    fontFamily: {
+                        archivo: ["Archivo", "sans-serif"],
+                        space: ["Space Grotesk", "sans-serif"],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Archivo', sans-serif;
+            background-color: #f5f0e8;
+            color: #1a0f1a;
+        }
+        .vice-box {
+            border: 2px solid #1a3e72;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .vice-header {
+            background: linear-gradient(90deg, #1a3e72, #8a2be2);
+            color: white;
+            border-radius: 6px 6px 0 0;
+        }
+        .vice-btn {
+            background-color: #1a3e72;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .vice-btn:hover {
+            background-color: #0a2a5a;
+            transform: translateY(-2px);
+        }
+        .secure-badge {
+            background: linear-gradient(90deg, #00aa00, #008800);
+            color: white;
+        }
+        .promo-input:focus {
+            outline: 2px solid #ff69b4;
+        }
+        .cart-item:hover {
+            transform: translateX(5px);
+            transition: transform 0.3s ease;
+        }
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid #1a3e72;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-vicelight">
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="fixed inset-0 bg-white bg-opacity-90 z-50 flex flex-col items-center justify-center">
+        <div class="loading-spinner mb-4"></div>
+        <p class="text-vicedark font-space uppercase tracking-wider">Loading Your Cart...</p>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-md py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="landing.html" class="flex items-center">
+                <img src="assets/logo.png" alt="HEEMS Logo" class="h-12 w-auto">
+                <span class="ml-2 text-xl font-bold text-vicedark">HEEMS</span>
+            </a>
+            <div class="flex items-center space-x-4">
+                <a href="collections.html" class="text-vicedark hover:text-viceblue">Continue Shopping</a>
+                <div class="relative">
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-vicepink text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-vicedark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Left Column - Customer Info -->
+            <div class="lg:w-2/3">
+                <!-- Progress Steps -->
+                <div class="vice-box mb-8">
+                    <div class="vice-header px-6 py-4">
+                        <h2 class="text-lg font-bold">Checkout Progress</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center">
+                            <div class="flex flex-col items-center">
+                                <div class="w-10 h-10 rounded-full bg-viceblue text-white flex items-center justify-center font-bold">1</div>
+                                <span class="mt-2 text-sm font-medium text-vicedark">Information</span>
+                            </div>
+                            <div class="flex-1 h-1 bg-gray-300 mx-2"></div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-10 h-10 rounded-full bg-gray-300 text-gray-600 flex items-center justify-center font-bold">2</div>
+                                <span class="mt-2 text-sm font-medium text-gray-500">Shipping</span>
+                            </div>
+                            <div class="flex-1 h-1 bg-gray-300 mx-2"></div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-10 h-10 rounded-full bg-gray-300 text-gray-600 flex items-center justify-center font-bold">3</div>
+                                <span class="mt-2 text-sm font-medium text-gray-500">Payment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Information -->
+                <div class="vice-box mb-8">
+                    <div class="vice-header px-6 py-4">
+                        <h2 class="text-lg font-bold">Customer Information</h2>
+                    </div>
+                    <div class="p-6">
+                        <form id="customer-info-form">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label for="first-name" class="block text-sm font-medium text-vicedark mb-1">First Name</label>
+                                    <input type="text" id="first-name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-viceblue focus:border-viceblue" required>
+                                </div>
+                                <div>
+                                    <label for="last-name" class="block text-sm font-medium text-vicedark mb-1">Last Name</label>
+                                    <input type="text" id="last-name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-viceblue focus:border-viceblue" required>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-sm font-medium text-vicedark mb-1">Email Address</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-viceblue focus:border-viceblue" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="phone" class="block text-sm font-medium text-vicedark mb-1">Phone Number</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-viceblue focus:border-viceblue" required>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Shipping Address -->
+                <div class="vice-box mb-8">
+                    <div class="vice-header px-6 py-4">
+                        <h2 class="text-lg font-bold">Shipping Address</h2>
+                    </div>
+                    <div class="p-6">
+                        <form id="shipping-form">
+                            <div class="mb-4">
+                                <label for="address" class="block text-sm font-medium text-vicedark mb-1">Street Address</label>
+                                <input type="text" id="address" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-viceblue focus:border-viceblue" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="address2" class="block text-sm font-medium text-vicedark mb-1">Apt, Suite, etc. (Optional)</label>
+                                <input type="text" id="address2" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-viceblue focus:border-viceblue">
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                <div>
+                                    <label for="country" class="block text-sm font-medium text-vicedark mb-1">Country</label>
+                                    <select id="country" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-viceblue focus:border-viceblue" required>
+                                        <option value="">Select Country</option>
+                                        <option value="BD">Bangladesh</option>
+                                        <option value="US">United States</option>
+                                        <option value="UK">United Kingdom</option>
+                                        <option value="CA">Canada</option>
+                                        <option value="AU">Australia</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="city" class="block text-sm font-medium text-vicedark mb-1">City</label>
+                                    <input type="text" id="city" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-viceblue focus:border-viceblue" required>
+                                </div>
+                                <div>
+                                    <label for="zip" class="block text-sm font-medium text-vicedark mb-1">ZIP Code</label>
+                                    <input type="text" id="zip" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-viceblue focus:border-viceblue" required>
+                                </div>
+                            </div>
+                            <div class="flex items-center mb-4">
+                                <input type="checkbox" id="save-address" class="h-4 w-4 text-viceblue focus:ring-viceblue border-gray-300 rounded">
+                                <label for="save-address" class="ml-2 block text-sm text-vicedark">Save this address for future use</label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Shipping Method -->
+                <div class="vice-box">
+                    <div class="vice-header px-6 py-4">
+                        <h2 class="text-lg font-bold">Shipping Method</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 border border-gray-300 rounded-md cursor-pointer hover:border-viceblue">
+                                <div class="flex items-center">
+                                    <input type="radio" id="standard-shipping" name="shipping" class="h-4 w-4 text-viceblue focus:ring-viceblue" checked>
+                                    <label for="standard-shipping" class="ml-3 block text-sm font-medium text-vicedark">Standard Shipping</label>
+                                </div>
+                                <span class="text-sm text-vicedark">৳120.00</span>
+                            </div>
+                            <div class="flex items-center justify-between p-4 border border-gray-300 rounded-md cursor-pointer hover:border-viceblue">
+                                <div class="flex items-center">
+                                    <input type="radio" id="express-shipping" name="shipping" class="h-4 w-4 text-viceblue focus:ring-viceblue">
+                                    <label for="express-shipping" class="ml-3 block text-sm font-medium text-vicedark">Express Shipping</label>
+                                </div>
+                                <span class="text-sm text-vicedark">৳250.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Order Summary -->
+            <div class="lg:w-1/3">
+                <div class="vice-box sticky top-8">
+                    <div class="vice-header px-6 py-4">
+                        <h2 class="text-lg font-bold">Order Summary</h2>
+                    </div>
+                    <div class="p-6">
+                        <!-- Cart Items -->
+                        <div id="cart-items-container" class="mb-6 max-h-96 overflow-y-auto">
+                            <!-- Cart items will be loaded here -->
+                            <div class="text-center py-8 text-gray-500">
+                                <p>Your cart is empty</p>
+                            </div>
+                        </div>
+
+                        <!-- Promo Code -->
+                        <div class="mb-6">
+                            <label for="promo-code" class="block text-sm font-medium text-vicedark mb-2">Promo Code</label>
+                            <div class="flex">
+                                <input type="text" id="promo-code" placeholder="Enter promo code" class="flex-1 px-4 py-2 border border-gray-300 rounded-l-md promo-input focus:ring-vicepink focus:border-vicepink">
+                                <button id="apply-promo" class="px-4 py-2 bg-vicepink text-white rounded-r-md hover:bg-pink-600">Apply</button>
+                            </div>
+                            <p id="promo-message" class="text-xs mt-1"></p>
+                        </div>
+
+                        <!-- Order Summary -->
+                        <div class="border-t border-gray-200 pt-4">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm text-vicedark">Subtotal</span>
+                                <span id="subtotal" class="text-sm text-vicedark">৳0.00</span>
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm text-vicedark">Shipping</span>
+                                <span id="shipping" class="text-sm text-vicedark">৳120.00</span>
+                            </div>
+                            <div class="flex justify-between mb-2 hidden" id="discount-row">
+                                <span class="text-sm text-vicedark">Discount</span>
+                                <span id="discount" class="text-sm text-vicegreen">-৳0.00</span>
+                            </div>
+                            <div class="flex justify-between mt-4 pt-4 border-t border-gray-200">
+                                <span class="font-bold text-vicedark">Total</span>
+                                <span id="total" class="font-bold text-vicedark">৳0.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Secure Checkout -->
+                        <div class="mt-6 flex items-center justify-center space-x-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-vicegreen" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-sm text-vicedark">Secure SSL Encryption</span>
+                        </div>
+
+                        <!-- Checkout Button -->
+                        <button id="checkout-btn" class="w-full mt-6 py-3 vice-btn rounded-md font-bold flex items-center justify-center">
+                            <span>Complete Order</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-vicedark text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-sm">&copy; 2024 HEEMS Clothing. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-sm hover:text-vicepink">Privacy Policy</a>
+                    <a href="#" class="text-sm hover:text-vicepink">Terms of Service</a>
+                    <a href="#" class="text-sm hover:text-vicepink">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load cart from localStorage
+            let cart = JSON.parse(localStorage.getItem('heems-cart')) || [];
+            const loadingOverlay = document.getElementById('loading-overlay');
+            
+            // Initialize the page
+            initCheckoutPage();
+            
+            function initCheckoutPage() {
+                updateCartCount();
+                loadCartItems();
+                calculateTotals();
+                
+                // Hide loading overlay after a short delay
+                setTimeout(() => {
+                    loadingOverlay.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingOverlay.style.display = 'none';
+                    }, 300);
+                }, 500);
+                
+                // Set up event listeners
+                setupEventListeners();
+            }
+            
+            function updateCartCount() {
+                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                document.getElementById('cart-count').textContent = totalItems;
+            }
+            
+            function loadCartItems() {
+                const cartItemsContainer = document.getElementById('cart-items-container');
+                
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = `
+                        <div class="text-center py-8 text-gray-500">
+                            <p>Your cart is empty</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                let itemsHTML = '';
+                
+                cart.forEach(item => {
+                    itemsHTML += `
+                        <div class="cart-item flex py-4 border-b border-gray-200 transition-transform">
+                            <div class="w-16 h-16 bg-gray-100 rounded-md overflow-hidden flex-shrink-0">
+                                <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <h3 class="text-sm font-medium text-vicedark">${item.name}</h3>
+                                <p class="text-xs text-gray-500">${item.color}, ${item.size}</p>
+                                <div class="mt-1 flex items-center">
+                                    <button class="quantity-btn text-xs px-2 py-1 border border-gray-300 rounded" data-id="${item.id}" data-action="decrease">-</button>
+                                    <span class="mx-2 text-sm">${item.quantity}</span>
+                                    <button class="quantity-btn text-xs px-2 py-1 border border-gray-300 rounded" data-id="${item.id}" data-action="increase">+</button>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-vicedark">৳${(item.price * item.quantity).toFixed(2)}</p>
+                                <button class="remove-item text-xs text-vicepink mt-1" data-id="${item.id}">Remove</button>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                cartItemsContainer.innerHTML = itemsHTML;
+                
+                // Add event listeners to quantity buttons
+                document.querySelectorAll('.quantity-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const itemId = this.getAttribute('data-id');
+                        const action = this.getAttribute('data-action');
+                        updateCartItemQuantity(itemId, action);
+                    });
+                });
+                
+                // Add event listeners to remove buttons
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const itemId = this.getAttribute('data-id');
+                        removeFromCart(itemId);
+                    });
+                });
+            }
+            
+            function updateCartItemQuantity(itemId, action) {
+                const itemIndex = cart.findIndex(item => item.id === itemId);
+                
+                if (itemIndex !== -1) {
+                    if (action === 'increase') {
+                        cart[itemIndex].quantity += 1;
+                    } else if (action === 'decrease') {
+                        if (cart[itemIndex].quantity > 1) {
+                            cart[itemIndex].quantity -= 1;
+                        } else {
+                            // Remove item if quantity becomes 0
+                            cart.splice(itemIndex, 1);
+                        }
+                    }
+                    
+                    saveCart();
+                    loadCartItems();
+                    calculateTotals();
+                    updateCartCount();
+                }
+            }
+            
+            function removeFromCart(itemId) {
+                cart = cart.filter(item => item.id !== itemId);
+                saveCart();
+                loadCartItems();
+                calculateTotals();
+                updateCartCount();
+            }
+            
+            function calculateTotals() {
+                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const shipping = 120; // Default shipping cost
+                const discount = 0; // Will be updated if promo is applied
+                
+                document.getElementById('subtotal').textContent = `৳${subtotal.toFixed(2)}`;
+                document.getElementById('total').textContent = `৳${(subtotal + shipping - discount).toFixed(2)}`;
+                
+                // Update shipping cost based on selection
+                const expressShipping = document.getElementById('express-shipping').checked;
+                const shippingCost = expressShipping ? 250 : 120;
+                document.getElementById('shipping').textContent = `৳${shippingCost.toFixed(2)}`;
+                document.getElementById('total').textContent = `৳${(subtotal + shippingCost - discount).toFixed(2)}`;
+            }
+            
+            function saveCart() {
+                localStorage.setItem('heems-cart', JSON.stringify(cart));
+            }
+            
+            function setupEventListeners() {
+                // Shipping method selection
+                document.querySelectorAll('input[name="shipping"]').forEach(radio => {
+                    radio.addEventListener('change', calculateTotals);
+                });
+                
+                // Promo code application
+                document.getElementById('apply-promo').addEventListener('click', applyPromoCode);
+                
+                // Checkout button
+                document.getElementById('checkout-btn').addEventListener('click', proceedToCheckout);
+            }
+            
+            function applyPromoCode() {
+                const promoCode = document.getElementById('promo-code').value.trim();
+                const promoMessage = document.getElementById('promo-message');
+                const discountRow = document.getElementById('discount-row');
+                const discountAmount = document.getElementById('discount');
+                
+                // Simple promo code validation
+                if (promoCode === 'HEEMS10') {
+                    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                    const discount = subtotal * 0.1; // 10% discount
+                    
+                    discountRow.classList.remove('hidden');
+                    discountAmount.textContent = `-৳${discount.toFixed(2)}`;
+                    promoMessage.textContent = '10% discount applied!';
+                    promoMessage.className = 'text-xs mt-1 text-vicegreen';
+                    
+                    // Recalculate total with discount
+                    const shippingCost = document.getElementById('express-shipping').checked ? 250 : 120;
+                    document.getElementById('total').textContent = `৳${(subtotal + shippingCost - discount).toFixed(2)}`;
+                } else if (promoCode) {
+                    promoMessage.textContent = 'Invalid promo code';
+                    promoMessage.className = 'text-xs mt-1 text-red-500';
+                    discountRow.classList.add('hidden');
+                    calculateTotals(); // Recalculate without discount
+                } else {
+                    promoMessage.textContent = 'Please enter a promo code';
+                    promoMessage.className = 'text-xs mt-1 text-red-500';
+                }
+            }
+            
+            function proceedToCheckout() {
+                // Validate forms
+                const customerForm = document.getElementById('customer-info-form');
+                const shippingForm = document.getElementById('shipping-form');
+                
+                if (!customerForm.checkValidity() || !shippingForm.checkValidity()) {
+                    alert('Please fill out all required fields');
+                    return;
+                }
+                
+                if (cart.length === 0) {
+                    alert('Your cart is empty');
+                    return;
+                }
+                
+                // Show loading state on button
+                const checkoutBtn = document.getElementById('checkout-btn');
+                const originalContent = checkoutBtn.innerHTML;
+                checkoutBtn.innerHTML = `
+                    <div class="loading-spinner"></div>
+                    <span class="ml-2">Processing...</span>
+                `;
+                checkoutBtn.disabled = true;
+                
+                // In a real application, you would send the data to your server here
+                // For this demo, we'll simulate a successful checkout after a delay
+                setTimeout(() => {
+                    // Create order summary
+                    const orderData = {
+                        customer: {
+                            firstName: document.getElementById('first-name').value,
+                            lastName: document.getElementById('last-name').value,
+                            email: document.getElementById('email').value,
+                            phone: document.getElementById('phone').value
+                        },
+                        shipping: {
+                            address: document.getElementById('address').value,
+                            address2: document.getElementById('address2').value,
+                            country: document.getElementById('country').value,
+                            city: document.getElementById('city').value,
+                            zip: document.getElementById('zip').value,
+                            method: document.querySelector('input[name="shipping"]:checked').id
+                        },
+                        items: cart,
+                        subtotal: parseFloat(document.getElementById('subtotal').textContent.replace('৳', '')),
+                        shipping: parseFloat(document.getElementById('shipping').textContent.replace('৳', '')),
+                        discount: document.getElementById('discount-row').classList.contains('hidden') ? 
+                            0 : parseFloat(document.getElementById('discount').textContent.replace('-৳', '')),
+                        total: parseFloat(document.getElementById('total').textContent.replace('৳', '')),
+                        date: new Date().toISOString(),
+                        orderId: 'HEEMS-' + Math.floor(Math.random() * 1000000)
+                    };
+                    
+                    // Save order to localStorage (simulating database)
+                    const orders = JSON.parse(localStorage.getItem('heems-orders')) || [];
+                    orders.push(orderData);
+                    localStorage.setItem('heems-orders', JSON.stringify(orders));
+                    
+                    // Clear cart
+                    cart = [];
+                    saveCart();
+                    
+                    // Redirect to thank you page with order ID
+                    window.location.href = `thank-you.html?orderId=${orderData.orderId}`;
+                }, 1500);
+            }
+        });
+    </script>
+</body>
+</html>
