@@ -188,8 +188,9 @@
             transform: scale(1.1);
         }
         .size-option.selected {
-            background-color: #4C3329;
+            background-color: #AF6B41;
             color: #f5f0e8;
+            border-color: #AF6B41;
         }
         .size-option.unavailable {
             opacity: 0.5;
@@ -203,14 +204,14 @@
             transform: scale(1.1);
         }
         .color-option.selected {
-            outline: 2px solid #4C3329;
+            outline: 2px solid #AF6B41;
             outline-offset: 2px;
         }
         .quantity-selector button {
             transition: all 0.2s ease;
         }
         .quantity-selector button:hover {
-            background-color: #4C3329;
+            background-color: #AF6B41;
             color: #f5f0e8;
         }
         .mobile-menu {
@@ -285,13 +286,13 @@
         }
         .stock-indicator {
             height: 4px;
-            background-color: #e5e7eb;
+            background-color: rgba(245, 240, 232, 0.2);
             border-radius: 2px;
             overflow: hidden;
         }
         .stock-progress {
             height: 100%;
-            background-color: #10b981;
+            background-color: #28EEB6;
             transition: width 0.5s ease;
         }
         @media (max-width: 768px) {
@@ -307,6 +308,9 @@
             .thumbnail {
                 min-width: 80px;
                 height: 80px;
+            }
+            .zoom-result {
+                display: none !important;
             }
         }
     </style>
@@ -375,9 +379,9 @@
         })();
     </script>
     <!-- Loading Overlay -->
-    <div id="loading-overlay" class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center transition-opacity duration-500">
+    <div id="loading-overlay" class="fixed inset-0 bg-darkbg z-50 flex flex-col items-center justify-center transition-opacity duration-500">
         <div class="loading-spinner mb-4"></div>
-        <p class="text-bistre font-space uppercase tracking-wider">Loading Product Details...</p>
+        <p class="text-fabric font-space uppercase tracking-wider">Loading Product Details...</p>
     </div>
     <!-- Animated Background Elements -->
     <div class="fixed inset-0 overflow-hidden -z-10">
@@ -390,7 +394,7 @@
     </div>
     <!-- Navigation -->
     <header id="main-header"
-        class="fixed top-0 left-0 w-full z-40 backdrop-blur-md bg-fabric/80 border-b border-fabric/20 shadow-md transition-all duration-300 ease-in-out py-2">
+        class="fixed top-0 left-0 w-full z-40 backdrop-blur-md bg-darkbg/80 border-b border-fabric/20 shadow-md transition-all duration-300 ease-in-out py-2">
         <div class="container mx-auto px-6 flex justify-between items-center h-16">
             <!-- Logo and Text -->
             <a href="landing.html" class="flex items-center space-x-2">
@@ -400,14 +404,14 @@
             </a>
             <!-- Desktop Navigation Menu -->
             <nav class="hidden md:flex items-center space-x-8">
-                <a href="landing.html" class="menu-item font-space uppercase tracking-wider">Home</a>
-                <a href="collections.html" class="menu-item font-space uppercase tracking-wider text-bistre font-bold">Our Products</a>
-                <a href="story.html" class="menu-item font-space uppercase tracking-wider">Our Story</a>
-                <a href="contact.html" class="menu-item font-space uppercase tracking-wider">Contact Us</a>
+                <a href="landing.html" class="menu-item font-space uppercase tracking-wider text-fabric hover:text-aquamarine">Home</a>
+                <a href="collections.html" class="menu-item font-space uppercase tracking-wider text-aquamarine font-bold">Our Products</a>
+                <a href="story.html" class="menu-item font-space uppercase tracking-wider text-fabric hover:text-aquamarine">Our Story</a>
+                <a href="contact.html" class="menu-item font-space uppercase tracking-wider text-fabric hover:text-aquamarine">Contact Us</a>
             </nav>
             <!-- Shopping Cart -->
             <div class="hidden md:flex items-center space-x-4">
-                <button class="relative" id="cart-btn">
+                <button class="relative text-fabric hover:text-aquamarine transition-colors" id="cart-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -419,7 +423,7 @@
                 </button>
             </div>
             <!-- Mobile Menu Button -->
-            <button class="md:hidden text-bistre" id="mobile-menu-button">
+            <button class="md:hidden text-fabric hover:text-aquamarine transition-colors" id="mobile-menu-button">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -428,10 +432,10 @@
         </div>
     </header>
     <!-- Mobile Menu -->
-    <div class="mobile-menu fixed inset-y-0 right-0 w-full sm:w-96 bg-white z-50 shadow-xl p-6 md:hidden"
+    <div class="mobile-menu fixed inset-y-0 right-0 w-full sm:w-96 bg-darkbg border-l border-fabric/20 z-50 shadow-xl p-6 md:hidden"
         id="mobile-menu">
         <div class="flex justify-end mb-8">
-            <button class="text-bistre" id="mobile-menu-close">
+            <button class="text-fabric hover:text-aquamarine transition-colors" id="mobile-menu-close">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -439,12 +443,12 @@
             </button>
         </div>
         <div class="flex flex-col space-y-6">
-            <a href="landing.html" class="text-bistre text-lg font-space uppercase tracking-wider">Home</a>
-            <a href="collections.html" class="text-bistre text-lg font-space uppercase tracking-wider font-bold">Our Products</a>
-            <a href="story.html" class="text-bistre text-lg font-space uppercase tracking-wider">Our Story</a>
-            <a href="contact.html" class="text-bistre text-lg font-space uppercase tracking-wider">Contact Us</a>
-            <div class="pt-4 border-t border-bistre/20">
-                <button class="flex items-center space-x-2" id="mobile-cart-btn">
+            <a href="landing.html" class="text-fabric hover:text-aquamarine transition-colors text-lg font-space uppercase tracking-wider">Home</a>
+            <a href="collections.html" class="text-aquamarine text-lg font-space uppercase tracking-wider font-bold">Our Products</a>
+            <a href="story.html" class="text-fabric hover:text-aquamarine transition-colors text-lg font-space uppercase tracking-wider">Our Story</a>
+            <a href="contact.html" class="text-fabric hover:text-aquamarine transition-colors text-lg font-space uppercase tracking-wider">Contact Us</a>
+            <div class="pt-4 border-t border-fabric/20">
+                <button class="flex items-center space-x-2 text-fabric hover:text-aquamarine transition-colors" id="mobile-cart-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -465,7 +469,7 @@
                 <nav class="flex" aria-label="Breadcrumb">
                     <ol class="inline-flex items-center space-x-1 md:space-x-2">
                         <li class="inline-flex items-center">
-                            <a href="landing.html" class="inline-flex items-center text-sm font-medium text-bistre/70 hover:text-mauveine">
+                            <a href="landing.html" class="inline-flex items-center text-sm font-medium text-fabric/70 hover:text-aquamarine transition-colors">
                                 <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
                                 </svg>
@@ -474,18 +478,18 @@
                         </li>
                         <li>
                             <div class="flex items-center">
-                                <svg class="w-3 h-3 text-bistre/70 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <svg class="w-3 h-3 text-fabric/70 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                                 </svg>
-                                <a href="collections.html" class="ml-1 text-sm font-medium text-bistre/70 hover:text-mauveine md:ml-2">Products</a>
+                                <a href="collections.html" class="ml-1 text-sm font-medium text-fabric/70 hover:text-aquamarine transition-colors md:ml-2">Products</a>
                             </div>
                         </li>
                         <li aria-current="page">
                             <div class="flex items-center">
-                                <svg class="w-3 h-3 text-bistre/70 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <svg class="w-3 h-3 text-fabric/70 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                                 </svg>
-                                <span class="ml-1 text-sm font-medium text-bistre md:ml-2" id="breadcrumb-product-name">Product Details</span>
+                                <span class="ml-1 text-sm font-medium text-fabric md:ml-2" id="breadcrumb-product-name">Product Details</span>
                             </div>
                         </li>
                     </ol>
@@ -516,12 +520,12 @@
                 <div class="w-full lg:w-1/2">
                     <div class="rounded-xl shadow-lg p-8 vp-card">
                         <!-- Product Title -->
-                        <h1 class="text-3xl md:text-4xl font-bold text-bistre mb-2" id="product-title">Loading...</h1>
+                        <h1 class="text-3xl md:text-4xl font-bold text-fabric mb-2" id="product-title">Loading...</h1>
                         
                         <!-- Product Category -->
                         <div class="flex items-center mb-4">
-                            <span class="font-space uppercase tracking-wider text-xs bg-bistre text-white px-2 py-1 rounded" id="product-category">LOADING</span>
-                            <span class="ml-2 text-sm text-bistre/70" id="product-availability"></span>
+                            <span class="font-space uppercase tracking-wider text-xs bg-aquamarine text-darkbg px-2 py-1 rounded" id="product-category">LOADING</span>
+                            <span class="ml-2 text-sm text-fabric/70" id="product-availability"></span>
                         </div>
                         
                         <!-- Product Price -->
@@ -532,7 +536,7 @@
                         <!-- Stock Indicator -->
                         <div class="mb-4 hidden" id="stock-indicator-container">
                             <div class="flex justify-between items-center mb-1">
-                                <span class="text-sm text-bistre/70">Available: <span id="stock-count">0</span>/<span id="max-quantity">0</span></span>
+                                <span class="text-sm text-fabric/70">Available: <span id="stock-count">0</span>/<span id="max-quantity">0</span></span>
                                 <span class="text-xs font-medium" id="stock-status"></span>
                             </div>
                             <div class="stock-indicator">
@@ -542,12 +546,12 @@
                         
                         <!-- Product Description -->
                         <div class="mb-8">
-                            <p class="text-bistre/80" id="product-description">Loading product description...</p>
+                            <p class="text-fabric/80" id="product-description">Loading product description...</p>
                         </div>
                         
                         <!-- Size Selector -->
                         <div class="mb-6">
-                            <h3 class="text-sm font-space uppercase tracking-wider text-bistre mb-3">Size</h3>
+                            <h3 class="text-sm font-space uppercase tracking-wider text-fabric mb-3">Size</h3>
                             <div class="flex flex-wrap gap-2" id="size-options-container">
                                 <!-- Size options will be added here by JavaScript -->
                             </div>
@@ -555,7 +559,7 @@
                         
                         <!-- Color Selector -->
                         <div class="mb-8">
-                            <h3 class="text-sm font-space uppercase tracking-wider text-bistre mb-3">Color</h3>
+                            <h3 class="text-sm font-space uppercase tracking-wider text-fabric mb-3">Color</h3>
                             <div class="flex flex-wrap gap-3" id="color-options-container">
                                 <!-- Color options will be added here by JavaScript -->
                             </div>
@@ -563,17 +567,46 @@
                         
                         <!-- Quantity Selector -->
                         <div class="mb-8">
-                            <h3 class="text-sm font-space uppercase tracking-wider text-bistre mb-3">Quantity</h3>
+                            <h3 class="text-sm font-space uppercase tracking-wider text-fabric mb-3">Quantity</h3>
                             <div class="quantity-selector flex items-center">
-                                <button class="w-10 h-10 flex items-center justify-center border border-bistre/30 rounded-l-lg" id="decrease-qty">-</button>
-                                <input type="number" min="1" value="1" class="w-16 h-10 text-center border-t border-b border-bistre/30" id="product-qty">
-                                <button class="w-10 h-10 flex items-center justify-center border border-bistre/30 rounded-r-lg" id="increase-qty">+</button>
+                              <!-- Decrease Button with custom down arrow -->
+                              <button class="w-10 h-10 flex items-center justify-center border border-fabric/30 text-fabric hover:bg-bistre rounded-l-lg transition-colors" id="decrease-qty" aria-label="Decrease quantity">
+                                <!-- Unicode Down Arrow -->
+                                &#x25BC; 
+                                <!-- Or use SVG for more styling control -->
+                                <!--
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                                -->
+                              </button>
+                              <!-- Input field -->
+                              <input type="number" min="1" value="1" class="w-16 h-10 text-center border-t border-b border-fabric/30 bg-transparent text-fabric" id="product-qty">
+                              <!-- Increase Button with custom up arrow -->
+                              <button class="w-10 h-10 flex items-center justify-center border border-fabric/30 text-fabric hover:bg-bistre rounded-r-lg transition-colors" id="increase-qty" aria-label="Increase quantity">
+                                <!-- Unicode Up Arrow -->
+                                &#x25B2; 
+                                <!-- Or use SVG -->
+                                <!--
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                                </svg>
+                                -->
+                              </button>
                             </div>
-                            <p class="text-xs text-bistre/50 mt-1" id="max-quantity-message"></p>
-                        </div>
+                            <p class="text-xs text-fabric/50 mt-1" id="max-quantity-message"></p>
+                          </div>
+                          <style>
+                            /* Remove default arrows in number input */
+                            #product-qty::-webkit-inner-spin-button,
+                            #product-qty::-webkit-outer-spin-button {
+                              -webkit-appearance: none;
+                              margin: 0;
+                            }
+                          </style>
                         
                         <!-- Add to Cart Button -->
-                        <button class="w-full py-4 bg-bistre text-white font-space uppercase tracking-wider text-sm hover:bg-bistre/90 transition mb-4 flex items-center justify-center" id="add-to-cart-btn">
+                        <button class="w-full py-4 bg-bistre text-fabric font-space uppercase tracking-wider text-sm hover:bg-brownsugar transition mb-4 flex items-center justify-center" id="add-to-cart-btn">
                             <span>Add to Cart</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -581,7 +614,7 @@
                         </button>
                         
                         <!-- Wishlist Button -->
-                        <button class="w-full py-3 border border-bistre text-bistre font-space uppercase tracking-wider text-sm hover:bg-bistre/10 transition flex items-center justify-center">
+                        <button class="w-full py-3 border border-fabric text-fabric font-space uppercase tracking-wider text-sm hover:bg-fabric/10 transition flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                             </svg>
@@ -595,19 +628,19 @@
     <!-- Related Products Section -->
     <section class="pb-24">
         <div class="container mx-auto px-6">
-            <h2 class="text-2xl md:text-3xl font-bold text-bistre mb-8">You May Also Like</h2>
+            <h2 class="text-2xl md:text-3xl font-bold text-fabric mb-8">You May Also Like</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="related-products">
                 <!-- Related products will be loaded here -->
             </div>
         </div>
     </section>
     <!-- Shopping Cart Sidebar -->
-    <div class="fixed inset-y-0 right-0 w-full sm:w-96 bg-white z-50 shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out"
+    <div class="fixed inset-y-0 right-0 w-full sm:w-96 bg-darkbg border-l border-fabric/20 z-50 shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out"
         id="cart-sidebar">
         <div class="h-full flex flex-col">
-            <div class="p-6 border-b border-bistre/20 flex justify-between items-center">
-                <h3 class="text-xl font-bold text-bistre">Your Cart</h3>
-                <button class="text-bistre hover:text-mauveine transition" id="close-cart">
+            <div class="p-6 border-b border-fabric/20 flex justify-between items-center">
+                <h3 class="text-xl font-bold text-fabric">Your Cart</h3>
+                <button class="text-fabric hover:text-aquamarine transition-colors" id="close-cart">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -617,8 +650,8 @@
             </div>
             <div class="flex-1 overflow-y-auto p-6" id="cart-items">
                 <!-- Cart items will be added here dynamically -->
-                <div class="text-center py-12 text-bistre/70">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-bistre/30" fill="none"
+                <div class="text-center py-12 text-fabric/70">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-fabric/30" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
                             d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
@@ -626,20 +659,20 @@
                     <p>Your cart is empty</p>
                 </div>
             </div>
-            <div class="p-6 border-t border-bistre/20">
+            <div class="p-6 border-t border-fabric/20">
                 <div class="flex justify-between items-center mb-4">
-                    <span class="text-bistre">Subtotal</span>
-                    <span class="font-bold text-bistre" id="cart-subtotal">৳0.00</span>
+                    <span class="text-fabric">Subtotal</span>
+                    <span class="font-bold text-fabric" id="cart-subtotal">৳0.00</span>
                 </div>
-                <p class="text-sm text-bistre/70 mb-6">Shipping and taxes calculated at checkout</p>
+                <p class="text-sm text-fabric/70 mb-6">Shipping and taxes calculated at checkout</p>
                 <a href="checkout.html">
                     <button
-                        class="w-full px-6 py-3 bg-bistre text-white font-space uppercase tracking-wider text-sm hover:bg-bistre/90 transition">
+                        class="w-full px-6 py-3 bg-bistre text-fabric font-space uppercase tracking-wider text-sm hover:bg-brownsugar transition">
                         Checkout
                     </button>
                 </a>
                 <div class="text-center mt-4">
-                    <a href="collections.html" class="text-sm text-bistre/70 hover:text-mauveine transition">Continue
+                    <a href="collections.html" class="text-sm text-fabric/70 hover:text-aquamarine transition-colors">Continue
                         Shopping</a>
                 </div>
             </div>
@@ -663,7 +696,7 @@
                     <a href="#" class="hover:text-aquamarine transition duration-300">
                         <!-- Twitter Icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M24 4.557a9.83 9.83 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724 9.861 9.861 0 0 1-3.127 1.195 4.92 4.92 0 0 0-8.384 4.482A13.978 13.978 0 0 1 1.671 3.149 4.916 4.916 0 0 0 3.195 9.722 4.903 4.903 0 0 1 .964 9.1v.062a4.92 4.92 0 0 0 3.941 4.827 4.996 4.996 0 0 1-2.212.084 4.927 4.927 0 0 0 4.6 3.417A9.868 9.868 0 0 1 0 19.54a13.94 13.94 0 0 0 7.548 2.209c9.057 0 14-7.514 14-14 0-.213-.005-.425-.014-.637A10.025 10.025 0 0 0 24 4.557z"/>
+                            <path d="M24 4.557a9.83 9.83 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724 9.861 9.861 0 0 1-3.127 1.195 4.92 4.92 0 0 0-8.384 4.482A13.978 13.978 0 0 1 1.671 3.149 4.916 4.916 0 0 0 3.195 9.722 4.903 4.903 0 0 1 .964 9.1v.062a4.92 4.92 0 0 0 3.941 4.827 4.996 4.996 0 0 1-2.212.084 4.927 4.927 0 0 0 4.6 3.417A9.868 9.868 0 0 1 0 19.540a13.940 13.940 0 0 0 7.548 2.209c9.057 0 14-7.514 14-14 0-.213-.005-.425-.014-.637A10.025 10.025 0 0 0 24 4.557z"/>
                         </svg>
                     </a>
                     <a href="#" class="hover:text-aquamarine transition duration-300">
@@ -932,8 +965,8 @@
                 
                 if (cart.length === 0) {
                     cartItemsContainer.innerHTML = `
-                        <div class="text-center py-12 text-bistre/70">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-bistre/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div class="text-center py-12 text-fabric/70">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-fabric/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                             </svg>
                             <p>Your cart is empty</p>
@@ -949,23 +982,23 @@
                 cart.forEach(item => {
                     subtotal += item.price * item.quantity;
                     itemsHTML += `
-                        <div class="flex py-4 border-b border-bistre/20">
+                        <div class="flex py-4 border-b border-fabric/20">
                             <div class="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden">
                                 <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
                             </div>
                             <div class="flex-1 pl-4">
-                                <h4 class="font-bold text-bistre">${item.name}</h4>
-                                <p class="text-sm text-bistre/70 mb-1">${item.color}, ${item.size}</p>
-                                <p class="text-sm text-bistre/70">৳${item.price} × ${item.quantity}</p>
+                                <h4 class="font-bold text-fabric">${item.name}</h4>
+                                <p class="text-sm text-fabric/70 mb-1">${item.color}, ${item.size}</p>
+                                <p class="text-sm text-fabric/70">৳${item.price} × ${item.quantity}</p>
                             </div>
                             <div class="flex flex-col items-end space-y-2">
-                                <p class="font-bold text-bistre">৳${(item.price * item.quantity).toFixed(2)}</p>
+                                <p class="font-bold text-fabric">৳${(item.price * item.quantity).toFixed(2)}</p>
                                 <div class="flex items-center space-x-2">
-                                    <button class="quantity-btn text-bistre hover:text-mauveine transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-bistre/30 hover:border-bistre" data-id="${item.id}" data-action="decrease">-</button>
-                                    <span class="text-sm text-bistre font-medium min-w-[20px] text-center">${item.quantity}</span>
-                                    <button class="quantity-btn text-bistre hover:text-mauveine transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-bistre/30 hover:border-bistre" data-id="${item.id}" data-action="increase">+</button>
+                                    <button class="quantity-btn text-fabric hover:text-mauveine transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-fabric/30 hover:border-fabric" data-id="${item.id}" data-action="decrease">-</button>
+                                    <span class="text-sm text-fabric font-medium min-w-[20px] text-center">${item.quantity}</span>
+                                    <button class="quantity-btn text-fabric hover:text-mauveine transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-fabric/30 hover:border-fabric" data-id="${item.id}" data-action="increase">+</button>
                                 </div>
-                                <button class="text-xs text-bistre/50 hover:text-mauveine transition remove-item" data-id="${item.id}">
+                                <button class="text-xs text-fabric/50 hover:text-mauveine transition remove-item" data-id="${item.id}">
                                     Remove
                                 </button>
                             </div>
@@ -1003,7 +1036,7 @@
             
             function showNotification(message) {
                 const notification = document.createElement('div');
-                notification.className = 'fixed bottom-4 right-4 bg-bistre text-white px-4 py-2 rounded-lg shadow-lg animate-fade-in z-50';
+                notification.className = 'fixed bottom-4 right-4 bg-bistre text-fabric px-4 py-2 rounded-lg shadow-lg animate-fade-in z-50';
                 notification.textContent = message;
                 document.body.appendChild(notification);
                 
@@ -1037,13 +1070,13 @@
                             const categoryBadge = document.getElementById('product-category');
                             if (product.category.includes('new')) {
                                 categoryBadge.textContent = 'NEW';
-                                categoryBadge.classList.add('bg-aquamarine', 'text-bistre');
+                                categoryBadge.classList.add('bg-aquamarine', 'text-darkbg');
                             } else if (product.category.includes('limited')) {
                                 categoryBadge.textContent = 'LIMITED';
                                 categoryBadge.classList.add('bg-mauveine', 'text-white');
                             } else {
                                 categoryBadge.textContent = product.category.toUpperCase();
-                                categoryBadge.classList.add('bg-bistre', 'text-white');
+                                categoryBadge.classList.add('bg-bistre', 'text-fabric');
                             }
                             
                             // Set availability
@@ -1121,7 +1154,7 @@
                             if (product.availableSizes && product.availableSizes.length > 0) {
                                 product.availableSizes.forEach((size, index) => {
                                     const sizeOption = document.createElement('button');
-                                    sizeOption.className = `size-option px-4 py-2 border border-bistre rounded-full text-sm ${index === 0 ? 'selected' : ''}`;
+                                    sizeOption.className = `size-option px-4 py-2 border border-fabric/30 rounded-full text-sm text-fabric hover:bg-bistre transition-colors ${index === 0 ? 'selected' : ''}`;
                                     sizeOption.setAttribute('data-size', size);
                                     sizeOption.textContent = size;
                                     
@@ -1137,7 +1170,7 @@
                                 const defaultSizes = ['XS', 'S', 'M', 'L', 'XL'];
                                 defaultSizes.forEach((size, index) => {
                                     const sizeOption = document.createElement('button');
-                                    sizeOption.className = `size-option px-4 py-2 border border-bistre rounded-full text-sm ${index === 2 ? 'selected' : ''}`;
+                                    sizeOption.className = `size-option px-4 py-2 border border-fabric/30 rounded-full text-sm text-fabric hover:bg-bistre transition-colors ${index === 2 ? 'selected' : ''}`;
                                     sizeOption.setAttribute('data-size', size);
                                     sizeOption.textContent = size;
                                     
@@ -1157,6 +1190,7 @@
                                     const colorOption = document.createElement('button');
                                     colorOption.className = `color-option w-8 h-8 rounded-full ${index === 0 ? 'selected' : ''}`;
                                     colorOption.setAttribute('data-color', color);
+                                    colorOption.setAttribute('title', color);
                                     
                                     // Set color based on color name
                                     if (color.toLowerCase() === 'red') {
@@ -1168,7 +1202,7 @@
                                     } else if (color.toLowerCase() === 'black') {
                                         colorOption.classList.add('bg-black');
                                     } else if (color.toLowerCase() === 'white') {
-                                        colorOption.classList.add('bg-white', 'border', 'border-bistre/30');
+                                        colorOption.classList.add('bg-white', 'border', 'border-fabric/30');
                                     } else {
                                         // Default to a gray color if not specified
                                         colorOption.classList.add('bg-gray-300');
@@ -1188,6 +1222,7 @@
                                     const colorOption = document.createElement('button');
                                     colorOption.className = `color-option w-8 h-8 rounded-full ${index === 0 ? 'selected' : ''}`;
                                     colorOption.setAttribute('data-color', color);
+                                    colorOption.setAttribute('title', color);
                                     
                                     if (color === 'Red') {
                                         colorOption.classList.add('bg-red-500');
@@ -1198,7 +1233,7 @@
                                     } else if (color === 'Black') {
                                         colorOption.classList.add('bg-black');
                                     } else if (color === 'White') {
-                                        colorOption.classList.add('bg-white', 'border', 'border-bistre/30');
+                                        colorOption.classList.add('bg-white', 'border', 'border-fabric/30');
                                     }
                                     
                                     colorOption.addEventListener('click', function () {
@@ -1304,18 +1339,18 @@
                                 });
                             });
                         } else {
-                            relatedContainer.innerHTML = '<p class="text-bistre/70">No related products found.</p>';
+                            relatedContainer.innerHTML = '<p class="text-fabric/70">No related products found.</p>';
                         }
                     })
                     .catch(error => {
                         console.error('Error loading related products:', error);
-                        document.getElementById('related-products').innerHTML = '<p class="text-bistre/70">Error loading related products.</p>';
+                        document.getElementById('related-products').innerHTML = '<p class="text-fabric/70">Error loading related products.</p>';
                     });
             }
             
             function createProductCard(product) {
                 const card = document.createElement('div');
-                card.className = 'collection-card rounded-xl overflow-hidden bg-white shadow-lg';
+                card.className = 'collection-card rounded-xl overflow-hidden bg-darkbg shadow-lg';
                 card.innerHTML = `
                     <div class="relative aspect-square overflow-hidden">
                         <img
@@ -1324,22 +1359,22 @@
                             class="w-full h-full object-cover collection-image"
                         >
                         <div class="absolute inset-0 collection-overlay flex flex-col justify-end p-6">
-                            <h3 class="text-2xl font-bold text-white mb-2 collection-title">${product.name}</h3>
-                            <p class="text-white/80 mb-4">${product.description}</p>
-                            <a href="product.html?id=${product.id}" class="text-white font-space uppercase tracking-wider text-sm hover:underline">View Details</a>
+                            <h3 class="text-2xl font-bold text-fabric mb-2 collection-title">${product.name}</h3>
+                            <p class="text-fabric/80 mb-4">${product.description}</p>
+                            <a href="product.html?id=${product.id}" class="text-fabric font-space uppercase tracking-wider text-sm hover:text-aquamarine transition-colors">View Details</a>
                         </div>
                     </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
                             <div>
-                                <h3 class="text-xl font-bold text-bistre mb-1">${product.name}</h3>
-                                <p class="text-bistre/70 text-sm">${product.category.includes('new') ? 'Spring 2024 Collection' : product.category.includes('limited') ? 'Limited Edition' : 'Classic Collection'}</p>
+                                <h3 class="text-xl font-bold text-fabric mb-1">${product.name}</h3>
+                                <p class="text-fabric/70 text-sm">${product.category.includes('new') ? 'Spring 2024 Collection' : product.category.includes('limited') ? 'Limited Edition' : 'Classic Collection'}</p>
                             </div>
                             <span class="font-space uppercase tracking-wider text-xs ${product.category.includes('new') ? 'text-aquamarine' : product.category.includes('limited') ? 'text-mauveine' : 'text-yellowish'}">${product.category.includes('new') ? 'NEW' : product.category.includes('limited') ? 'LIMITED' : product.category.includes('bestseller') ? 'BESTSELLER' : ''}</span>
                         </div>
                         <div class="mt-4 flex justify-between items-center">
-                            <span class="text-lg font-bold text-bistre">৳${product.price}.00</span>
-                            <button class="related-add-to-cart flex items-center bg-fabric text-bistre hover:text-mauveine transition px-3 py-2 rounded" data-product-id="${product.id}" data-product-name="${product.name}" data-product-price="${product.price}">
+                            <span class="text-lg font-bold text-fabric">৳${product.price}.00</span>
+                            <button class="related-add-to-cart flex items-center bg-bistre text-fabric hover:bg-brownsugar transition-colors px-3 py-2 rounded" data-product-id="${product.id}" data-product-name="${product.name}" data-product-price="${product.price}">
                                 <span class="mr-2">Add to Cart</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
