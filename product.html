@@ -98,8 +98,8 @@
         }
         body {
             font-family: "Archivo", sans-serif;
-            background-color: #f5f0e8;
-            color: #1a0f1a;
+            background-color: #0b0b10;
+            color: #f5f0e8;
             overflow-x: hidden;
         }
         .text-stroke {
@@ -310,8 +310,45 @@
             }
         }
     </style>
+    <style>
+        /* ========= Vice City scoped theme (product page) ========= */
+        .vp-page.vc-dark {
+            background:
+                radial-gradient(1200px 600px at 50% 20%, rgba(251, 58, 72, 0.10), transparent 60%),
+                radial-gradient(900px 500px at 15% 85%, rgba(181, 20, 144, 0.10), transparent 70%),
+                linear-gradient(180deg, #0b0b10, #1a0f1a);
+        }
+        .vp-page .text-bistre { color: #f5f0e8; }
+        .vp-page .text-bistre\/70 { color: rgba(245, 240, 232, 0.7); }
+        .vp-page .vp-card {
+            background: linear-gradient(180deg, rgba(10,10,14,0.95), rgba(26,15,26,0.9));
+            border: 1px solid rgba(181, 20, 144, 0.25);
+            box-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.04) inset,
+                0 0 0 0 rgba(181, 20, 144, 0.25);
+        }
+        .vp-page .vp-card:hover {
+            box-shadow:
+                0 0 0 6px rgba(181, 20, 144, 0.08),
+                0 18px 40px rgba(0, 0, 0, 0.35),
+                0 0 26px rgba(181, 20, 144, 0.35);
+        }
+        /* Loading + progress */
+        .vp-page #loading-overlay { background: rgba(10,10,14,0.92); }
+        .vp-page .progress-container { background: #1a1a1f; }
+        .vp-page .progress-bar { background: #28EEB6; }
+        /* Related product cards to match collections */
+        .vp-page .collection-card { 
+            background: linear-gradient(180deg, rgba(10,10,14,0.95), rgba(26,15,26,0.9));
+            border: 1px solid rgba(181, 20, 144, 0.25);
+            box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset;
+        }
+        .vp-page .collection-overlay {
+            background: linear-gradient(to top, rgba(10, 10, 14, 0.95) 0%, rgba(0, 0, 0, 0) 100%);
+        }
+    </style>
 </head>
-<body class="fabric-texture antialiased">
+<body class="fabric-texture antialiased vc-dark vp-page">
     <!-- Progress Bar -->
     <div class="progress-container" id="progress-container">
         <div class="progress-bar" id="progress-bar"></div>
@@ -461,7 +498,7 @@
                     <div class="flex flex-col md:flex-row gap-4">
                         <!-- Main Image -->
                         <div class="w-full md:w-4/5">
-                            <div class="zoom-container relative bg-white rounded-xl shadow-lg overflow-hidden product-gallery">
+                            <div class="zoom-container relative rounded-xl shadow-lg overflow-hidden product-gallery vp-card">
                                 <img id="main-product-image" src="" alt="Product Image" class="w-full h-full object-contain cursor-zoom-in">
                                 <div id="zoom-result" class="zoom-result"></div>
                             </div>
@@ -477,7 +514,7 @@
                 </div>
                 <!-- Product Info -->
                 <div class="w-full lg:w-1/2">
-                    <div class="bg-white rounded-xl shadow-lg p-8">
+                    <div class="rounded-xl shadow-lg p-8 vp-card">
                         <!-- Product Title -->
                         <h1 class="text-3xl md:text-4xl font-bold text-bistre mb-2" id="product-title">Loading...</h1>
                         

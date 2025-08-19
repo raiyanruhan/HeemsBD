@@ -101,8 +101,8 @@
 
         body {
             font-family: "Archivo", sans-serif;
-            background-color: #f5f0e8;
-            color: #1a0f1a;
+            background-color: #0b0b10;
+            color: #f5f0e8;
             overflow-x: hidden;
         }
 
@@ -110,7 +110,18 @@
             -webkit-text-stroke: 1px currentColor;
             color: transparent;
         }
+        @layer utilities {
+    /* For WebKit browsers (Chrome, Safari, Edge, Opera) */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
 
+    /* For Firefox and IE/Edge */
+    .no-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+  }
         .gradient-text {
             background: linear-gradient(90deg, #fb3a48, #DC2F02, #28eeb6);
             background-size: 300% 300%;
@@ -181,6 +192,7 @@
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             transform-style: preserve-3d;
             perspective: 1000px;
+            will-change: transform;
         }
 
         .collection-card:hover {
@@ -337,9 +349,164 @@
             }
         }
     </style>
+    <style>
+        /* ========= Vice City scoped theme (collections only) ========= */
+        .vc-hero {
+            position: relative;
+            background:
+                radial-gradient(1000px 400px at 15% 10%, rgba(181, 20, 144, 0.10), transparent 60%),
+                radial-gradient(900px 500px at 85% 30%, rgba(40, 238, 182, 0.10), transparent 70%),
+                linear-gradient(180deg, rgba(10, 10, 14, 0.9), rgba(26, 15, 26, 0.75));
+            border-bottom: 2px solid rgba(181, 20, 144, 0.25);
+            margin-bottom: 1.5rem;
+        }
+        .vc-hero:before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.05) 0px,
+                rgba(255, 255, 255, 0.05) 1px,
+                transparent 3px,
+                transparent 4px
+            );
+            mix-blend-mode: soft-light;
+            pointer-events: none;
+        }
+        .vc-hero h1 span {
+            text-shadow:
+                0 0 8px rgba(251, 58, 72, 0.45),
+                0 0 16px rgba(181, 20, 144, 0.35),
+                0 0 28px rgba(40, 238, 182, 0.25);
+            letter-spacing: 0.08em;
+        }
+        .vc-hero p {
+            color: rgba(255, 255, 255, 0.7);
+            text-shadow: 0 0 8px rgba(181, 20, 144, 0.35);
+        }
+        .vc-hero .filter-btn {
+            border-color: rgba(181, 20, 144, 0.6);
+            color: #f5f0e8;
+            background: linear-gradient(135deg, rgba(181, 20, 144, 0.25), rgba(40, 238, 182, 0.15));
+            box-shadow:
+                0 0 0 0 rgba(181, 20, 144, 0.15),
+                inset 0 0 10px rgba(181, 20, 144, 0.25);
+            transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+        }
+        .vc-hero .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 0 20px rgba(181, 20, 144, 0.3),
+                inset 0 0 12px rgba(181, 20, 144, 0.35);
+        }
+        .vc-hero .filter-btn.active {
+            background: linear-gradient(135deg, rgba(181, 20, 144, 0.4), rgba(40, 238, 182, 0.25));
+            border-color: rgba(40, 238, 182, 0.75);
+            box-shadow:
+                0 0 24px rgba(40, 238, 182, 0.35),
+                inset 0 0 14px rgba(40, 238, 182, 0.35);
+        }
+
+        .vc-grid-section {
+            position: relative;
+            background:
+                radial-gradient(900px 500px at 20% 60%, rgba(181, 20, 144, 0.10), transparent 70%),
+                radial-gradient(800px 400px at 80% 70%, rgba(40, 238, 182, 0.10), transparent 70%);
+            overflow: visible;
+            padding-top: 2rem;
+        }
+        .vc-grid-section:before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0)),
+                repeating-linear-gradient(
+                    to bottom,
+                    rgba(255, 255, 255, 0.04) 0,
+                    rgba(255, 255, 255, 0.04) 2px,
+                    transparent 3px,
+                    transparent 6px
+                );
+            pointer-events: none;
+        }
+
+        /* Product cards: neon frames inside collections grid only */
+        .vc-grid-section .collection-card {
+            background: linear-gradient(180deg, rgba(10, 10, 14, 0.95), rgba(26, 15, 26, 0.9));
+            border-radius: 16px;
+            border: 1px solid rgba(181, 20, 144, 0.25);
+            box-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.04) inset,
+                0 0 0 0 rgba(181, 20, 144, 0.25);
+        }
+        .vc-grid-section .collection-card:hover {
+            box-shadow:
+                0 0 0 6px rgba(181, 20, 144, 0.08),
+                0 18px 40px rgba(0, 0, 0, 0.35),
+                0 0 26px rgba(181, 20, 144, 0.35);
+        }
+        .vc-grid-section .collection-overlay {
+            background: linear-gradient(to top, rgba(10, 10, 14, 0.95) 0%, rgba(0, 0, 0, 0) 100%);
+        }
+        .vc-grid-section .collection-title {
+            text-shadow: 0 0 10px rgba(181, 20, 144, 0.45);
+        }
+        /* Desktop: never show overlay title to avoid flicker during fade */
+        @media (hover: hover) and (pointer: fine) {
+            .vc-grid-section .collection-title { display: none !important; }
+        }
+        .vc-grid-section .view-details-btn {
+            background: transparent;
+            color: rgba(245, 240, 232, 0.9);
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            opacity: 0;
+            transform: translateY(2px);
+            transition: opacity .25s ease, transform .25s ease, color .2s ease, text-decoration-color .2s ease;
+            text-decoration: none;
+        }
+        .vc-grid-section .collection-card:hover .view-details-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .vc-grid-section .view-details-btn:hover {
+            color: #28EEB6;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        /* Touch devices: no hover dependency */
+        @media (hover: none), (pointer: coarse) {
+            .vc-grid-section .view-details-btn {
+                opacity: 1;
+                transform: none;
+            }
+        }
+        .vc-grid-section .add-to-cart {
+            background: rgba(255, 255, 255, 0.04);
+            color: #f5f0e8;
+            border: 1px solid rgba(181, 20, 144, 0.35);
+        }
+        .vc-grid-section .add-to-cart:hover {
+            background: rgba(181, 20, 144, 0.15);
+            color: #fff;
+        }
+        .vc-grid-section .text-bistre { color: #f5f0e8; }
+        .vc-grid-section .text-bistre\/70 { color: rgba(245, 240, 232, 0.7); }
+
+        /* Page-wide dark backdrop without affecting header/footer styles */
+        .vc-dark {
+            background:
+                radial-gradient(1200px 600px at 50% 20%, rgba(251, 58, 72, 0.10), transparent 60%),
+                radial-gradient(900px 500px at 15% 85%, rgba(181, 20, 144, 0.10), transparent 70%),
+                linear-gradient(180deg, #0b0b10, #1a0f1a);
+        }
+    </style>
 </head>
 
-<body class="fabric-texture antialiased">
+<body class="fabric-texture antialiased vc-dark">
     <!-- Animated Background Elements -->
     <div class="fixed inset-0 overflow-hidden -z-10">
         <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-mauveine/10 blur-3xl animate-pulse-slow"></div>
@@ -349,7 +516,9 @@
             class="absolute bottom-1/4 left-1/3 w-80 h-80 rounded-full bg-imperialred/10 blur-3xl animation-delay-4000">
         </div>
     </div>
-
+    <div class="overflow-y-scroll no-scrollbar">
+        <!-- Your scrollable content here -->
+      </div>
     <!-- Navigation -->
     <header id="main-header"
         class="fixed top-0 left-0 w-full z-40 backdrop-blur-md bg-fabric/80 border-b border-fabric/20 shadow-md transition-all duration-300 ease-in-out py-2">
@@ -427,7 +596,7 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-20 relative overflow-hidden">
+    <section class="pt-32 pb-16 relative overflow-visible vc-hero">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h1 class="text-5xl md:text-7xl font-bungee mb-6">
@@ -463,7 +632,7 @@
     </section>
 
     <!-- Collections Grid -->
-    <section class="pb-24">
+    <section class="pt-2 pb-24 vc-grid-section relative overflow-visible">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 product-grid" id="products-container">
                 <!-- Product cards will be generated here by JavaScript -->
@@ -471,7 +640,7 @@
 
             <div class="text-center mt-16">
                 <button
-                    class="px-8 py-4 border-2 border-bistre text-bistre font-space uppercase tracking-wider text-sm hover:bg-bistre hover:text-fabric transition-all duration-300"
+                    class="px-8 py-4 border-2 border-bistre bg-bistre text-fabric font-space uppercase tracking-wider text-sm hover:bg-transparent hover:text-bistre transition-all duration-300"
                     id="load-more-btn">
                     Load More
                 </button>
@@ -962,12 +1131,7 @@
                         >
                         <div class="absolute inset-0 collection-overlay flex flex-col justify-end p-6">
                             <h3 class="text-2xl font-bold text-white mb-2 collection-title">${product.name}</h3>
-                            <p class="text-white/80 mb-4">${product.description}</p>
-                            <div class="flex space-x-2">
-                                <a href="product.html?id=${productId}" class="view-details-btn px-4 py-2 rounded-full font-space uppercase tracking-wider text-xs" data-product-id="${productId}">
-                                    View Details
-                                </a>
-                            </div>
+                            <p class="text-white/80">${product.description}</p>
                         </div>
                     </div>
                     <div class="p-6">
@@ -978,14 +1142,17 @@
                             </div>
                             <span class="font-space uppercase tracking-wider text-xs ${product.category.includes('new') ? 'text-aquamarine' : product.category.includes('limited') ? 'text-mauveine' : 'text-yellowish'}">${product.category.includes('new') ? 'NEW' : product.category.includes('limited') ? 'LIMITED' : product.category.includes('bestseller') ? 'BESTSELLER' : ''}</span>
                         </div>
-                        <div class="mt-4 flex justify-between items-center">
+                        <div class="mt-4 flex justify-between items-center gap-3">
                             <span class="text-lg font-bold text-bistre">৳${product.price}.00</span>
-                            <button class="add-to-cart flex items-center bg-fabric text-bistre hover:text-mauveine transition px-3 py-2 rounded" data-product-id="${productId}" data-product-name="${product.name}" data-product-price="${product.price}">
-                                <span class="mr-2">Add to Cart </span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
-                            </button>
+                            <div class="flex items-center gap-4">
+                                <a href="product.html?id=${productId}" class="view-details-btn font-space uppercase tracking-wider text-xs" data-product-id="${productId}">View details</a>
+                                <button class="add-to-cart flex items-center bg-fabric text-bistre hover:text-mauveine transition px-3 py-2 rounded" data-product-id="${productId}" data-product-name="${product.name}" data-product-price="${product.price}">
+                                    <span class="mr-2">Add to Cart </span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 `;
