@@ -227,6 +227,15 @@
             color: #f5f0e8;
         }
 
+        .filter-btn {
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:active {
+            transform: scale(0.95);
+            box-shadow: 0 0 10px rgba(220, 47, 2, 0.5);
+        }
+
         .product-modal {
             opacity: 0;
             visibility: hidden;
@@ -347,6 +356,21 @@
                 padding: 0.5rem 1rem;
                 font-size: 0.8rem;
             }
+        }
+
+        /* Fade out animation for products */
+        .fade-out {
+            animation: fadeOut 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Product card entry animation */
+        .product-enter {
+            animation: fadeIn 0.5s ease-in forwards, slideUp 0.5s ease-in forwards;
         }
     </style>
     <style>
@@ -631,6 +655,14 @@
     <section class="pt-2 pb-24 vc-grid-section relative overflow-visible">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 product-grid" id="products-container">
+                <!-- Loader -->
+                <div id="products-loader" class="col-span-full text-center py-12">
+                    <svg aria-hidden="true" role="status" class="inline w-8 h-8 mx-auto mb-4 text-gray-200 animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#1C64F2"/>
+                    </svg>
+                    <p class="text-bistre/70">Loading products...</p>
+                </div>
                 <!-- Product cards will be generated here by JavaScript -->
             </div>
 
@@ -677,7 +709,7 @@
                     <span class="font-bold text-bistre" id="cart-subtotal">৳0.00</span>
                 </div>
                 <p class="text-sm text-bistre/70 mb-6">Shipping and taxes calculated at checkout</p>
-                <a href="checkout.html">
+                <a href="/cart">
                     <button
                         class="w-full px-6 py-3 bg-bistre text-white font-space uppercase tracking-wider text-sm hover:bg-bistre/90 transition">
                         Checkout
@@ -745,6 +777,7 @@
             const cartSubtotal = document.getElementById('cart-subtotal');
             const cartCountElements = document.querySelectorAll('#cart-count, #mobile-cart-count');
             const loadMoreBtn = document.getElementById('load-more-btn');
+            const productsLoader = document.getElementById('products-loader');
 
             // Initialize cart UI
             updateCartUI();
@@ -798,30 +831,101 @@
 
             // Fetch products from JSON file
             let currentPage = 1;
-            const itemsPerPage = 9; // Initial load
+            const itemsPerPage = 6; // Initial load
             let allProducts = [];
             let currentFilteredProducts = [];
 
-            fetch('data/dress.json')
-                .then(response => response.json())
-                .then(products => {
-                    allProducts = products; // Store all products
-                    currentFilteredProducts = [...allProducts]; // Copy for filtering
-                    const container = document.getElementById('products-container');
-                    // Generate initial product cards
-                    const initialProducts = currentFilteredProducts.slice(0, itemsPerPage);
-                    initialProducts.forEach(product => {
-                        const card = createProductCard(product);
-                        container.appendChild(card);
-                    });
-                    // Add event listeners to all add-to-cart buttons after they're created
-                    addCartEventListeners();
-                    // Add event listener for load more button
-                    if (loadMoreBtn) {
-                        loadMoreBtn.addEventListener('click', loadMoreProducts);
+            // Fetch products from the public API endpoint with fallback
+            async function loadProducts() {
+                // Show loader
+                productsLoader.style.display = 'block';
+
+                try {
+                    // Try the main API endpoint first
+                    const response = await fetch('https://console.heemsbd.com/api/products');
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
                     }
-                })
-                .catch(error => console.error('Error loading products:', error));
+                    const products = await response.json();
+                    
+                    if (products && Array.isArray(products)) {
+                        allProducts = products;
+                        currentFilteredProducts = [...allProducts];
+                        displayProducts();
+                    } else {
+                        throw new Error('Invalid products data received');
+                    }
+                } catch (error) {
+                    console.error('Error loading products from API:', error);
+                    
+                    // Fallback: try direct JSON access
+                    try {
+                        const fallbackResponse = await fetch('https://console.heemsbd.com/api/dress.json');
+                        if (fallbackResponse.ok) {
+                            const fallbackProducts = await fallbackResponse.json();
+                            if (fallbackProducts && Array.isArray(fallbackProducts)) {
+                                allProducts = fallbackProducts;
+                                currentFilteredProducts = [...fallbackProducts];
+                                displayProducts();
+                                return;
+                            }
+                        }
+                    } catch (fallbackError) {
+                        console.error('Fallback fetch also failed:', fallbackError);
+                    }
+                    
+                    // Show error message to user
+                    const container = document.getElementById('products-container');
+                    container.innerHTML = `
+                        <div class="col-span-full text-center py-12">
+                            <div class="text-red-500 mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin-round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-bistre mb-2">Unable to Load Products</h3>
+                            <p class="text-bistre/70 mb-4">Please check your internet connection and try again.</p>
+                            <button onclick="location.reload()" class="px-6 py-2 bg-bistre text-white rounded-lg hover:bg-bistre/90 transition">
+                                Retry
+                            </button>
+                        </div>
+                    `;
+                } finally {
+                    // Hide loader after fetch (success or error)
+                    productsLoader.style.display = 'none';
+                }
+            }
+
+            function displayProducts() {
+                const container = document.getElementById('products-container');
+                // Generate initial product cards
+                const initialProducts = currentFilteredProducts.slice(0, itemsPerPage);
+                container.innerHTML = ''; // Clear container
+                initialProducts.forEach((product, index) => {
+                    const card = createProductCard(product);
+                    card.style.animationDelay = `${index * 0.1}s`; // Stagger animations
+                    card.classList.add('product-enter');
+                    container.appendChild(card);
+                });
+                // Add event listeners to all add-to-cart buttons after they're created
+                addCartEventListeners();
+                // Add event listener for load more button
+                if (loadMoreBtn) {
+                    loadMoreBtn.addEventListener('click', loadMoreProducts);
+                }
+                
+                // Update load more button visibility
+                if (currentFilteredProducts.length <= itemsPerPage) {
+                    loadMoreBtn.style.display = 'none';
+                } else {
+                    loadMoreBtn.style.display = 'inline-block';
+                    loadMoreBtn.disabled = false;
+                    loadMoreBtn.textContent = 'Load More';
+                }
+            }
+
+            // Load products when page loads
+            loadProducts();
 
             // Filter functionality
             const filterButtons = document.querySelectorAll('.filter-btn');
@@ -834,9 +938,6 @@
                     currentPage = 1;
                     // Filter collections
                     const filterValue = this.getAttribute('data-filter');
-                    // Clear current products
-                    const container = document.getElementById('products-container');
-                    container.innerHTML = '';
                     // Filter products based on category
                     let filteredProducts = allProducts;
                     if (filterValue !== 'all') {
@@ -846,22 +947,19 @@
                     }
                     // Update current filtered products
                     currentFilteredProducts = filteredProducts;
-                    // Show initial products for filtered results
-                    const initialProducts = currentFilteredProducts.slice(0, itemsPerPage);
-                    initialProducts.forEach(product => {
-                        const card = createProductCard(product);
-                        container.appendChild(card);
-                    });
-                    // Re-add cart event listeners
-                    addCartEventListeners();
-                    // Update load more button
-                    if (currentFilteredProducts.length <= itemsPerPage) {
-                        loadMoreBtn.style.display = 'none';
-                    } else {
-                        loadMoreBtn.style.display = 'inline-block';
-                        loadMoreBtn.disabled = false;
-                        loadMoreBtn.textContent = 'Load More';
-                    }
+                    // Animate out existing products
+                    const container = document.getElementById('products-container');
+                    const cards = container.querySelectorAll('.collection-card');
+                    cards.forEach(card => card.classList.add('fade-out'));
+                    // Show loader during transition
+                    productsLoader.style.display = 'block';
+                    setTimeout(() => {
+                        // Reset pagination
+                        currentPage = 1;
+                        // Display filtered products
+                        displayProducts();
+                        productsLoader.style.display = 'none';
+                    }, 500); // Match fade-out duration
                 });
             });
 
@@ -1085,8 +1183,10 @@
                     const productsToAdd = currentFilteredProducts.slice(startIndex, endIndex);
 
                     if (productsToAdd.length > 0) {
-                        productsToAdd.forEach(product => {
+                        productsToAdd.forEach((product, index) => {
                             const card = createProductCard(product);
+                            card.style.animationDelay = `${index * 0.1}s`; // Stagger animations
+                            card.classList.add('product-enter');
                             document.getElementById('products-container').appendChild(card);
                         });
 

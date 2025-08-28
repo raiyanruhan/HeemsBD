@@ -4,7 +4,7 @@ const path = require('path');
 const multer = require('multer');
 const bcrypt = require('bcrypt');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
@@ -42,7 +42,12 @@ const upload = multer({
 app.use(express.json());
 
 // Serve static files from root directory (main website)
-app.use(express.static(__dirname));
+app.use((req, res, next) => {
+	if (req.url.startsWith('/cart')) {
+		return res.status(404).end();
+	}
+	next();
+});
 
 // Serve assets directory
 app.use('/assets', express.static('assets'));
@@ -149,6 +154,21 @@ function requireAuth(req, res, next) {
 // Main website routes
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Explicitly serve index.html if requested
+app.get('/index.html', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Serve only allowed HTML files from root (excludes login/dashboard/index)
+app.get('/:page.html', (req, res) => {
+    const requestedFile = `${req.params.page}.html`;
+    const allowedFiles = getHtmlFiles();
+    if (!allowedFiles.includes(requestedFile)) {
+        return res.status(404).end();
+    }
+    return res.sendFile(path.join(__dirname, requestedFile));
 });
 
 // Dashboard/Console routes
@@ -310,9 +330,24 @@ app.use((error, req, res, next) => {
     res.status(500).json({ error: 'Internal server error' });
 });
 
-// Start server
-app.listen(PORT, () => {
-    console.log(`HEEMS website running on http://localhost:${PORT}`);
-    console.log(`Dashboard available at http://localhost:${PORT}/console`);
-    console.log(`Admin password: h^i^Aoi$BlF0`);
-}); 
+// Start server with automatic fallback if port is busy
+function startServer(port, maxAttempts = 10, attempt = 1) {
+    const server = app.listen(port, () => {
+        console.log(`HEEMS website running on http://localhost:${port}`);
+        console.log(`Dashboard available at http://localhost:${port}/console`);
+        console.log(`Admin password: h^i^Aoi$BlF0`);
+    });
+
+    server.on('error', (error) => {
+        if (error && error.code === 'EADDRINUSE' && attempt < maxAttempts) {
+            const nextPort = port + 1;
+            console.warn(`Port ${port} in use. Trying port ${nextPort}...`);
+            startServer(nextPort, maxAttempts, attempt + 1);
+        } else {
+            console.error('Failed to start server:', error);
+            process.exit(1);
+        }
+    });
+}
+
+startServer(PORT);
