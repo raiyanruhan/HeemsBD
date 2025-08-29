@@ -581,7 +581,10 @@
                 </div>
                 <!-- Right Section -->
                 <div class="flex-1 mt-8 md:mt-0 text-center md:text-right">
-                    <p class="text-sm" style="font-family: 'Courier New', monospace;">&copy; 2024 Heems Clothing. All rights reserved. </p>
+                    <p class="text-sm" style="font-family: 'Courier New', monospace;">&copy; <span id="current-year"></span> Heems Clothing. All rights reserved. </p>
+                    <script>
+                        document.getElementById('current-year').textContent = new Date().getFullYear();
+                    </script>
                 </div>
             </div>
             <!-- Glossy Overlay for Glossy Finish -->
