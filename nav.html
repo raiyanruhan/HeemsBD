@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEEMS - Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+        }
+        .font-bungee {
+            font-family: 'Bungee Spice', cursive;
+        }
+        .hero-section {
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+        }
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #ff0080;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #121212 0%, #1a0f1a 50%, #2d1b2d 100%);
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mobile-menu-content {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .mobile-close-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+        }
+        
+        .mobile-close-btn:hover {
+            background: rgba(255, 0, 128, 0.2);
+            border-color: #ff0080;
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 0 20px rgba(255, 0, 128, 0.3);
+        }
+        
+        .mobile-close-btn svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+            stroke-width: 2;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-close-btn:hover svg {
+            stroke: #ff0080;
+            transform: scale(1.1);
+        }
+        
+        .mobile-nav-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            margin: 1.5rem 0;
+            z-index: 1;
+        }
+        
+        .mobile-nav-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .mobile-nav-item a {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-item a::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff0080, #00ffff);
+            transition: width 0.3s ease;
+        }
+        
+        .mobile-nav-item a:hover::before {
+            width: 100%;
+        }
+        
+        .mobile-nav-item a:hover {
+            color: #00ffff;
+            transform: scale(1.05);
+        }
+        
+        .hamburger {
+            width: 30px;
+            height: 30px;
+            position: relative;
+            cursor: pointer;
+            z-index: 101;
+        }
+        
+        .hamburger span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .hamburger span:nth-child(1) {
+            top: 0px;
+        }
+        
+        .hamburger span:nth-child(2) {
+            top: 13px;
+        }
+        
+        .hamburger span:nth-child(3) {
+            top: 26px;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 13px;
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: 13px;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-close-btn {
+                top: 1.5rem;
+                right: 1.5rem;
+                width: 45px;
+                height: 45px;
+                z-index: 999;
+            }
+            
+            .mobile-close-btn svg {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .mobile-nav-item a {
+                font-size: 2rem;
+                padding: 1rem 0;
+                display: block;
+                text-align: center;
+            }
+            
+            .hamburger {
+                width: 25px;
+                height: 25px;
+            }
+            
+            .hamburger span {
+                height: 2px;
+            }
+            
+            .hamburger span:nth-child(2) {
+                top: 11px;
+            }
+            
+            .hamburger span:nth-child(3) {
+                top: 22px;
+            }
+            
+            .hamburger.active span:nth-child(1),
+            .hamburger.active span:nth-child(3) {
+                top: 11px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#121212] text-white">
+    <!-- Header -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-40 transition-all duration-300 ease-in-out py-6">
+        <div id="logo-container" class="flex flex-col items-center relative w-full">
+            <div class="w-full flex justify-between items-center px-6 mb-6">
+                <button id="mobile-menu-btn" class="hamburger md:hidden">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <div class="w-16 hidden md:block"></div>
+                
+                <a href="index.html" class="flex flex-col items-center">
+                    <div class="w-16 h-16  rounded-full flex items-center justify-center">
+                        <img src="https://heemsbd.com/assets/more/heeem.jpg" alt="HEEMS Logo" class="h-20 w-auto object-contain" />
+                    </div>
+                </a>
+                
+                <button id="cart-btn" class="flex items-center px-4 py-2 border border-white text-white rounded-md hover:bg-white hover:text-black transition-all relative">
+                    <i data-lucide="shopping-cart" class="w-5 h-5 mr-2"></i>
+                    <span class="hidden sm:inline">Cart</span>
+                    <span id="cart-count" class="cart-count">0</span>
+                </button>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8 text-sm uppercase tracking-wider">
+                <a href="index.html" class="px-4 py-2 border-b-2 border-[#ff0080] text-white hover:border-[#00ffff] hover:text-[#00ffff] transition-all">Home</a>
+                <a href="collections.html" class="px-4 py-2 border-b-2 border-transparent text-white hover:border-[#00ffff] hover:text-[#00ffff] transition-all">Our Products</a>
+                <a href="story.html" class="px-4 py-2 border-b-2 border-transparent text-white hover:border-[#00ffff] hover:text-[#00ffff] transition-all">Our Story</a>
+                <a href="contact.html" class="px-4 py-2 border-b-2 border-transparent text-white hover:border-[#00ffff] hover:text-[#00ffff] transition-all">Contact Us</a>
+            </nav>
+        </div>
+
+        <div id="scrolled-nav" class="hidden justify-between items-center px-6 opacity-0">
+            <a href="#" class="flex items-center space-x-2">
+                <div class="w-14 h-14  rounded-full flex items-center justify-center relative overflow-hidden">
+                    <img src="https://heemsbd.com/assets/more/heeem.jpg" alt="HEEMS Logo" class="h-25 w-10 object-contain main-logo transition-opacity duration-300 absolute inset-0 m-auto" />
+                    <img src="https://cdn.jsdelivr.net/gh/raiyanruhan/HeemsBD@main/Fun/3dgifmaker56642.gif" alt="Hover Image" class="h-10 w-10 object-contain absolute inset-0 hover-logo opacity-0 transition-opacity duration-300 m-auto" />
+                </div>
+                <span class="text-lg text-white font-bungee">HEEMS</span>
+            </a>
+            
+            <nav class="hidden md:flex flex-1 justify-center space-x-8 text-sm uppercase tracking-wider">
+                <a href="index.html" class="menu-item border-b-2 border-[#ff0080] pb-1 font-bold">Home</a>
+                <a href="collections.html" class="menu-item hover:border-b-2 hover:border-[#00ffff] hover:text-[#00ffff] transition-all pb-1">Our Products</a>
+                <a href="story.html" class="menu-item hover:border-b-2 hover:border-[#00ffff] hover:text-[#00ffff] transition-all pb-1">Our Story</a>
+                <a href="contact.html" class="menu-item hover:border-b-2 hover:border-[#00ffff] hover:text-[#00ffff] transition-all pb-1">Contact Us</a>
+            </nav>
+            
+            <div class="flex items-center">
+                <button id="cart-btn-scrolled" class="flex items-center hover:text-[#00ffff] transition-all relative">
+                    <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+                    <span id="cart-count-scrolled" class="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay">
+        <button id="mobile-close-btn" class="mobile-close-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        
+        <div class="mobile-menu-content">
+            <div class="mobile-nav-item" data-delay="0.1">
+                <a href="index.html">Home</a>
+            </div>
+            <div class="mobile-nav-item" data-delay="0.2">
+                <a href="collections.html">Our Products</a>
+            </div>
+            <div class="mobile-nav-item" data-delay="0.3">
+                <a href="story.html">Our Story</a>
+            </div>
+            <div class="mobile-nav-item" data-delay="0.4">
+                <a href="contact.html">Contact Us</a>
+            </div>
+            
+            <div class="mobile-nav-item" data-delay="0.5">
+                <button id="mobile-cart-btn" class="flex items-center px-6 py-3 border-2 border-white text-white rounded-full hover:bg-white hover:text-black transition-all">
+                    <i data-lucide="shopping-cart" class="w-6 h-6 mr-3"></i>
+                    <span>View Cart</span>
+                    <span id="mobile-cart-count" class="cart-count ml-3">0</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="fixed inset-y-0 right-0 w-full sm:w-96 bg-white z-50 shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out" id="cart-sidebar">
+        <div class="h-full flex flex-col">
+            <div class="p-6 border-b border-gray-300 flex justify-between items-center">
+                <h3 class="text-xl font-bold text-gray-800">Your Cart</h3>
+                <button class="text-gray-600 hover:text-red-500 transition" id="close-cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="flex-1 overflow-y-auto p-6" id="cart-items">
+                <div class="text-center py-12 text-gray-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <p>Your cart is empty</p>
+                </div>
+            </div>
+            <div class="p-6 border-t border-gray-300">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-gray-800">Subtotal</span>
+                    <span class="font-bold text-gray-800" id="cart-subtotal">৳0.00</span>
+                </div>
+                <p class="text-sm text-gray-500 mb-6">Shipping and taxes calculated at checkout</p>
+                <a href="/cart">
+                    <button class="w-full px-6 py-3 bg-gray-800 text-white font-semibold uppercase tracking-wider text-sm hover:bg-gray-700 transition">
+                        Checkout
+                    </button>
+                </a>
+                <div class="text-center mt-4">
+                    <a href="collections.html" class="text-sm text-gray-500 hover:text-gray-700 transition">Continue Shopping</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section flex items-center justify-center text-center"></section>
+    
+    <!-- Footer -->
+    <footer id="contact" class="bg-gradient-to-r from-gray-800 via-gray-900 to-black text-fabric/70 py-12 relative overflow-hidden" style="background: linear-gradient(135deg, #4b1f1f, #1a1a1a); border-top: 2px solid #fcd34d; box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2);">
+        <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <div class="mb-6 md:mb-0 flex-1">
+                <h2 class="text-3xl font-bungee mb-4" style="letter-spacing: 2px;">HEEMS</h2>
+                <p class="text-sm max-w-xs mb-4" style="font-family: 'Courier New', monospace;">Experimental fashion house from Galachipa, Bangladesh. Redefining South Asian aesthetics.</p>
+                <div class="flex justify-center md:justify-start space-x-6 mb-4">
+                    <a href="#" class="hover:text-aquamarine transition duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.35C0 23.407.593 24 1.325 24h21.35C23.407 24 24 23.407 24 22.675V1.325C24 .593 23.407 0 22.675 0zM8.06 15.845H3.937V9.296h4.125V15.845zm.84-6.99h-.002c-1.158 0-1.85-.656-1.85-1.678V6.08c0-1.022.692-1.678 1.85-1.678h.002c1.17 0 1.86.656 1.86 1.678v1.097c0 1.022-.69 1.678-1.86 1.678zM18.188 15.845h-3.197v-3.469h.038c.877 0 1.343-.54 1.343-1.177 0-.638-.467-1.177-1.343-1.177h-.037V8.93h3.126c2.756 0 4.196 1.588 4.196 3.954v.001c0 2.367-1.44 3.96-4.196 3.96z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="hover:text-aquamarine transition duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 4.557a9.83 9.83 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724 9.861 9.861 0 0 1-3.127 1.195 4.92 4.92 0 0 0-8.384 4.482A13.978 13.978 0 0 1 1.671 3.149 4.916 4.916 0 0 0 3.195 9.722 4.903 4.903 0 0 1 .964 9.1v.062a4.92 4.92 0 0 0 3.941 4.827 4.996 4.996 0 0 1-2.212.084 4.927 4.927 0 0 0 4.6 3.417A9.868 9.868 0 0 1 0 19.54a13.94 13.94 0 0 0 7.548 2.209c9.057 0 14-7.514 14-14 0-.213-.005-.425-.014-.637A10.025 10.025 0 0 0 24 4.557z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="hover:text-aquamarine transition duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.5c0-1.379-1.121-2.5-2.5-2.5s-2.5 1.121-2.5 2.5v5.5h-3v-10h3v1.293c.385-.296.842-.493 1.371-.493 1.519 0 2.75 1.231 2.75 2.75v6.45z" />
+                        </svg>
+                    </a>
+                </div>
+                <p class="text-sm" style="font-family: 'Courier New', monospace;">contact@heemsclothing.com</p>
+            </div>
+            <div class="flex-1 mt-8 md:mt-0 text-center md:text-right">
+                <p class="text-sm" style="font-family: 'Courier New', monospace;">&copy; <span id="current-year"></span> Heems Clothing. All rights reserved. </p>
+            </div>
+        </div>
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0)); mix-blend-mode: overlay; border-top: 2px solid #fcd34d; pointer-events: none;"></div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const centerLogo = document.getElementById("logo-container");
+            const scrolledNav = document.getElementById("scrolled-nav");
+
+            ScrollTrigger.create({
+                trigger: "body",
+                start: "top top",
+                end: "+=150",
+                scrub: true,
+                onEnter: () => {
+                    gsap.to(centerLogo, {
+                        opacity: 0,
+                        y: -50,
+                        duration: 0.4,
+                        onComplete: () => {
+                            centerLogo.style.display = "none";
+                            scrolledNav.classList.remove("hidden");
+                            scrolledNav.classList.add("flex");
+                            gsap.to(scrolledNav, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" });
+                        }
+                    });
+                },
+                onLeaveBack: () => {
+                    gsap.to(scrolledNav, {
+                        opacity: 0,
+                        duration: 0.3,
+                        onComplete: () => {
+                            scrolledNav.classList.add("hidden");
+                            scrolledNav.classList.remove("flex");
+                            centerLogo.style.display = "flex";
+                            gsap.to(centerLogo, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" });
+                        }
+                    });
+                }
+            });
+
+            const mainLogo = document.querySelector('.main-logo');
+            const hoverLogo = document.querySelector('.hover-logo');
+            if (mainLogo && hoverLogo) {
+                mainLogo.addEventListener('mouseenter', () => {
+                    mainLogo.style.opacity = '0';
+                    hoverLogo.style.opacity = '1';
+                });
+                hoverLogo.addEventListener('mouseenter', () => {
+                    mainLogo.style.opacity = '0';
+                    hoverLogo.style.opacity = '1';
+                });
+                hoverLogo.addEventListener('mouseleave', () => {
+                    mainLogo.style.opacity = '1';
+                    hoverLogo.style.opacity = '0';
+                });
+            }
+
+            lucide.createIcons();
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+            const hamburger = document.querySelector('.hamburger');
+            const mobileCloseBtn = document.getElementById('mobile-close-btn');
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    const isActive = mobileMenuOverlay.classList.contains('active');
+                    
+                    if (isActive) {
+                        closeMobileMenu();
+                    } else {
+                        openMobileMenu();
+                    }
+                });
+            }
+            
+            if (mobileCloseBtn) {
+                mobileCloseBtn.addEventListener('click', closeMobileMenu);
+            }
+            
+            mobileNavItems.forEach(item => {
+                const link = item.querySelector('a');
+                if (link) {
+                    link.addEventListener('click', closeMobileMenu);
+                }
+            });
+            
+            mobileMenuOverlay.addEventListener('click', function(e) {
+                if (e.target === mobileMenuOverlay) {
+                    closeMobileMenu();
+                }
+            });
+            
+            function openMobileMenu() {
+                mobileMenuOverlay.classList.add('active');
+                if (mobileMenuBtn) mobileMenuBtn.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                mobileNavItems.forEach((item, index) => {
+                    const delay = parseFloat(item.getAttribute('data-delay')) || 0;
+                    setTimeout(() => {
+                        item.classList.add('active');
+                    }, delay * 1000);
+                });
+            }
+            
+            function closeMobileMenu() {
+                mobileMenuOverlay.classList.remove('active');
+                if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                mobileNavItems.forEach(item => {
+                    item.classList.remove('active');
+                });
+            }
+            
+            let touchStartY = 0;
+            let touchEndY = 0;
+            
+            mobileMenuOverlay.addEventListener('touchstart', function(e) {
+                touchStartY = e.changedTouches[0].screenY;
+            });
+            
+            mobileMenuOverlay.addEventListener('touchend', function(e) {
+                touchEndY = e.changedTouches[0].screenY;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const swipeDistance = touchEndY - touchStartY;
+                
+                if (swipeDistance > swipeThreshold) {
+                    closeMobileMenu();
+                }
+            }
+
+            let cart = loadCart();
+            
+            const cartBtn = document.getElementById('cart-btn');
+            const cartBtnScrolled = document.getElementById('cart-btn-scrolled');
+            const mobileCartBtn = document.getElementById('mobile-cart-btn');
+            const cartSidebar = document.getElementById('cart-sidebar');
+            const closeCartButton = document.getElementById('close-cart');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartSubtotal = document.getElementById('cart-subtotal');
+            const cartCountElements = document.querySelectorAll('#cart-count, #cart-count-scrolled, #mobile-cart-count');
+            
+            updateCartUI();
+            
+            if (cartBtn) {
+                cartBtn.addEventListener('click', toggleCart);
+            }
+            if (cartBtnScrolled) {
+                cartBtnScrolled.addEventListener('click', toggleCart);
+            }
+            if (mobileCartBtn) {
+                mobileCartBtn.addEventListener('click', function() {
+                    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+                    if (mobileMenuOverlay.classList.contains('active')) {
+                        document.getElementById('mobile-menu-btn').click();
+                    }
+                    toggleCart();
+                });
+            }
+            if (closeCartButton) {
+                closeCartButton.addEventListener('click', toggleCart);
+            }
+            
+            document.addEventListener('click', function(event) {
+                if (!cartSidebar.contains(event.target) &&
+                    !cartBtn.contains(event.target) &&
+                    !cartBtnScrolled.contains(event.target) &&
+                    !mobileCartBtn.contains(event.target) &&
+                    !event.target.closest('#cart-sidebar') &&
+                    !event.target.closest('#cart-btn') &&
+                    !event.target.closest('#cart-btn-scrolled') &&
+                    !event.target.closest('#mobile-cart-btn')) {
+                    cartSidebar.classList.add('translate-x-full');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            function loadCart() {
+                const savedCart = localStorage.getItem('heems-cart');
+                return savedCart ? JSON.parse(savedCart) : [];
+            }
+            
+            function saveCart() {
+                localStorage.setItem('heems-cart', JSON.stringify(cart));
+            }
+            
+            function updateCartUI() {
+                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                cartCountElements.forEach(el => el.textContent = totalItems);
+                
+                if (!cartItemsContainer || !cartSubtotal) {
+                    return;
+                }
+                
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = `
+                        <div class="text-center py-12 text-gray-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                            </svg>
+                            <p>Your cart is empty</p>
+                        </div>
+                    `;
+                    cartSubtotal.textContent = '৳0.00';
+                    return;
+                }
+                
+                let itemsHTML = '';
+                let subtotal = 0;
+                
+                cart.forEach(item => {
+                    subtotal += item.price * item.quantity;
+                    itemsHTML += `
+                        <div class="flex py-4 border-b border-gray-200">
+                            <div class="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden">
+                                <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-1 pl-4">
+                                <h4 class="font-bold text-gray-800">${item.name}</h4>
+                                <p class="text-sm text-gray-600 mb-1">${item.color}, ${item.size}</p>
+                                <p class="text-sm text-gray-600">৳${item.price} × ${item.quantity}</p>
+                            </div>
+                            <div class="flex flex-col items-end space-y-2">
+                                <p class="font-bold text-gray-800">৳${(item.price * item.quantity).toFixed(2)}</p>
+                                <div class="flex items-center space-x-2">
+                                    <button class="quantity-btn text-gray-600 hover:text-red-500 transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-gray-300 hover:border-red-500" data-id="${item.id}" data-action="decrease">-</button>
+                                    <span class="text-sm text-gray-800 font-medium min-w-[20px] text-center">${item.quantity}</span>
+                                    <button class="quantity-btn text-gray-600 hover:text-red-500 transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-gray-300 hover:border-red-500" data-id="${item.id}" data-action="increase">+</button>
+                                </div>
+                                <button class="text-xs text-gray-500 hover:text-red-500 transition remove-item" data-id="${item.id}">
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                cartItemsContainer.innerHTML = itemsHTML;
+                cartSubtotal.textContent = `৳${subtotal.toFixed(2)}`;
+                
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const itemId = this.getAttribute('data-id');
+                        removeFromCart(itemId);
+                    });
+                });
+                
+                document.querySelectorAll('.quantity-btn').forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const itemId = this.getAttribute('data-id');
+                        const action = this.getAttribute('data-action');
+                        updateItemQuantity(itemId, action);
+                    });
+                });
+            }
+            
+            function removeFromCart(itemId) {
+                cart = cart.filter(item => item.id !== itemId);
+                saveCart();
+                updateCartUI();
+            }
+            
+            function updateItemQuantity(itemId, action) {
+                const item = cart.find(cartItem => cartItem.id === itemId);
+                if (item) {
+                    if (action === 'increase') {
+                        item.quantity += 1;
+                    } else if (action === 'decrease') {
+                        item.quantity = Math.max(1, item.quantity - 1);
+                    }
+                    saveCart();
+                    updateCartUI();
+                }
+            }
+            
+            function toggleCart() {
+                cartSidebar.classList.toggle('translate-x-full');
+                document.body.style.overflow = cartSidebar.classList.contains('translate-x-full') ? '' : 'hidden';
+            }
+            
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
