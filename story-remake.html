@@ -1,120 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="format-detection" content="telephone=no" />
-    <title>Our Story | HEEMS - Experimental Fashion from Bangladesh</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমার গল্প - HEEMS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Archivo:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        brownsugar: "#AF6B41",
-                        bistre: "#4C3329",
-                        mauveine: "#9A219E",
-                        imperialred: "#FB3A48",
-                        aquamarine: "#28EEB6",
-                        yellowish: "#FBDA58",
-                        orange: "#FAA049",
-                        red2: "#C01A27",
-                        pinkish: "#B51490",
-                        purpletext: "#a178b7",
-                        darkbg: "#1a0f1a",
-                        fabric: "#f5f0e8",
-                    },
-                    fontFamily: {
-                        bungee: ["Bungee Spice", "cursive"],
-                        archivo: ["Archivo", "sans-serif"],
-                        space: ["Space Grotesk", "sans-serif"],
-                    },
-                    animation: {
-                        float: "float 6s ease-in-out infinite",
-                        "float-reverse": "float 6s ease-in-out infinite reverse",
-                        "pulse-slow": "pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-                        "text-gradient": "text-gradient 8s linear infinite",
-                        marquee: "marquee 20s linear infinite",
-                        "fade-in": "fadeIn 1.5s ease-out forwards",
-                        "slide-up": "slideUp 1.2s ease-out forwards",
-                        "tilt-shake": "tilt-shake 0.5s ease-in-out",
-                    },
-                    keyframes: {
-                        float: {
-                            "0%, 100%": { transform: "translateY(0)" },
-                            "50%": { transform: "translateY(-20px)" },
-                        },
-                        "text-gradient": {
-                            "0%": { "background-position": "0% 50%" },
-                            "50%": { "background-position": "100% 50%" },
-                            "100%": { "background-position": "0% 50%" },
-                        },
-                        marquee: {
-                            "0%": { transform: "translateX(0)" },
-                            "100%": { transform: "translateX(-100%)" },
-                        },
-                        fadeIn: {
-                            "0%": { opacity: 0 },
-                            "100%": { opacity: 1 },
-                        },
-                        slideUp: {
-                            "0%": { opacity: 0, transform: "translateY(40px)" },
-                            "100%": { opacity: 1, transform: "translateY(0)" },
-                        },
-                        "tilt-shake": {
-                            "0%, 100%": { transform: "rotate(0deg)" },
-                            "25%": { transform: "rotate(-5deg)" },
-                            "75%": { transform: "rotate(5deg)" },
-                        },
-                    },
-                },
-            },
-        };
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Mina:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.x.x/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@700&family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Teko:wght@700&family=Noto+Sans+Bengali:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Noto Sans Bengali', sans-serif;
+            background-color: #0c0a09;
+            color: #e5e5e5;
+            line-height: 1.8;
+            scroll-behavior: smooth;
+        }
+
+        .teko-font {
+            font-family: 'Teko', sans-serif;
+        }
+
+        .heading-style {
+            position: relative;
+            display: inline-block;
+            color: #fff;
+            font-size: 3rem;
+            line-height: 1;
+        }
+
+        @media (min-width: 768px) {
+            .heading-style {
+                font-size: 6rem;
+            }
+        }
+
+        .heading-style::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ca8a04, #eab308, #ca8a04);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.6s ease-out;
+        }
+
+        .heading-style:hover::after,
+        .heading-style.active::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .grainy-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 5px #eab308, 0 0 10px #eab308;
+        }
+
+        :root {
+            --bg1: #0B0B10; /* Near-black primary background */
+            --bg2: #1a0f13; /* Slightly lighter secondary background */
+            --glow: #FB3A48; /* Imperial red for glowing effects */
+            --glow2: #C01A27; /* Deep red accent */
+        }
+
         @font-face {
-            font-family: 'CodepotroAbuSayed';
-            src: url('assets/fonts/CodepotroAbuSayed.woff') format('woff');
+            font-family: "CodepotroAbuSayed";
+            src: url("assets/fonts/CodepotroAbuSayed.woff") format("woff");
             font-weight: normal;
             font-style: normal;
         }
-        
+
         @font-face {
-            font-family: 'HindSiliguri';
-            src: url('assets/fonts/HindSiliguri-Regular.woff2') format('woff2');
+            font-family: "HindSiliguri";
+            src: url("assets/fonts/HindSiliguri-Regular.woff2") format("woff2");
             font-weight: normal;
             font-style: normal;
         }
-        
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         html {
             font-size: 14px;
             scroll-behavior: smooth;
         }
-        
+
         body {
             font-family: "Archivo", sans-serif;
-            background-color: #f5f0e8;
-            color: #1a0f1a;
+            background: radial-gradient(1200px 600px at 50% 20%, rgba(251, 58, 72, 0.12), transparent 60%), radial-gradient(800px 400px at 20% 80%, rgba(192, 26, 39, 0.16), transparent 70%), linear-gradient(180deg, var(--bg1), var(--bg2));
+            color: #ffffff;
             overflow-x: hidden;
+            height: 100vh;
         }
-        
+
+        .scanlines::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 0, rgba(255, 255, 255, 0.04) 1px, transparent 2px, transparent 3px);
+            pointer-events: none;
+            mix-blend-mode: soft-light;
+        }
+
+        .vignette::after {
+            position: absolute;
+            inset: -10%;
+            pointer-events: none;
+            background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.6) 100%);
+            mix-blend-mode: multiply;
+        }
+
         .text-stroke {
             -webkit-text-stroke: 1px currentColor;
             color: transparent;
         }
-        
+
         .gradient-text {
             background: linear-gradient(90deg, #fb3a48, #9a219e, #28eeb6);
             background-size: 300% 300%;
@@ -122,38 +156,280 @@
             background-clip: text;
             color: transparent;
         }
-        
-        .fabric-texture {
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23af6b41' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+
+        .font-Hindsiligury {
+            font-family: "HindSiliguri", sans-serif;
         }
-        
-        .glossy-overlay {
-            position: relative;
-            overflow: hidden;
+
+        .font-code {
+            font-family: "CodepotroAbuSayed", sans-serif;
         }
-        
-        .glossy-overlay::after {
-            content: '';
+
+        .vertical-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+        }
+
+        .upgrade-text {
+            font-family: "Space Grotesk";
+            font-weight: 700;
+        }
+
+        .font-limelight {
+            font-family: "Limelight", serif;
+        }
+
+        .font-Sansation {
+            font-family: "Sansation", sans-serif;
+        }
+
+        .cart-count {
             position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #ff0080;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 60%);
-            pointer-events: none;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #121212 0%, #1a0f1a 50%, #2d1b2d 100%);
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
-        .parallax-bg {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
-        
+
+        .mobile-menu-content {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .mobile-close-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+        }
+
+        .mobile-close-btn:hover {
+            background: rgba(255, 0, 128, 0.2);
+            border-color: #ff0080;
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 0 20px rgba(255, 0, 128, 0.3);
+        }
+
+        .mobile-close-btn svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+            stroke-width: 2;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-close-btn:hover svg {
+            stroke: #ff0080;
+            transform: scale(1.1);
+        }
+
+        .mobile-nav-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            margin: 1.5rem 0;
+            z-index: 1;
+        }
+
+        .mobile-nav-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-nav-item a {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-item a::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff0080, #00ffff);
+            transition: width 0.3s ease;
+        }
+
+        .mobile-nav-item a:hover::before {
+            width: 100%;
+        }
+
+        .mobile-nav-item a:hover {
+            color: #00ffff;
+            transform: scale(1.05);
+        }
+
+        .hamburger {
+            width: 30px;
+            height: 30px;
+            position: relative;
+            cursor: pointer;
+            z-index: 101;
+        }
+
+        .hamburger span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hamburger span:nth-child(1) {
+            top: 0px;
+        }
+
+        .hamburger span:nth-child(2) {
+            top: 13px;
+        }
+
+        .hamburger span:nth-child(3) {
+            top: 26px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 13px;
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-close-btn {
+                top: 1.5rem;
+                right: 1.5rem;
+                width: 45px;
+                height: 45px;
+                z-index: 999;
+            }
+
+            .mobile-close-btn svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .mobile-nav-item a {
+                font-size: 2rem;
+                padding: 1rem 0;
+                display: block;
+                text-align: center;
+            }
+
+            .hamburger {
+                width: 25px;
+                height: 25px;
+            }
+
+            .hamburger span {
+                height: 2px;
+            }
+
+            .hamburger span:nth-child(2) {
+                top: 11px;
+            }
+
+            .hamburger span:nth-child(3) {
+                top: 22px;
+            }
+
+            .hamburger.active span:nth-child(1),
+            .hamburger.active span:nth-child(3) {
+                top: 11px;
+            }
+        }
+
+        .mybg {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 30px;
+            border-radius: 0px;
+            margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            top: 0;
+            z-index: 1000;
+        }
+
+        .mybg-rounded {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 30px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 40px;
+            margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            top: 0;
+            z-index: 1000;
+        }
+
+        .font-bungee {
+            font-family: 'Bungee Spice', cursive;
+        }
+
         .menu-item {
             position: relative;
         }
-        
+
         .menu-item:after {
             content: "";
             position: absolute;
@@ -164,630 +440,355 @@
             background: currentColor;
             transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
+
         .menu-item:hover:after {
             width: 100%;
         }
-        
-        .story-card {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.85);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-        
-        .hero-text {
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-        }
-        
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-        
-        .noise-bg {
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-        }
-        
-        .timeline-item:not(:last-child):after {
-            content: '';
-            position: absolute;
-            left: 2.5rem;
-            top: 4rem;
-            height: calc(100% - 4rem);
-            width: 2px;
-            background: #AF6B41;
-            opacity: 0.2;
-        }
-        
-        .story-hero {
-            min-height: 80vh;
-            background: linear-gradient(rgba(255, 64, 0, 0.096), rgba(26, 15, 26, 0.7)), url('assets/IMG_1837.JPG') no-repeat center center;
-            background-size: cover;
-            background-attachment: fixed;
-        }
-        
-        .founder-quote {
-            background: linear-gradient(135deg, rgba(154,33,158,0.1) 0%, rgba(40,238,182,0.1) 100%);
-        }
-        
-        @media (max-width: 768px) {
-            .parallax-bg {
-                background-attachment: scroll;
-            }
-            
-            .timeline-item:not(:last-child):after {
-                left: 1.5rem;
-            }
-            
-            /* Mobile-specific text alignment */
-            .mobile-text-center {
-                text-align: center;
-            }
-            
-            /* Mobile hero adjustments */
-            .story-hero {
-                min-height: 70vh;
-                padding: 2rem 1rem;
-            }
-            
-            /* Mobile timeline adjustments */
-            .timeline-item {
-                padding-left: 4rem !important;
-            }
-            
-            .timeline-item .absolute {
-                left: 0.5rem !important;
-                width: 2.5rem !important;
-                height: 2.5rem !important;
-                font-size: 0.875rem !important;
-            }
-            
-            /* Mobile grid adjustments */
-            .mobile-grid-single {
-                grid-template-columns: 1fr !important;
-            }
-            
-            /* Mobile spacing adjustments */
-            .mobile-py-12 {
-                padding-top: 3rem !important;
-                padding-bottom: 3rem !important;
-            }
-            
-            .mobile-mb-8 {
-                margin-bottom: 2rem !important;
-            }
-            
-            /* Mobile font size adjustments */
-            .mobile-text-2xl {
-                font-size: 1.5rem !important;
-            }
-            
-            .mobile-text-xl {
-                font-size: 1.25rem !important;
-            }
-        }
-        
-        /* Touch-friendly mobile interactions */
-        @media (max-width: 768px) {
-            /* Larger touch targets */
-            button, a, .menu-item {
-                min-height: 44px;
-                min-width: 44px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            
-            /* Smooth scrolling for mobile */
-            html {
-                scroll-behavior: smooth;
-                -webkit-overflow-scrolling: touch;
-            }
-            
-            /* Better mobile menu experience */
-            .mobile-menu {
-                -webkit-overflow-scrolling: touch;
-                overscroll-behavior: contain;
-            }
-            
-            /* Mobile card improvements */
-            .story-card {
-                margin: 0.5rem;
-                border-radius: 12px;
-            }
-            
-            /* Mobile image improvements */
-            img {
-                border-radius: 8px;
-            }
-            
-            /* Mobile button improvements */
-            .mobile-btn {
-                padding: 0.75rem 1.5rem;
-                font-size: 0.875rem;
-                border-radius: 8px;
-                touch-action: manipulation;
-            }
-            
-            /* Mobile navigation improvements */
-            .mobile-menu a {
-                padding: 1rem 0;
-                border-bottom: 1px solid rgba(76, 51, 41, 0.1);
-                transition: all 0.3s ease;
-            }
-            
-            .mobile-menu a:last-child {
-                border-bottom: none;
-            }
-            
-            .mobile-menu a:hover {
-                background-color: rgba(154, 33, 158, 0.1);
-                padding-left: 1rem;
-            }
-            
-            /* Mobile timeline improvements */
-            .timeline-item {
-                margin-bottom: 2rem;
-            }
-            
-            /* Mobile text improvements */
-            .mobile-text-center {
-                text-align: center !important;
-            }
-            
-            /* Mobile spacing improvements */
-            .mobile-py-12 {
-                padding-top: 3rem !important;
-                padding-bottom: 3rem !important;
-            }
-            
-            .mobile-mb-8 {
-                margin-bottom: 2rem !important;
-            }
-            
-            /* Mobile grid improvements */
-            .mobile-grid-single {
-                grid-template-columns: 1fr !important;
-            }
-            
-            /* Mobile font improvements */
-            .mobile-text-2xl {
-                font-size: 1.5rem !important;
-            }
-            
-            .mobile-text-xl {
-                font-size: 1.25rem !important;
-            }
-            
-            /* Mobile hero improvements */
-            .story-hero {
-                min-height: 70vh !important;
-                padding: 2rem 1rem !important;
-            }
-            
-            /* Mobile timeline adjustments */
-            .timeline-item .absolute {
-                left: 0.5rem !important;
-                width: 2.5rem !important;
-                height: 2.5rem !important;
-                font-size: 0.875rem !important;
-            }
-        }
-        
-        /* Additional mobile optimizations */
-        @media (max-width: 480px) {
-            .container {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-            
-            .story-hero h1 {
-                font-size: 2.5rem !important;
-            }
-            
-            .story-hero p {
-                font-size: 1rem !important;
-            }
-            
-            .timeline-item {
-                padding-left: 3rem !important;
-            }
-            
-            .timeline-item .absolute {
-                left: 0.25rem !important;
-                width: 2rem !important;
-                height: 2rem !important;
-                font-size: 0.75rem !important;
-            }
-        }
-        
-        /* Mobile Menu Styles */
-        .mobile-menu.open {
-            transform: translateX(0);
-        }
-        
-        .mobile-menu:not(.open) {
-            transform: translateX(100%);
-        }
-        
-        /* Mobile menu backdrop */
-        .mobile-menu-backdrop {
+
+        #loaderOverlay {
             position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 40;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease-in-out;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(34, 34, 34, 0.7);
+            display: none; /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
         }
-        
-        .mobile-menu-backdrop.open {
-            opacity: 1;
-            visibility: visible;
+
+        /* Loader style matching your description */
+        .loader {
+            transform: rotateZ(45deg);
+            perspective: 1000px;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            position: relative;
+            color: #fff;
+        }
+
+        /* Pseudo-elements for animated parts of loader */
+        .loader:before,
+        .loader:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: inherit;
+            height: inherit;
+            border-radius: 50%;
+            transform: rotateX(70deg);
+            animation: spin 1s linear infinite;
+        }
+
+        .loader:after {
+            color: #FF3D00;
+            transform: rotateY(70deg);
+            animation-delay: 0.4s;
+        }
+
+        /* Spin animation for pseudo-elements */
+        @keyframes spin {
+            0%,
+            100% {
+                box-shadow: 0.2em 0px 0 0 currentColor;
+            }
+
+            12% {
+                box-shadow: 0.2em 0.2em 0 0 currentColor;
+            }
+
+            25% {
+                box-shadow: 0 0.2em 0 0 currentColor;
+            }
+
+            37% {
+                box-shadow: -0.2em 0.2em 0 0 currentColor;
+            }
+
+            50% {
+                box-shadow: -0.2em 0 0 0 currentColor;
+            }
+
+            62% {
+                box-shadow: -0.2em -0.2em 0 0 currentColor;
+            }
+
+            75% {
+                box-shadow: 0 -0.2em 0 0 currentColor;
+            }
+
+            87% {
+                box-shadow: 0.2em -0.2em 0 0 currentColor;
+            }
+        }
+        .content{
+            min-height: 200vh;
         }
     </style>
 </head>
 
-<body class="fabric-texture antialiased">
-    <!-- Navigation -->
-    <header id="main-header" class="fixed top-0 left-0 w-full z-40 backdrop-blur-md bg-fabric/80 border-b border-fabric/20 shadow-md transition-all duration-300 ease-in-out py-2">
-        <div class="container mx-auto px-6 flex justify-between items-center h-16">
-            <!-- Logo and Text -->
-            <a href="landing.html" class="flex items-center space-x-2">
-                <img src="assets/logo.png" alt="Logo" class="h-14 w-auto object-contain" />
-                <span class="block h-16 gradient-text text-xl md:text-2xl lg:text-3xl font-bungee flex items-center justify-center">HEEMS</span>
-            </a>
+<body>
+    <div class="content">
+        <div class="grainy-overlay"></div>
 
-            <!-- Desktop Navigation Menu -->
-            <nav class="hidden md:flex items-center space-x-8">
-                <a href="landing.html" class="menu-item font-space uppercase tracking-wider">Home</a>
-                <a href="collections.html" class="menu-item font-space uppercase tracking-wider">Our Products</a>
-                <a href="story.html" class="menu-item font-space uppercase tracking-wider font-bold">Our Story</a>
-                <a href="contact.html" class="menu-item font-space uppercase tracking-wider">Contact Us</a>
-            </nav>
+        <!-- Hero Section -->
+        <section class="hero-section min-h-screen flex items-center justify-center text-center p-8 relative">
+            <div class="z-20">
+                <h1 class="text-4xl md:text-7xl uppercase tracking-tight teko-font text-white leading-tight" style="font-family: Codepotroabusayed;">আমার গল্প</h1>
+                <h6 class="mt-4 md:mt-8 max-w-3xl mx-auto font-light">A STORY OF YASIR HIMEL</h6>
+                <a href="#story"
+                    class="mt-8 inline-block px-8 py-3 rounded-full text-sm font-bold uppercase tracking-wide bg-amber-500 font-Hindsiligury text-stone-900 shadow-xl hover:bg-amber-600 transition-colors" style="font-family: HindSiliguri;">
+                    গল্পটি পড়ুন
+                </a>
+            </div>
+        </section>
 
-            <!-- Shopping Cart -->
-            <div class="hidden md:flex items-center space-x-4">
-                <button class="relative" id="cart-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                    </svg>
-                    <span class="absolute -top-2 -right-2 bg-mauveine text-white text-xs rounded-full h-5 w-5 flex items-center justify-center" id="cart-count">0</span>
+        <!-- Story Section -->
+        <main id="story" class="relative z-20 container mx-auto px-4 md:px-8 py-16 md:py-24">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+
+                <!-- Section 1 -->
+                <div class="md:col-span-2">
+                    <h2 class="heading-style teko-font uppercase mb-6" style="font-family: codepotroabusayed;">
+                        শুরুর লড়াই
+                    </h2>
+                    <p class="text-lg mb-6 font-Hindsiligury">
+                        ছোট মফস্বল শহরে বড় হয়েছি আমি। সেখানে ব্যবসা শুরু করা তো দূরের কথা, অনলাইনে কিছু করার কথা কেউ
+                        বিশ্বাসই করত না। এমনকি ২০২১ সালেও অনেকে ভাবতো, উপজেলা শহর থেকে বসে ই-কমার্স করে সারা বাংলাদেশে
+                        প্রোডাক্ট পাঠানো অসম্ভব। কিন্তু আমি বিশ্বাস করেছিলাম।
+                    </p>
+                    <p class="text-lg font-Hindsiligury">
+                        শুরুটা হয়েছিলো ঘরের ছোট্ট বেলকনি থেকে, হাতে ছিলো মাত্র ১০ হাজার টাকা আর কিছু টি-শার্ট। সেখান থেকেই
+                        শুরু হলো <b class="text-amber-500">HEEMS</b>-এর পথচলা। শুরুতে সব কাজ একাই করতাম— প্রোডাক্ট প্যাকিং
+                        থেকে শুরু করে কাস্টমারের রিপ্লাই, অর্ডার ম্যানেজমেন্ট— সবকিছু। অনেক রাত জেগে থেকেছি শুধু এই বিশ্বাস
+                        নিয়ে যে আস্থা তৈরি করাই আসল মূলধন।
+                    </p>
+                </div>
+
+                <!-- Image Placeholder 1 -->
+                <div class="md:col-start-3 md:row-start-1 h-96 w-full rounded-xl overflow-hidden shadow-2xl">
+                    <img src="assets/IMG_1835.JPG" alt="শুরুর দিকের টি-শার্ট"
+                        class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 ease-in-out">
+                </div>
+
+                <!-- Section 2 -->
+                <div class="md:col-span-1 lg:col-span-2">
+                    <h2 class="heading-style teko-font uppercase mt-8 md:mt-0 mb-6" style="font-family: Codepotroabusayed;">
+                        আস্থার যাত্রা
+                    </h2>
+                    <p class="text-lg mb-6 font-Hindsiligury">
+                        প্রথম চার বছর হোলসেলে বিভিন্ন ব্র্যান্ডের প্রোডাক্ট সংগ্রহ করে বিক্রি করেছি। ধীরে ধীরে মানুষের
+                        আস্থা, ভালোবাসা আর পরিশ্রমের মাধ্যমে HEEMS এগিয়ে গেছে। আজ HEEMS–এর বয়স সাড়ে চার বছর— প্রায় ৫০
+                        হাজার ফলোয়ার, হাজারো সন্তুষ্ট কাস্টমার এবং মানুষের মনে জায়গা করে নেওয়া একটি নাম।
+                    </p>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="md:col-span-1 lg:col-span-2">
+                    <h2 class="heading-style teko-font uppercase mt-8 md:mt-0 mb-6" style="font-family: Codepotroabusayed;"></h2>
+                    
+                    </h2>
+                    <p class="text-lg mb-6"></p>
+                </div>
+
+                <!-- Section 3 -->
+                <div class="md:col-span-1 lg:col-span-2">
+                    <h2 class="heading-style teko-font uppercase mt-8 mb-6" style="font-family: Codepotroabusayed;">
+                        নতুন অধ্যায়ের পথে
+                    </h2>
+                    <p class="text-lg mb-6 font-Hindsiligury">
+                        কিন্তু এটাই শেষ নয়। এবার HEEMS নতুন অধ্যায়ে পা রাখছে। এতদিন অন্য ব্র্যান্ডের প্রোডাক্ট বিক্রি
+                        করলেও, এখন HEEMS তৈরি করছে নিজস্ব ব্র্যান্ডের প্রোডাক্ট।
+                    </p>
+                </div>
+
+                <!-- Image Placeholder 2 -->
+                <div class="lg:col-start-3 lg:row-start-3 h-96 w-full rounded-xl overflow-hidden shadow-2xl">
+                    <img src="assets/IMG_3328.JPG"
+                        alt="নতুন প্রোডাক্টের ছবি"
+                        class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 ease-in-out">
+                </div>
+
+                <!-- Conclusion -->
+                <div class="md:col-span-2 lg:col-span-4">
+                    <h2 class="heading-style teko-font uppercase mt-8 mb-6" style="font-family: Codepotroabusayed;">
+                        শেষ কথা
+                    </h2>
+                    <p class="text-lg md:text-xl font-light text-amber-500 mb-6 font-Hindsiligury">
+                        আজ যখন পিছনে তাকাই, মনে হয়—
+                    </p>
+                    <ul class="font-Hindsiligury text-lg space-y-4 list-disc pl-8">
+                        <li>অসম্ভবকে সম্ভব করার গল্পটাই HEEMS।</li>
+                        <li>আমি হয়তো বাবাহীন ছিলাম, কিন্তু কখনো প্রেরণাহীন ছিলাম না— কারণ আমার মা সবসময় ছিলেন আমার পাশে।
+                        </li>
+                    </ul>
+                    <p class="font-Hindsiligury text-lg mt-6">
+                        একটা উপজেলা শহর থেকে শুরু করে, আজ HEEMS সারা দেশে পরিচিত নাম। আর আগামীতে লক্ষ্য— উপজেলা থেকে
+                        বাংলাদেশ, বাংলাদেশ থেকে বিশ্বে।
+                    </p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="loaderOverlay">
+        <div class="loader"></div>
+    </div>
+    <div class="scanlines vignette"></div>
+    <!-- Header (Navigation Bar) -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-40 transition-all duration-300 ease-in-out py-6">
+        <div id="logo-container" class="mybg flex flex-col items-center relative w-full">
+            <div class="w-full flex justify-between items-center px-6 mb-6">
+                <button id="mobile-menu-btn" class="hamburger md:hidden">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="w-16 hidden md:block"></div>
+                <a href="landing.html" class="flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden border-2 border-red">
+                        <img src="https://heemsbd.com/assets/more/heeem.jpg" alt="HEEMS Logo" class="h-full w-full object-cover" />
+                    </div>
+                    <span class="text-2xl font-bungee text-white mt-2 block">HEEMS</span>
+                </a>
+                <button id="cart-btn" class="flex items-center px-4 py-2 border border-white text-white rounded-md hover:bg-white hover:text-black transition-all relative">
+                    <i data-lucide="shopping-cart" class="w-5 h-5 mr-2"></i>
+                    <span class="hidden sm:inline">Cart</span>
+                    <span id="cart-count" class="cart-count">0</span>
                 </button>
             </div>
-
-            <!-- Mobile Menu Button -->
-            <button class="md:hidden text-bistre" id="mobile-menu-button">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+            <nav class="hidden md:flex space-x-8 text-sm uppercase tracking-wider">
+                <a href="landing.html" onclick="event.preventDefault(); showLoader(); window.location.href='landing.html';" class="menu-item font-space uppercase tracking-wider text-fabric hover:text-aquamarine">Home</a>
+                <a href="collections.html" onclick="event.preventDefault(); showLoader(); window.location.href='collections.html';" class="menu-item font-space uppercase tracking-wider text-fabric hover:text-aquamarine">Our Products</a>
+                <a href="story.html" onclick="event.preventDefault(); showLoader(); window.location.href='story.html';" class="menu-item font-space uppercase tracking-wider text-aquamarine font-bold">Our Story</a>
+                <a href="contact.html" onclick="event.preventDefault(); showLoader(); window.location.href='contact.html';" class="menu-item font-space uppercase tracking-wider text-fabric hover:text-aquamarine">Contact Us</a>
+            </nav>
+        </div>
+        <div id="scrolled-nav" class="mybg-rounded hidden justify-between items-center px-6 opacity-0">
+            <button id="mobile-menu-btn-scrolled" class="hamburger md:hidden">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
+            <a href="landing.html" class="flex items-center space-x-2">
+                <div class="w-14 h-14 rounded-full flex items-center justify-center relative overflow-hidden">
+                    <img src="https://heemsbd.com/assets/more/heeem.jpg" alt="HEEMS Logo" class="h-25 w-10 object-contain main-logo transition-opacity duration-300 absolute inset-0 m-auto rounded-full" />
+                    <img src="https://cdn.jsdelivr.net/gh/raiyanruhan/HeemsBD@main/Fun/3dgifmaker56642.gif" alt="Hover Image" class="h-10 w-10 object-contain absolute inset-0 hover-logo opacity-0 transition-opacity duration-300 m-auto" />
+                </div>
+                <span class="text-2xl font-bungee">HEEMS</span>
+            </a>
+            <nav class="hidden md:flex flex-1 justify-center space-x-8 text-sm uppercase tracking-wider">
+                <a href="landing.html" onclick="event.preventDefault(); showLoader(); window.location.href='landing.html';" class="menu-item font-space uppercase tracking-wider text-fabric hover:text-aquamarine">Home</a>
+                <a href="collections.html" onclick="event.preventDefault(); showLoader(); window.location.href='collections.html';" class="menu-item font-space uppercase tracking-wider text-fabric hover:text-aquamarine">Our Products</a>
+                <a href="story.html" onclick="event.preventDefault(); showLoader(); window.location.href='story.html';" class="menu-item font-space uppercase tracking-wider text-aquamarine font-bold">Our Story</a>
+                <a href="contact.html" onclick="event.preventDefault(); showLoader(); window.location.href='contact.html';" class="menu-item font-space uppercase tracking-wider text-fabric hover:text-aquamarine">Contact Us</a>
+            </nav>
+            <div class="flex items-center">
+                <button id="cart-btn-scrolled" class="flex items-center hover:text-[#00ffff] transition-all relative">
+                    <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+                    <span id="cart-count-scrolled" class="cart-count">0</span>
+                </button>
+            </div>
         </div>
     </header>
-
-    <!-- Mobile Menu Backdrop -->
-    <div class="mobile-menu-backdrop md:hidden" id="mobile-menu-backdrop"></div>
-    
-    <!-- Mobile Menu -->
-    <div class="mobile-menu fixed inset-y-0 right-0 w-full sm:w-96 bg-white z-50 shadow-xl p-6 md:hidden transform translate-x-full transition-transform duration-300 ease-in-out" id="mobile-menu">
-        <div class="flex justify-end mb-8">
-            <button class="text-bistre" id="mobile-menu-close">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
-        <div class="flex flex-col space-y-6">
-            <a href="landing.html" class="text-bistre text-lg font-space uppercase tracking-wider">Home</a>
-            <a href="collections.html" class="text-bistre text-lg font-space uppercase tracking-wider">Our Products</a>
-            <a href="story.html" class="text-bistre text-lg font-space uppercase tracking-wider font-bold">Our Story</a>
-            <a href="contact.html" class="text-bistre text-lg font-space uppercase tracking-wider">Contact Us</a>
-            <div class="pt-4 border-t border-bistre/20">
-                <button class="flex items-center space-x-2" id="mobile-cart-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                    </svg>
-                    <span>Cart</span>
-                    <span class="bg-mauveine text-white text-xs rounded-full h-5 w-5 flex items-center justify-center" id="mobile-cart-count">0</span>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay">
+        <button id="mobile-close-btn" class="mobile-close-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <div class="mobile-menu-content">
+            <div class="mobile-nav-item" data-delay="0.1">
+                <a href="landing.html">Home</a>
+            </div>
+            <div class="mobile-nav-item" data-delay="0.2">
+                <a href="collections.html">Our Products</a>
+            </div>
+            <div class="mobile-nav-item" data-delay="0.3">
+                <a href="story.html">Our Story</a>
+            </div>
+            <div class="mobile-nav-item" data-delay="0.4">
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <div class="mobile-nav-item" data-delay="0.5">
+                <button id="mobile-cart-btn" class="flex items-center px-6 py-3 border-2 border-white text-white rounded-full hover:bg-white hover:text-black transition-all">
+                    <i data-lucide="shopping-cart" class="w-6 h-6 mr-3"></i>
+                    <span>View Cart</span>
+                    <span id="mobile-cart-count" class="cart-count ml-3">0</span>
                 </button>
             </div>
         </div>
     </div>
-
-    <!-- Hero Section -->
-    <section class="story-hero flex items-center justify-center pt-20">
-        <div class="container mx-auto px-4 md:px-6 text-center">
-            <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bungee mb-4 md:mb-6 text-white animate-fade-in mobile-text-center">
-                <span class="block">OUR</span>
-                <span class="block gradient-text">STORY</span>
-            </h1>
-            <p class="text-lg sm:text-xl md:text-2xl font-space text-white max-w-3xl mx-auto mb-6 md:mb-8 animate-fade-in mobile-text-center px-4" style="animation-delay: 0.2s;">
-                From the fishing villages of Galachipa to the forefront of experimental fashion
-            </p>
-        </div>
-    </section>
-
-    <!-- Founder's Quote -->
-    <section class="py-12 md:py-20 founder-quote noise-bg">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="max-w-4xl mx-auto text-center glass-effect p-6 md:p-8 lg:p-12 rounded-xl">
-                <blockquote class="text-xl sm:text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-bistre mobile-text-center px-2">
-                    "HEEMS isn't just clothing—it's a revolution stitched with the threads of our Bangladeshi heritage and the boundless creativity of our people."
-                </blockquote>
-                <p class="font-space uppercase tracking-widest text-sm text-mauveine">— Yasir Himel, Founder</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section class="py-12 md:py-20 bg-fabric">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="text-center mb-8 md:mb-16">
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bungee mb-4 mobile-text-center">
-                    <span class="block">THE</span>
-                    <span class="block gradient-text">JOURNEY</span>
-                </h2>
-                <p class="font-space uppercase tracking-widest text-sm text-mauveine mobile-text-center">
-                    How HEEMS came to be
-                </p>
-            </div>
-            
-            <div class="max-w-3xl mx-auto">
-                <!-- Timeline Item 1 -->
-                <div class="relative timeline-item pl-12 md:pl-16 pb-8 md:pb-12">
-                    <div class="absolute left-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-mauveine text-white flex items-center justify-center text-lg md:text-xl font-bold">1</div>
-                    <h3 class="text-xl md:text-2xl font-bold text-bistre mb-2 mobile-text-center">2005: Humble Beginnings</h3>
-                    <p class="text-bistre mb-4 mobile-text-center text-sm md:text-base">
-                        At just 14 years old, Yasir Himel began creating clothing from scrap fabrics in his small Galachipa home. Using his mother's sewing machine and discarded fishing nets as inspiration, he crafted his first experimental designs.
-                    </p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mobile-grid-single">
-                        <img src="assets/IMG_0236.JPG" alt="Early days" class="rounded-lg shadow-md object-cover w-full h-40 md:h-48">
-                        <img src="assets/IMG_1835.JPG" alt="First designs" class="rounded-lg shadow-md object-cover w-full h-40 md:h-48">
-                    </div>
-                </div>
-                
-                <!-- Timeline Item 2 -->
-                <div class="relative timeline-item pl-12 md:pl-16 pb-8 md:pb-12">
-                    <div class="absolute left-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-aquamarine text-bistre flex items-center justify-center text-lg md:text-xl font-bold">2</div>
-                    <h3 class="text-xl md:text-2xl font-bold text-bistre mb-2 mobile-text-center">2012: The First Breakthrough</h3>
-                    <p class="text-bistre mb-4 mobile-text-center text-sm md:text-base">
-                        After years of honing his craft, Yasir's "Monsoon Collection" caught the attention of a visiting designer from Dhaka. This led to his first professional collaboration and the realization that his unique perspective had value in the fashion world.
-                    </p>
-                    <div class="grid grid-cols-1">
-                        <img src="assets/more/T-Shirt.jpg" alt="Monsoon Collection" class="rounded-lg shadow-md object-cover w-full h-40 md:h-48">
-                    </div>
-                </div>
-                
-                <!-- Timeline Item 3 -->
-                <div class="relative timeline-item pl-12 md:pl-16 pb-8 md:pb-12">
-                    <div class="absolute left-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-imperialred text-white flex items-center justify-center text-lg md:text-xl font-bold">3</div>
-                    <h3 class="text-xl md:text-2xl font-bold text-bistre mb-2 mobile-text-center">2018: HEEMS is Born</h3>
-                    <p class="text-bistre mb-4 mobile-text-center text-sm md:text-base">
-                        With savings from his collaborations, Yasir officially founded HEEMS in Galachipa. The name combines "Himel" with "Dreams," representing his vision to empower local artisans while creating boundary-pushing fashion.
-                    </p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mobile-grid-single">
-                        <img src="assets/IMG_1837.JPG" alt="First workshop" class="rounded-lg shadow-md object-cover w-full h-40 md:h-48">
-                        <img src="assets/IMG_1836.JPG" alt="Early team" class="rounded-lg shadow-md object-cover w-full h-40 md:h-48">
-                    </div>
-                </div>
-                
-                <!-- Timeline Item 4 -->
-                <div class="relative timeline-item pl-12 md:pl-16 pb-8 md:pb-12">
-                    <div class="absolute left-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-yellowish text-bistre flex items-center justify-center text-lg md:text-xl font-bold">4</div>
-                    <h3 class="text-xl md:text-2xl font-bold text-bistre mb-2 mobile-text-center">2020: International Recognition</h3>
-                    <p class="text-bistre mb-4 mobile-text-center text-sm md:text-base">
-                        HEEMS' "Delta Blues" collection went viral during Dhaka Fashion Week, earning features in Vogue India and Dezeen. The collection's innovative use of traditional jamdani weaving in contemporary silhouettes put Bangladeshi experimental fashion on the global map.
-                    </p>
-                    <div class="grid grid-cols-1">
-                        <img src="assets/IMG_3330.JPG" alt="Fashion show" class="rounded-lg shadow-md object-cover w-full h-40 md:h-48">
-                    </div>
-                </div>
-                
-                <!-- Timeline Item 5 -->
-                <div class="relative timeline-item pl-12 md:pl-16">
-                    <div class="absolute left-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-orange text-white flex items-center justify-center text-lg md:text-xl font-bold">5</div>
-                    <h3 class="text-xl md:text-2xl font-bold text-bistre mb-2 mobile-text-center">Today: The Future</h3>
-                    <p class="text-bistre mb-4 mobile-text-center text-sm md:text-base">
-                        HEEMS now employs over 50 local artisans in Galachipa while collaborating with designers worldwide. Yasir's vision remains unchanged: to create fashion that honors Bangladeshi heritage while fearlessly innovating for the future.
-                    </p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mobile-grid-single">
-                        <img src="assets/IMG_3328.JPG" alt="Current team" class="rounded-lg shadow-md object-cover w-full h-48">
-                        <img src="assets/IMG_3328.JPG" alt="Current designs" class="rounded-lg shadow-md object-cover w-full h-48">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Philosophy Section -->
-    <section class="py-12 md:py-20 bg-bistre text-fabric">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="text-center mb-8 md:mb-16">
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bungee mb-4 mobile-text-center">
-                    <span class="block">OUR</span>
-                    <span class="block gradient-text">PHILOSOPHY</span>
-                </h2>
-                <p class="font-space uppercase tracking-widest text-sm text-aquamarine mobile-text-center">
-                    What makes HEEMS different
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-                <!-- Philosophy 1 -->
-                <div class="story-card p-6 md:p-8 rounded-xl animate-fade-in">
-                    <div class="text-3xl md:text-4xl text-mauveine mb-4 text-center md:text-left">01</div>
-                    <h3 class="text-xl md:text-2xl font-bold text-bistre mb-4 mobile-text-center">Rooted in Bangladesh</h3>
-                    <p class="text-bistre mobile-text-center text-sm md:text-base">
-                        Every HEEMS piece begins with traditional Bangladeshi textiles and techniques—from jamdani weaving to nakshi kantha embroidery—reimagined through a contemporary lens.
-                    </p>
-                </div>
-                
-                <!-- Philosophy 2 -->
-                <div class="story-card p-6 md:p-8 rounded-xl animate-fade-in" style="animation-delay: 0.2s;">
-                    <div class="text-3xl md:text-4xl text-mauveine mb-4 text-center md:text-left">02</div>
-                    <h3 class="text-xl md:text-2xl font-bold text-bistre mb-4 mobile-text-center">Radical Innovation</h3>
-                    <p class="text-bistre mobile-text-center text-sm md:text-base">
-                        We combine age-old craftsmanship with cutting-edge techniques like 3D textile printing and zero-waste patterning to create truly unique garments.
-                    </p>
-                </div>
-                
-                <!-- Philosophy 3 -->
-                <div class="story-card p-6 md:p-8 rounded-xl animate-fade-in" style="animation-delay: 0.4s;">
-                    <div class="text-3xl md:text-4xl text-mauveine mb-4 text-center md:text-left">03</div>
-                    <h3 class="text-xl md:text-2xl font-bold text-bistre mb-4 mobile-text-center">Community First</h3>
-                    <p class="text-bistre mobile-text-center text-sm md:text-base">
-                        HEEMS isn't just a brand—it's a movement. We provide fair wages, skills training, and creative ownership to our artisans, proving that ethical fashion can be avant-garde.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Founder Spotlight -->
-    <section class="py-12 md:py-20 bg-fabric">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-                <div class="w-full md:w-1/2 mb-6 md:mb-0">
-                    <img src="assets/Yasir Himel.jpg" alt="Yasir Himel" class="rounded-xl shadow-2xl w-full h-auto">
-                </div>
-                <div class="w-full md:w-1/2 text-center md:text-left">
-                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bungee mb-4 md:mb-6 mobile-text-center">
-                        <span class="block">MEET</span>
-                        <span class="block gradient-text">YASIR HIMEL</span>
-                    </h2>
-                    <p class="text-bistre mb-4 md:mb-6 mobile-text-center text-sm md:text-base">
-                        Born in 1991 in Galachipa, a small coastal town in southern Bangladesh, Yasir Himel grew up surrounded by the vibrant colors of fishing boats and the rhythmic patterns of woven nets. These childhood impressions would later become the foundation of his design philosophy.
-                    </p>
-                    <p class="text-bistre mb-4 md:mb-6 mobile-text-center text-sm md:text-base">
-                        Despite having no formal fashion education, Yasir's innate creativity and deep connection to his cultural roots enabled him to develop a distinctive aesthetic that blends traditional Bangladeshi craftsmanship with bold, contemporary silhouettes.
-                    </p>
-                    <p class="text-bistre mb-6 md:mb-8 mobile-text-center text-sm md:text-base">
-                        Today, Yasir splits his time between Galachipa—where he oversees the HEEMS workshop—and Dhaka, where he collaborates with emerging Bangladeshi designers to push the boundaries of South Asian fashion.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                        <a href="collections.html" class="mobile-btn px-6 py-3 bg-bistre text-fabric font-space uppercase tracking-wider text-sm border-2 border-bistre hover:bg-transparent hover:text-bistre transition-all duration-300">
-                            View Collections
-                        </a>
-                        <a href="contact.html" class="mobile-btn px-6 py-3 border-2 border-bistre text-bistre font-space uppercase tracking-wider text-sm transition-all duration-300">
-                            Contact Yasir
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Impact Section -->
-    <section class="py-12 md:py-20 bg-gradient-to-r from-mauveine/10 to-aquamarine/10">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="text-center mb-8 md:mb-16">
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bungee mb-4 mobile-text-center">
-                    <span class="block">OUR</span>
-                    <span class="block gradient-text">IMPACT</span>
-                </h2>
-                <p class="font-space uppercase tracking-widest text-sm text-mauveine mobile-text-center">
-                    More than just fashion
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-6xl mx-auto text-center">
-                <!-- Stat 1 -->
-                <div class="story-card p-4 md:p-6 rounded-xl">
-                    <div class="text-3xl md:text-4xl lg:text-5xl font-bold text-mauveine mb-2">50+</div>
-                    <p class="text-bistre font-space uppercase tracking-wider text-xs md:text-sm">Artisans Employed</p>
-                </div>
-                
-                <!-- Stat 2 -->
-                <div class="story-card p-4 md:p-6 rounded-xl">
-                    <div class="text-3xl md:text-4xl lg:text-5xl font-bold text-mauveine mb-2">12</div>
-                    <p class="text-bistre font-space uppercase tracking-wider text-xs md:text-sm">Traditional Techniques Preserved</p>
-                </div>
-                
-                <!-- Stat 3 -->
-                <div class="story-card p-4 md:p-6 rounded-xl">
-                    <div class="text-3xl md:text-4xl lg:text-5xl font-bold text-mauveine mb-2">100%</div>
-                    <p class="text-bistre font-space uppercase tracking-wider text-xs md:text-sm">Living Wages Paid</p>
-                </div>
-                
-                <!-- Stat 4 -->
-                <div class="story-card p-4 md:p-6 rounded-xl">
-                    <div class="text-3xl md:text-4xl lg:text-5xl font-bold text-mauveine mb-2">3</div>
-                    <p class="text-bistre font-space uppercase tracking-wider text-xs md:text-sm">Community Schools Supported</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Shopping Cart Sidebar -->
+    <!-- Shopping Cart Sidebar (Connected to Nav) -->
     <div class="fixed inset-y-0 right-0 w-full sm:w-96 bg-white z-50 shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out" id="cart-sidebar">
         <div class="h-full flex flex-col">
-            <div class="p-6 border-b border-bistre/20 flex justify-between items-center">
-                <h3 class="text-xl font-bold text-bistre">Your Cart</h3>
-                <button class="text-bistre hover:text-mauveine transition" id="close-cart">
+            <div class="p-6 border-b border-gray-300 flex justify-between items-center">
+                <h3 class="text-xl font-bold text-gray-800">Your Cart</h3>
+                <button class="text-gray-600 hover:text-red-500 transition" id="close-cart">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
-
             <div class="flex-1 overflow-y-auto p-6" id="cart-items">
-                <!-- Cart items will be added here dynamically -->
-                <div class="text-center py-12 text-bistre/70">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-bistre/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div class="text-center py-12 text-gray-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
                     <p>Your cart is empty</p>
                 </div>
             </div>
-
-            <div class="p-6 border-t border-bistre/20">
+            <div class="p-6 border-t border-gray-300">
                 <div class="flex justify-between items-center mb-4">
-                    <span class="text-bistre">Subtotal</span>
-                    <span class="font-bold text-bistre" id="cart-subtotal">৳0.00</span>
+                    <span class="text-gray-800">Subtotal</span>
+                    <span class="font-bold text-gray-800" id="cart-subtotal">৳0.00</span>
                 </div>
-                <p class="text-sm text-bistre/70 mb-6">Shipping and taxes calculated at checkout</p>
-                <a href="checkout.html">
-                    <button
-                        class="w-full px-6 py-3 bg-bistre text-white font-space uppercase tracking-wider text-sm hover:bg-bistre/90 transition">
+                <p class="text-sm text-gray-500 mb-6">Shipping and taxes calculated at checkout</p>
+                <a href="/cart">
+                    <button class="w-full px-6 py-3 bg-gray-800 text-white font-semibold uppercase tracking-wider text-sm hover:bg-gray-700 transition">
                         Checkout
                     </button>
                 </a>
                 <div class="text-center mt-4">
-                    <a href="collections.html" class="text-sm text-bistre/70 hover:text-mauveine transition">Continue Shopping</a>
+                    <a href="collections.html" class="text-sm text-gray-500 hover:text-gray-700 transition">Continue Shopping</a>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer id="contact" class="bg-gradient-to-r from-gray-800 via-gray-900 to-black text-fabric/70 py-12 relative overflow-hidden" style="background: linear-gradient(135deg, #4b1f1f, #1a1a1a); border-top: 2px solid #fcd34d; box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2);">
-        <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-            <!-- Left Section -->
-            <div class="mb-6 md:mb-0 flex-1">
-                <h2 class="text-3xl font-bungee mb-4" style="letter-spacing: 2px;">HEEMS</h2>
-                <p class="text-sm max-w-xs mb-4" style="font-family: 'Courier New', monospace;">Experimental fashion house from Galachipa, Bangladesh. Redefining South Asian aesthetics.</p>
-                <!-- Social icons -->
-                <div class="flex justify-center md:justify-start space-x-6 mb-4">
-                    <a href="#" class="hover:text-aquama rine transition duration-300">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="hover:text-aquamarine transition duration-300">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="hover:text-aquamarine transition duration-300">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="hover:text-aquamarine transition duration-300">
-                        <i class="fab fa-pinterest"></i>
-                    </a>
+        <footer id="contact" class="footer-bg text-fabric/70 py-8 relative overflow-hidden">
+            <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+                <!-- Left Section -->
+                <div class="mb-6 md:mb-0 flex-1">
+                    <h2 class="text-3xl font-bungee mb-4" style="letter-spacing: 2px;">HEEMS</h2>
+                    <p class="text-sm max-w-xs mb-4" style="font-family: 'Courier New', monospace;">Experimental fashion house from Galachipa, Bangladesh. Redefining South Asian aesthetics.</p>
+                    <!-- Social icons -->
+                    <div class="flex justify-center md:justify-start space-x-6 mb-4">
+                        <a href="#" class="hover:text-aquamarine transition duration-300">
+                            <!-- Facebook Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.35C0 23.407.593 24 1.325 24h21.35C23.407 24 24 23.407 24 22.675V1.325C24 .593 23.407 0 22.675 0zM8.06 15.845H3.937V9.296h4.125V15.845zm.84-6.99h-.002c-1.158 0-1.85-.656-1.85-1.678V6.08c0-1.022.692-1.678 1.85-1.678h.002c1.17 0 1.86.656 1.86 1.678v1.097c0 1.022-.69 1.678-1.86 1.678zM18.188 15.845h-3.197v-3.469h.038c.877 0 1.343-.54 1.343-1.177 0-.638-.467-1.177-1.343-1.177h-.037V8.93h3.126c2.756 0 4.196 1.588 4.196 3.954v.001c0 2.367-1.44 3.96-4.196 3.96z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="hover:text-aquamarine transition duration-300">
+                            <!-- Twitter Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557a9.83 9.83 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724 9.861 9.861 0 0 1-3.127 1.195 4.92 4.92 0 0 0-8.384 4.482A13.978 13.978 0 0 1 1.671 3.149 4.916 4.916 0 0 0 3.195 9.722 4.903 4.903 0 0 1 .964 9.1v.062a4.92 4.92 0 0 0 3.941 4.827 4.996 4.996 0 0 1-2.212.084 4.927 4.927 0 0 0 4.6 3.417A9.868 9.868 0 0 1 0 19.54a13.94 13.94 0 0 0 7.548 2.209c9.057 0 14-7.514 14-14 0-.213-.005-.425-.014-.637A10.025 10.025 0 0 0 24 4.557z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="hover:text-aquamarine transition duration-300">
+                            <!-- LinkedIn Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.268h-3v-5.5c0-1.379-1.121-2.5-2.5-2.5s-2.5 1.121-2.5 2.5v5.5h-3v-10h3v1.293c.385-.296.842-.493 1.371-.493 1.519 0 2.75 1.231 2.75 2.75v6.45z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <p class="text-sm" style="font-family: 'Courier New', monospace;">contact@heemsclothing.com</p>
                 </div>
-                <p class="text-sm" style="font-family: 'Courier New', monospace;">contact@heemsclothing.com</p>
-            </div>
                 <!-- Right Section -->
                 <div class="flex-1 mt-8 md:mt-0 text-center md:text-right">
                     <p class="text-sm" style="font-family: 'Courier New', monospace;">&copy; <span id="current-year"></span> Heems Clothing. All rights reserved. </p>
@@ -795,335 +796,300 @@
                         document.getElementById('current-year').textContent = new Date().getFullYear();
                     </script>
                 </div>
-        </div>
-        <!-- Glossy Overlay for Glossy Finish -->
-        <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0)); mix-blend-mode: overlay; border-top: 2px solid #fcd34d; pointer-events: none;"></div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+            </div>
+            <!-- Glossy Overlay for Glossy Finish -->
+            <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0)); mix-blend-mode: overlay; border-top: 2px solid #fcd34d; pointer-events: none;"></div>
+        </footer>
+    
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Initialize GSAP animations
-            gsap.registerPlugin(ScrollTrigger);
-            
-            // Animate elements on scroll
-            gsap.utils.toArray('.animate-fade-in').forEach(element => {
-                gsap.from(element, {
-                    opacity: 0,
-                    y: 50,
-                    duration: 1,
-                    scrollTrigger: {
-                        trigger: element,
-                        start: "top 80%",
-                        toggleActions: "play none none none"
-                    }
+        // Smooth scroll for the 'গল্পটি পড়ুন' button
+        document.querySelector('a[href="#story"]').addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 50,
+                    behavior: 'smooth'
                 });
-            });
-            
-            // Cart functionality
-            let cart = [];
-            
-            // Load cart from localStorage
-            function loadCart() {
-                const savedCart = localStorage.getItem('heems-cart');
-                return savedCart ? JSON.parse(savedCart) : [];
             }
-            
-            // Save cart to localStorage
-            function saveCart() {
-                localStorage.setItem('heems-cart', JSON.stringify(cart));
-            }
-            
-            // Sample function to add items to cart (for testing)
-            function addToCart(name, price, image = 'assets/logo.png', color = 'Default', size = 'M') {
-                const itemId = Date.now().toString();
-                const newItem = {
-                    id: itemId,
-                    name: name,
-                    price: price,
-                    image: image,
-                    color: color,
-                    size: size,
-                    quantity: 1
-                };
-                
-                // Check if item already exists
-                const existingItemIndex = cart.findIndex(item => 
-                    item.name === name && item.color === color && item.size === size
-                );
-                
-                if (existingItemIndex !== -1) {
-                    cart[existingItemIndex].quantity += 1;
-                } else {
-                    cart.push(newItem);
+        });
+
+        // Add 'active' class to heading on hover for animation
+        const headings = document.querySelectorAll('.heading-style');
+        headings.forEach(heading => {
+            heading.addEventListener('mouseenter', () => heading.classList.add('active'));
+            heading.addEventListener('mouseleave', () => heading.classList.remove('active'));
+        });
+    </script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const centerLogo = document.getElementById("logo-container");
+            const scrolledNav = document.getElementById("scrolled-nav");
+            ScrollTrigger.create({
+                trigger: "body",
+                start: "top top",
+                end: "+=150",
+                scrub: true,
+                onEnter: () => {
+                    gsap.to(centerLogo, {
+                        opacity: 0,
+                        y: -50,
+                        duration: 0.4,
+                        onComplete: () => {
+                            centerLogo.style.display = "none";
+                            scrolledNav.classList.remove("hidden");
+                            scrolledNav.classList.add("flex");
+                            gsap.to(scrolledNav, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" });
+                        }
+                    });
+                },
+                onLeaveBack: () => {
+                    gsap.to(scrolledNav, {
+                        opacity: 0,
+                        duration: 0.3,
+                        onComplete: () => {
+                            scrolledNav.classList.add("hidden");
+                            scrolledNav.classList.remove("flex");
+                            centerLogo.style.display = "flex";
+                            gsap.to(centerLogo, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" });
+                        }
+                    });
                 }
-                
-                saveCart();
-                updateCartUI();
-                showNotification(`${name} added to cart`);
+            });
+            const mainLogo = document.querySelector('.main-logo');
+            const hoverLogo = document.querySelector('.hover-logo');
+            if (mainLogo && hoverLogo) {
+                mainLogo.addEventListener('mouseenter', () => {
+                    mainLogo.style.opacity = '0';
+                    hoverLogo.style.opacity = '1';
+                });
+                hoverLogo.addEventListener('mouseenter', () => {
+                    mainLogo.style.opacity = '0';
+                    hoverLogo.style.opacity = '1';
+                });
+                hoverLogo.addEventListener('mouseleave', () => {
+                    mainLogo.style.opacity = '1';
+                    hoverLogo.style.opacity = '0';
+                });
             }
-            
-            // Initialize cart
-            cart = loadCart();
-            
-            // DOM Elements
+            lucide.createIcons();
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenuBtnScrolled = document.getElementById('mobile-menu-btn-scrolled');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+            const mobileCloseBtn = document.getElementById('mobile-close-btn');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            }
+            if (mobileMenuBtnScrolled) {
+                mobileMenuBtnScrolled.addEventListener('click', toggleMobileMenu);
+            }
+            function toggleMobileMenu() {
+                const isActive = mobileMenuOverlay.classList.contains('active');
+                if (isActive) {
+                    closeMobileMenu();
+                } else {
+                    openMobileMenu();
+                }
+            }
+            if (mobileCloseBtn) {
+                mobileCloseBtn.addEventListener('click', closeMobileMenu);
+            }
+            mobileNavItems.forEach(item => {
+                const link = item.querySelector('a');
+                if (link) {
+                    link.addEventListener('click', closeMobileMenu);
+                }
+            });
+            mobileMenuOverlay.addEventListener('click', function (e) {
+                if (e.target === mobileMenuOverlay) {
+                    closeMobileMenu();
+                }
+            });
+            function openMobileMenu() {
+                mobileMenuOverlay.classList.add('active');
+                if (mobileMenuBtn) mobileMenuBtn.classList.add('active');
+                if (mobileMenuBtnScrolled) mobileMenuBtnScrolled.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                mobileNavItems.forEach((item, index) => {
+                    const delay = parseFloat(item.getAttribute('data-delay')) || 0;
+                    setTimeout(() => {
+                        item.classList.add('active');
+                    }, delay * 1000);
+                });
+            }
+            function closeMobileMenu() {
+                mobileMenuOverlay.classList.remove('active');
+                if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
+                if (mobileMenuBtnScrolled) mobileMenuBtnScrolled.classList.remove('active');
+                document.body.style.overflow = '';
+                mobileNavItems.forEach(item => {
+                    item.classList.remove('active');
+                });
+            }
+            let touchStartY = 0;
+            let touchEndY = 0;
+            mobileMenuOverlay.addEventListener('touchstart', function (e) {
+                touchStartY = e.changedTouches[0].screenY;
+            });
+            mobileMenuOverlay.addEventListener('touchend', function (e) {
+                touchEndY = e.changedTouches[0].screenY;
+                handleSwipe();
+            });
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const swipeDistance = touchEndY - touchStartY;
+                if (swipeDistance > swipeThreshold) {
+                    closeMobileMenu();
+                }
+            }
+            let cart = loadCart();
             const cartBtn = document.getElementById('cart-btn');
+            const cartBtnScrolled = document.getElementById('cart-btn-scrolled');
             const mobileCartBtn = document.getElementById('mobile-cart-btn');
             const cartSidebar = document.getElementById('cart-sidebar');
             const closeCartButton = document.getElementById('close-cart');
             const cartItemsContainer = document.getElementById('cart-items');
             const cartSubtotal = document.getElementById('cart-subtotal');
-            const cartCountElements = document.querySelectorAll('#cart-count, #mobile-cart-count');
-            
-            // Mobile menu functionality
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileMenuClose = document.getElementById('mobile-menu-close');
-            const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
-            
-            function openMobileMenu() {
-                mobileMenu.classList.add('open');
-                if (mobileMenuBackdrop) mobileMenuBackdrop.classList.add('open');
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
-            }
-            
-            function closeMobileMenu() {
-                mobileMenu.classList.remove('open');
-                if (mobileMenuBackdrop) mobileMenuBackdrop.classList.remove('open');
-                document.body.style.overflow = ''; // Restore scrolling
-            }
-            
-            if (mobileMenuButton) {
-                mobileMenuButton.addEventListener('click', openMobileMenu);
-            }
-            
-            if (mobileMenuClose) {
-                mobileMenuClose.addEventListener('click', closeMobileMenu);
-            }
-            
-            if (mobileMenuBackdrop) {
-                mobileMenuBackdrop.addEventListener('click', closeMobileMenu);
-            }
-            
-            // Close mobile menu on escape key
-            document.addEventListener('keydown', function (event) {
-                if (event.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('open')) {
-                    closeMobileMenu();
-                }
-            });
-            
-            // Cart sidebar toggle
+            const cartCountElements = document.querySelectorAll('#cart-count, #cart-count-scrolled, #mobile-cart-count');
+            updateCartUI();
             if (cartBtn) {
                 cartBtn.addEventListener('click', toggleCart);
             }
-            
+            if (cartBtnScrolled) {
+                cartBtnScrolled.addEventListener('click', toggleCart);
+            }
             if (mobileCartBtn) {
                 mobileCartBtn.addEventListener('click', function () {
-                    // Close mobile menu if open
-                    if (mobileMenu.classList.contains('open')) {
-                        mobileMenu.classList.remove('open');
+                    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+                    if (mobileMenuOverlay.classList.contains('active')) {
+                        toggleMobileMenu();
                     }
                     toggleCart();
                 });
             }
-            
             if (closeCartButton) {
                 closeCartButton.addEventListener('click', toggleCart);
             }
-            
-            // Close cart when clicking outside
             document.addEventListener('click', function (event) {
                 if (!cartSidebar.contains(event.target) &&
                     !cartBtn.contains(event.target) &&
+                    !cartBtnScrolled.contains(event.target) &&
                     !mobileCartBtn.contains(event.target) &&
                     !event.target.closest('#cart-sidebar') &&
                     !event.target.closest('#cart-btn') &&
+                    !event.target.closest('#cart-btn-scrolled') &&
                     !event.target.closest('#mobile-cart-btn')) {
                     cartSidebar.classList.add('translate-x-full');
                     document.body.style.overflow = '';
                 }
             });
-            
-            // Initialize cart UI
-            updateCartUI();
-            
-            function toggleCart() {
-                cartSidebar.classList.toggle('translate-x-full');
-                document.body.style.overflow = cartSidebar.classList.contains('translate-x-full') ? '' : 'hidden';
-                updateCartUI();
+            function loadCart() {
+                const savedCart = localStorage.getItem('heems-cart');
+                return savedCart ? JSON.parse(savedCart) : [];
             }
-            
+            function saveCart() {
+                localStorage.setItem('heems-cart', JSON.stringify(cart));
+            }
             function updateCartUI() {
-                try {
-                    // Update cart count
-                    const totalItems = cart.reduce((total, item) => total + (item.quantity || 0), 0);
-                    cartCountElements.forEach(el => {
-                        if (el) el.textContent = totalItems;
-                    });
-                    
-                    // Update cart sidebar if it exists on the page
-                    if (!cartItemsContainer || !cartSubtotal) return;
-                    
-                    if (cart.length === 0) {
-                        cartItemsContainer.innerHTML = `
-                            <div class="text-center py-12 text-bistre/70">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-bistre/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                                </svg>
-                                <p>Your cart is empty</p>
-                            </div>
-                        `;
-                        cartSubtotal.textContent = '৳0.00';
-                        return;
-                    }
-                
-                    let itemsHTML = '';
-                    let subtotal = 0;
-                    
-                    cart.forEach(item => {
-                        subtotal += item.price * item.quantity;
-                        itemsHTML += `
-                            <div class="flex py-4 border-b border-bistre/20">
-                                <div class="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
-                                    <img src="${item.image || 'assets/logo.png'}" alt="${item.name}" class="w-full h-full object-cover">
-                                </div>
-                                <div class="flex-1 pl-4 min-w-0">
-                                    <h4 class="font-bold text-bistre text-sm">${item.name}</h4>
-                                    <p class="text-xs text-bistre/70 mb-1">${item.color || 'N/A'}, ${item.size || 'N/A'}</p>
-                                    <p class="text-xs text-bistre/70">৳${item.price} × ${item.quantity}</p>
-                                </div>
-                                <div class="flex flex-col items-end space-y-2 flex-shrink-0">
-                                    <p class="font-bold text-bistre text-sm">৳${(item.price * item.quantity).toFixed(2)}</p>
-                                    <div class="flex items-center space-x-2">
-                                        <button class="quantity-btn text-bistre hover:text-mauveine transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-bistre/30 hover:border-bistre" data-id="${item.id}" data-action="decrease">-</button>
-                                        <span class="text-sm text-bistre font-medium min-w-[20px] text-center">${item.quantity}</span>
-                                        <button class="quantity-btn text-bistre hover:text-mauveine transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-bistre/30 hover:border-bistre" data-id="${item.id}" data-action="increase">+</button>
-                                    </div>
-                                    <button class="text-xs text-bistre/50 hover:text-mauveine transition remove-item" data-id="${item.id}">
-                                        Remove
-                                    </button>
-                                </div>
-                            </div>
-                        `;
-                    });
-                    
-                    cartItemsContainer.innerHTML = itemsHTML;
-                    cartSubtotal.textContent = `৳${subtotal.toFixed(2)}`;
-                    
-                    // Add event listeners to remove buttons and quantity buttons
-                    document.querySelectorAll('.remove-item').forEach(button => {
-                        button.addEventListener('click', function (e) {
-                            e.stopPropagation();
-                            const itemId = this.getAttribute('data-id');
-                            removeFromCart(itemId);
-                        });
-                    });
-                    
-                    document.querySelectorAll('.quantity-btn').forEach(button => {
-                        button.addEventListener('click', function (e) {
-                            e.stopPropagation();
-                            const itemId = this.getAttribute('data-id');
-                            const action = this.getAttribute('data-action');
-                            updateItemQuantity(itemId, action);
-                        });
-                    });
-                } catch (error) {
-                    console.error('Error updating cart UI:', error);
+                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                cartCountElements.forEach(el => el.textContent = totalItems);
+                if (!cartItemsContainer || !cartSubtotal) {
+                    return;
                 }
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = `
+                        <div class="text-center py-12 text-gray-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                            </svg>
+                            <p>Your cart is empty</p>
+                        </div>
+                    `;
+                    cartSubtotal.textContent = '৳0.00';
+                    return;
+                }
+                let itemsHTML = '';
+                let subtotal = 0;
+                cart.forEach(item => {
+                    subtotal += item.price * item.quantity;
+                    itemsHTML += `
+                        <div class="flex py-4 border-b border-gray-200">
+                            <div class="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden">
+                                <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-1 pl-4">
+                                <h4 class="font-bold text-gray-800">${item.name}</h4>
+                                <p class="text-sm text-gray-600 mb-1">${item.color}, ${item.size}</p>
+                                <p class="text-sm text-gray-600">৳${item.price} × ${item.quantity}</p>
+                            </div>
+                            <div class="flex flex-col items-end space-y-2">
+                                <p class="font-bold text-gray-800">৳${(item.price * item.quantity).toFixed(2)}</p>
+                                <div class="flex items-center space-x-2">
+                                    <button class="quantity-btn text-gray-600 hover:text-red-500 transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-gray-300 hover:border-red-500" data-id="${item.id}" data-action="decrease">-</button>
+                                    <span class="text-sm text-gray-800 font-medium min-w-[20px] text-center">${item.quantity}</span>
+                                    <button class="quantity-btn text-gray-600 hover:text-red-500 transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-gray-300 hover:border-red-500" data-id="${item.id}" data-action="increase">+</button>
+                                </div>
+                                <button class="text-xs text-gray-500 hover:text-red-500 transition remove-item" data-id="${item.id}">
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+                cartItemsContainer.innerHTML = itemsHTML;
+                cartSubtotal.textContent = `৳${subtotal.toFixed(2)}`;
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        const itemId = this.getAttribute('data-id');
+                        removeFromCart(itemId);
+                    });
+                });
+                document.querySelectorAll('.quantity-btn').forEach(button => {
+                    button.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        const itemId = this.getAttribute('data-id');
+                        const action = this.getAttribute('data-action');
+                        updateItemQuantity(itemId, action);
+                    });
+                });
             }
-            
             function removeFromCart(itemId) {
                 cart = cart.filter(item => item.id !== itemId);
                 saveCart();
                 updateCartUI();
-                showNotification('Item removed from cart');
             }
-            
             function updateItemQuantity(itemId, action) {
-                const itemIndex = cart.findIndex(item => item.id === itemId);
-                if (itemIndex !== -1) {
+                const item = cart.find(cartItem => cartItem.id === itemId);
+                if (item) {
                     if (action === 'increase') {
-                        cart[itemIndex].quantity += 1;
+                        item.quantity += 1;
                     } else if (action === 'decrease') {
-                        if (cart[itemIndex].quantity > 1) {
-                            cart[itemIndex].quantity -= 1;
-                        } else {
-                            cart.splice(itemIndex, 1);
-                        }
+                        item.quantity = Math.max(1, item.quantity - 1);
                     }
                     saveCart();
                     updateCartUI();
                 }
             }
-            
-            function showNotification(message) {
-                const notification = document.createElement('div');
-                notification.className = 'fixed bottom-4 right-4 bg-bistre text-white px-4 py-2 rounded-lg shadow-lg animate-fade-in z-50';
-                notification.textContent = message;
-                document.body.appendChild(notification);
-                
-                setTimeout(() => {
-                    notification.classList.add('opacity-0', 'transition-opacity', 'duration-300');
-                    setTimeout(() => notification.remove(), 300);
-                }, 2000);
-            }
-            
-            // Make cart functions globally accessible for testing
-            window.addToCart = addToCart;
-            window.updateCartUI = updateCartUI;
-            window.removeFromCart = removeFromCart;
-            window.updateItemQuantity = updateItemQuantity;
-            
-            // Also make cart accessible globally for debugging
-            window.cart = cart;
-            
-            // Mobile touch improvements
-            if ('ontouchstart' in window) {
-                // Add touch-specific event listeners for mobile
-                document.addEventListener('touchstart', function() {}, {passive: true});
-                document.addEventListener('touchmove', function() {}, {passive: true});
-                
-                // Improve mobile scrolling
-                document.body.style.webkitOverflowScrolling = 'touch';
-                
-                // Add mobile-specific animations
-                const mobileElements = document.querySelectorAll('.story-card, .timeline-item');
-                mobileElements.forEach(element => {
-                    element.addEventListener('touchstart', function() {
-                        this.style.transform = 'scale(0.98)';
-                    });
-                    
-                    element.addEventListener('touchend', function() {
-                        this.style.transform = 'scale(1)';
-                    });
-                });
-            }
-            
-            // Mobile menu swipe to close functionality
-            let touchStartX = 0;
-            let touchEndX = 0;
-            
-            if (mobileMenu) {
-                mobileMenu.addEventListener('touchstart', function(e) {
-                    touchStartX = e.changedTouches[0].screenX;
-                });
-                
-                mobileMenu.addEventListener('touchend', function(e) {
-                    touchEndX = e.changedTouches[0].screenX;
-                    handleSwipe();
-                });
-            }
-            
-            function handleSwipe() {
-                const swipeThreshold = 50;
-                const swipeDistance = touchEndX - touchStartX;
-                
-                if (swipeDistance > swipeThreshold && mobileMenu.classList.contains('open')) {
-                    closeMobileMenu();
-                }
+            function toggleCart() {
+                cartSidebar.classList.toggle('translate-x-full');
+                document.body.style.overflow = cartSidebar.classList.contains('translate-x-full') ? '' : 'hidden';
             }
         });
+        function showLoader() {
+            const overlay = document.getElementById('loaderOverlay');
+            overlay.style.display = 'flex';
+
+            // Optional: hide after some time
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 3000); // hide after 3 seconds
+        }
     </script>
 </body>
+
 </html>

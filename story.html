@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tainted - The Tainted Boy | Vice City Edition</title>
+    <title>আমার গল্প – HEEMS</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -85,12 +85,18 @@
         href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Archivo:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap"
         rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <!--Smooth Scrolling-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll/dist/locomotive-scroll.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll/dist/locomotive-scroll.min.js"></script>
+    <!-- Additional Google Fonts from Navigation -->
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Mina:wght@400;700&display=swap" rel="stylesheet" />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <!-- Custom CSS -->
     <style>
         :root {
@@ -100,6 +106,9 @@
             --vice-neon-purple: #9c4fcf;
             --vice-text: #e0e0e0;
             --vice-glow: 0 0 10px;
+            --sad-gray: #4a4a4a;
+            --retro-blue: #1e3a8a;
+            --pixel-border: 2px solid #fff;
         }
 
         .font-orbitron {
@@ -381,10 +390,6 @@
             height: 20rem;
         }
 
-        .overflow-y-scroll {
-            overflow-y: scroll;
-        }
-
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -396,7 +401,7 @@
 
         /* Body and text styling */
         body {
-            font-family: "Archivo", sans-serif;
+            font-family: "HindSiliguri", "Archivo", sans-serif;
             background-color: #0b0b10;
             color: #f5f0e8;
             overflow-x: hidden;
@@ -423,10 +428,591 @@
         main h1, main h2, main h3, main h4, main h5, main h6 {
             color: #e0e0e0;
         }
+
+        /* Game-Sad-Vibe Enhancements */
+        .sad-vibe {
+            background: linear-gradient(to bottom, var(--sad-gray), var(--vice-dark));
+            filter: grayscale(30%);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .pixelated {
+            image-rendering: pixelated;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--vice-neon-teal);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            box-shadow: 0 0 10px var(--vice-neon-teal);
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item:hover .timeline-content {
+            animation: tilt-shake 0.5s ease-in-out;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: var(--vice-dark);
+            border: 4px solid var(--vice-neon-pink);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .right::after {
+            left: -16px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: var(--vice-dark);
+            position: relative;
+            border-radius: 6px;
+            border: var(--pixel-border);
+            box-shadow: 0 0 15px var(--vice-neon-purple);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .timeline-img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            filter: sepia(20%);
+            border: 2px dashed var(--vice-neon-teal);
+        }
+
+        @media screen and (max-width: 600px) {
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::after {
+                left: 15px;
+            }
+
+            .right {
+                left: 0%;
+            }
+        }
+
+        /* Enhanced game vibe: pixel fonts, retro effects */
+        .retro-font {
+            font-family: 'Oxanium', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .game-glow {
+            box-shadow: 0 0 20px var(--vice-neon-teal), 0 0 30px var(--vice-neon-pink);
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        /* More elegant design: smoother spacing, refined typography */
+        main {
+            padding: 4rem 1rem;
+        }
+
+        .timeline-content p {
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+    <!-- Additional Styles from Navigation -->
+    <style>
+        :root {
+            --bg1: #0B0B10; /* Near-black primary background */
+            --bg2: #1a0f13; /* Slightly lighter secondary background */
+            --glow: #FB3A48; /* Imperial red for glowing effects */
+            --glow2: #C01A27; /* Deep red accent */
+        }
+
+        @font-face {
+            font-family: "CodepotroAbuSayed";
+            src: url("assets/fonts/CodepotroAbuSayed.woff") format("woff");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: "HindSiliguri";
+            src: url("assets/fonts/HindSiliguri-Regular.woff2") format("woff2");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 14px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "HindSiliguri", "Archivo", sans-serif;
+            background: radial-gradient(1200px 600px at 50% 20%, rgba(251, 58, 72, 0.12), transparent 60%), radial-gradient(800px 400px at 20% 80%, rgba(192, 26, 39, 0.16), transparent 70%), linear-gradient(180deg, var(--bg1), var(--bg2));
+            color: #ffffff;
+            overflow-x: hidden;
+            height: 100vh;
+        }
+
+        .scanlines::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 0, rgba(255, 255, 255, 0.04) 1px, transparent 2px, transparent 3px);
+            pointer-events: none;
+            mix-blend-mode: soft-light;
+        }
+
+        .vignette::after {
+            position: absolute;
+            inset: -10%;
+            pointer-events: none;
+            background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.6) 100%);
+            mix-blend-mode: multiply;
+        }
+
+        .text-stroke {
+            -webkit-text-stroke: 1px currentColor;
+            color: transparent;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #fb3a48, #9a219e, #28eeb6);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .font-Hindsiligury {
+            font-family: "HindSiliguri", sans-serif;
+        }
+
+        .font-code {
+            font-family: "CodepotroAbuSayed", sans-serif;
+        }
+
+        .vertical-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+        }
+
+        .upgrade-text {
+            font-family: "Space Grotesk";
+            font-weight: 700;
+        }
+
+        .font-limelight {
+            font-family: "Limelight", serif;
+        }
+
+        .font-Sansation {
+            font-family: "Sansation", sans-serif;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #ff0080;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #121212 0%, #1a0f1a 50%, #2d1b2d 100%);
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-content {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .mobile-close-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+        }
+
+        .mobile-close-btn:hover {
+            background: rgba(255, 0, 128, 0.2);
+            border-color: #ff0080;
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 0 20px rgba(255, 0, 128, 0.3);
+        }
+
+        .mobile-close-btn svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+            stroke-width: 2;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-close-btn:hover svg {
+            stroke: #ff0080;
+            transform: scale(1.1);
+        }
+
+        .mobile-nav-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            margin: 1.5rem 0;
+            z-index: 1;
+        }
+
+        .mobile-nav-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-nav-item a {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-item a::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff0080, #00ffff);
+            transition: width 0.3s ease;
+        }
+
+        .mobile-nav-item a:hover::before {
+            width: 100%;
+        }
+
+        .mobile-nav-item a:hover {
+            color: #00ffff;
+            transform: scale(1.05);
+        }
+
+        .hamburger {
+            width: 30px;
+            height: 30px;
+            position: relative;
+            cursor: pointer;
+            z-index: 101;
+        }
+
+        .hamburger span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hamburger span:nth-child(1) {
+            top: 0px;
+        }
+
+        .hamburger span:nth-child(2) {
+            top: 13px;
+        }
+
+        .hamburger span:nth-child(3) {
+            top: 26px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 13px;
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-close-btn {
+                top: 1.5rem;
+                right: 1.5rem;
+                width: 45px;
+                height: 45px;
+                z-index: 999;
+            }
+
+            .mobile-close-btn svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .mobile-nav-item a {
+                font-size: 2rem;
+                padding: 1rem 0;
+                display: block;
+                text-align: center;
+            }
+
+            .hamburger {
+                width: 25px;
+                height: 25px;
+            }
+
+            .hamburger span {
+                height: 2px;
+            }
+
+            .hamburger span:nth-child(2) {
+                top: 11px;
+            }
+
+            .hamburger span:nth-child(3) {
+                top: 22px;
+            }
+
+            .hamburger.active span:nth-child(1),
+            .hamburger.active span:nth-child(3) {
+                top: 11px;
+            }
+        }
+
+        .mybg {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 30px;
+            border-radius: 0px;
+            margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            top: 0;
+            z-index: 1000;
+        }
+
+        .mybg-rounded {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 30px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 40px;
+            margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            top: 0;
+            z-index: 1000;
+        }
+
+        .font-bungee {
+            font-family: 'Bungee Spice', cursive;
+        }
+
+        .menu-item {
+            position: relative;
+        }
+
+        .menu-item:after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: currentColor;
+            transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .menu-item:hover:after {
+            width: 100%;
+        }
+
+        #loaderOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(34, 34, 34, 0.7);
+            display: none; /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        /* Loader style matching your description */
+        .loader {
+            transform: rotateZ(45deg);
+            perspective: 1000px;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            position: relative;
+            color: #fff;
+        }
+
+        /* Pseudo-elements for animated parts of loader */
+        .loader:before,
+        .loader:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: inherit;
+            height: inherit;
+            border-radius: 50%;
+            transform: rotateX(70deg);
+            animation: spin 1s linear infinite;
+        }
+
+        .loader:after {
+            color: #FF3D00;
+            transform: rotateY(70deg);
+            animation-delay: 0.4s;
+        }
+
+        /* Spin animation for pseudo-elements */
+        @keyframes spin {
+            0%,
+            100% {
+                box-shadow: 0.2em 0px 0 0 currentColor;
+            }
+
+            12% {
+                box-shadow: 0.2em 0.2em 0 0 currentColor;
+            }
+
+            25% {
+                box-shadow: 0 0.2em 0 0 currentColor;
+            }
+
+            37% {
+                box-shadow: -0.2em 0.2em 0 0 currentColor;
+            }
+
+            50% {
+                box-shadow: -0.2em 0 0 0 currentColor;
+            }
+
+            62% {
+                box-shadow: -0.2em -0.2em 0 0 currentColor;
+            }
+
+            75% {
+                box-shadow: 0 -0.2em 0 0 currentColor;
+            }
+
+            87% {
+                box-shadow: 0.2em -0.2em 0 0 currentColor;
+            }
+        }
+        .content{
+            min-height: 200vh;
+        }
     </style>
 </head>
 
-<body class="fabric-texture antialiased vc-dark">
+<body class="fabric-texture antialiased vc-dark sad-vibe">
     <!-- Animated Background Elements -->
     <div class="fixed inset-0 overflow-hidden -z-10">
         <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-mauveine/10 blur-3xl animate-pulse-slow"></div>
@@ -439,278 +1025,190 @@
     <div class="overflow-y-scroll no-scrollbar">
         <!-- Your scrollable content here -->
       </div>
-    <!-- Navigation -->
-    <header id="main-header"
-        class="fixed top-0 left-0 w-full z-40 backdrop-blur-md bg-darkbg/80 border-b border-fabric/20 shadow-md transition-all duration-300 ease-in-out py-2">
-        <div class="container mx-auto px-6 flex justify-between items-center h-16">
-            <!-- Logo and Text -->
-            <a href="landing.html" class="flex items-center space-x-2">
-                <img src="assets/logo.png" alt="Logo" class="h-14 w-auto object-contain" />
-                <span
-                    class="block h-16 gradient-text text-xl md:text-2xl lg:text-3xl font-bungee flex items-center justify-center">HEEMS</span>
-            </a>
-            <!-- Desktop Navigation Menu -->
-            <nav class="hidden md:flex items-center space-x-8">
-                <a href="landing.html" class="menu-item font-space uppercase tracking-wider text-fabric hover:text-aquamarine">Home</a>
-                <a href="collections.html" class="menu-item font-space uppercase tracking-wider text-fabric hover:text-aquamarine">Our Products</a>
-                <a href="story.html" class="menu-item font-space uppercase tracking-wider text-aquamarine font-bold">Our Story</a>
-                <a href="contact.html" class="menu-item font-space uppercase tracking-wider text-fabric hover:text-aquamarine">Contact Us</a>
-            </nav>
-            <!-- Shopping Cart -->
-            <div class="hidden md:flex items-center space-x-4">
-                <button class="relative text-fabric hover:text-aquamarine transition-colors" id="cart-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin-round" stroke-width="2"
-                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                    </svg>
-                    <span
-                        class="absolute -top-2 -right-2 bg-mauveine text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
-                        id="cart-count"><i class="fa-solid fa-truck-ramp-box"></i></span>
+    <!-- Scanlines and Vignette from Navigation -->
+    <div class="scanlines vignette"></div>
+    <!-- Header (Navigation Bar) -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-40 transition-all duration-300 ease-in-out py-6">
+        <div id="logo-container" class="mybg flex flex-col items-center relative w-full">
+            <div class="w-full flex justify-between items-center px-6 mb-6">
+                <button id="mobile-menu-btn" class="hamburger md:hidden">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="w-16 hidden md:block"></div>
+                <a href="landing.html" class="flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center overflow-hidden border-2 border-red">
+                        <img src="https://heemsbd.com/assets/more/heeem.jpg" alt="HEEMS Logo" class="h-full w-full object-cover" />
+                    </div>
+                    <span class="text-2xl font-bungee text-white mt-2 block">HEEMS</span>
+                </a>
+                <button id="cart-btn" class="flex items-center px-4 py-2 border border-white text-white rounded-md hover:bg-white hover:text-black transition-all relative">
+                    <i data-lucide="shopping-cart" class="w-5 h-5 mr-2"></i>
+                    <span class="hidden sm:inline">Cart</span>
+                    <span id="cart-count" class="cart-count">0</span>
                 </button>
             </div>
-            <!-- Mobile Menu Button -->
-            <button class="md:hidden text-fabric hover:text-aquamarine transition-colors" id="mobile-menu-button">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin-round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+            <nav class="hidden md:flex space-x-8 text-sm uppercase tracking-wider">
+                <a href="landing.html" onclick="event.preventDefault(); showLoader(); window.location.href='landing.html';" class="menu-item font-space uppercase tracking-wider text-aquamarine font-bold">Home</a>
+                <a href="collections.html" onclick="event.preventDefault(); showLoader(); window.location.href='collections.html';" class="menu-item font-space uppercase tracking-wider text-fabric hover:text-aquamarine">Our Products</a>
+                <a href="story.html" onclick="event.preventDefault(); showLoader(); window.location.href='story.html';" class="menu-item font-space uppercase tracking-wider text-fabric hover:text-aquamarine">Our Story</a>
+                <a href="contact.html" onclick="event.preventDefault(); showLoader(); window.location.href='contact.html';" class="menu-item font-space uppercase tracking-wider text-fabric hover:text-aquamarine">Contact Us</a>
+            </nav>
+        </div>
+        <div id="scrolled-nav" class="mybg-rounded hidden justify-between items-center px-6 opacity-0">
+            <button id="mobile-menu-btn-scrolled" class="hamburger md:hidden">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
+            <a href="landing.html" class="flex items-center space-x-2">
+                <div class="w-14 h-14 rounded-full flex items-center justify-center relative overflow-hidden">
+                    <img src="https://heemsbd.com/assets/more/heeem.jpg" alt="HEEMS Logo" class="h-25 w-10 object-contain main-logo transition-opacity duration-300 absolute inset-0 m-auto rounded-full" />
+                    <img src="https://cdn.jsdelivr.net/gh/raiyanruhan/HeemsBD@main/Fun/3dgifmaker56642.gif" alt="Hover Image" class="h-10 w-10 object-contain absolute inset-0 hover-logo opacity-0 transition-opacity duration-300 m-auto" />
+                </div>
+                <span class="text-2xl font-bungee">HEEMS</span>
+            </a>
+            <nav class="hidden md:flex flex-1 justify-center space-x-8 text-sm uppercase tracking-wider">
+                <a href="landing.html" onclick="event.preventDefault(); showLoader(); window.location.href='landing.html';" class="menu-item font-space uppercase tracking-wider text-aquamarine font-bold">Home</a>
+                <a href="collections.html" onclick="event.preventDefault(); showLoader(); window.location.href='collections.html';" class="menu-item font-space uppercase tracking-wider text-fabric hover:text-aquamarine">Our Products</a>
+                <a href="story.html" onclick="event.preventDefault(); showLoader(); window.location.href='story.html';" class="menu-item font-space uppercase tracking-wider text-fabric hover:text-aquamarine">Our Story</a>
+                <a href="contact.html" onclick="event.preventDefault(); showLoader(); window.location.href='contact.html';" class="menu-item font-space uppercase tracking-wider text-fabric hover:text-aquamarine">Contact Us</a>
+            </nav>
+            <div class="flex items-center">
+                <button id="cart-btn-scrolled" class="flex items-center hover:text-[#00ffff] transition-all relative">
+                    <i data-lucide="shopping-cart" class="w-6 h-6"></i>
+                    <span id="cart-count-scrolled" class="cart-count">0</span>
+                </button>
+            </div>
         </div>
     </header>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu fixed inset-y-0 right-0 w-full sm:w-96 bg-white z-50 shadow-xl p-6 md:hidden"
-        id="mobile-menu">
-        <div class="flex justify-end mb-8">
-            <button class="text-bistre" id="mobile-menu-close">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin-round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
-        <div class="flex flex-col space-y-6">
-            <a href="landing.html" class="text-bistre text-lg font-space uppercase tracking-wider">Home</a>
-            <a href="collections.html" class="text-bistre text-lg font-space uppercase tracking-wider">Our Products</a>
-            <a href="story.html" class="text-bistre text-lg font-space uppercase tracking-wider font-bold">Our Story</a>
-            <a href="contact.html" class="text-bistre text-lg font-space uppercase tracking-wider">Contact Us</a>
-            <div class="pt-4 border-t border-bistre/20">
-                <button class="flex items-center space-x-2" id="mobile-cart-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin-round" stroke-width="2"
-                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                    </svg>
-                    <span>Cart</span>
-                    <span class="bg-mauveine text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
-                        id="mobile-cart-count"><i class="fa-solid fa-truck-ramp-box"></i></span>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay">
+        <button id="mobile-close-btn" class="mobile-close-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <div class="mobile-menu-content">
+            <div class="mobile-nav-item" data-delay="0.1">
+                <a href="landing.html">Home</a>
+            </div>
+            <div class="mobile-nav-item" data-delay="0.2">
+                <a href="collections.html">Our Products</a>
+            </div>
+            <div class="mobile-nav-item" data-delay="0.3">
+                <a href="story.html">Our Story</a>
+            </div>
+            <div class="mobile-nav-item" data-delay="0.4">
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <div class="mobile-nav-item" data-delay="0.5">
+                <button id="mobile-cart-btn" class="flex items-center px-6 py-3 border-2 border-white text-white rounded-full hover:bg-white hover:text-black transition-all">
+                    <i data-lucide="shopping-cart" class="w-6 h-6 mr-3"></i>
+                    <span>View Cart</span>
+                    <span id="mobile-cart-count" class="cart-count ml-3">0</span>
                 </button>
             </div>
         </div>
     </div>
-
-    <!-- Shopping Cart Sidebar -->
-    <div class="fixed inset-y-0 right-0 w-full sm:w-96 bg-white z-50 shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out"
-        id="cart-sidebar">
+    <!-- Shopping Cart Sidebar (Connected to Nav) -->
+    <div class="fixed inset-y-0 right-0 w-full sm:w-96 bg-white z-50 shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out" id="cart-sidebar">
         <div class="h-full flex flex-col">
-            <div class="p-6 border-b border-bistre/20 flex justify-between items-center">
-                <h3 class="text-xl font-bold text-bistre">Your Cart</h3>
-                <button class="text-bistre hover:text-mauveine transition" id="close-cart">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin-round" stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12" />
+            <div class="p-6 border-b border-gray-300 flex justify-between items-center">
+                <h3 class="text-xl font-bold text-gray-800">Your Cart</h3>
+                <button class="text-gray-600 hover:text-red-500 transition" id="close-cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
-
             <div class="flex-1 overflow-y-auto p-6" id="cart-items">
-                <!-- Cart items will be added here dynamically -->
-                <div class="text-center py-12 text-bistre/70">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-bistre/30" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin-round" stroke-width="1"
-                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                <div class="text-center py-12 text-gray-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
                     <p>Your cart is empty</p>
                 </div>
             </div>
-
-            <div class="p-6 border-t border-bistre/20">
+            <div class="p-6 border-t border-gray-300">
                 <div class="flex justify-between items-center mb-4">
-                    <span class="text-bistre">Subtotal</span>
-                    <span class="font-bold text-bistre" id="cart-subtotal">৳0.00</span>
+                    <span class="text-gray-800">Subtotal</span>
+                    <span class="font-bold text-gray-800" id="cart-subtotal">৳0.00</span>
                 </div>
-                <p class="text-sm text-bistre/70 mb-6">Shipping and taxes calculated at checkout</p>
+                <p class="text-sm text-gray-500 mb-6">Shipping and taxes calculated at checkout</p>
                 <a href="/cart">
-                    <button
-                        class="w-full px-6 py-3 bg-bistre text-white font-space uppercase tracking-wider text-sm hover:bg-bistre/90 transition">
+                    <button class="w-full px-6 py-3 bg-gray-800 text-white font-semibold uppercase tracking-wider text-sm hover:bg-gray-700 transition">
                         Checkout
                     </button>
                 </a>
                 <div class="text-center mt-4">
-                    <a href="collections.html" class="text-sm text-bistre/70 hover:text-mauveine transition">Continue
-                        Shopping</a>
+                    <a href="collections.html" class="text-sm text-gray-500 hover:text-gray-700 transition">Continue Shopping</a>
                 </div>
             </div>
         </div>
     </div>
-
-<div data-scroll-container>
     <!-- Header Section -->
     <header
             class="h-[60vh] md:h-[80vh] parallax bg-[url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80')] bg-cover bg-center flex flex-col justify-between p-8 md:p-16 relative pt-32">
         <div class="absolute inset-0 bg-black opacity-60"></div>
         <div
             class="flex-grow flex flex-col items-center justify-center space-y-4 text-center mt-12 md:mt-0 z-10 animate-fade-in">
-            <h1 class="text-6xl md:text-8xl font-pirata-one text-vice-neon-pink drop-shadow-lg glow-pink">HIMEL</h1>
-            <h2 class="text-xl md:text-3xl font-orbitron text-vice-neon-teal tracking-widest glow-teal">THE TAINTED BOY
-            </h2>
-            <p class="text-xs md:text-sm text-vice-text opacity-75">YASIR HIMEL</p>
+            <h1 class="text-6xl md:text-8xl font-pirata-one text-vice-neon-pink drop-shadow-lg glow-pink"><br></h1>
+            <h1 class="text-6xl md:text-8xl font-pirata-one drop-shadow-lg glow-pink" style="font-family: CodepotroAbusayed;">আমার গল্প</h1>
+            <h2 class="text-xl md:text-3xl font-orbitron text-vice-neon-teal tracking-widest glow-teal"></h2>
+            <p class="text-xs md:text-sm text-vice-text opacity-75">A STORY OF YASIR HIMEL</p>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 md:px-16 lg:px-24 py-16">
-        <!-- A Cursed Child Section -->
-        <section class="mb-16 animate-fade-in">
-            <div class="flex flex-col md:flex-row items-start md:space-x-12">
-                <div class="flex-shrink-0 mb-8 md:mb-0 md:w-1/3">
-                    <h3
-                        class="text-4xl md:text-5xl font-pirata-one text-vice-neon-purple drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)] glow-purple">
-                        A Cursed Child
-                    </h3>
-                </div>
-                <div class="md:w-2/3 space-y-6 text-lg leading-relaxed">
-                    <p>He was cursed at birth, though he doesn't know it.<br>
-                        Cursed not by a witch or wizard, but by the poison woven into his bones.<br>
-                        He cannot have what most of us take for granted:<br>
-                        the first true friend, the usual human comfort. Friendship, even love.<br>
-                        Such simple things for most, a mountain for him, stepped upon<br>
-                        slowly, painfully, or all at once.</p>
-                    <p>Over the years, many have followed him out.<br>
-                        Most in anger... What he does was the simplest thing of all:<br>
-                        To finally let go<br>
-                        of something I can't hold<br>
-                        Even that I would not allow.<br>
-                        This is the story of a boy named Taint, sets off in search of an ending.<br>
-                        Finding himself on a strange, twisted, and lonely road.<br>
-                        a sorrow-twisted land of bickering gnomes, militant squirrels,<br>
-                        goblins who aren't quite goblins, and a monster who isn't evil.</p>
-                    <p>This is not a tale of heroes.<br>
-                        It is a story of a boy who is sick and tired.<br>
-                        a twisted tale of memory, and the cruel kind of magic that doesn't<br>
-                        look like magic at all.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Taint Section -->
-        <section
-            class="bg-gradient-to-b from-vice-dark to-black rounded-xl p-8 md:p-12 mb-16 shadow-2xl border-2 border-vice-neon-pink animate-fade-in">
-            <div class="text-center mb-8">
-                <h3
-                    class="text-5xl md:text-6xl font-pirata-one text-vice-neon-teal drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)] glow-teal">
-                    Taint</h3>
-                <p class="text-lg md:text-xl font-orbitron text-vice-text opacity-90">Once known as The Tainted Boy</p>
-            </div>
-            <div class="flex flex-col md:flex-row items-center md:space-x-12">
-                <div class="md:w-1/2 mb-8 md:mb-0 space-y-4">
-                    <p class="text-lg leading-relaxed">
-                        No one remembers what his name was.<br>
-                        Maybe he never had one.<br>
-                        The villagers simply called him Taint, or the Tainted Boy<br>
-                        in a hushed tone, only, written in warnings.<br>
-                        <span class="text-vice-neon-pink font-bold">TAINT. TAINT. TAINT.</span>
-                    </p>
-                    <p class="text-lg leading-relaxed">
-                        Shorter. Sharper. Easier to forget.<br>
-                        And, eventually, they did forget.<br>
-                        Buildings burned, families cracked.<br>
-                        He fell so deep and so sad, eventually.<br>
-                        All of his cries died off.<br>
-                        Eventually, they stopped trying<br>
-                        to settle.
-                    </p>
-                </div>
-                <div class="md:w-1/2">
-                    <img src="assets/IMG_2723-scaled.jpeg" alt="Tainted Boy"
-                        class="w-full h-auto rounded-lg shadow-2xl transition-all hover:opacity-90 hover:scale-102 border-2 border-vice-neon-teal neon-border">
-                </div>
-            </div>
-        </section>
-
-        <!-- The Crone Section -->
-        <section class="animate-fade-in">
-            <div class="text-center mb-12">
-                <h3
-                    class="text-5xl md:text-6xl font-pirata-one text-vice-neon-purple drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)] glow-purple">
-                    The Crone</h3>
-                <p class="text-lg md:text-xl font-orbitron text-vice-text opacity-90">Made of memory. Unraveled by it.
-                </p>
-            </div>
-            <div class="flex flex-col md:flex-row items-center justify-center md:space-x-12">
-                <div class="md:w-1/2 mb-8 md:mb-0">
-                    <img src="assets/IMG_3315.JPG" alt="The Crone"
-                        class="w-full h-auto rounded-lg shadow-2xl transition-all hover:opacity-90 hover:scale-102 border-2 border-vice-neon-purple neon-border">
-                    <p class="text-sm mt-4 text-center leading-relaxed italic">
-                        Deep in the forest, hidden beneath twisted roots and the hushed whisper of ancient oaks.<br>
-                        She has existed for what seems like forever.<br>
-                        She mutters to herself, to Taint, who may be listening.<br>
-                        but he hasn't been able to decipher the words<br>
-                        to escape the twisted, terrible<br>
-                        things that have been cracked.<br>
-                        She knows it isn't shimmer or shine.<br>
-                        She doesn't know it's a boy.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Full Story Section -->
+    <main class="container mx-auto px-4 md:px-16 lg:px-24 py-16 sad-vibe">
+        <!-- Timeline Section -->
         <section id="full-story" class="py-16 animate-fade-in">
-            <h2
-                class="text-5xl md:text-6xl font-pirata-one text-center mb-12 drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)] glow-teal">
-                The Full Story</h2>
-            <div
-                class="bg-gradient-to-b from-vice-dark to-black rounded-xl p-8 md:p-12 shadow-2xl space-y-8 text-lg leading-relaxed border-2 border-vice-neon-purple">
-                <p>
-                    Taint was born under a cursed moon, though he didn't know it. The curse was not a magical spell, but
-                    a slow-acting poison that seeped into his very bones, making it impossible for him to form true
-                    connections. The things others took for granted—a warm hug from a friend, the simple joy of laughter
-                    with loved ones—were a painful, unreachable mountain for him. Anyone who drew too close to Taint
-                    would find themselves consumed by a deep, inexplicable anger. Friends would turn into enemies, and
-                    loved ones would flee, their hearts heavy with a sorrow that wasn't their own.
-                </p>
-                <p>
-                    As the years passed, the village, once a bustling hub of life, grew quiet around him. Families left,
-                    their homes abandoned, their hearts hardened by the invisible poison Taint carried. He lived in the
-                    shadow of their warnings: "TAINT. TAINT. TAINT." The words were like a brand, and they followed him
-                    wherever he went. Buildings burned, friendships shattered, and his own cries for help went unheard.
-                    The constant loneliness and sadness eventually wore him down, silencing his pleas for connection
-                    until all that remained was a quiet despair. He stopped trying to mend what was broken and simply
-                    existed in the solitude he had been condemned to.
-                </p>
-                <p>
-                    Driven by a need to find a place where he truly belonged, Taint set off on a lonely road. He sought
-                    not a heroic quest, but simply an end to his torment. He found himself in a strange, sorrow-twisted
-                    land filled with bickering gnomes, militant squirrels, and goblins who weren't quite goblins. It was
-                    a world that, like him, was broken in a unique way. He learned to navigate this new land, but the
-                    true test came when he stumbled upon the Crone. She was a creature of memory, unraveled by it, and
-                    her very existence was a mirror of Taint's own curse. She spoke in whispers of ancient things, and
-                    though Taint could not understand her words, he knew she was the key to his journey.
-                </p>
-                <p>
-                    The Crone was hidden deep within the forest, in a grotto of twisted roots and ancient oaks. She had
-                        lived for what seems like an eternity, muttering to herself and to the boy who listened but
-                    couldn't understand. She saw not a boy, but a tapestry of fractured memories, a living story of
-                    sorrow. Her words were a twisted kind of magic that didn't look like magic at all—a truth that
-                    resonated deeply with Taint's own experiences. She knew the poison in his bones and understood the
-                    pain it caused, and through her, Taint finally began to see that his curse might not be an ending,
-                    but the beginning of a different kind of life—a life woven from the threads of memory and the quiet
-                    strength of solitude.
-                </p>
+            <h2 class="text-5xl md:text-6xl text-center mb-12 drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)] glow-teal" style="font-family: CodepotroAbusayed;">আমার গল্প</h2>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content game-glow retro-font">
+                        <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="Childhood Loss" class="timeline-img pixelated">
+                        <h3 class="text-2xl glow-pink">২০০৩: বাবাকে হারানো</h3>
+                        <p>মাত্র ৩ বছর বয়সে বাবাকে হারাই। তখন থেকেই জীবনের প্রথম ধাক্কা আর সংগ্রাম শুরু হয়। বাবাহীন জীবনে আমার মা-ই হয়ে ওঠেন আমার সাহস, শক্তি এবং প্রেরণা।</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content game-glow retro-font">
+                        <img src="https://images.unsplash.com/photo-1482938289607-e9573fc25d61?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="Small Town Life" class="timeline-img pixelated">
+                        <h3 class="text-2xl glow-teal">ছোট শহরের জীবন</h3>
+                        <p>ছোট মফস্বল শহরে বড় হয়েছি আমি। সেখানে ব্যবসা শুরু করা তো দূরের কথা, অনলাইনে কিছু করার কথা কেউ বিশ্বাসই করত না। এমনকি ২০২১ সালেও অনেকে ভাবতো, উপজেলা শহর থেকে বসে ই-কমার্স করে সারা বাংলাদেশে প্রোডাক্ট পাঠানো অসম্ভব।</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content game-glow retro-font">
+                        <img src="https://images.unsplash.com/photo-1556741533-411cf82e4e2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="Starting Business" class="timeline-img pixelated">
+                        <h3 class="text-2xl glow-purple">HEEMS-এর শুরু</h3>
+                        <p>কিন্তু আমি বিশ্বাস করেছিলাম। শুরুটা হয়েছিলো ঘরের ছোট্ট বেলকনি থেকে, হাতে ছিলো মাত্র ১০ হাজার টাকা আর কিছু টি-শার্ট। সেখান থেকেই শুরু হলো HEEMS-এর পথচলা। শুরুতে সব কাজ একাই করতাম— প্রোডাক্ট প্যাকিং থেকে শুরু করে কাস্টমারের রিপ্লাই, অর্ডার ম্যানেজমেন্ট— সবকিছু।</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content game-glow retro-font">
+                        <img src="https://images.unsplash.com/photo-1556745757-8d76e27d2680?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="Early Years" class="timeline-img pixelated">
+                        <h3 class="text-2xl glow-pink">প্রথম চার বছর</h3>
+                        <p>প্রথম চার বছর হোলসেলে বিভিন্ন ব্র্যান্ডের প্রোডাক্ট সংগ্রহ করে বিক্রি করেছি। ধীরে ধীরে মানুষের আস্থা, ভালোবাসা আর পরিশ্রমের মাধ্যমে HEEMS এগিয়ে গেছে।</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content game-glow retro-font">
+                        <img src="https://images.unsplash.com/photo-1455849318743-b2233052fcff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="Growth" class="timeline-img pixelated">
+                        <h3 class="text-2xl glow-teal">আজকের HEEMS</h3>
+                        <p>আজ HEEMS–এর বয়স সাড়ে চার বছর— প্রায় ৫০ হাজার ফলোয়ার, হাজারো সন্তুষ্ট কাস্টমার এবং মানুষের মনে জায়গা করে নেওয়া একটি নাম। এবার HEEMS নতুন অধ্যায়ে পা রাখছে। এতদিন অন্য ব্র্যান্ডের প্রোডাক্ট বিক্রি করলেও, এখন HEEMS তৈরি করছে নিজস্ব ব্র্যান্ডের প্রোডাক্ট।</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content game-glow retro-font">
+                        <img src="https://images.unsplash.com/photo-1486611368674-9443a717f139?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60" alt="Future Vision" class="timeline-img pixelated">
+                        <h3 class="text-2xl glow-purple">ভবিষ্যতের লক্ষ্য</h3>
+                        <p>একটা উপজেলা শহর থেকে শুরু করে, আজ HEEMS সারা দেশে পরিচিত নাম। আর আগামীতে লক্ষ্য— উপজেলা থেকে বাংলাদেশ, বাংলাদেশ থেকে বিশ্বে। অসম্ভবকে সম্ভব করার গল্পটাই HEEMS।</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -757,36 +1255,160 @@
             <!-- Glossy Overlay for Glossy Finish -->
             <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0)); mix-blend-mode: overlay; border-top: 2px solid #fcd34d; pointer-events: none;"></div>
         </footer>
-</div>
-
-    <!-- JavaScript for Smooth Scrolling and Cart Functionality -->
+    <!-- Loader Overlay -->
+    <div id="loaderOverlay">
+        <div class="loader"></div>
+    </div>
+    <!-- JavaScript for Navigation Functionality -->
     <script>
+        gsap.registerPlugin(ScrollTrigger);
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const centerLogo = document.getElementById("logo-container");
+            const scrolledNav = document.getElementById("scrolled-nav");
+            ScrollTrigger.create({
+                trigger: "body",
+                start: "top top",
+                end: "+=150",
+                onEnter: () => {
+                    gsap.to(centerLogo, {
+                        opacity: 0,
+                        y: -50,
+                        duration: 0.4,
+                        onComplete: () => {
+                            centerLogo.style.display = "none";
+                            scrolledNav.classList.remove("hidden");
+                            scrolledNav.classList.add("flex");
+                            gsap.to(scrolledNav, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" });
+                        }
+                    });
+                },
+                onLeaveBack: () => {
+                    gsap.to(scrolledNav, {
+                        opacity: 0,
+                        duration: 0.3,
+                        onComplete: () => {
+                            scrolledNav.classList.add("hidden");
+                            scrolledNav.classList.remove("flex");
+                            centerLogo.style.display = "flex";
+                            gsap.to(centerLogo, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" });
+                        }
+                    });
+                }
+            });
+            const mainLogo = document.querySelector('.main-logo');
+            const hoverLogo = document.querySelector('.hover-logo');
+            if (mainLogo && hoverLogo) {
+                mainLogo.addEventListener('mouseenter', () => {
+                    mainLogo.style.opacity = '0';
+                    hoverLogo.style.opacity = '1';
+                });
+                hoverLogo.addEventListener('mouseenter', () => {
+                    mainLogo.style.opacity = '0';
+                    hoverLogo.style.opacity = '1';
+                });
+                hoverLogo.addEventListener('mouseenter', () => {
+                    mainLogo.style.opacity = '0';
+                    hoverLogo.style.opacity = '1';
+                });
+                hoverLogo.addEventListener('mouseleave', () => {
+                    mainLogo.style.opacity = '1';
+                    hoverLogo.style.opacity = '0';
+                });
+            }
+            lucide.createIcons();
+        }
         document.addEventListener('DOMContentLoaded', function () {
-            // Cart functionality
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenuBtnScrolled = document.getElementById('mobile-menu-btn-scrolled');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+            const mobileCloseBtn = document.getElementById('mobile-close-btn');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            }
+            if (mobileMenuBtnScrolled) {
+                mobileMenuBtnScrolled.addEventListener('click', toggleMobileMenu);
+            }
+            function toggleMobileMenu() {
+                const isActive = mobileMenuOverlay.classList.contains('active');
+                if (isActive) {
+                    closeMobileMenu();
+                } else {
+                    openMobileMenu();
+                }
+            }
+            if (mobileCloseBtn) {
+                mobileCloseBtn.addEventListener('click', closeMobileMenu);
+            }
+            mobileNavItems.forEach(item => {
+                const link = item.querySelector('a');
+                if (link) {
+                    link.addEventListener('click', closeMobileMenu);
+                }
+            });
+            mobileMenuOverlay.addEventListener('click', function (e) {
+                if (e.target === mobileMenuOverlay) {
+                    closeMobileMenu();
+                }
+            });
+            function openMobileMenu() {
+                mobileMenuOverlay.classList.add('active');
+                if (mobileMenuBtn) mobileMenuBtn.classList.add('active');
+                if (mobileMenuBtnScrolled) mobileMenuBtnScrolled.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                mobileNavItems.forEach((item, index) => {
+                    const delay = parseFloat(item.getAttribute('data-delay')) || 0;
+                    setTimeout(() => {
+                        item.classList.add('active');
+                    }, delay * 1000);
+                });
+            }
+            function closeMobileMenu() {
+                mobileMenuOverlay.classList.remove('active');
+                if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
+                if (mobileMenuBtnScrolled) mobileMenuBtnScrolled.classList.remove('active');
+                document.body.style.overflow = '';
+                mobileNavItems.forEach(item => {
+                    item.classList.remove('active');
+                });
+            }
+            let touchStartY = 0;
+            let touchEndY = 0;
+            mobileMenuOverlay.addEventListener('touchstart', function (e) {
+                touchStartY = e.changedTouches[0].screenY;
+            });
+            mobileMenuOverlay.addEventListener('touchend', function (e) {
+                touchEndY = e.changedTouches[0].screenY;
+                handleSwipe();
+            });
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const swipeDistance = touchEndY - touchStartY;
+                if (swipeDistance > swipeThreshold) {
+                    closeMobileMenu();
+                }
+            }
             let cart = loadCart();
-
-            // DOM Elements
             const cartBtn = document.getElementById('cart-btn');
+            const cartBtnScrolled = document.getElementById('cart-btn-scrolled');
             const mobileCartBtn = document.getElementById('mobile-cart-btn');
             const cartSidebar = document.getElementById('cart-sidebar');
             const closeCartButton = document.getElementById('close-cart');
             const cartItemsContainer = document.getElementById('cart-items');
             const cartSubtotal = document.getElementById('cart-subtotal');
-            const cartCountElements = document.querySelectorAll('#cart-count, #mobile-cart-count');
-
-            // Initialize cart UI
+            const cartCountElements = document.querySelectorAll('#cart-count, #cart-count-scrolled, #mobile-cart-count');
             updateCartUI();
-
-            // Cart sidebar toggle
             if (cartBtn) {
                 cartBtn.addEventListener('click', toggleCart);
             }
+            if (cartBtnScrolled) {
+                cartBtnScrolled.addEventListener('click', toggleCart);
+            }
             if (mobileCartBtn) {
                 mobileCartBtn.addEventListener('click', function () {
-                    // Close mobile menu if open
-                    const mobileMenu = document.getElementById('mobile-menu');
-                    if (mobileMenu.classList.contains('open')) {
-                        mobileMenu.classList.remove('open');
+                    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+                    if (mobileMenuOverlay.classList.contains('active')) {
+                        toggleMobileMenu();
                     }
                     toggleCart();
                 });
@@ -794,105 +1416,37 @@
             if (closeCartButton) {
                 closeCartButton.addEventListener('click', toggleCart);
             }
-
-            // Close cart when clicking outside
             document.addEventListener('click', function (event) {
-                // Only close cart if clicking outside the cart sidebar AND not on cart buttons
                 if (!cartSidebar.contains(event.target) &&
                     !cartBtn.contains(event.target) &&
+                    !cartBtnScrolled.contains(event.target) &&
                     !mobileCartBtn.contains(event.target) &&
                     !event.target.closest('#cart-sidebar') &&
                     !event.target.closest('#cart-btn') &&
+                    !event.target.closest('#cart-btn-scrolled') &&
                     !event.target.closest('#mobile-cart-btn')) {
                     cartSidebar.classList.add('translate-x-full');
                     document.body.style.overflow = '';
                 }
             });
-
-            // Mobile menu functionality
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileMenuClose = document.getElementById('mobile-menu-close');
-            if (mobileMenuButton) {
-                mobileMenuButton.addEventListener('click', function () {
-                    mobileMenu.classList.add('open');
-                });
-            }
-            if (mobileMenuClose) {
-                mobileMenuClose.addEventListener('click', function () {
-                    mobileMenu.classList.remove('open');
-                });
-            }
-
-            // Functions
             function loadCart() {
                 const savedCart = localStorage.getItem('heems-cart');
                 return savedCart ? JSON.parse(savedCart) : [];
             }
-
             function saveCart() {
                 localStorage.setItem('heems-cart', JSON.stringify(cart));
             }
-
-            function addToCart(item) {
-                // Check if product already in cart
-                const existingItemIndex = cart.findIndex(cartItem =>
-                    cartItem.id === item.id &&
-                    cartItem.size === item.size &&
-                    cartItem.color === item.color
-                );
-
-                if (existingItemIndex !== -1) {
-                    // Update quantity if item already exists
-                    cart[existingItemIndex].quantity += item.quantity;
-                } else {
-                    // Add new item to cart
-                    cart.push(item);
-                }
-
-                saveCart();
-                updateCartUI();
-            }
-
-            function updateItemQuantity(itemId, action) {
-                const itemIndex = cart.findIndex(item => item.id === itemId);
-                if (itemIndex !== -1) {
-                    if (action === 'increase') {
-                        cart[itemIndex].quantity += 1;
-                    } else if (action === 'decrease') {
-                        if (cart[itemIndex].quantity > 1) {
-                            cart[itemIndex].quantity -= 1;
-                        } else {
-                            // Remove item if quantity becomes 0
-                            cart.splice(itemIndex, 1);
-                        }
-                    }
-                    saveCart();
-                    updateCartUI();
-                }
-            }
-
-            function removeFromCart(itemId) {
-                cart = cart.filter(item => item.id !== itemId);
-                saveCart();
-                updateCartUI();
-            }
-
             function updateCartUI() {
-                // Update cart count
                 const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
                 cartCountElements.forEach(el => el.textContent = totalItems);
-
-                // Update cart sidebar if it exists on the page
                 if (!cartItemsContainer || !cartSubtotal) {
-                    return; // Not on a page with cart sidebar
+                    return;
                 }
-
                 if (cart.length === 0) {
                     cartItemsContainer.innerHTML = `
-                        <div class="text-center py-12 text-bistre/70">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-bistre/30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin-round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        <div class="text-center py-12 text-gray-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                             </svg>
                             <p>Your cart is empty</p>
                         </div>
@@ -900,101 +1454,97 @@
                     cartSubtotal.textContent = '৳0.00';
                     return;
                 }
-
                 let itemsHTML = '';
                 let subtotal = 0;
                 cart.forEach(item => {
                     subtotal += item.price * item.quantity;
                     itemsHTML += `
-                        <div class="flex py-4 border-b border-bistre/20">
+                        <div class="flex py-4 border-b border-gray-200">
                             <div class="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden">
                                 <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
                             </div>
                             <div class="flex-1 pl-4">
-                                <h4 class="font-bold text-bistre">${item.name}</h4>
-                                <p class="text-sm text-bistre/70 mb-1">${item.color}, ${item.size}</p>
-                                <p class="text-sm text-bistre/70">৳${item.price} × ${item.quantity}</p>
+                                <h4 class="font-bold text-gray-800">${item.name}</h4>
+                                <p class="text-sm text-gray-600 mb-1">${item.color}, ${item.size}</p>
+                                <p class="text-sm text-gray-600">৳${item.price} × ${item.quantity}</p>
                             </div>
                             <div class="flex flex-col items-end space-y-2">
-                                <p class="font-bold text-bistre">৳${(item.price * item.quantity).toFixed(2)}</p>
+                                <p class="font-bold text-gray-800">৳${(item.price * item.quantity).toFixed(2)}</p>
                                 <div class="flex items-center space-x-2">
-                                    <button class="quantity-btn text-bistre hover:text-mauveine transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-bistre/30 hover:border-bistre" data-id="${item.id}" data-action="decrease">-</button>
-                                    <span class="text-sm text-bistre font-medium min-w-[20px] text-center">${item.quantity}</span>
-                                    <button class="quantity-btn text-bistre hover:text-mauveine transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-bistre/30 hover:border-bistre" data-id="${item.id}" data-action="increase">+</button>
+                                    <button class="quantity-btn text-gray-600 hover:text-red-500 transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-gray-300 hover:border-red-500" data-id="${item.id}" data-action="decrease">-</button>
+                                    <span class="text-sm text-gray-800 font-medium min-w-[20px] text-center">${item.quantity}</span>
+                                    <button class="quantity-btn text-gray-600 hover:text-red-500 transition text-lg font-bold w-6 h-6 flex items-center justify-center rounded-full border border-gray-300 hover:border-red-500" data-id="${item.id}" data-action="increase">+</button>
                                 </div>
-                                <button class="text-xs text-bistre/50 hover:text-mauveine transition remove-item" data-id="${item.id}">
+                                <button class="text-xs text-gray-500 hover:text-red-500 transition remove-item" data-id="${item.id}">
                                     Remove
                                 </button>
                             </div>
                         </div>
                     `;
                 });
-
                 cartItemsContainer.innerHTML = itemsHTML;
                 cartSubtotal.textContent = `৳${subtotal.toFixed(2)}`;
-
-                // Add event listeners to remove buttons and quantity buttons
                 document.querySelectorAll('.remove-item').forEach(button => {
                     button.addEventListener('click', function (e) {
-                        e.stopPropagation(); // Prevent event bubbling
+                        e.stopPropagation();
                         const itemId = this.getAttribute('data-id');
                         removeFromCart(itemId);
                     });
                 });
-
-                // Add event listeners to quantity buttons
                 document.querySelectorAll('.quantity-btn').forEach(button => {
                     button.addEventListener('click', function (e) {
-                        e.stopPropagation(); // Prevent event bubbling
+                        e.stopPropagation();
                         const itemId = this.getAttribute('data-id');
                         const action = this.getAttribute('data-action');
                         updateItemQuantity(itemId, action);
                     });
                 });
             }
-
+            function removeFromCart(itemId) {
+                cart = cart.filter(item => item.id !== itemId);
+                saveCart();
+                updateCartUI();
+            }
+            function updateItemQuantity(itemId, action) {
+                const item = cart.find(cartItem => cartItem.id === itemId);
+                if (item) {
+                    if (action === 'increase') {
+                        item.quantity += 1;
+                    } else if (action === 'decrease') {
+                        item.quantity = Math.max(1, item.quantity - 1);
+                    }
+                    saveCart();
+                    updateCartUI();
+                }
+            }
             function toggleCart() {
                 cartSidebar.classList.toggle('translate-x-full');
                 document.body.style.overflow = cartSidebar.classList.contains('translate-x-full') ? '' : 'hidden';
             }
 
-            function showNotification(message) {
-                const notification = document.createElement('div');
-                notification.className = 'fixed bottom-4 right-4 bg-bistre text-white px-4 py-2 rounded-lg shadow-lg animate-fade-in z-50';
-                notification.textContent = message;
-                document.body.appendChild(notification);
-                setTimeout(() => {
-                    notification.classList.add('opacity-0', 'transition-opacity', 'duration-300');
-                    setTimeout(() => notification.remove(), 300);
-                }, 2000);
-            }
-
-        // Animate sections as they come into view
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fade-in');
-                }
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-
-            // Initialize Locomotive Scroll
-            const scroll = new LocomotiveScroll({
-                el: document.querySelector("[data-scroll-container]"),
-                smooth: true,
-                inertia: 0.95,
-                multiplier: 1,
+            // Scroll-based animations for timeline
+            const timelineContents = document.querySelectorAll('.timeline-content');
+            timelineContents.forEach(content => {
+                gsap.to(content, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    scrollTrigger: {
+                        trigger: content,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
             });
         });
+        function showLoader() {
+            const overlay = document.getElementById('loaderOverlay');
+            overlay.style.display = 'flex';
 
-        function scrollToElement(elementId) {
-            const element = document.getElementById(elementId);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-            }
+            // Optional: hide after some time
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 3000); // hide after 3 seconds
         }
     </script>
 </body>
